@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Bullet_Player_Basic.cs" />
     <Compile Include="Assets\Scripts\Player_Moviment.cs" />
     <Compile Include="Assets\Scripts\Player_Shot.cs" />
+    <Compile Include="Assets\Wall.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Else/Unity/Comic Sans/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

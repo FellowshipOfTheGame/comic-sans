@@ -20,4 +20,8 @@ public class Player_Moviment : MonoBehaviour {
         vel.Normalize();
         rBody.velocity = vel * speed;
 	}
+
+   
+
+
 }

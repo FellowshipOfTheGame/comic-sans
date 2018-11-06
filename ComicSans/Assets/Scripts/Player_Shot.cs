@@ -6,16 +6,30 @@ public class Player_Shot : MonoBehaviour {
 
     [SerializeField] GameObject Bullet;
     [SerializeField] float spawn_time;
-	
-	void Update () {
+
+    public delegate void Shot();
+
+    public static event Shot OnShot;
+
+    private void Awake()
+    {
+        OnShot += Shot_Standard;
+    }
+
+    void Update () {
         if (Input.GetButtonDown("Fire1"))
-            InvokeRepeating("Shot", 0 , spawn_time);
+            InvokeRepeating("Shoting", 0 , spawn_time);
         if (Input.GetButtonUp("Fire1"))
             CancelInvoke();
 	}
 
-    void Shot()
+    void Shoting()
     {
-        Instantiate(Bullet,this.transform);
+        OnShot();
+    }
+
+    void Shot_Standard()
+    {
+        Instantiate(Bullet, this.transform);
     }
 }
