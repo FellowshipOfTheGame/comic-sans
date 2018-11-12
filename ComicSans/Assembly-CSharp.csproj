@@ -53,11 +53,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Sprites\Enemies\BossAttack.cs" />
-     <Compile Include="Assets\Sprites\Enemies\BossPattern.cs" />
-     <Compile Include="Assets\Sprites\Enemies\BossPhase.cs" />
-     <Compile Include="Assets\Sprites\Enemies\BossScript.cs" />
-     <Compile Include="Assets\Sprites\Enemies\Movement.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossAction.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossAttack.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossAttackMove.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossIdle.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossMovement.cs" />
+     <Compile Include="Assets\Scripts\Boss\BossPattern.cs" />
+     <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
+     <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/Users/luise/Documents/USP/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
