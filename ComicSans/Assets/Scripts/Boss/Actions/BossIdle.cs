@@ -7,8 +7,7 @@ public class BossIdle : BossAction {
 
     public float idleTime;
 
-    public string idleAnimationName;
-    public int idleAnimationValue;
+    public List<AnimationSet> animations;
 
     public override void Start()
     {

@@ -8,8 +8,7 @@ public class BossAttack : BossAction {
     public GameObject projectile;
     public List<Vector2> projectileSpawns;
 
-    public string animationName;
-    public int animationValue;
+    public List<AnimationSet> animations;
 
     public override void Start()
     {

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4480116008798146}
   - component: {fileID: 212506702366836530}
   - component: {fileID: 95062934372698448}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4343024667954998}
   - component: {fileID: 70986272384604466}
   - component: {fileID: 50928384489350144}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

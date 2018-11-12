@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4796578653914442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4655783312876826}
   - component: {fileID: 212215935567725450}
   - component: {fileID: 95766691272305754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4993833562419202}
   - component: {fileID: 114953460740448922}
   - component: {fileID: 70411887996251544}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}

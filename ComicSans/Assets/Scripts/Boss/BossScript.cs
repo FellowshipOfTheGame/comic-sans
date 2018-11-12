@@ -118,7 +118,7 @@ public class BossScript : MonoBehaviour
 		while (true) {
 
 			if(_animator != null)
-				_animator.SetInteger(movement.animationName, movement.animationValue);
+				SetAnimation(movement.animations);
 
 			Vector3 targetPosition = new Vector3(movement.positionTarget.x, movement.positionTarget.y, 0);
 
@@ -138,7 +138,7 @@ public class BossScript : MonoBehaviour
 
 		// Sets the animation for this attack.
 		if(_animator != null)
-			_animator.SetInteger(attack.animationName, attack.animationValue);
+			SetAnimation(attack.animations);
 
 		// Spawns all projectiles.
 		foreach(Vector2 spawn in attack.projectileSpawns)
@@ -165,12 +165,12 @@ public class BossScript : MonoBehaviour
 				nextStep = originalPos + ((targetPosition - originalPos) / attackMove.numberOfSteps) * currentStep;
 
 				if(_animator != null)
-					_animator.SetInteger(attackMove.idleAnimationName, attackMove.idleAnimationValue);
+					SetAnimation(attackMove.idleAnimations);
 
 				yield return new WaitForSeconds(attackMove.idleTime);
 
 				if(_animator != null)
-					_animator.SetInteger(attackMove.attackAnimationName, attackMove.attackAnimationValue);
+					SetAnimation(attackMove.attackAnimations);
 
 				// Spawns all projectiles.
 				foreach(Vector2 spawn in attackMove.projectileSpawns)
@@ -182,7 +182,7 @@ public class BossScript : MonoBehaviour
 			else
 			{
 				if(_animator != null)
-					_animator.SetInteger(attackMove.moveAnimationName, attackMove.moveAnimationValue);
+					SetAnimation(attackMove.movementAnimations);
 
 				transform.position = Vector3.MoveTowards(transform.position, nextStep, velocity * attackMove.velocityModifier * Time.deltaTime);
 			}
@@ -198,9 +198,17 @@ public class BossScript : MonoBehaviour
 	{
 
 		if(_animator != null)
-			_animator.SetInteger(idle.idleAnimationName, idle.idleAnimationValue);
+			SetAnimation(idle.animations);
 
 		Invoke("GetNewAction", idle.idleTime);
+	}
+
+	private void SetAnimation(List<AnimationSet> animations)
+	{
+
+		foreach (AnimationSet anim in animations)
+			_animator.SetInteger(anim.name, anim.value);
+
 	}
 
 	public void Damage(int amount) 

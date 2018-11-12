@@ -15,14 +15,9 @@ public class BossAttackMove : BossAction {
     public GameObject projectile;
     public List<Vector2> projectileSpawns;
 
-    public string moveAnimationName;
-    public int moveAnimationValue;
-
-    public string attackAnimationName;
-    public int attackAnimationValue;
-
-    public string idleAnimationName;
-    public int idleAnimationValue;
+    public List<AnimationSet> movementAnimations;
+    public List<AnimationSet> idleAnimations;
+    public List<AnimationSet> attackAnimations;
 
     public override void Start()
     {

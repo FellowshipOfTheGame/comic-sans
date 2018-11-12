@@ -11,3 +11,11 @@ public abstract class BossAction : ScriptableObject {
 	public abstract void Start ();
 
 }
+
+[System.Serializable]
+public struct AnimationSet {
+
+	public string name;
+	public int value;
+
+}

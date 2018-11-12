@@ -8,8 +8,7 @@ public class BossMovement : BossAction {
     public Vector2 positionTarget;
     public float velocityModifier;
 
-    public string animationName;
-    public int animationValue;
+    public List<AnimationSet> animations;
 
     public override void Start()
     {
