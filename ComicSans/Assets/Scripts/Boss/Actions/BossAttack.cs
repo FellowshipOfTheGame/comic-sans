@@ -10,7 +10,7 @@ public class BossAttack : BossAction {
 
     public List<AnimationSet> animations;
 
-    public override void Start()
+    public override void DoAction()
     {
         caller.ActionAttack(this);
     }

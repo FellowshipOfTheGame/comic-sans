@@ -10,7 +10,7 @@ public class BossMovement : BossAction {
 
     public List<AnimationSet> animations;
 
-    public override void Start()
+    public override void DoAction()
     {
         caller.StartCoroutine(caller.ActionMove(this));
     }

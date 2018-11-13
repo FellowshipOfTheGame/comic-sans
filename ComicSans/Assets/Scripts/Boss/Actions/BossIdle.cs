@@ -9,7 +9,7 @@ public class BossIdle : BossAction {
 
     public List<AnimationSet> animations;
 
-    public override void Start()
+    public override void DoAction()
     {
         caller.ActionIdle(this);
     }

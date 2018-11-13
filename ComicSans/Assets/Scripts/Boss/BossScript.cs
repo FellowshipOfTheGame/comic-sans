@@ -32,6 +32,7 @@ public class BossScript : MonoBehaviour
 
 	private BossPattern currentPattern;
 	private BossAction currentAction;
+	[HideInInspector]
 	public Coroutine currentCoroutine;
 
 	private int actionCounter = -1;
@@ -41,7 +42,7 @@ public class BossScript : MonoBehaviour
 	private Animator _animator;
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		
 		// Initializes the boss movement pattern.
@@ -53,12 +54,6 @@ public class BossScript : MonoBehaviour
 
 		currentPattern = phases[0].firstPattern;
 		GetNewAction();
-
-	}
-
-	// Update is called once per frame
-	void Update () 
-	{
 
 	}
 
@@ -80,7 +75,7 @@ public class BossScript : MonoBehaviour
 
 		currentAction = currentPattern.actions[actionCounter];
 		currentAction.caller = this;
-		currentAction.Start();
+		currentAction.DoAction();
 
 	} 
 
@@ -164,19 +159,22 @@ public class BossScript : MonoBehaviour
 				currentStep++;
 				nextStep = originalPos + ((targetPosition - originalPos) / attackMove.numberOfSteps) * currentStep;
 
-				if(_animator != null)
-					SetAnimation(attackMove.idleAnimations);
+				if(currentStep != 1)
+				{
+					if(_animator != null)
+						SetAnimation(attackMove.idleAnimations);
 
-				yield return new WaitForSeconds(attackMove.idleTime);
+					yield return new WaitForSeconds(attackMove.idleTime);
 
-				if(_animator != null)
-					SetAnimation(attackMove.attackAnimations);
+					if(_animator != null)
+						SetAnimation(attackMove.attackAnimations);
 
-				// Spawns all projectiles.
-				foreach(Vector2 spawn in attackMove.projectileSpawns)
-					Instantiate(attackMove.projectile, transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+					// Spawns all projectiles.
+					foreach(Vector2 spawn in attackMove.projectileSpawns)
+						Instantiate(attackMove.projectile, transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 
-				yield return new WaitForSeconds(attackMove.idleTime);
+					yield return new WaitForSeconds(attackMove.idleTime);
+				}
 
 			} 
 			else

@@ -19,7 +19,7 @@ public class BossAttackMove : BossAction {
     public List<AnimationSet> idleAnimations;
     public List<AnimationSet> attackAnimations;
 
-    public override void Start()
+    public override void DoAction()
     {
         caller.currentCoroutine = caller.StartCoroutine(caller.ActionAttackMove(this));
     }

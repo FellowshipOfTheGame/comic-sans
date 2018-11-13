@@ -8,7 +8,7 @@ public abstract class BossAction : ScriptableObject {
 	public BossScript caller;
 
 	// Use this for initialization of the action.
-	public abstract void Start ();
+	public abstract void DoAction ();
 
 }
 
