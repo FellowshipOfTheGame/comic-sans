@@ -61,10 +61,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Full_Health.cs" />
+    <Compile Include="Assets\Low_Health.cs" />
+    <Compile Include="Assets\Mid_Health.cs" />
+    <Compile Include="Assets\Player_Health.cs" />
     <Compile Include="Assets\Scripts\Bullet_Player_Basic.cs" />
+    <Compile Include="Assets\Scripts\Player_Manager.cs" />
     <Compile Include="Assets\Scripts\Player_Moviment.cs" />
     <Compile Include="Assets\Scripts\Player_Shot.cs" />
-    <Compile Include="Assets\Wall.cs" />
+    <Compile Include="Assets\Scripts\Wall.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Else/Unity/Comic Sans/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

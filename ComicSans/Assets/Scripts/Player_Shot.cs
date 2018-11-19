@@ -30,6 +30,7 @@ public class Player_Shot : MonoBehaviour {
 
     void Shot_Standard()
     {
-        Instantiate(Bullet, this.transform);
+         GameObject Bullet_Standard =  Instantiate(Bullet, this.transform);
+        Bullet_Standard.transform.parent = null;
     }
 }
