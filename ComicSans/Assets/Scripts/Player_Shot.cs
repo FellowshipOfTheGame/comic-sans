@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Player/Shot")]
 public class Player_Shot : MonoBehaviour {
 
     [SerializeField] GameObject Bullet;
@@ -18,7 +19,7 @@ public class Player_Shot : MonoBehaviour {
 
     void Update () {
         if (Input.GetButtonDown("Fire1"))
-            InvokeRepeating("Shoting", 0 , spawn_time);
+            InvokeRepeating("Shoting", 0, spawn_time);
         if (Input.GetButtonUp("Fire1"))
             CancelInvoke();
 	}
@@ -30,7 +31,7 @@ public class Player_Shot : MonoBehaviour {
 
     void Shot_Standard()
     {
-         GameObject Bullet_Standard =  Instantiate(Bullet, this.transform);
+        GameObject Bullet_Standard = Instantiate(Bullet, this.transform);
         Bullet_Standard.transform.parent = null;
     }
 }
