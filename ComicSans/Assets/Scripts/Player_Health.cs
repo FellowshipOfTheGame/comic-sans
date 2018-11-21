@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Player/Health")]
 public class Player_Health : MonoBehaviour {
 
     [SerializeField] private int hp;
