@@ -201,6 +201,40 @@ public class BossScript : MonoBehaviour
 		Invoke("GetNewAction", idle.idleTime);
 	}
 
+	public IEnumerator ActionTeleport (BossTeleport teleport)
+	{
+		if(teleport.teleportType == BossTeleport.TeleportType.AnimationThenTP)
+		{
+			SetAnimation(teleport.animations);
+			yield return new WaitForSeconds(teleport.delay);
+
+			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
+
+			GetNewAction();
+
+		}
+		else if(teleport.teleportType == BossTeleport.TeleportType.TPThenAnimation)
+		{			
+			
+			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
+
+			SetAnimation(teleport.animations);
+			yield return new WaitForSeconds(teleport.delay);
+
+			GetNewAction();
+
+		}
+		else
+		{
+			if(teleport.teleportType == BossTeleport.TeleportType.AnimatedTP)
+				SetAnimation(teleport.animations);
+
+			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
+
+			GetNewAction();
+		}
+	}
+
 	private void SetAnimation(List<AnimationSet> animations)
 	{
 

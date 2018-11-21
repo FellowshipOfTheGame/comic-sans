@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a8356d8e452d54ab81b90ddfc1fc73, type: 3}
   m_Name: BunnyFirstPhase
   m_EditorClassIdentifier: 
-  firstPattern: {fileID: 11400000, guid: ed2e29e6920dc8e4eacbe1f389459eb7, type: 2}
+  firstPattern: {fileID: 11400000, guid: 8fadabf3580753344b043e9631bbc578, type: 2}
   lifeToNextPhase: 50

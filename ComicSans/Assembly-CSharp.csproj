@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttackMove.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossIdle.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossMovement.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossTeleport.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPattern.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
      <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
