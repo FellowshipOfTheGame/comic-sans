@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Wall
+  - Bullet
+  - Enemy_Bullet
+  - Low_Health
+  - Mid_Health
+  - Full_Health
   layers:
   - Default
   - TransparentFX
