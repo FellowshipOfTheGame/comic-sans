@@ -17,6 +17,6 @@ public class BossTeleport : BossAction {
 
     public override void DoAction()
     {
-        caller.currentCoroutine = caller.StartCoroutine(caller.ActionTeleport(this));
+        caller.StartCoroutine(caller.ActionTeleport(this));
     }
 }

@@ -62,6 +62,8 @@
      <Compile Include="Assets\Scripts\Boss\BossPattern.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
      <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
+     <Compile Include="Assets\Scripts\Boss\Projectile\BossFollowProjectile.cs" />
+     <Compile Include="Assets\Scripts\Boss\Projectile\BossProjectile.cs" />
      <Compile Include="Assets\Scripts\Bullet_Player_Basic.cs" />
      <Compile Include="Assets\Scripts\Full_Health.cs" />
      <Compile Include="Assets\Scripts\Low_Health.cs" />

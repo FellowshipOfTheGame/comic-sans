@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4343024667954998}
   - component: {fileID: 70986272384604466}
   - component: {fileID: 50928384489350144}
+  - component: {fileID: 114035600258322580}
   m_Layer: 11
   m_Name: Carrot
   m_TagString: Bullet
@@ -86,7 +87,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -125,6 +126,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114035600258322580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690761952644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e0d8e9c3bdbf042b78801a35782d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 50928384489350144}
+  delay: 0.1
+  aceleration: 10
+  positionConstraints: {x: 8, y: 8}
 --- !u!212 &212506702366836530
 SpriteRenderer:
   m_ObjectHideFlags: 1

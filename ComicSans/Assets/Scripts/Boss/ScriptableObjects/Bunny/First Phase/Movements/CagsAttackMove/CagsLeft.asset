@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51958cd68a45a4eba7295b60d23728, type: 3}
+  m_Name: CagsLeft
+  m_EditorClassIdentifier: 
+  caller: {fileID: 0}
+  numberOfSteps: 8
+  positionTarget: {x: -5, y: 3.3}
+  velocityModifier: 1
+  stopBeforeAttack: 0
+  stopAfterAttack: 0
+  idleTime: 1
+  projectile: {fileID: 1690761952644898, guid: 8cd474ca622ca6d48922da3ec801d929, type: 2}
+  projectileSpawns:
+  - {x: 0, y: -1.8}
+  movementAnimations:
+  - name: Fly
+    value: 1
+  - name: Cags
+    value: 0
+  idleAnimations: []
+  attackAnimations:
+  - name: Cags
+    value: 1
+  idleAtEnd: 1

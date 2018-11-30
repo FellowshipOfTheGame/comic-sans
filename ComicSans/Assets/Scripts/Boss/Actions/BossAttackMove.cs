@@ -10,6 +10,8 @@ public class BossAttackMove : BossAction {
     public Vector2 positionTarget;
     public float velocityModifier;
 
+    public bool stopBeforeAttack;
+    public bool stopAfterAttack;
     public float idleTime;
 
     public GameObject projectile;
@@ -19,8 +21,10 @@ public class BossAttackMove : BossAction {
     public List<AnimationSet> idleAnimations;
     public List<AnimationSet> attackAnimations;
 
+    public bool idleAtEnd;
+
     public override void DoAction()
     {
-        caller.currentCoroutine = caller.StartCoroutine(caller.ActionAttackMove(this));
+        caller.StartCoroutine(caller.ActionAttackMove(this));
     }
 }
