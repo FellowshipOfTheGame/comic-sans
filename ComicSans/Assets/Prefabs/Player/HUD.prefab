@@ -39,10 +39,9 @@ GameObject:
   - component: {fileID: 224866040522600600}
   - component: {fileID: 222469463407149078}
   - component: {fileID: 114476409062469556}
-  - component: {fileID: 114331467483979958}
   m_Layer: 5
   m_Name: Mid_Health
-  m_TagString: Mid_Health
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,10 +56,9 @@ GameObject:
   - component: {fileID: 224028529919121020}
   - component: {fileID: 222902739200876954}
   - component: {fileID: 114653875919321704}
-  - component: {fileID: 114445788361004450}
   m_Layer: 5
   m_Name: Low_Health
-  m_TagString: Low_Health
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,10 +88,9 @@ GameObject:
   - component: {fileID: 224326600599791322}
   - component: {fileID: 222067224026616732}
   - component: {fileID: 114343592137337186}
-  - component: {fileID: 114218658678791572}
   m_Layer: 5
   m_Name: Full_Health
-  m_TagString: Full_Health
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,28 +116,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114218658678791572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1654971194405754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 295a7f1a47d2cfa41b69de2f96b02c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114331467483979958
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286942485299182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 038a66845c7e496419c7798093a28318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114343592137337186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,17 +143,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114445788361004450
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1509940021943708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36376cf73cd32d44587a55a11d71972b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114476409062469556
 MonoBehaviour:
   m_ObjectHideFlags: 1
