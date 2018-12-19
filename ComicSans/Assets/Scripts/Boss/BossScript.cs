@@ -153,7 +153,9 @@ public class BossScript : MonoBehaviour
 
 	public IEnumerator ActionAttackMove(BossAttackMove attackMove)
 	{
-	
+
+		float timer = 0;
+
 		Vector3 originalPos = transform.position;
 		Vector3 targetPosition = new Vector3(attackMove.positionTarget.x, attackMove.positionTarget.y, 0);
 		Vector3 nextStep = transform.position;
@@ -178,7 +180,12 @@ public class BossScript : MonoBehaviour
 						// Plays the idle animations and wait for some time.
 						if(_animator != null)
 							SetAnimation(attackMove.idleAnimations);
-						yield return new WaitForSeconds(attackMove.idleTime);
+						timer = 0;
+						while(timer < attackMove.idleTime) 
+						{
+							timer += Time.deltaTime;
+							yield return new WaitForEndOfFrame();
+						}
 					}
 
 					// Plays the attack animations.
@@ -196,7 +203,12 @@ public class BossScript : MonoBehaviour
 						// Plays the idle animations and wait for some time.
 						if(_animator != null)
 							SetAnimation(attackMove.idleAnimations);
-						yield return new WaitForSeconds(attackMove.idleTime);
+						timer = 0;
+						while(timer < attackMove.idleTime) 
+						{
+							timer += Time.deltaTime;
+							yield return new WaitForEndOfFrame();
+						}
 					} 
 					else
 					{
@@ -225,14 +237,22 @@ public class BossScript : MonoBehaviour
 		if(_animator != null)
 			SetAnimation(attackMove.idleAnimations);
 
-		if(attackMove.idleAtEnd)
-			yield return new WaitForSeconds(attackMove.idleTime);				
+		// Idles at the end of the action.
+		if(attackMove.idleAtEnd) 
+		{
+			timer = 0;
+			while(timer < attackMove.idleTime) 
+			{
+				timer += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
+		}		
 
 		GetNewAction();
 
 	}
 
-	public void ActionIdle(BossIdle idle)
+	public IEnumerator ActionIdle(BossIdle idle)
 	{
 
 		// Play the idle animation.
@@ -240,18 +260,30 @@ public class BossScript : MonoBehaviour
 			SetAnimation(idle.animations);
 
 		// Idles for some time.
-		Invoke("GetNewAction", idle.idleTime);
+		float timer = 0;
+		while(timer < idle.idleTime) 
+		{
+			timer += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+
+		GetNewAction();
 
 	}
 
 	public IEnumerator ActionTeleport (BossTeleport teleport)
 	{
+		float timer = 0;
 		if(teleport.teleportType == BossTeleport.TeleportType.AnimationThenTP)
 		{
 			// Plays the animation and idles.
 			if(_animator != null)
 				SetAnimation(teleport.animations);
-			yield return new WaitForSeconds(teleport.delay);
+			while(timer < teleport.delay) 
+			{
+					timer += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
 
 			// Them teleport.
 			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
@@ -268,7 +300,11 @@ public class BossScript : MonoBehaviour
 			// Them plays the animation and idles.
 			if(_animator != null)
 				SetAnimation(teleport.animations);
-			yield return new WaitForSeconds(teleport.delay);
+			while(timer < teleport.delay) 
+			{
+					timer += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
 
 			GetNewAction();
 

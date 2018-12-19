@@ -11,6 +11,6 @@ public class BossIdle : BossAction {
 
     public override void DoAction()
     {
-        caller.ActionIdle(this);
+        caller.StartCoroutine(caller.ActionIdle(this));
     }
 }

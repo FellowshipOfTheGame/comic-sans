@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Boss/Follow Projectile")]
-public class BossFollowProjectile : BossProjectile {
+public class BossFollowProjectile : ProjectileBase {
 
 	public Rigidbody2D _rigidbody;
 	public float delay = 1.0f;
 
 	public float aceleration = 10.0f;
 
-	void Start ()
+	protected override void Awake ()
 	{
+
+		base.Awake();
 
 		GameObject target = GameObject.FindGameObjectWithTag("Player");
 		if(target != null)
@@ -42,7 +44,7 @@ public class BossFollowProjectile : BossProjectile {
 	IEnumerator LookAt(Transform target)
 	{
 
-		while (true)
+		while (target != null)
 		{
 
 			Vector3 diff = target.position - transform.position;

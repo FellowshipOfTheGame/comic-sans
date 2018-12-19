@@ -64,26 +64,23 @@
      <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossFollowProjectile.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossProjectile.cs" />
-     <Compile Include="Assets\Scripts\Bullet_Player_Basic.cs" />
-     <Compile Include="Assets\Scripts\Full_Health.cs" />
-     <Compile Include="Assets\Scripts\Low_Health.cs" />
-     <Compile Include="Assets\Scripts\Mid_Health.cs" />
-     <Compile Include="Assets\Scripts\Player_Health.cs" />
-     <Compile Include="Assets\Scripts\Player_Manager.cs" />
-     <Compile Include="Assets\Scripts\Player_Movement.cs" />
-     <Compile Include="Assets\Scripts\Player_Shot.cs" />
-     <Compile Include="Assets\Scripts\Wall.cs" />
+     <Compile Include="Assets\Scripts\Player\Player_Health.cs" />
+     <Compile Include="Assets\Scripts\Player\Player_Manager.cs" />
+     <Compile Include="Assets\Scripts\Player\Player_Movement.cs" />
+     <Compile Include="Assets\Scripts\Player\Player_Shot.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerProjectile.cs" />
+     <Compile Include="Assets\Scripts\ProjectileBase.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/Users/luise/Documents/USP/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>D:/Users/luise/Documents/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Users/luise/Documents/USP/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Users/luise/Documents/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Users/luise/Documents/USP/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/Users/luise/Documents/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Users/luise/Documents/USP/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Users/luise/Documents/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

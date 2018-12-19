@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 917, y: 442}
-  m_MaxSize: {x: 22012, y: 10021}
+  m_MinSize: {x: 913, y: 442}
+  m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
-  controlID: 14253
+  controlID: 6282
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 14254
+  controlID: 6283
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -367,14 +367,14 @@ MonoBehaviour:
     height: 465
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 4398.477727688917
+  lastFramingTime: 128.5408382
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.34402955, y: 2.0389721, z: -0.067495935}
+    m_Target: {x: -13.454971, y: 3.9374511, z: -0.12100795}
     speed: 2
-    m_Value: {x: 0.34402955, y: 2.0389721, z: -0.067495935}
+    m_Value: {x: -13.454971, y: 3.9374511, z: -0.12100795}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -406,9 +406,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.089775
+    m_Target: 34.001274
     speed: 2
-    m_Value: 13.089775
+    m_Value: 34.001274
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -559,7 +559,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0839faffb4fbffffb6fbffffe4fbffff00000000
+    m_ExpandedIDs: 5afbffff9efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -620,20 +620,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Boss/ScriptableObjects/Bunny/First Phase/CarrotAttackMove
+    - Assets/Scripts/Boss/ScriptableObjects/Bunny/First Phase/Patterns
   m_ViewMode: 0
   m_StartGridSize: 64
-  m_LastFolders:
-  - Assets/Scenes
+  m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Users\luise\Documents\USP\FoG\comic-sans\ComicSans
+  m_LastProjectPath: D:\Users\luise\Documents\comic-sans\ComicSans
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: e22c0000
     m_LastClickedID: 11490
-    m_ExpandedIDs: ffffffff000000006e0900008c090000a6090000ac090000b4090000020a0000040a0000a80a00000c0b0000200b00005e0b0000a40b0000c00b0000d60b0000f80b00002a0c0000900c0000940c0000040d00000a0d00000c0d00003c0d00004e0d00003e2f0000402f0000ca3b0000
+    m_ExpandedIDs: ffffffff000000007a0a0000322c0000522c00006a2c0000702c0000782c0000862c0000c82c0000ca2c00006e2d0000d02d0000e42d0000242e0000662e0000822e0000982e0000ba2e0000ec2e00004a2f0000502f0000702f0000bc2f0000c22f0000c42f0000f22f00003631000038310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -658,10 +657,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 384}
+    scrollPos: {x: 0, y: 216}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000006e0900008c090000a6090000ac090000b4090000020a0000040a0000a80a00000c0b0000200b00005e0b0000a40b0000c00b0000d60b0000f80b00002a0c0000900c0000940c0000040d00000a0d00000c0d00003c0d00004e0d00003e2f0000402f0000ca3b0000
+    m_ExpandedIDs: ffffffff000000007a0a0000322c0000522c00006a2c0000702c0000782c0000862c0000c82c0000ca2c00006e2d0000d02d0000e42d0000242e0000662e0000822e0000982e0000ba2e0000ec2e00004a2f0000502f0000702f0000bc2f0000c22f0000c42f0000f22f00003631000038310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
