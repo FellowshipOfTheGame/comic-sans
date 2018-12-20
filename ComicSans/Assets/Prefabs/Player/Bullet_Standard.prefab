@@ -111,6 +111,7 @@ MonoBehaviour:
   origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
   velocity: 10
+  _rigidbody: {fileID: 50126607578435480}
 --- !u!212 &212117940870812218
 SpriteRenderer:
   m_ObjectHideFlags: 1

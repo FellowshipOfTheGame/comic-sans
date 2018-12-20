@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50849567840476864}
   - component: {fileID: 58597832031888062}
   - component: {fileID: 95219514545264632}
+  - component: {fileID: 114659156822185952}
   - component: {fileID: 114016277355024050}
   - component: {fileID: 114673081196272820}
   - component: {fileID: 114019926330602658}
@@ -154,6 +155,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn_time: 0.1
   bulletPool: {fileID: 114840402726922120}
+--- !u!114 &114659156822185952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303615257074040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8c8ec58e1c5f847b37db7517675957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 0}
+  health: {fileID: 0}
+  shooting: {fileID: 0}
 --- !u!114 &114673081196272820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,7 +196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1330741672058978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4811148c937170e46afd3f385ddd29a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1042820488574006, guid: 73c9dd62a4b829543b21e29161e33011, type: 2}

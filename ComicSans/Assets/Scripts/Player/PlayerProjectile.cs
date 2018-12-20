@@ -5,15 +5,15 @@ using UnityEngine;
 public class PlayerProjectile : ProjectileBase {
 
 	[SerializeField] private float velocity;
+	[SerializeField] private Rigidbody2D _rigidbody;
 
-	protected override void Awake(){}
+	protected override void OnEnable () {
 
-	private void OnEnable () {
-
-		StartCoroutine(ConstraintBullet());
-
-		Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
-		_rigidbody.velocity = Vector3.up * velocity;
+		base.OnEnable();
+		if(_rigidbody != null)
+			_rigidbody.velocity = Vector3.up * velocity;
+		else
+			Debug.Log("(PlayerProjectile) " + gameObject.name + " needs to have a Ridibody2D!");
 
 	}
 

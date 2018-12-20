@@ -14,7 +14,7 @@ public class BossAttackMove : BossAction {
     public bool stopAfterAttack;
     public float idleTime;
 
-    public GameObject projectile;
+    public string projectileId;
     public List<Vector2> projectileSpawns;
 
     public List<AnimationSet> movementAnimations;

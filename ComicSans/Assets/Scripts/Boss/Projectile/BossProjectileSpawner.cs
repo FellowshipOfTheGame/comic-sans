@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Boss/Projectile Spawner")]
-public class BossProjectileSpawner : MonoBehaviour {
+public class BossProjectileSpawner : PooledObject {
 
 	[SerializeField] private int numberOfAttack;
 	[SerializeField] private float delay;

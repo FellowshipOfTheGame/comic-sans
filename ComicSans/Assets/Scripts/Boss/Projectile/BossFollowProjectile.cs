@@ -10,12 +10,15 @@ public class BossFollowProjectile : ProjectileBase {
 
 	public float aceleration = 10.0f;
 
-	protected override void Awake ()
+	protected override void OnEnable ()
 	{
 
-		base.Awake();
+		base.OnEnable();
 
-		GameObject target = Player_Manager.manager.gameObject;
+		GameObject target = null;
+		if(Player_Manager.manager != null)
+			target = Player_Manager.manager.gameObject;
+			
 		if(target != null)
 			StartCoroutine(Follow(target.transform));
 		else
@@ -56,7 +59,13 @@ public class BossFollowProjectile : ProjectileBase {
 			yield return new WaitForEndOfFrame();
 
 		}
-
 	}
 
+	protected override void OnCollisionEnter2D(Collision2D collision)
+	{
+
+		StopAllCoroutines();
+		base.OnCollisionEnter2D(collision);
+
+	}
 }

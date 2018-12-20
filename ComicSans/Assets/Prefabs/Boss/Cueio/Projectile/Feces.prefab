@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ce023739cc3e14db070784b3952e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
 --- !u!212 &212506702366836530
 SpriteRenderer:

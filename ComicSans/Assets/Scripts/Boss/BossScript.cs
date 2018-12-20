@@ -39,6 +39,15 @@ public class BossScript : MonoBehaviour
 
 	private Animator _animator;
 
+	[System.Serializable]private struct ProjectilePool 
+	{ 
+		[SerializeField] public string id; 
+		[SerializeField] public ObjectPool pool; 
+	}
+	[SerializeField] private ProjectilePool[] projectilePools;
+	public Dictionary<string, ObjectPool> projectiles; 
+
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -52,6 +61,11 @@ public class BossScript : MonoBehaviour
 
 		currentPattern = phases[0].firstPattern;
 		GetNewAction();
+
+		// Creates a dictionary of projectile types and its respective pools.
+		projectiles = new Dictionary<string, ObjectPool>();
+		for(int i = 0; i < projectilePools.Length; i++)
+			projectiles.Add(projectilePools[i].id, projectilePools[i].pool);
 
 	}
 
@@ -144,9 +158,12 @@ public class BossScript : MonoBehaviour
 			SetAnimation(attack.animations);
 
 		// Spawns all projectiles.
-		foreach(Vector2 spawn in attack.projectileSpawns)
-			Instantiate(attack.projectile, transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
-		
+		if(projectiles.ContainsKey(attack.projectileId))
+			foreach(Vector2 spawn in attack.projectileSpawns)
+				projectiles[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+		else
+			Debug.Log("(BossScript) Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
+
 		GetNewAction();
 
 	}
@@ -193,8 +210,11 @@ public class BossScript : MonoBehaviour
 						SetAnimation(attackMove.attackAnimations);
 
 					// Spawns all projectiles.
-					foreach(Vector2 spawn in attackMove.projectileSpawns)
-						Instantiate(attackMove.projectile, transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+					if(projectiles.ContainsKey(attackMove.projectileId))
+						foreach(Vector2 spawn in attackMove.projectileSpawns)
+							projectiles[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+					else
+						Debug.Log("(BossScript) Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
 
 					yield return new WaitForEndOfFrame();
 

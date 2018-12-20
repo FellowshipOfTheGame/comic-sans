@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Projectiles/Base")]
 public class ProjectileBase : PooledObject {
 
 	public Vector2 positionConstraints = new Vector2( 8, 8);
 
-	protected virtual void Awake () {
+	protected virtual void OnEnable () {
 		
 		StartCoroutine(ConstraintBullet());
 
