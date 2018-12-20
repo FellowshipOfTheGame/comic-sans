@@ -15,7 +15,7 @@ public class BossFollowProjectile : ProjectileBase {
 
 		base.Awake();
 
-		GameObject target = GameObject.FindGameObjectWithTag("Player");
+		GameObject target = Player_Manager.manager.gameObject;
 		if(target != null)
 			StartCoroutine(Follow(target.transform));
 		else

@@ -5,8 +5,8 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Player/Shot")]
 public class Player_Shot : MonoBehaviour {
 
-    [SerializeField] GameObject Bullet;
     [SerializeField] float spawn_time;
+    [SerializeField] ObjectPool bulletPool;
 
     public delegate void Shot();
 
@@ -31,7 +31,8 @@ public class Player_Shot : MonoBehaviour {
 
     void Shot_Standard()
     {
-        GameObject Bullet_Standard = Instantiate(Bullet, this.transform);
-        Bullet_Standard.transform.parent = null;
+
+        bulletPool.Spawn(transform.position + new Vector3( 0, 1, 0), transform.rotation);
+    
     }
 }

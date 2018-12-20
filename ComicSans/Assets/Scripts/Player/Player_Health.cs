@@ -10,7 +10,6 @@ public class Player_Health : MonoBehaviour {
     [SerializeField] private float Invencibility;
     [SerializeField] private Transform Spawn_Point;
     private Transform Player_trans;
-    private Collider2D col;
     private Animator anim;
     [SerializeField] private Image[] HealthIcons;
     public int Hp
@@ -44,7 +43,6 @@ public class Player_Health : MonoBehaviour {
     void Start () {
         hp = Init_Hp;
         Player_trans = gameObject.transform;
-        col = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -72,10 +70,9 @@ public class Player_Health : MonoBehaviour {
     IEnumerator Reset_Player()
     {
         Player_trans.position = Spawn_Point.position;
-        col.enabled = false;
         anim.SetBool("Invencible", true);
         yield return new WaitForSeconds(Invencibility);
         anim.SetBool("Invencible", false);
-        col.enabled = true;
+
     }
 }

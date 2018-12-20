@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileBase : MonoBehaviour {
+public class ProjectileBase : PooledObject {
 
 	public Vector2 positionConstraints = new Vector2( 8, 8);
 
@@ -12,21 +12,27 @@ public class ProjectileBase : MonoBehaviour {
 
 	}
 
-	IEnumerator ConstraintBullet () {
+	protected IEnumerator ConstraintBullet () {
 
         while(true) {
 
             if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
-                Destroy(gameObject);
+                if(origin != null)
+					Despawn();
+				else
+					Destroy(this.gameObject);
 
             yield return new WaitForSeconds(0.25f);
         }
     }
 
-	public virtual void OnCollisionEnter2D(Collision2D collision)
+	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 
-		Destroy(this.gameObject);
+		if(origin != null)
+			Despawn();
+		else
+			Destroy(this.gameObject);
 
 	}
 }

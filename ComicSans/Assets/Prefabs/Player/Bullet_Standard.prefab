@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963fee2aee0ed4e4798760c23a9e6ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
   velocity: 10
 --- !u!212 &212117940870812218

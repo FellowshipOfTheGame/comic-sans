@@ -21,14 +21,30 @@ GameObject:
   - component: {fileID: 4652751221022704}
   - component: {fileID: 212579075512723502}
   - component: {fileID: 50849567840476864}
-  - component: {fileID: 114016277355024050}
   - component: {fileID: 58597832031888062}
-  - component: {fileID: 114019926330602658}
   - component: {fileID: 95219514545264632}
+  - component: {fileID: 114016277355024050}
   - component: {fileID: 114673081196272820}
+  - component: {fileID: 114019926330602658}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1330741672058978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4765233241169798}
+  - component: {fileID: 114840402726922120}
+  m_Layer: 8
+  m_Name: buller_pool
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,10 +56,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1303615257074040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4765233241169798}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4765233241169798
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330741672058978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4652751221022704}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50849567840476864
@@ -122,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3502aaa4882bd1f44854abe71a9e5fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 1042820488574006, guid: 73c9dd62a4b829543b21e29161e33011, type: 2}
   spawn_time: 0.1
+  bulletPool: {fileID: 114840402726922120}
 --- !u!114 &114673081196272820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +168,26 @@ MonoBehaviour:
   hp: 0
   Invencibility: 2
   Spawn_Point: {fileID: 0}
+  HealthIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Init_Hp: 3
+--- !u!114 &114840402726922120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330741672058978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4811148c937170e46afd3f385ddd29a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseObject: {fileID: 1042820488574006, guid: 73c9dd62a4b829543b21e29161e33011, type: 2}
+  maxObjectInstances: 16
+  currentObjectInstances: 0
+  Pool: []
 --- !u!212 &212579075512723502
 SpriteRenderer:
   m_ObjectHideFlags: 1
