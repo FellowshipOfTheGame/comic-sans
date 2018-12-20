@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Boss/Appear Projectile")]
-public class BossAppearProjectile : MonoBehaviour {
+public class BossAppearProjectile : PooledObject {
 
 	[SerializeField] private float appearDelay;
 	[SerializeField] private float disappearDelay;
@@ -11,7 +11,7 @@ public class BossAppearProjectile : MonoBehaviour {
 
 	private float timer;
 
-	private void Awake()
+	void OnEnable()
 	{
 
 		_collider.enabled = false;
@@ -35,7 +35,10 @@ public class BossAppearProjectile : MonoBehaviour {
 		{
 			timer += Time.deltaTime;
 			if(timer >= disappearDelay)
-				Destroy(gameObject);
+				if(origin != null)
+					Despawn();
+				else
+					Destroy(this.gameObject);
 			
 		}
 	}

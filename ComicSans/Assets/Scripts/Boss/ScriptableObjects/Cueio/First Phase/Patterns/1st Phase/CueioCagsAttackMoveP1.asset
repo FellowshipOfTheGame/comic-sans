@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
   m_Name: CueioCagsAttackMoveP1
   m_EditorClassIdentifier: 
-  chance: 100
+  chance: 150
   nextPattern:
   - {fileID: 11400000, guid: 4bb95580fefd11947bad47b7eccdde2e, type: 2}
   actions:

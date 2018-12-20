@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1690761952644898, guid: 8622888fcf8d0e2438ba2c813ba5c172, type: 2}
+  initialObjectInstances: 18
   maxObjectInstances: 24
   currentObjectInstances: 0
   Pool: []
@@ -301,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1690761952644898, guid: 8cd474ca622ca6d48922da3ec801d929, type: 2}
+  initialObjectInstances: 8
   maxObjectInstances: 12
   currentObjectInstances: 0
   Pool: []
@@ -316,7 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1121700847460506, guid: a1105e4486144ae46b5df7748cf73c75, type: 2}
-  maxObjectInstances: 2
+  initialObjectInstances: 1
+  maxObjectInstances: 3
   currentObjectInstances: 0
   Pool: []
 --- !u!114 &114953460740448922
@@ -330,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6f7c7c72a40f0488cf74ebfe503d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 1000
+  life: 2000
   velocity: 4
   phases:
   - {fileID: 11400000, guid: 4df9cff7c397eb241b8149539787e849, type: 2}

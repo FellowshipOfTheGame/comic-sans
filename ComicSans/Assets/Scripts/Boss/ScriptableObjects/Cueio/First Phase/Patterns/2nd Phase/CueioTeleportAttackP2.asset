@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chance: 100
   nextPattern:
-  - {fileID: 11400000, guid: ee2d725b9ab5c1e49a6544153c4e8be8, type: 2}
+  - {fileID: 11400000, guid: 6363e7afb05ef3e4c8b86fa1be660edb, type: 2}
   actions:
   - {fileID: 11400000, guid: e7ab20bddcc5e4044ab74ab15b6e74ad, type: 2}
   - {fileID: 11400000, guid: 484e95eb028f1f8469939fd081f6b486, type: 2}

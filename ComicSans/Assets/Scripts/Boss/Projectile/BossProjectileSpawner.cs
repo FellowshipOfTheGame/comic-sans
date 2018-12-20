@@ -11,13 +11,13 @@ public class BossProjectileSpawner : PooledObject {
 	private int currentAttack;
 	private float timer;
 
-	[SerializeField] GameObject projectile;
+	[SerializeField] ObjectPool projectilePool;
 
 	enum SpawnType { SinglePosition, MultiplePosition, PlayerPosition }
 	[SerializeField] private SpawnType spawnType;
 	[SerializeField] private Vector3[] spawnPositions;
 
-	private void Awake () 
+	void OnEnable () 
 	{
 
 		currentAttack = 0;
@@ -43,7 +43,10 @@ public class BossProjectileSpawner : PooledObject {
 		} 
 		else
 		{
-			Destroy(gameObject);
+			if(origin != null)
+				Despawn();
+			else
+				Destroy(this.gameObject);
 		}
 	}
 
@@ -51,17 +54,17 @@ public class BossProjectileSpawner : PooledObject {
 		
 		if(spawnType == SpawnType.SinglePosition) 
 		{
-			Instantiate(projectile, spawnPositions[0], new Quaternion());
+			 projectilePool.Spawn(spawnPositions[0], new Quaternion());
 		} 
 		else if(spawnType == SpawnType.MultiplePosition) 
 		{
-			Instantiate(projectile, spawnPositions[currentAttack], new Quaternion());
+			projectilePool.Spawn(spawnPositions[currentAttack], new Quaternion());
 		}
 		else
 		{
-			GameObject _player = GameObject.FindGameObjectWithTag("Player");
-			if(_player != null)
-				Instantiate(projectile, _player.transform.position, new Quaternion());
+				
+			if(Player_Manager.manager != null)
+				projectilePool.Spawn(Player_Manager.manager.transform.position, new Quaternion());
 			else
 				Debug.LogWarning("(ProjectileSpawner) Player not found!");
 		}

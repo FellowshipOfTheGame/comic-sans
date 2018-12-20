@@ -13,6 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chance: 100
   nextPattern:
+  - {fileID: 11400000, guid: 5e117b85d8add324ba7aa64fa978ab8d, type: 2}
+  - {fileID: 11400000, guid: 4cf404cbdb7c38d48ae5d7ba1c66515a, type: 2}
+  - {fileID: 11400000, guid: 2c1f5b8a23b825a4887070d2c0282256, type: 2}
   - {fileID: 11400000, guid: 8fadabf3580753344b043e9631bbc578, type: 2}
   actions:
   - {fileID: 11400000, guid: 42d00334b3f5b68429938a6571845a07, type: 2}

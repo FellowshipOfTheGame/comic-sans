@@ -200,7 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1042820488574006, guid: 73c9dd62a4b829543b21e29161e33011, type: 2}
-  maxObjectInstances: 16
+  initialObjectInstances: 14
+  maxObjectInstances: 20
   currentObjectInstances: 0
   Pool: []
 --- !u!212 &212579075512723502

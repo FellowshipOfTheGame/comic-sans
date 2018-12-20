@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: Cueio1stPhase
   m_EditorClassIdentifier: 
   firstPattern: {fileID: 11400000, guid: 5e0706f93c2950942b19e7efd62fce95, type: 2}
-  lifeToNextPhase: 500
+  lifeToNextPhase: 1000
