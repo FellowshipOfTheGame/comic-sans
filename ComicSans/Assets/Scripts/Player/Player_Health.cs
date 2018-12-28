@@ -41,9 +41,12 @@ public class Player_Health : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         hp = Init_Hp;
         Player_trans = gameObject.transform;
         anim = GetComponent<Animator>();
+        PositionIcons();
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,5 +77,18 @@ public class Player_Health : MonoBehaviour {
         yield return new WaitForSeconds(Invencibility);
         anim.SetBool("Invencible", false);
 
+    }
+
+    private void PositionIcons() {
+
+        // Positions the health icons.
+        for(int i = 0; i < HealthIcons.Length; i++) {
+
+            Vector3 iconPosition = HealthIcons[i].rectTransform.position;
+            iconPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + (60 * i);
+            HealthIcons[i].rectTransform.position = iconPosition; 
+
+        }
+        
     }
 }

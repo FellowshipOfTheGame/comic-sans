@@ -7,9 +7,14 @@ public class ProjectileBase : PooledObject {
 
 	public Vector2 positionConstraints = new Vector2( 8, 8);
 
+	public string audioName;
+
 	protected virtual void OnEnable () {
 		
 		StartCoroutine(ConstraintBullet());
+
+		if(audioName != null && audioName != "")
+			AudioControlCenter.instance.Play(audioName);
 
 	}
 

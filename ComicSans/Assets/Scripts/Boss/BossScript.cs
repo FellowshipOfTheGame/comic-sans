@@ -45,7 +45,7 @@ public class BossScript : MonoBehaviour
 		[SerializeField] public ObjectPool pool; 
 	}
 	[SerializeField] private ProjectilePool[] projectilePools;
-	public Dictionary<string, ObjectPool> projectiles; 
+	public Dictionary<string, ObjectPool> projectileDict; 
 
 
 	// Use this for initialization
@@ -63,9 +63,9 @@ public class BossScript : MonoBehaviour
 		GetNewAction();
 
 		// Creates a dictionary of projectile types and its respective pools.
-		projectiles = new Dictionary<string, ObjectPool>();
+		projectileDict = new Dictionary<string, ObjectPool>();
 		for(int i = 0; i < projectilePools.Length; i++)
-			projectiles.Add(projectilePools[i].id, projectilePools[i].pool);
+			projectileDict.Add(projectilePools[i].id, projectilePools[i].pool);
 
 	}
 
@@ -158,9 +158,9 @@ public class BossScript : MonoBehaviour
 			SetAnimation(attack.animations);
 
 		// Spawns all projectiles.
-		if(projectiles.ContainsKey(attack.projectileId))
+		if(projectileDict.ContainsKey(attack.projectileId))
 			foreach(Vector2 spawn in attack.projectileSpawns)
-				projectiles[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+				projectileDict[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 		else
 			Debug.Log("(BossScript) Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
 
@@ -210,9 +210,9 @@ public class BossScript : MonoBehaviour
 						SetAnimation(attackMove.attackAnimations);
 
 					// Spawns all projectiles.
-					if(projectiles.ContainsKey(attackMove.projectileId))
+					if(projectileDict.ContainsKey(attackMove.projectileId))
 						foreach(Vector2 spawn in attackMove.projectileSpawns)
-							projectiles[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+							projectileDict[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 					else
 						Debug.Log("(BossScript) Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
 

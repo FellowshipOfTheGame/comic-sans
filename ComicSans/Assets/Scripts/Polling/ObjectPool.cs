@@ -71,7 +71,7 @@ public class ObjectPool : MonoBehaviour {
 				}
 			}
 			else
-				Debug.Log("(ObjectPool) Can't create a new instance of an object because the pool is already full!");
+				Debug.Log("(ObjectPool) Can't create a new instance of " + baseObject.name + " because the pool is already full!");
 
 			return null;
 		}

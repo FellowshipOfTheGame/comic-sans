@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
+  audioName: cags
 --- !u!212 &212506702366836530
 SpriteRenderer:
   m_ObjectHideFlags: 1

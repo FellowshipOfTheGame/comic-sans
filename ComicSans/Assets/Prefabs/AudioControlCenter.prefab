@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1207478522515572}
+  m_IsPrefabAsset: 1
+--- !u!1 &1207478522515572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4790875505536696}
+  - component: {fileID: 114105355251765040}
+  m_Layer: 0
+  m_Name: AudioControlCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4790875505536696
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207478522515572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5576425, y: -197.77771, z: -0.027900819}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114105355251765040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207478522515572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c8eceabd71525409bfe2f80e61e1c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - id: playerShot
+    config:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 6d73d762f81908140a56fb8cfc4148c2, type: 3}
+      - {fileID: 8300000, guid: 12abe9839e922c34bb5848f9fab6bc3e, type: 3}
+      - {fileID: 8300000, guid: 6d439fc906cd61f458e2555da2aaed80, type: 3}
+      - {fileID: 8300000, guid: 1bcda06b844b3e941b45e23dcba8dc9e, type: 3}
+      - {fileID: 8300000, guid: 9a13aadab205e034aacd7033e7ea6e8c, type: 3}
+      - {fileID: 8300000, guid: 6702a5aba1ef120489dcff68e3e5c982, type: 3}
+      maxSources: 4
+      sources: []
+  - id: music
+    config:
+      type: 1
+      clips:
+      - {fileID: 8300000, guid: 4d00e77c5bb621d40838b45d3a434a44, type: 3}
+      maxSources: 1
+      sources: []
+  - id: carrot
+    config:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 3c20298dd42d15e4491e01eeb0932b55, type: 3}
+      maxSources: 1
+      sources: []
+  - id: cags
+    config:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 862c5ffdea5dcfb4b8d7f9a848125735, type: 3}
+      maxSources: 4
+      sources: []
