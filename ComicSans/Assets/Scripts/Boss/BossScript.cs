@@ -26,13 +26,14 @@ public class BossScript : MonoBehaviour
 		set { velocity = value; }
 	}
 
+	protected Collider2D _collider;
+
 	public List<BossPhase> phases;
 	protected int currentPhase = 0;
 
 	protected BossPattern currentPattern;
-	protected BossAction currentAction;
 
-	protected int actionCounter = -1;
+	protected int currentAction = 0;
 
 	protected Vector2 previousPos;
 
@@ -46,14 +47,17 @@ public class BossScript : MonoBehaviour
 	// Use this for initialization
 	protected void Awake () 
 	{
-
+		// Finds the boss Animator.
 		_animator = GetComponentInChildren<Animator>();
 		if(_animator == null)
 			Debug.LogWarning("(BossScript) No Animator found on " + transform.name + "!");
 
-		// Initializes the boss movement pattern.
-		currentPattern = phases[0].firstPattern;
-		GetNewAction();
+		// Finds the boss Collider.
+		_collider = GetComponentInChildren<Collider2D>();
+		if(_collider == null)
+			Debug.LogWarning("(BossScript) No Collider found on " + transform.name + "!");
+
+		StartMovimentation();
 
 		// Creates a dictionary of projectile types and its respective pools.
 		BuildProjectileDictionary();
@@ -94,7 +98,13 @@ public class BossScript : MonoBehaviour
 			healthBar.UpdateHealthBar(Life);
 
 		if(Life <= 0)
+		{
 			Die();
+			return;
+		}
+
+		if(Life < phases[currentPhase].lifeToNextPhase && phases.Count > (currentPhase + 1))
+			NextPhase();
 
 	}
 
@@ -106,37 +116,39 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	protected void GetNewAction ()
+	protected void StartMovimentation()
+	{
+
+		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
+
+		_animator.runtimeAnimatorController = phases[currentPhase].animationController;
+
+		// Initializes the boss movement pattern.
+		currentPattern = phases[currentPhase].firstPattern;
+
+		// Gets the action to be executed.
+		currentAction = 0;
+		currentPattern.actions[currentAction].caller = this;
+		currentPattern.actions[currentAction].DoAction();
+
+	}
+
+	protected void NextAction ()
 	{
 
 		// Gets the action to be executed.
-		actionCounter++;
+		currentAction++;
 		// Goes to the next movement pattern.
-		if(actionCounter >= currentPattern.actions.Count) 
-			GetNewPattern();
+		if(currentAction >= currentPattern.actions.Count) 
+			NextPattern();
 
-		currentAction = currentPattern.actions[actionCounter];
-		currentAction.caller = this;
-		currentAction.DoAction();
+		currentPattern.actions[currentAction].caller = this;
+		currentPattern.actions[currentAction].DoAction();
 
 	} 
 
-	protected void GetNewPattern () 
+	protected void NextPattern () 
 	{
-
-		// Goes to a new boss phase if boss life is low enough and thre is one.
-		if(Life < phases[currentPhase].lifeToNextPhase && phases.Count > (currentPhase + 1))
-		{
-			currentPhase++;
-
-			Debug.Log("(BossScript) " + transform.name + " has gone to phase " + (currentPhase + 1) + ".");
-
-			currentPattern = phases[currentPhase].firstPattern;
-			if(_animator != null)
-			{
-				// TODO.
-			}
-		}
 
 		// Goes through each possible next patterns and adds their chances together.
 		int maxChance = 0;
@@ -159,7 +171,49 @@ public class BossScript : MonoBehaviour
 			patternCounter += pattern.chance;
 		}
 
-		actionCounter = 0;
+		currentAction = 0;
+
+	}
+
+	protected void NextPhase()
+	{
+		currentPhase++;
+
+		Debug.Log("(BossScript) " + transform.name + " has gone to phase " + (currentPhase + 1) + ".");
+
+		// Sets the boss to the initial conditions.
+		StopAllCoroutines();
+
+		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
+
+		transform.position = new Vector3(phases[currentPhase].initialPosition.x, phases[currentPhase].initialPosition.y, 0);
+
+		currentPattern = phases[currentPhase].firstPattern;
+		
+		_animator.runtimeAnimatorController = phases[currentPhase].animationController;
+
+		// Gets the action to be executed.
+		currentAction = 0;
+
+		currentPattern.actions[currentAction].caller = this;
+		currentPattern.actions[currentAction].DoAction();
+
+	}
+
+	public IEnumerator Invincible(float duration)
+	{
+
+		_collider.enabled = false;
+
+		// Idles for some time.
+		float timer = 0;
+		while(timer < duration) 
+		{
+			timer += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+
+		_collider.enabled = true;
 
 	}
 
@@ -183,7 +237,7 @@ public class BossScript : MonoBehaviour
 
 		}
 
-		GetNewAction();
+		NextAction();
 
 	}
 
@@ -201,7 +255,7 @@ public class BossScript : MonoBehaviour
 		else
 			Debug.Log("(BossScript) Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
 
-		GetNewAction();
+		NextAction();
 
 	}
 
@@ -305,7 +359,7 @@ public class BossScript : MonoBehaviour
 			}
 		}		
 
-		GetNewAction();
+		NextAction();
 
 	}
 
@@ -324,7 +378,7 @@ public class BossScript : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 		}
 
-		GetNewAction();
+		NextAction();
 
 	}
 
@@ -345,7 +399,7 @@ public class BossScript : MonoBehaviour
 			// Them teleport.
 			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
 
-			GetNewAction();
+			NextAction();
 
 		}
 		else if(teleport.teleportType == BossTeleport.TeleportType.TPThenAnimation)
@@ -363,7 +417,7 @@ public class BossScript : MonoBehaviour
 				yield return new WaitForEndOfFrame();
 			}
 
-			GetNewAction();
+			NextAction();
 
 		}
 		else
@@ -376,7 +430,7 @@ public class BossScript : MonoBehaviour
 			// Teleports simultaneously.
 			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
 
-			GetNewAction();
+			NextAction();
 		}
 	}
 

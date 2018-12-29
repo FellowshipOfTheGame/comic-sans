@@ -15,4 +15,4 @@ MonoBehaviour:
   nextPattern:
   - {fileID: 11400000, guid: ed2e29e6920dc8e4eacbe1f389459eb7, type: 2}
   actions:
-  - {fileID: 11400000, guid: 6c17ae21e8fa1114cb2b8bc7aad20664, type: 2}
+  - {fileID: 11400000, guid: 1b95cbf8bfaade043a16f5e0e7d38162, type: 2}

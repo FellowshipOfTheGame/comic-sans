@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a8356d8e452d54ab81b90ddfc1fc73, type: 3}
   m_Name: Cueio2ndPhase
   m_EditorClassIdentifier: 
+  initialPosition: {x: 0, y: 3}
+  animationController: {fileID: 9100000, guid: 4889d489c505f1344a89e542b524c763, type: 2}
   firstPattern: {fileID: 11400000, guid: 657c60d579d314f4eaa249a31c9fd608, type: 2}
   lifeToNextPhase: 0
