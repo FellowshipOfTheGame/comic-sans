@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4816862753778848}
   - component: {fileID: 114573185734440268}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4783283916945772}
   - component: {fileID: 114944443343481634}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TpSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

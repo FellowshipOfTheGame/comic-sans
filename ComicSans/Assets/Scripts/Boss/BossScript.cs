@@ -4,13 +4,9 @@ using UnityEngine;
 
 [AddComponentMenu("Scripts/Boss/Boss")]
 public class BossScript : MonoBehaviour 
-{
+{	
 
-	[SerializeField] 
-	private int life = 100;
-	[SerializeField] 
-	private float velocity = 4.0f;
-
+	[SerializeField] protected int life = 100;
 	public int Life 
 	{
 		get { return life; }
@@ -21,6 +17,9 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
+	protected BossHealthBar healthBar;
+
+	[SerializeField] protected float velocity = 4.0f;
 	public float Velocity 
 	{
 		get { return velocity; }
@@ -28,48 +27,86 @@ public class BossScript : MonoBehaviour
 	}
 
 	public List<BossPhase> phases;
-	private int currentPhase = 0;
+	protected int currentPhase = 0;
 
-	private BossPattern currentPattern;
-	private BossAction currentAction;
+	protected BossPattern currentPattern;
+	protected BossAction currentAction;
 
-	private int actionCounter = -1;
+	protected int actionCounter = -1;
 
-	private Vector2 previousPos;
+	protected Vector2 previousPos;
 
-	private Animator _animator;
+	protected Animator _animator;
 
-	[System.Serializable]private struct ProjectilePool 
-	{ 
-		[SerializeField] public string id; 
-		[SerializeField] public ObjectPool pool; 
-	}
-	[SerializeField] private ProjectilePool[] projectilePools;
-	public Dictionary<string, ObjectPool> projectileDict; 
+	[System.Serializable]protected struct ProjectilePool { public string id; public ObjectPool pool; }
+	[SerializeField] protected ProjectilePool[] projectilePools;
 
+	protected Dictionary<string, ObjectPool> projectileDictionary; 
 
 	// Use this for initialization
-	private void Start () 
+	protected void Awake () 
 	{
-		
-		// Initializes the boss movement pattern.
-		currentPattern = phases[currentPhase].firstPattern;
 
 		_animator = GetComponentInChildren<Animator>();
 		if(_animator == null)
 			Debug.LogWarning("(BossScript) No Animator found on " + transform.name + "!");
 
+		// Initializes the boss movement pattern.
 		currentPattern = phases[0].firstPattern;
 		GetNewAction();
 
 		// Creates a dictionary of projectile types and its respective pools.
-		projectileDict = new Dictionary<string, ObjectPool>();
-		for(int i = 0; i < projectilePools.Length; i++)
-			projectileDict.Add(projectilePools[i].id, projectilePools[i].pool);
+		BuildProjectileDictionary();
+
+		// Finds the boss health bar.
+		healthBar = FindObjectOfType(typeof(BossHealthBar)) as BossHealthBar;
+		if(healthBar != null)
+			healthBar.SetIntitialLife(Life);
+		else
+			Debug.Log("(BossScript) No health bar found for the boss!");
 
 	}
 
-	public void GetNewAction ()
+	protected void BuildProjectileDictionary()
+	{
+
+		projectileDictionary = new Dictionary<string, ObjectPool>();
+		for(int i = 0; i < projectilePools.Length; i++)
+			projectileDictionary.Add(projectilePools[i].id, projectilePools[i].pool);
+
+	}
+
+	protected void OnCollisionEnter2D (Collision2D collision)
+	{
+
+		// If the boss has collided with a bullet deals damage to it.
+		if(collision.transform.tag == "Damage")
+			Damage(10);
+
+	}
+
+	protected void Damage(int amount) 
+	{
+
+		Life-=amount;
+
+		if(healthBar != null)
+			healthBar.UpdateHealthBar(Life);
+
+		if(Life <= 0)
+			Die();
+
+	}
+
+	protected void Die() 
+	{
+
+		Debug.Log("(BossScript) " + transform.name + " has been defeated!");
+		Destroy(gameObject);
+
+	}
+
+	protected void GetNewAction ()
 	{
 
 		// Gets the action to be executed.
@@ -84,7 +121,7 @@ public class BossScript : MonoBehaviour
 
 	} 
 
-	private void GetNewPattern () 
+	protected void GetNewPattern () 
 	{
 
 		// Goes to a new boss phase if boss life is low enough and thre is one.
@@ -158,9 +195,9 @@ public class BossScript : MonoBehaviour
 			SetAnimation(attack.animations);
 
 		// Spawns all projectiles.
-		if(projectileDict.ContainsKey(attack.projectileId))
+		if(projectileDictionary.ContainsKey(attack.projectileId))
 			foreach(Vector2 spawn in attack.projectileSpawns)
-				projectileDict[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+				projectileDictionary[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 		else
 			Debug.Log("(BossScript) Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
 
@@ -210,9 +247,9 @@ public class BossScript : MonoBehaviour
 						SetAnimation(attackMove.attackAnimations);
 
 					// Spawns all projectiles.
-					if(projectileDict.ContainsKey(attackMove.projectileId))
+					if(projectileDictionary.ContainsKey(attackMove.projectileId))
 						foreach(Vector2 spawn in attackMove.projectileSpawns)
-							projectileDict[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+							projectileDictionary[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 					else
 						Debug.Log("(BossScript) Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
 
@@ -343,41 +380,12 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
-	private void SetAnimation(List<AnimationSet> animations)
+	protected void SetAnimation(List<AnimationSet> animations)
 	{
 
 		// Sets all animation parameters.
 		foreach (AnimationSet anim in animations)
 			_animator.SetInteger(anim.name, anim.value);
-
-	}
-
-	void OnCollisionEnter2D (Collision2D collision)
-	{
-
-		// If the boss has collided with a bullet deals damage to it.
-		if(collision.transform.tag == "Bullet")
-			Damage(10);
-
-	}
-
-	public void Damage(int amount) 
-	{
-
-		// Damages the boss.
-		Life-=amount;
-
-		// Kills the boss if the life is zero.
-		if(Life <= 0)
-			Die();
-
-	}
-
-	private void Die() 
-	{
-
-		Debug.Log("(BossScript) " + transform.name + " has been defeated!");
-		Destroy(gameObject);
 
 	}
 }

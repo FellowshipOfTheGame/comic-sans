@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Boss/Follow Projectile")]
+[AddComponentMenu("Scripts/Projectiles/Boss/Follow Projectile")]
 public class BossFollowProjectile : ProjectileBase {
 
 	public Rigidbody2D _rigidbody;

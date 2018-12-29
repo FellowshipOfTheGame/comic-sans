@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51958cd68a45a4eba7295b60d23728, type: 3}
-  m_Name: CagsRightFromCenter
+  m_Name: CagsLeftToCenter
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
   numberOfSteps: 4
-  positionTarget: {x: 5, y: 3.3}
+  positionTarget: {x: 0, y: 3}
   velocityModifier: 1
   stopBeforeAttack: 0
   stopAfterAttack: 0

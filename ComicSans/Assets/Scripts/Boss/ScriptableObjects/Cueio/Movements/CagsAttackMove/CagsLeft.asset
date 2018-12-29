@@ -9,28 +9,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51958cd68a45a4eba7295b60d23728, type: 3}
-  m_Name: CarrotLeft
+  m_Name: CagsLeft
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  numberOfSteps: 6
-  positionTarget: {x: -5, y: 3.3}
+  numberOfSteps: 8
+  positionTarget: {x: -5, y: 3}
   velocityModifier: 1
   stopBeforeAttack: 0
   stopAfterAttack: 0
   idleTime: 1
-  projectileId: carrot
+  projectileId: feces
   projectileSpawns:
-  - {x: 1.4, y: 0}
-  - {x: -1.4, y: 0}
-  - {x: 0.7, y: -1.4}
-  - {x: -0.7, y: -1.4}
-  - {x: 0.7, y: 1.4}
-  - {x: -0.7, y: 1.4}
+  - {x: 0, y: -1.8}
   movementAnimations:
-  - name: Run
-    value: 2
-  idleAnimations:
-  - name: Run
+  - name: Fly
+    value: 1
+  - name: Cags
     value: 0
-  attackAnimations: []
+  idleAnimations: []
+  attackAnimations:
+  - name: Cags
+    value: 1
   idleAtEnd: 1

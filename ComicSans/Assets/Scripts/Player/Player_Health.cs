@@ -52,7 +52,7 @@ public class Player_Health : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.collider.tag == "Bullet")
+        if (collision.collider.tag == "Damage")
             Take_Damage();         
 
     }

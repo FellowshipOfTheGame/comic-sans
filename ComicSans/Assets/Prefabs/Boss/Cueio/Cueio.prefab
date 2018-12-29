@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 50547907271110350}
   m_Layer: 10
   m_Name: Cueio
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1936587055363512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4796578653914442}
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1690761952644898, guid: 8622888fcf8d0e2438ba2c813ba5c172, type: 2}
-  initialObjectInstances: 18
-  maxObjectInstances: 24
+  initialObjectInstances: 24
+  maxObjectInstances: 32
   currentObjectInstances: 0
   Pool: []
 --- !u!114 &114699895889273898
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6f7c7c72a40f0488cf74ebfe503d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 2000
+  life: 4000
   velocity: 4
   phases:
   - {fileID: 11400000, guid: 4df9cff7c397eb241b8149539787e849, type: 2}

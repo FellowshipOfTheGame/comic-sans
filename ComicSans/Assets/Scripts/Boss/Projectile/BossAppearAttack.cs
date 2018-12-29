@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Boss/Appear Projectile")]
-public class BossAppearProjectile : PooledObject {
+public class BossAppearAttack : PooledObject {
 
 	[SerializeField] private float appearDelay;
 	[SerializeField] private float disappearDelay;
 	[SerializeField] private Collider2D _collider;
+
+	public string audioName;
 
 	private float timer;
 
@@ -29,6 +31,8 @@ public class BossAppearProjectile : PooledObject {
 			{
 				_collider.enabled = true;
 				timer = 0;
+				if(audioName != null && audioName != "")
+					AudioControlCenter.instance.Play(audioName);
 			}
 		}
 		else

@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1207478522515572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5576425, y: -197.77771, z: -0.027900819}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,9 +51,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c8eceabd71525409bfe2f80e61e1c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
+  soundId:
+  - id: BluesCueiao
+    sound:
+      type: 1
+      clips:
+      - {fileID: 8300000, guid: 4d00e77c5bb621d40838b45d3a434a44, type: 3}
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 3
   - id: playerShot
-    config:
+    sound:
       type: 0
       clips:
       - {fileID: 8300000, guid: 6d73d762f81908140a56fb8cfc4148c2, type: 3}
@@ -62,26 +70,30 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 1bcda06b844b3e941b45e23dcba8dc9e, type: 3}
       - {fileID: 8300000, guid: 9a13aadab205e034aacd7033e7ea6e8c, type: 3}
       - {fileID: 8300000, guid: 6702a5aba1ef120489dcff68e3e5c982, type: 3}
-      maxSources: 4
-      sources: []
-  - id: music
-    config:
-      type: 1
-      clips:
-      - {fileID: 8300000, guid: 4d00e77c5bb621d40838b45d3a434a44, type: 3}
-      maxSources: 1
-      sources: []
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 3
   - id: carrot
-    config:
+    sound:
       type: 0
       clips:
       - {fileID: 8300000, guid: 3c20298dd42d15e4491e01eeb0932b55, type: 3}
-      maxSources: 1
-      sources: []
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 1
   - id: cags
-    config:
+    sound:
       type: 0
       clips:
       - {fileID: 8300000, guid: 862c5ffdea5dcfb4b8d7f9a848125735, type: 3}
-      maxSources: 4
-      sources: []
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 1
+  - id: pawn
+    sound:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 0549a031eccb4504ab5a39fbc7ef38fb, type: 3}
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 4

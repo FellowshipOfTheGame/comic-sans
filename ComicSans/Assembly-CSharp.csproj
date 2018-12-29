@@ -54,17 +54,18 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Audio\AudioControlCenter.cs" />
+     <Compile Include="Assets\Scripts\Audio\Sound.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAction.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttack.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttackMove.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossIdle.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossMovement.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossTeleport.cs" />
+     <Compile Include="Assets\Scripts\Boss\BossHealthBar.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPattern.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
      <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
-     <Compile Include="Assets\Scripts\Boss\Projectile\BossAppearProjectile.cs" />
-     <Compile Include="Assets\Scripts\Boss\Projectile\BossFollowProjectile.cs" />
+     <Compile Include="Assets\Scripts\Boss\Projectile\BossAppearAttack.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\Options_Menu.cs" />
@@ -72,10 +73,11 @@
      <Compile Include="Assets\Scripts\Player\Player_Manager.cs" />
      <Compile Include="Assets\Scripts\Player\Player_Movement.cs" />
      <Compile Include="Assets\Scripts\Player\Player_Shot.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerProjectile.cs" />
      <Compile Include="Assets\Scripts\Polling\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Polling\PooledObject.cs" />
-     <Compile Include="Assets\Scripts\ProjectileBase.cs" />
+     <Compile Include="Assets\Scripts\Projectile\BossFollowProjectile.cs" />
+     <Compile Include="Assets\Scripts\Projectile\PlayerProjectile.cs" />
+     <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

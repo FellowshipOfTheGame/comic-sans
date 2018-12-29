@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Player/Projectile")]
+[AddComponentMenu("Scripts/Projectiles/Player")]
 public class PlayerProjectile : ProjectileBase {
 
 	[SerializeField] private float velocity;
