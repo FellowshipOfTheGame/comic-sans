@@ -36,8 +36,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4343024667954998}
-  - component: {fileID: 70986272384604466}
   - component: {fileID: 50928384489350144}
+  - component: {fileID: 70986272384604466}
   - component: {fileID: 114035600258322580}
   m_Layer: 11
   m_Name: Carrot
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  positionConstraints: {x: 8, y: 8}
+  positionConstraints: {x: 6, y: 5}
   audioName: carrot
   _rigidbody: {fileID: 50928384489350144}
   delay: 0.1

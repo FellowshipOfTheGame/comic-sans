@@ -18,36 +18,35 @@ public class ObjectPool : MonoBehaviour {
 		// Creates the initial pool of objects.
 		for(int i = 0; i < initialObjectInstances; i++) 
 		{
-			GameObject new_poll_obj = Instantiate(baseObject, transform.position, transform.rotation);
-			PooledObject script = new_poll_obj.GetComponent<PooledObject>();
-			if(script != null)
-			{
-				currentObjectInstances++;
-				script.origin = this;
-				new_poll_obj.SetActive(false);
+
+			GameObject new_poll_obj = CreateNew(transform.position, transform.rotation);
+
+			if(new_poll_obj != null)
 				Pool.Add(new_poll_obj);
-			}
 			else
 			{
-				Debug.Log("(ObjectPool) Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
-				Destroy(new_poll_obj);
-			}			
+				Debug.Log("(ObjectPool) Failed to instantiate a new instance of " + baseObject.name + "!");
+				break;
+			}
+
 		}
 	}
 
 	// Spawns a object from the pool.
 	// Version 1:
-	public GameObject Spawn (Vector3 spawnPosition, Quaternion spawnRotation) {
+	public GameObject Spawn (Vector3 spawnPosition, Quaternion spawnRotation) 
+	{
 		
 		if(Pool.Count > 0) 
 		{
 			GameObject pooled = Pool[0];
-			Pool.RemoveAt(0);
 
 			pooled.transform.position = spawnPosition;
 			pooled.transform.rotation = spawnRotation;
 
 			pooled.SetActive(true);
+
+			Pool.RemoveAt(0);
 			return pooled;
 
 		} 
@@ -55,20 +54,16 @@ public class ObjectPool : MonoBehaviour {
 		{
 			if(currentObjectInstances < maxObjectInstances)
 			{
-				GameObject new_poll_obj = Instantiate(baseObject, spawnPosition, spawnRotation);
-				PooledObject script = new_poll_obj.GetComponent<PooledObject>();
-				if(script != null)
+				GameObject new_poll_obj = CreateNew(spawnPosition, spawnRotation);
+				
+				if(new_poll_obj != null)
 				{
-					currentObjectInstances++;
-					script.origin = this;
 					new_poll_obj.SetActive(true);
 					return new_poll_obj;
 				}
-				else
-				{
-					Debug.Log("(ObjectPool) Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
-					Destroy(new_poll_obj);
-				}
+
+				Debug.Log("(ObjectPool) Failure on instantiating " + baseObject.name + "!");
+
 			}
 			else
 				Debug.Log("(ObjectPool) Can't create a new instance of " + baseObject.name + " because the pool is already full!");
@@ -78,44 +73,31 @@ public class ObjectPool : MonoBehaviour {
 	}
 
 	// Spawns a object from the pool.
-	// Version 2:
-	public GameObject Spawn (Transform spawnPosition) {
-		
-		if(Pool.Count > 0) 
+	// Version 2: Used as an wraper. Calls Version 1 with the right parameters.
+	public GameObject Spawn (Transform spawnPosition) { return Spawn(spawnPosition.position, spawnPosition.rotation); }
+
+	// Creates a new GameObject to be used by the pooling system.
+	private GameObject CreateNew(Vector3 position, Quaternion rotation)
+	{
+
+		GameObject new_poll_obj = Instantiate(baseObject, position, rotation);
+		PooledObject script = new_poll_obj.GetComponent<PooledObject>();
+			
+		if(script != null)
 		{
-			GameObject pooled = Pool[0];
-			Pool.RemoveAt(0);
 
-			pooled.transform.position = spawnPosition.position;
-			pooled.transform.rotation = spawnPosition.rotation;
+			currentObjectInstances++;
 
-			pooled.SetActive(true);
-			return pooled;
+			script.origin = this;
+			new_poll_obj.SetActive(false);
 
-		} 
-		else
-		{
-			if(currentObjectInstances < maxObjectInstances)
-			{
-				GameObject new_poll_obj = Instantiate(baseObject, spawnPosition.position, spawnPosition.rotation);
-				PooledObject script = new_poll_obj.GetComponent<PooledObject>();
-				if(script != null)
-				{
-					currentObjectInstances++;
-					script.origin = this;
-					new_poll_obj.SetActive(true);
-					return new_poll_obj;
-				}
-				else
-				{
-					Debug.Log("(ObjectPool) Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
-					Destroy(new_poll_obj);
-				}
-			}
-			else
-				Debug.Log("(ObjectPool) Can't create a new instance of an object because the pool is already full!");
+			return new_poll_obj;
 
-			return null;
 		}
+
+		Debug.Log("(ObjectPool) Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
+		Destroy(new_poll_obj);
+		return null;
+
 	}
 }

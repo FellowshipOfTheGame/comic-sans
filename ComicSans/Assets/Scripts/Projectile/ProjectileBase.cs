@@ -9,27 +9,23 @@ public class ProjectileBase : PooledObject {
 
 	public string audioName;
 
-	protected virtual void OnEnable () {
-		
-		StartCoroutine(ConstraintBullet());
+	protected virtual void OnEnable () 
+	{
 
 		if(audioName != null && audioName != "")
 			AudioControlCenter.instance.Play(audioName);
 
 	}
 
-	protected IEnumerator ConstraintBullet () {
+	protected virtual void FixedUpdate () 
+	{
 
-        while(true) {
-
-            if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
-                if(origin != null)
-					Despawn();
-				else
-					Destroy(this.gameObject);
-
-            yield return new WaitForSeconds(0.25f);
-        }
+		if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
+			if(origin != null)
+				Despawn();
+			else
+				Destroy(this.gameObject);
+        
     }
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)

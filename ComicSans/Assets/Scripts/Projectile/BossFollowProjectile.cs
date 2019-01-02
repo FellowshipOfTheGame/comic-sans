@@ -31,7 +31,14 @@ public class BossFollowProjectile : ProjectileBase {
 	{
 
 		Coroutine lookAtCoroutine = StartCoroutine(LookAt(target));
-		yield return new WaitForSeconds(delay);
+		
+		float timer = 0;
+		while(timer < delay)
+		{
+			timer += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+	
 		StopCoroutine(lookAtCoroutine);
  
 		while(true)
