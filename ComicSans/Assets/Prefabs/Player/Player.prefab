@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  positionConstraints: {x: 5.675, y: 5}
 --- !u!114 &114019926330602658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +170,7 @@ MonoBehaviour:
   movement: {fileID: 0}
   health: {fileID: 0}
   shooting: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!114 &114673081196272820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,14 +182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3bfe17834f91043939cd997ea9a5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  Invencibility: 2
-  Spawn_Point: {fileID: 0}
+  hp: 3
   HealthIcons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Init_Hp: 3
+  Invencibility: 2
+  Spawn_Point: {fileID: 0}
 --- !u!114 &114840402726922120
 MonoBehaviour:
   m_ObjectHideFlags: 1

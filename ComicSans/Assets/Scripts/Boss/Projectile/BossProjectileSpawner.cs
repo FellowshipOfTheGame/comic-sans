@@ -63,8 +63,8 @@ public class BossProjectileSpawner : PooledObject {
 		else
 		{
 				
-			if(Player_Manager.manager != null)
-				projectilePool.Spawn(Player_Manager.manager.transform.position, new Quaternion());
+			if(Player_Manager.instance != null)
+				projectilePool.Spawn(Player_Manager.instance.transform.position, new Quaternion());
 			else
 				Debug.LogWarning("(ProjectileSpawner) Player not found!");
 		}

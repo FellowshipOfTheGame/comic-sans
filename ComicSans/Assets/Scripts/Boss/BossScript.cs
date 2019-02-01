@@ -6,8 +6,10 @@ using UnityEngine;
 public class BossScript : MonoBehaviour 
 {	
 
-	[SerializeField] protected int life = 100;
-	public int Life 
+	public static BossScript instance;
+
+	[SerializeField] protected int life = 4000;
+	protected int Life 
 	{
 		get { return life; }
 		set 
@@ -20,15 +22,10 @@ public class BossScript : MonoBehaviour
 	protected BossHealthBar healthBar;
 
 	[SerializeField] protected float velocity = 4.0f;
-	public float Velocity 
-	{
-		get { return velocity; }
-		set { velocity = value; }
-	}
 
 	protected Collider2D _collider;
 
-	public List<BossPhase> phases;
+	[SerializeField] protected List<BossPhase> phases;
 	protected int currentPhase = 0;
 
 	protected BossPattern currentPattern;
@@ -44,9 +41,20 @@ public class BossScript : MonoBehaviour
 
 	protected Dictionary<string, ObjectPool> projectileDictionary; 
 
+	[SerializeField] protected float exitDelay = 0.5f;
+
 	// Use this for initialization
 	protected void Awake () 
 	{
+
+		if(instance != null)
+		{
+			Debug.LogWarning("(BossScript) More than one BossScript found! Deleting " + transform.name + "...");
+			Destroy(gameObject);
+		}
+
+		instance = this;
+
 		// Finds the boss Animator.
 		_animator = GetComponentInChildren<Animator>();
 		if(_animator == null)
@@ -103,8 +111,9 @@ public class BossScript : MonoBehaviour
 			return;
 		}
 
-		if(Life < phases[currentPhase].lifeToNextPhase && phases.Count > (currentPhase + 1))
-			NextPhase();
+		if(phases.Count > 1)
+			if(Life < phases[currentPhase].lifeToNextPhase && phases.Count > (currentPhase + 1))
+				NextPhase();
 
 	}
 
@@ -112,6 +121,37 @@ public class BossScript : MonoBehaviour
 	{
 
 		Debug.Log("(BossScript) " + transform.name + " has been defeated!");
+
+		StopAllCoroutines();
+		
+		if(_animator != null)
+			_animator.Play("Die", 0);
+
+		StartCoroutine(BossExit(exitDelay));
+
+	}
+
+	public void Win()
+	{
+
+		StopAllCoroutines();
+		
+		if(_animator != null)
+			_animator.Play("Win", 0);
+
+		StartCoroutine(BossExit(exitDelay));
+
+	}
+
+	IEnumerator BossExit(float delay) {
+
+		float time = 0;
+
+		while (time < delay) {
+			time += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
+		}
+
 		Destroy(gameObject);
 
 	}
@@ -119,9 +159,15 @@ public class BossScript : MonoBehaviour
 	protected void StartMovimentation()
 	{
 
+		if(phases.Count < 1) {
+			Debug.LogError("(BossScript) " + transform.name + " has no phases!");
+			return;
+		}
+
 		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
 
-		_animator.runtimeAnimatorController = phases[currentPhase].animationController;
+		if(_animator != null)
+			_animator.runtimeAnimatorController = phases[currentPhase].animationController;
 
 		// Initializes the boss movement pattern.
 		currentPattern = phases[currentPhase].firstPattern;
@@ -209,8 +255,8 @@ public class BossScript : MonoBehaviour
 		float timer = 0;
 		while(timer < duration) 
 		{
-			timer += Time.deltaTime;
-			yield return new WaitForEndOfFrame();
+			timer += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
 		}
 
 		_collider.enabled = true;
@@ -374,8 +420,8 @@ public class BossScript : MonoBehaviour
 		float timer = 0;
 		while(timer < idle.idleTime) 
 		{
-			timer += Time.deltaTime;
-			yield return new WaitForEndOfFrame();
+			timer += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
 		}
 
 		NextAction();
@@ -392,8 +438,8 @@ public class BossScript : MonoBehaviour
 				SetAnimation(teleport.animations);
 			while(timer < teleport.delay) 
 			{
-					timer += Time.deltaTime;
-				yield return new WaitForEndOfFrame();
+					timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
 			}
 
 			// Them teleport.
@@ -413,8 +459,8 @@ public class BossScript : MonoBehaviour
 				SetAnimation(teleport.animations);
 			while(timer < teleport.delay) 
 			{
-					timer += Time.deltaTime;
-				yield return new WaitForEndOfFrame();
+					timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
 			}
 
 			NextAction();

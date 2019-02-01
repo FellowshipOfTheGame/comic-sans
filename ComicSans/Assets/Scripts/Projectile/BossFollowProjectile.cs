@@ -16,21 +16,25 @@ public class BossFollowProjectile : ProjectileBase {
 		base.OnEnable();
 
 		GameObject target = null;
-		if(Player_Manager.manager != null)
-			target = Player_Manager.manager.gameObject;
+		if(Player_Manager.instance != null)
+			target = Player_Manager.instance.gameObject;
 			
-		if(target != null)
-			StartCoroutine(Follow(target.transform));
-		else
+		if(target == null)
 			Debug.LogWarning("(BossFollowProjectile) Player not found!");
+
+		StartCoroutine(Follow(target));
 
 	}
 
 
-	IEnumerator Follow(Transform target)
+	IEnumerator Follow(GameObject target)
 	{
 
-		Coroutine lookAtCoroutine = StartCoroutine(LookAt(target));
+		
+		Coroutine lookAtCoroutine = null;
+		
+		if(target != null)
+			lookAtCoroutine = StartCoroutine(LookAt(target));
 		
 		float timer = 0;
 		while(timer < delay)
@@ -38,8 +42,9 @@ public class BossFollowProjectile : ProjectileBase {
 			timer += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
-	
-		StopCoroutine(lookAtCoroutine);
+
+		if(lookAtCoroutine != null)
+			StopCoroutine(lookAtCoroutine);
  
 		while(true)
 		{
@@ -51,13 +56,13 @@ public class BossFollowProjectile : ProjectileBase {
 
 	}
 
-	IEnumerator LookAt(Transform target)
+	IEnumerator LookAt(GameObject target)
 	{
 
-		while (target != null)
+		while (true)
 		{
 
-			Vector3 diff = target.position - transform.position;
+			Vector3 diff = target.transform.position - transform.position;
          	diff.Normalize();
  
          	float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;

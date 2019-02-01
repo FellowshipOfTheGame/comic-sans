@@ -14,7 +14,7 @@ MonoBehaviour:
   caller: {fileID: 0}
   teleportType: 0
   destination: {x: 10, y: 10}
-  delay: 0.5
+  delay: 0.45
   animations:
   - name: Teleport
     value: 2

@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Collider2D))]
 [AddComponentMenu("Scripts/Player/Health")]
 public class Player_Health : MonoBehaviour {
 
-    [SerializeField] private int hp;
-    [SerializeField] private float Invencibility;
-    [SerializeField] private Transform Spawn_Point;
-    private Transform Player_trans;
-    private Animator anim;
-    [SerializeField] private Image[] HealthIcons;
+    [SerializeField] private int hp = 3;
     public int Hp
     {
         get
@@ -23,11 +19,13 @@ public class Player_Health : MonoBehaviour {
 
             if (value >= 3)
                 hp = 3;
+            if (value < 0)
+                hp = 0;
             else
                 hp = value;
 
             for(int i = 0; i < 3; i++) 
-        {
+            {
                 if(i < value)
                     HealthIcons[i].enabled = true;
                 else
@@ -36,15 +34,26 @@ public class Player_Health : MonoBehaviour {
 
         }
     }
-    [SerializeField] private int Init_Hp;
+
+    [SerializeField] private Image[] HealthIcons;
+
+    [SerializeField] private float Invencibility;
+    [SerializeField] private Transform Spawn_Point;
+
+    private Animator anim;
+    private Collider2D _collider;
+    
 
 
     // Use this for initialization
     void Start () {
 
-        hp = Init_Hp;
-        Player_trans = gameObject.transform;
-        anim = GetComponent<Animator>();
+        anim = Player_Manager.instance._animator;
+        if(anim == null)
+            Debug.Log("(Player) Player has no animator!");
+
+        _collider = GetComponent<Collider2D>();
+
         PositionIcons();
         
     }
@@ -60,22 +69,35 @@ public class Player_Health : MonoBehaviour {
     void Take_Damage()
     {
 
-        if(!anim.GetBool("Invencible")) 
+        Hp--;
+        if (Hp > 0)
+            StartCoroutine(Reset_Player());
+        else
         {
-            Hp--;
-            if (Hp > 0)
-                StartCoroutine(Reset_Player());
-            else
-                Destroy(this.gameObject);
+            BossScript.instance.Win();
+            Destroy(gameObject);
         }
+
     }
 
     IEnumerator Reset_Player()
     {
-        Player_trans.position = Spawn_Point.position;
-        anim.SetBool("Invencible", true);
-        yield return new WaitForSeconds(Invencibility);
-        anim.SetBool("Invencible", false);
+        float time = 0;
+
+        transform.position = Spawn_Point.position;
+        if(anim != null)
+            anim.SetBool("Invencible", true);
+        _collider.enabled = false;
+
+        while(time < Invencibility)
+        {
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        if(anim != null)
+            anim.SetBool("Invencible", false);
+        _collider.enabled = true;
 
     }
 

@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Projectile\BossFollowProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectile\PlayerProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
+     <None Include="Assets\Prefabs\Boss\Punk\Punk.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
