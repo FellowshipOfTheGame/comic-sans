@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Boss\Actions\BossAction.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttack.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttackMove.cs" />
+     <Compile Include="Assets\Scripts\Boss\Actions\BossDash.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossIdle.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossMovement.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossTeleport.cs" />
@@ -65,19 +66,19 @@
      <Compile Include="Assets\Scripts\Boss\BossPattern.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
      <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
+     <Compile Include="Assets\Scripts\Boss\BossStateMachineHandler.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossAppearAttack.cs" />
+     <Compile Include="Assets\Scripts\Boss\Projectile\BossFollowProjectile.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossProjectileSpawner.cs" />
+     <Compile Include="Assets\Scripts\Boss\Projectile\BossRepulsorAttack.cs" />
+     <Compile Include="Assets\Scripts\Boss\Projectile\PunkWallAttack.cs" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\Options_Menu.cs" />
-     <Compile Include="Assets\Scripts\Player\Player_Health.cs" />
-     <Compile Include="Assets\Scripts\Player\Player_Manager.cs" />
-     <Compile Include="Assets\Scripts\Player\Player_Movement.cs" />
-     <Compile Include="Assets\Scripts\Player\Player_Shot.cs" />
+     <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Polling\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Polling\PooledObject.cs" />
-     <Compile Include="Assets\Scripts\Projectile\BossFollowProjectile.cs" />
-     <Compile Include="Assets\Scripts\Projectile\PlayerProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
+     <Compile Include="Assets\Scripts\Projectile\SimpleProjectile.cs" />
      <None Include="Assets\Prefabs\Boss\Punk\Punk.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

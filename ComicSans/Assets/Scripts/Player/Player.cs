@@ -1,0 +1,208 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+[RequireComponent(typeof(Rigidbody2D))]
+[AddComponentMenu("Scripts/Player")]
+public class Player : MonoBehaviour {
+
+    public static Player instance;
+
+	private Animator _animator;
+    private Rigidbody2D _rigidbody;
+    private Collider2D _collider;
+    private SpriteRenderer _renderer;
+
+    [SerializeField]private Vector2 positionConstraints = new Vector2( 8, 8);
+    
+    [SerializeField] private float speed;    
+
+    [System.Serializable]
+    private class Health
+    {
+
+        public int hp = 3;
+        public int Hp
+        {
+            get
+            {
+                return hp;
+            }
+            set
+            {
+
+                if (value >= 3)
+                    hp = 3;
+                if (value < 0)
+                    hp = 0;
+                else
+                    hp = value;
+
+                for(int i = 0; i < 3; i++) 
+                {
+                    if(i < value)
+                        healthIcons[i].enabled = true;
+                    else
+                        healthIcons[i].enabled = false;
+                }
+
+            }
+        }
+
+        public Image[] healthIcons;
+
+        public float invencibilityTime = 2f;
+        public Transform spawnPoint;
+    }
+    [SerializeField]private Health health;
+
+    [System.Serializable]
+    private class Shooting
+    {
+        public float delay;
+        public ObjectPool bulletPool;
+    }
+    [SerializeField] private Shooting shooting;
+
+    // Use this for initialization
+	void Start () {
+
+        if(instance != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+
+		instance = this;
+
+		_animator = GetComponentInChildren<Animator>();
+		if(_animator == null)
+			Debug.Log("Player.Start: No Animator found on player!");
+
+
+        _rigidbody = GetComponentInChildren<Rigidbody2D>();
+        if(_animator == null)
+			Debug.Log("Player.Start: No Rigidbody2D found on player!");
+
+        _collider = GetComponentInChildren<Collider2D>();
+        if(_animator == null)
+			Debug.Log("Player.Start: No Collider2D found on player!");
+
+        _renderer = GetComponentInChildren<SpriteRenderer>();
+        if(_animator == null)
+			Debug.Log("Player.Start: No SpriteRenderer found on player!");
+
+        PositionIcons();
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+        // Makes the player move.
+        Vector2 vel = new Vector2();
+        vel.x = (Input.GetAxisRaw("Horizontal"));
+        vel.y = Input.GetAxisRaw("Vertical");
+        vel.Normalize();
+        _rigidbody.velocity = vel * speed;
+
+        // Handles player animation.
+        if (vel.x != 0)
+        {
+
+            if(_animator != null)
+                _animator.SetBool("Mov_Horizontal", true);
+
+            if(vel.x > 0)
+                _renderer.flipX = false;
+            else
+                _renderer.flipX = true;
+
+        }
+        else
+        {
+
+            if(_animator != null)         
+                _animator.SetBool("Mov_Horizontal", false);
+
+             _renderer.flipX = false;
+
+        }
+
+        // Constraints the player to the player zone.
+        if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -positionConstraints.x, positionConstraints.x),
+                                             Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
+                                             0);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+            InvokeRepeating("Shot", 0, shooting.delay);
+        if (Input.GetButtonUp("Fire1"))
+            CancelInvoke();
+
+	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.collider.tag == "Damage")
+            TakeDamage();         
+
+    }
+
+    void TakeDamage()
+    {
+
+        health.Hp--;
+        if (health.Hp > 0)
+            StartCoroutine(ResetPlayer());
+        else
+        {
+            BossScript.instance.Win();
+            Destroy(gameObject);
+        }
+
+    }
+
+    IEnumerator ResetPlayer()
+    {
+        float time = 0;
+
+        transform.position = health.spawnPoint.position;
+        if(_animator != null)
+            _animator.SetBool("Invencible", true);
+        _collider.enabled = false;
+
+        while(time < health.invencibilityTime)
+        {
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        if(_animator != null)
+            _animator.SetBool("Invencible", false);
+        _collider.enabled = true;
+
+    }
+
+    private void PositionIcons() {
+
+        // Positions the health icons.
+        for(int i = 0; i < health.healthIcons.Length; i++) {
+
+            Vector3 iconPosition = health.healthIcons[i].rectTransform.position;
+            iconPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + (60 * i);
+            health.healthIcons[i].rectTransform.position = iconPosition; 
+
+        }
+        
+    }
+
+    void Shot()
+    {
+        shooting.bulletPool.Spawn(transform.position + new Vector3( 0, 1, 0), transform.rotation);
+    }
+}

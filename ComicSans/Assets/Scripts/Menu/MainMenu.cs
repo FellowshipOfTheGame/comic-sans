@@ -8,13 +8,13 @@ public class MainMenu : MonoBehaviour {
 
     public void Play()
     {
-        Debug.Log("(MainMenu) Loading scene with index " + (SceneManager.GetActiveScene().buildIndex + 1) + "...");
+        Debug.Log("MainMenu.Play: Loading scene with index " + (SceneManager.GetActiveScene().buildIndex + 1) + "...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
     }
 
     public void Quit()
     {
-        Debug.Log("Application.Quit()");
+        Debug.Log("MainMenu.Quit: Application.Quit()");
         Application.Quit();
     }
 

@@ -65,7 +65,8 @@ public class Sound
 
 		if(type == Type.Music)
 		{
-			Debug.Log("(Sound) Restarting music (" + clips[0].name + ")...");
+			Debug.Log("Sound.Play: Restarting music (" + clips[0].name + ")...");
+			sources[currentSource].Stop();
 			sources[currentSource].Play();
 			return;
 		}

@@ -345,7 +345,7 @@ MonoBehaviour:
     pool: {fileID: 114699895889273898}
   - id: tp
     pool: {fileID: 114805810095057956}
-  exitDelay: 2
+  exitDelay: 1.95
 --- !u!212 &212215935567725450
 SpriteRenderer:
   m_ObjectHideFlags: 1

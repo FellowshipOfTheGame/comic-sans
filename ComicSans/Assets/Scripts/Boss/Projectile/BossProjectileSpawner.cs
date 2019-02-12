@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Boss/Projectile Spawner")]
+[AddComponentMenu("Scripts/Projectiles/Boss/Projectile Spawner")]
 public class BossProjectileSpawner : PooledObject {
 
 	[SerializeField] private int numberOfAttack;
 	[SerializeField] private float delay;
+	[SerializeField] private bool delayAtStart;
 
 	private int currentAttack;
-	private float timer;
+	private float timer = 0;
 
 	[SerializeField] ObjectPool projectilePool;
 
@@ -21,7 +22,8 @@ public class BossProjectileSpawner : PooledObject {
 	{
 
 		currentAttack = 0;
-		timer = delay + 1;
+		if(!delayAtStart)
+			timer = delay + 1;
 
 	}
 
@@ -63,10 +65,10 @@ public class BossProjectileSpawner : PooledObject {
 		else
 		{
 				
-			if(Player_Manager.instance != null)
-				projectilePool.Spawn(Player_Manager.instance.transform.position, new Quaternion());
+			if(Player.instance != null)
+				projectilePool.Spawn(Player.instance.transform.position, new Quaternion());
 			else
-				Debug.LogWarning("(ProjectileSpawner) Player not found!");
+				Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
 		}
 
 	}

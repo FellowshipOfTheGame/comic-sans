@@ -8,8 +8,8 @@ public class BossScript : MonoBehaviour
 
 	public static BossScript instance;
 
-	[SerializeField] protected int life = 4000;
-	protected int Life 
+	[SerializeField] private int life = 4000;
+	private int Life 
 	{
 		get { return life; }
 		set 
@@ -19,37 +19,37 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
-	protected BossHealthBar healthBar;
+	private BossHealthBar healthBar;
 
-	[SerializeField] protected float velocity = 4.0f;
+	[SerializeField] private float velocity = 4.0f;
 
-	protected Collider2D _collider;
+	private Collider2D _collider;
+	private Rigidbody2D _rigidbody;
+	private SpriteRenderer _renderer;
 
-	[SerializeField] protected List<BossPhase> phases;
-	protected int currentPhase = 0;
+	[SerializeField] private List<BossPhase> phases;
+	private int currentPhase = 0;
 
-	protected BossPattern currentPattern;
+	private BossPattern currentPattern;
 
-	protected int currentAction = 0;
+	private int currentAction = 0;
 
-	protected Vector2 previousPos;
+	private Vector2 previousPos;
 
-	protected Animator _animator;
+	private Animator _animator;
 
-	[System.Serializable]protected struct ProjectilePool { public string id; public ObjectPool pool; }
-	[SerializeField] protected ProjectilePool[] projectilePools;
+	[System.Serializable]private struct ProjectilePool { public string id; public ObjectPool pool; }
+	[SerializeField] private ProjectilePool[] projectilePools;
 
-	protected Dictionary<string, ObjectPool> projectileDictionary; 
-
-	[SerializeField] protected float exitDelay = 0.5f;
+	private Dictionary<string, ObjectPool> projectileDictionary; 
 
 	// Use this for initialization
-	protected void Awake () 
+	private void Awake () 
 	{
 
 		if(instance != null)
 		{
-			Debug.LogWarning("(BossScript) More than one BossScript found! Deleting " + transform.name + "...");
+			Debug.LogWarning("BossScript.Awake: More than one BossScript found! Deleting " + transform.name + "...");
 			Destroy(gameObject);
 		}
 
@@ -58,12 +58,22 @@ public class BossScript : MonoBehaviour
 		// Finds the boss Animator.
 		_animator = GetComponentInChildren<Animator>();
 		if(_animator == null)
-			Debug.LogWarning("(BossScript) No Animator found on " + transform.name + "!");
+			Debug.LogWarning("BossScript.Awake: No Animator found on " + transform.name + "!");
 
 		// Finds the boss Collider.
 		_collider = GetComponentInChildren<Collider2D>();
 		if(_collider == null)
-			Debug.LogWarning("(BossScript) No Collider found on " + transform.name + "!");
+			Debug.LogWarning("BossScript.Awake: No Collider found on " + transform.name + "!");
+
+		// Finds the boss Rigidbody.
+		_rigidbody = GetComponentInChildren<Rigidbody2D>();
+		if(_rigidbody == null)
+			Debug.LogWarning("BossScript.Awake: No Rigidbody found on " + transform.name + "!");
+
+		// Finds the boss SpriteRenderer.
+		_renderer = GetComponentInChildren<SpriteRenderer>();
+		if(_renderer == null)
+			Debug.LogWarning("BossScript.Awake: No SpriteRenderer found on " + transform.name + "!");
 
 		StartMovimentation();
 
@@ -75,11 +85,11 @@ public class BossScript : MonoBehaviour
 		if(healthBar != null)
 			healthBar.SetIntitialLife(Life);
 		else
-			Debug.Log("(BossScript) No health bar found for the boss!");
+			Debug.Log("BossScript.Awake: No health bar found for the boss!");
 
 	}
 
-	protected void BuildProjectileDictionary()
+	private void BuildProjectileDictionary()
 	{
 
 		projectileDictionary = new Dictionary<string, ObjectPool>();
@@ -88,7 +98,7 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	protected void OnCollisionEnter2D (Collision2D collision)
+	private void OnCollisionEnter2D (Collision2D collision)
 	{
 
 		// If the boss has collided with a bullet deals damage to it.
@@ -97,7 +107,7 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	protected void Damage(int amount) 
+	private void Damage(int amount) 
 	{
 
 		Life-=amount;
@@ -111,23 +121,25 @@ public class BossScript : MonoBehaviour
 			return;
 		}
 
-		if(phases.Count > 1)
-			if(Life < phases[currentPhase].lifeToNextPhase && phases.Count > (currentPhase + 1))
+		if(Life < phases[currentPhase].lifeToNextPhase)
+		{
+			if(phases.Count > currentPhase + 1)
 				NextPhase();
+			else
+				Debug.Log("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
+		}
 
 	}
 
-	protected void Die() 
+	private void Die() 
 	{
 
-		Debug.Log("(BossScript) " + transform.name + " has been defeated!");
+		Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
 
 		StopAllCoroutines();
 		
 		if(_animator != null)
 			_animator.Play("Die", 0);
-
-		StartCoroutine(BossExit(exitDelay));
 
 	}
 
@@ -139,28 +151,18 @@ public class BossScript : MonoBehaviour
 		if(_animator != null)
 			_animator.Play("Win", 0);
 
-		StartCoroutine(BossExit(exitDelay));
-
 	}
 
-	IEnumerator BossExit(float delay) {
-
-		float time = 0;
-
-		while (time < delay) {
-			time += Time.fixedDeltaTime;
-			yield return new WaitForFixedUpdate();
-		}
-
+	public void Exit()
+	{
 		Destroy(gameObject);
-
 	}
 
-	protected void StartMovimentation()
+	private void StartMovimentation()
 	{
 
 		if(phases.Count < 1) {
-			Debug.LogError("(BossScript) " + transform.name + " has no phases!");
+			Debug.LogError("BossScript.StartMovimentation " + transform.name + " has no phases!");
 			return;
 		}
 
@@ -170,6 +172,11 @@ public class BossScript : MonoBehaviour
 			_animator.runtimeAnimatorController = phases[currentPhase].animationController;
 
 		// Initializes the boss movement pattern.
+		if(phases[currentPhase].firstPattern == null)
+		{
+			Debug.Log("BossScript.StartMovimentation: " + transform.name + "'s current phase has no first pattern.");
+			return;
+		}
 		currentPattern = phases[currentPhase].firstPattern;
 
 		// Gets the action to be executed.
@@ -179,7 +186,7 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	protected void NextAction ()
+	private void NextAction ()
 	{
 
 		// Gets the action to be executed.
@@ -193,39 +200,96 @@ public class BossScript : MonoBehaviour
 
 	} 
 
-	protected void NextPattern () 
+	private void NextPattern () 
 	{
+
+		if(currentPattern.nextPattern.Count == 0)
+		{
+			Debug.Log("BossScript.NextPattern: Current pattern has no nextPattern on " + transform.name + "!");
+			return;	
+		}
+
+		// Checks the choice types for next pattern.
+		foreach(BossPattern pattern in currentPattern.nextPattern)
+		{
+			// If the pattern choice type is Trigger check if the trigger is satisfied.
+			if(pattern.choiceType != BossPattern.ChoiceType.Random)
+			{
+				switch (pattern.trigger)
+				{
+					case BossPattern.Trigger.PlayerOnRight:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.x > transform.position.x)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
+
+						break;
+					case BossPattern.Trigger.PlayerOnLeft:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.x < transform.position.x)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
+					break;
+				}
+			}
+		}
+
+		// If no trigger is satisfied or all patterns choiceType is random, picks a random one between those that are not OnlyTrigger.
 
 		// Goes through each possible next patterns and adds their chances together.
 		int maxChance = 0;
 		foreach(BossPattern pattern in currentPattern.nextPattern)
-			maxChance += pattern.chance;
+		{
+			if(pattern.choiceType != BossPattern.ChoiceType.OnlyTrigger)
+				maxChance += pattern.chance;
+		}
 
-		int newRandomPattern = Random.Range(0, maxChance + 1);
+		int newRandomPattern = Random.Range(0, maxChance);
 
 		// Uses the random number to select between a boss patterns. 
 		int patternCounter = 0;
 		foreach(BossPattern pattern in currentPattern.nextPattern) 
 		{
 
-			if(newRandomPattern > patternCounter && newRandomPattern < patternCounter + pattern.chance) 
+			if(pattern.choiceType != BossPattern.ChoiceType.OnlyTrigger)
 			{
-				currentPattern = pattern;
-				break;
+
+				if(newRandomPattern >= patternCounter && newRandomPattern < patternCounter + pattern.chance) 
+				{
+					currentPattern = pattern;
+					currentAction = 0;
+					return;
+				}
+
+				patternCounter += pattern.chance;
 			}
+		}	
 
-			patternCounter += pattern.chance;
-		}
-
+		Debug.LogError("BossScript.NextPattern: No pattern randomly selected on " + transform.name + "! Either dark magic happened, or (more probable) someone did something wrong with the selection code. Defaulting to the first pattern on the list....");
+		currentPattern = currentPattern.nextPattern[0];
 		currentAction = 0;
 
 	}
 
-	protected void NextPhase()
+	private void NextPhase()
 	{
 		currentPhase++;
 
-		Debug.Log("(BossScript) " + transform.name + " has gone to phase " + (currentPhase + 1) + ".");
+		Debug.Log("BossScript.NextPhase: " + transform.name + " has gone to phase " + (currentPhase + 1) + ".");
 
 		// Sets the boss to the initial conditions.
 		StopAllCoroutines();
@@ -299,7 +363,7 @@ public class BossScript : MonoBehaviour
 			foreach(Vector2 spawn in attack.projectileSpawns)
 				projectileDictionary[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 		else
-			Debug.Log("(BossScript) Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
+			Debug.Log("BossScript.ActionAttack: Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
 
 		NextAction();
 
@@ -351,7 +415,7 @@ public class BossScript : MonoBehaviour
 						foreach(Vector2 spawn in attackMove.projectileSpawns)
 							projectileDictionary[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
 					else
-						Debug.Log("(BossScript) Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
+						Debug.Log("BossScript.ActionAttackMove: Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
 
 					yield return new WaitForEndOfFrame();
 
@@ -480,7 +544,80 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
-	protected void SetAnimation(List<AnimationSet> animations)
+	public IEnumerator ActionDash(BossDash dash) {
+
+		// Sets the charge animation.
+		if(_animator != null)
+			SetAnimation(dash.chargeAnimations);
+
+		// Waits for the charging time.
+		float time = 0f;
+		while(time < dash.chargeTime)
+		{
+			time += Time.fixedDeltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+
+		bool defaultFlipX = _renderer.flipX;
+
+		// Gets the 3D target position.
+		Vector2 dirVector;
+		if(Player.instance != null) {
+
+			// Sets the dash animation.
+			if(_animator != null)
+				SetAnimation(dash.dashAnimations);
+
+			dirVector = Player.instance.transform.position - transform.position;
+			dirVector.Normalize();
+
+			float accel = 0;
+
+			if(!dash.lookingRight && dirVector.x > 0)
+				_renderer.flipX = true;
+			else if(dash.lookingRight && dirVector.x < 0)
+				_renderer.flipX = true;
+			else
+				_renderer.flipX = false;
+
+			int bounces = 0;
+
+			// Move the boss to the target position.
+			while (bounces < dash.bounceAmount) {			
+
+				// Moves to the target position.
+				if(bounces == 0)
+					accel += dash.aceleration * Time.deltaTime;
+				transform.Translate(dirVector * accel * Time.deltaTime);
+
+				yield return new WaitForEndOfFrame();
+
+				if(Mathf.Abs(transform.position.x) > dash.positionConstraints.x || Mathf.Abs(transform.position.y) > dash.positionConstraints.y)
+				{
+
+					if(Mathf.Abs(transform.position.x) > dash.positionConstraints.x)
+						dirVector = new Vector2(-dirVector.x, dirVector.y);
+
+					if(Mathf.Abs(transform.position.y) > dash.positionConstraints.y)
+						dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+					bounces++;
+
+				}
+
+			}
+		}
+		else 
+		{
+			Debug.Log("BossScript.ActionDash: Player not found");
+		}
+
+		_renderer.flipX = defaultFlipX;
+		NextAction();
+
+	}
+
+	private void SetAnimation(List<AnimationSet> animations)
 	{
 
 		// Sets all animation parameters.

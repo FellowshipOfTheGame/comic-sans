@@ -46,7 +46,7 @@ public class AudioControlCenter : MonoBehaviour
 		if(SoundDictionary.ContainsKey(id))
 			SoundDictionary[id].Play();			
 		else
-			Debug.Log("(AudioControlCenter) Dictinary doesn't contain the key: " + id + "!");
+			Debug.Log("AudioControlCenter.Play: Dictinary doesn't contain the key: " + id + "!");
 
 	}
 }

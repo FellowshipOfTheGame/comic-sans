@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Boss/Appear Projectile")]
+[AddComponentMenu("Scripts/Projectiles/Boss/Appear Projectile")]
 public class BossAppearAttack : PooledObject {
 
 	[SerializeField] private float appearDelay;

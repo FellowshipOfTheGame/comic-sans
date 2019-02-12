@@ -23,10 +23,7 @@ GameObject:
   - component: {fileID: 50849567840476864}
   - component: {fileID: 58597832031888062}
   - component: {fileID: 95219514545264632}
-  - component: {fileID: 114659156822185952}
   - component: {fileID: 114016277355024050}
-  - component: {fileID: 114673081196272820}
-  - component: {fileID: 114019926330602658}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -109,7 +106,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: -0.01}
+  m_Offset: {x: -0.1, y: 0.3}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!95 &95219514545264632
@@ -141,54 +138,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc1a30e36f10b448b176baad7bf1a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   positionConstraints: {x: 5.675, y: 5}
---- !u!114 &114019926330602658
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1303615257074040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3502aaa4882bd1f44854abe71a9e5fbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn_time: 0.1
-  bulletPool: {fileID: 114840402726922120}
---- !u!114 &114659156822185952
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1303615257074040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8c8ec58e1c5f847b37db7517675957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {fileID: 0}
-  health: {fileID: 0}
-  shooting: {fileID: 0}
-  _animator: {fileID: 0}
---- !u!114 &114673081196272820
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1303615257074040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3bfe17834f91043939cd997ea9a5d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 3
-  HealthIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Invencibility: 2
-  Spawn_Point: {fileID: 0}
+  speed: 10
+  health:
+    hp: 3
+    healthIcons:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    invencibilityTime: 2
+    spawnPoint: {fileID: 0}
+  shooting:
+    delay: 0.1
+    bulletPool: {fileID: 114840402726922120}
 --- !u!114 &114840402726922120
 MonoBehaviour:
   m_ObjectHideFlags: 1

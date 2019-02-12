@@ -11,11 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
   m_Name: CueioCarrotAttackMoveP1
   m_EditorClassIdentifier: 
-  chance: 100
+  actions:
+  - {fileID: 11400000, guid: 2eec54a372d7b5f43841403ede2662c9, type: 2}
+  - {fileID: 11400000, guid: 3efb7655c2a37b947931180c2356bb2a, type: 2}
+  - {fileID: 11400000, guid: 1f1cf9081a334c94cacaf52114b5a31b, type: 2}
+  - {fileID: 11400000, guid: 42d00334b3f5b68429938a6571845a07, type: 2}
+  chance: 90
+  choiceType: 0
+  trigger: 0
   nextPattern:
   - {fileID: 11400000, guid: 4bb95580fefd11947bad47b7eccdde2e, type: 2}
-  actions:
-  - {fileID: 11400000, guid: 4427824d6359d2549b37a99854357ed4, type: 2}
-  - {fileID: 11400000, guid: 81f3b5a3b7abf694ba99febf049ddd16, type: 2}
-  - {fileID: 11400000, guid: f988f4789964be34eb53e18bc3e10ee2, type: 2}
-  - {fileID: 11400000, guid: 42d00334b3f5b68429938a6571845a07, type: 2}

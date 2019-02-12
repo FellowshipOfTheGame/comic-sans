@@ -25,7 +25,7 @@ public class ObjectPool : MonoBehaviour {
 				Pool.Add(new_poll_obj);
 			else
 			{
-				Debug.Log("(ObjectPool) Failed to instantiate a new instance of " + baseObject.name + "!");
+				Debug.Log("ObjectPool.Start: Failed to instantiate a new instance of " + baseObject.name + "!");
 				break;
 			}
 
@@ -62,18 +62,18 @@ public class ObjectPool : MonoBehaviour {
 					return new_poll_obj;
 				}
 
-				Debug.Log("(ObjectPool) Failure on instantiating " + baseObject.name + "!");
+				Debug.Log("ObjectPool.Spawn: Failure on instantiating " + baseObject.name + "!");
 
 			}
 			else
-				Debug.Log("(ObjectPool) Can't create a new instance of " + baseObject.name + " because the pool is already full!");
+				Debug.Log("ObjectPool.Spawn: Can't create a new instance of " + baseObject.name + " because the pool is already full!");
 
 			return null;
 		}
 	}
 
 	// Spawns a object from the pool.
-	// Version 2: Used as an wraper. Calls Version 1 with the right parameters.
+	// Version 2: Used as a wraper. Calls Version 1 with the right parameters.
 	public GameObject Spawn (Transform spawnPosition) { return Spawn(spawnPosition.position, spawnPosition.rotation); }
 
 	// Creates a new GameObject to be used by the pooling system.
@@ -95,7 +95,7 @@ public class ObjectPool : MonoBehaviour {
 
 		}
 
-		Debug.Log("(ObjectPool) Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
+		Debug.Log("ObjectPool.CreateNew: Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
 		Destroy(new_poll_obj);
 		return null;
 

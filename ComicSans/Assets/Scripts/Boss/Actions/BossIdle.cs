@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "newIdle", menuName = "Boss/Idle", order = 4)]
+[CreateAssetMenu(fileName = "newIdle", menuName = "Boss/Idle", order = 6)]
 public class BossIdle : BossAction {
 
     public float idleTime;

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 186ed93ecc7882247bebe2d55cd35fef
   - enabled: 1
-    path: Assets/Scenes/BossTesting.unity
-    guid: de410d4079790b04c87fcbe3610e3817
+    path: Assets/Scenes/Cueio.unity
+    guid: 8d2a0e321a240a647b16e56ca28034cb
+  - enabled: 1
+    path: Assets/Scenes/Punk.unity
+    guid: a4f8442a863fb114fb85a0bee6a5d57f
   m_configObjects: {}
