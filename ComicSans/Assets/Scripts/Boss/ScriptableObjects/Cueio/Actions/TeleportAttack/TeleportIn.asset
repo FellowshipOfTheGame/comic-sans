@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
   teleportType: 1
-  destination: {x: 0, y: 3}
+  destination: {x: 0, y: 2.4}
   delay: 0.45
   animations:
   - name: Teleport

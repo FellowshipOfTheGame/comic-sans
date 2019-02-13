@@ -23,9 +23,8 @@ public class BossScript : MonoBehaviour
 
 	[SerializeField] private float velocity = 4.0f;
 
-	private Collider2D _collider;
+	[SerializeField] private GameObject _colliders;
 	private Rigidbody2D _rigidbody;
-	private SpriteRenderer _renderer;
 
 	[SerializeField] private List<BossPhase> phases;
 	private int currentPhase = 0;
@@ -35,6 +34,8 @@ public class BossScript : MonoBehaviour
 	private int currentAction = 0;
 
 	private Vector2 previousPos;
+
+	private Vector3 defaultScale;
 
 	private Animator _animator;
 
@@ -60,20 +61,17 @@ public class BossScript : MonoBehaviour
 		if(_animator == null)
 			Debug.LogWarning("BossScript.Awake: No Animator found on " + transform.name + "!");
 
-		// Finds the boss Collider.
-		_collider = GetComponentInChildren<Collider2D>();
-		if(_collider == null)
-			Debug.LogWarning("BossScript.Awake: No Collider found on " + transform.name + "!");
+		// Gives an error if no collider GameObject is assigned the boss Collider.
+		if(_colliders == null)
+			Debug.LogWarning("BossScript.Awake: You need to assign the Colliders GameObject on " + transform.name + "!");
 
 		// Finds the boss Rigidbody.
 		_rigidbody = GetComponentInChildren<Rigidbody2D>();
 		if(_rigidbody == null)
 			Debug.LogWarning("BossScript.Awake: No Rigidbody found on " + transform.name + "!");
 
-		// Finds the boss SpriteRenderer.
-		_renderer = GetComponentInChildren<SpriteRenderer>();
-		if(_renderer == null)
-			Debug.LogWarning("BossScript.Awake: No SpriteRenderer found on " + transform.name + "!");
+		// Gets the default object scale.
+		defaultScale = transform.localScale;
 
 		StartMovimentation();
 
@@ -135,6 +133,8 @@ public class BossScript : MonoBehaviour
 	{
 
 		Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
+
+		transform.localScale = defaultScale;
 
 		StopAllCoroutines();
 		
@@ -298,6 +298,8 @@ public class BossScript : MonoBehaviour
 
 		transform.position = new Vector3(phases[currentPhase].initialPosition.x, phases[currentPhase].initialPosition.y, 0);
 
+		transform.localScale = defaultScale;
+
 		currentPattern = phases[currentPhase].firstPattern;
 		
 		_animator.runtimeAnimatorController = phases[currentPhase].animationController;
@@ -313,7 +315,7 @@ public class BossScript : MonoBehaviour
 	public IEnumerator Invincible(float duration)
 	{
 
-		_collider.enabled = false;
+		_colliders.SetActive(false);
 
 		// Idles for some time.
 		float timer = 0;
@@ -323,7 +325,7 @@ public class BossScript : MonoBehaviour
 			yield return new WaitForFixedUpdate();
 		}
 
-		_collider.enabled = true;
+		_colliders.SetActive(true);
 
 	}
 
@@ -558,8 +560,6 @@ public class BossScript : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 		}
 
-		bool defaultFlipX = _renderer.flipX;
-
 		// Gets the 3D target position.
 		Vector2 dirVector;
 		if(Player.instance != null) {
@@ -574,11 +574,11 @@ public class BossScript : MonoBehaviour
 			float accel = 0;
 
 			if(!dash.lookingRight && dirVector.x > 0)
-				_renderer.flipX = true;
+				transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 			else if(dash.lookingRight && dirVector.x < 0)
-				_renderer.flipX = true;
+				transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 			else
-				_renderer.flipX = false;
+				transform.localScale = defaultScale;
 
 			int bounces = 0;
 
@@ -612,7 +612,7 @@ public class BossScript : MonoBehaviour
 			Debug.Log("BossScript.ActionDash: Player not found");
 		}
 
-		_renderer.flipX = defaultFlipX;
+		transform.localScale = defaultScale;
 		NextAction();
 
 	}

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a8356d8e452d54ab81b90ddfc1fc73, type: 3}
   m_Name: PunkP2
   m_EditorClassIdentifier: 
-  initialPosition: {x: 0, y: 3}
+  initialPosition: {x: 0, y: 2.4}
   invincibilityDuration: 1
   animationController: {fileID: 9100000, guid: a4d5e8220f2c26b478c8cc01fc6cccf5, type: 2}
   firstPattern: {fileID: 11400000, guid: a54ad70bd3ea40b419bab761723bbd3c, type: 2}

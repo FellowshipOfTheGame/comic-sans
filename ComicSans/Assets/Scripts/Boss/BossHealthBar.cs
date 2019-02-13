@@ -12,11 +12,11 @@ public class BossHealthBar : MonoBehaviour {
 		
 		// Sets the health bar tranform to the correct position and size.
 		Vector3 barPosition = bar.rectTransform.position;
-        barPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + 10;
+        barPosition.x = (Screen.width / 2) + (Screen.height * 0.625f) - 15;
 		bar.rectTransform.position = barPosition; 
 
 		Vector2 barSize = bar.rectTransform.sizeDelta;
-		barSize.x = Screen.width - 2 * ((Screen.width / 2) - (Screen.height / 1.66f)) - 20;
+		barSize.x = (Screen.height * 1.25f) - 20;
 		bar.rectTransform.sizeDelta = barSize;
 
 	}

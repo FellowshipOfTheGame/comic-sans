@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  appearDelay: 0.5
+  appearDelay: 0.3
   disappearDelay: 0.5
   _collider: {fileID: 58473513156723174}
   audioName: pawn
