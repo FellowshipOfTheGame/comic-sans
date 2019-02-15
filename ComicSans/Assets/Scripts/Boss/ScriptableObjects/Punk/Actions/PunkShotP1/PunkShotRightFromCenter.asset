@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
   numberOfSteps: 4
-  positionTarget: {x: 4.5, y: 2.4}
-  velocityModifier: 0.5
+  positionTarget: {x: 5, y: 2.4}
+  velocityModifier: 2
   stopBeforeAttack: 0
-  stopAfterAttack: 0
-  idleTime: 1
+  stopAfterAttack: 1
+  idleTime: 0.5
   projectileId: shot
   projectileSpawns:
   - {x: -0.75, y: -1}

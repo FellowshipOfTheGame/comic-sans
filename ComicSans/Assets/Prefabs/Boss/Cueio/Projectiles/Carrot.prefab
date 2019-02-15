@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  positionConstraints: {x: 6, y: 5}
+  positionConstraints: {x: 6.6, y: 5}
   audioName: carrot
   _rigidbody: {fileID: 50928384489350144}
   delay: 0.1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
   numberOfSteps: 6
-  positionTarget: {x: -4.9, y: 2.4}
+  positionTarget: {x: -5.4, y: 2.4}
   velocityModifier: 1
   stopBeforeAttack: 0
   stopAfterAttack: 0

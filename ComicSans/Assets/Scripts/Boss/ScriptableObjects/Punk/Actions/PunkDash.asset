@@ -14,7 +14,7 @@ MonoBehaviour:
   caller: {fileID: 0}
   aceleration: 50
   chargeTime: 1
-  positionConstraints: {x: 5.675, y: 5}
+  positionConstraints: {x: 6, y: 5}
   bounceAmount: 5
   lookingRight: 0
   chargeAnimations:

@@ -8,6 +8,8 @@ public class BossScript : MonoBehaviour
 
 	public static BossScript instance;
 
+	public string bossName;
+
 	[SerializeField] private int life = 4000;
 	private int Life 
 	{
@@ -18,8 +20,6 @@ public class BossScript : MonoBehaviour
 			else life = value; 
 		}
 	}
-
-	private BossHealthBar healthBar;
 
 	[SerializeField] private float velocity = 4.0f;
 
@@ -78,12 +78,11 @@ public class BossScript : MonoBehaviour
 		// Creates a dictionary of projectile types and its respective pools.
 		BuildProjectileDictionary();
 
-		// Finds the boss health bar.
-		healthBar = FindObjectOfType(typeof(BossHealthBar)) as BossHealthBar;
-		if(healthBar != null)
-			healthBar.SetIntitialLife(Life);
+		// Initializes the boss health bar.
+		if(HUDController.instance != null)
+			HUDController.instance.InitializeBossHUD(bossName, Life);
 		else
-			Debug.Log("BossScript.Awake: No health bar found for the boss!");
+			Debug.LogWarning("BossScript.Awake: No HUDController found!");
 
 	}
 
@@ -110,8 +109,10 @@ public class BossScript : MonoBehaviour
 
 		Life-=amount;
 
-		if(healthBar != null)
-			healthBar.UpdateHealthBar(Life);
+		if(HUDController.instance != null)
+			HUDController.instance.UpdateBossHealthBar(Life);
+		else
+			Debug.LogWarning("BossScript.Damage: No HUDController found!");
 
 		if(Life <= 0)
 		{
@@ -140,6 +141,11 @@ public class BossScript : MonoBehaviour
 		
 		if(_animator != null)
 			_animator.Play("Die", 0);
+
+		if(HUDController.instance != null)
+			HUDController.instance.DisableHUD();
+		else
+			Debug.LogWarning("BossScript.Die: No HUDController found!");
 
 	}
 

@@ -39,13 +39,10 @@ public class Player : MonoBehaviour {
                 else
                     hp = value;
 
-                for(int i = 0; i < 3; i++) 
-                {
-                    if(i < value)
-                        healthIcons[i].enabled = true;
-                    else
-                        healthIcons[i].enabled = false;
-                }
+                if(HUDController.instance != null)
+                    HUDController.instance.UpdatePlayerLifeIcons(hp);
+                else
+                    Debug.LogWarning("Player.Health.Hp.set: No HUDController found!");
 
             }
         }
@@ -93,6 +90,7 @@ public class Player : MonoBehaviour {
         if(_animator == null)
 			Debug.Log("Player.Start: No SpriteRenderer found on player!");
 
+        health.Hp = 3;
         PositionIcons();
 
 	}
@@ -162,6 +160,10 @@ public class Player : MonoBehaviour {
         else
         {
             BossScript.instance.Win();
+            
+            if(HUDController.instance != null)
+                HUDController.instance.DisableHUD();
+
             Destroy(gameObject);
         }
 
@@ -190,14 +192,13 @@ public class Player : MonoBehaviour {
 
     private void PositionIcons() {
 
-        // Positions the health icons.
-        for(int i = 0; i < health.healthIcons.Length; i++) {
-
-            Vector3 iconPosition = health.healthIcons[i].rectTransform.position;
-            iconPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + (60 * i);
-            health.healthIcons[i].rectTransform.position = iconPosition; 
-
+        if(health.healthIcons.Length == 0)
+        {
+            Debug.Log("Player.PositionIcons: No healthIcons assigned! If you're on the Transition Scene ignore this message...");
+            return;
         }
+
+       
         
     }
 

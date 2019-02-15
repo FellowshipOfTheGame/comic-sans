@@ -34,14 +34,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4920372326234100}
-  - component: {fileID: 114181064560996536}
+  - component: {fileID: 114133343387085892}
   m_Layer: 11
   m_Name: WallSpawnerDiag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1735070379343628
 GameObject:
   m_ObjectHideFlags: 1
@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 4488313439116966}
   - component: {fileID: 212982296510050444}
   - component: {fileID: 95720737906070878}
-  - component: {fileID: 114252779867879794}
   - component: {fileID: 60461036133015978}
   m_Layer: 11
   m_Name: wallDiag
@@ -93,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4402927937531810
 Transform:
   m_ObjectHideFlags: 1
@@ -114,8 +113,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997076762486888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5067264, y: 0.8736656, z: 0.05636675}
-  m_LocalScale: {x: 0.94, y: 1.5, z: 1}
+  m_LocalPosition: {x: -0.35, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4920372326234100}
   m_RootOrder: 1
@@ -141,7 +140,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383175188569216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5067264, y: -0.8736656, z: -0.05636675}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4562732778244078}
@@ -280,31 +279,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114181064560996536
+--- !u!114 &114133343387085892
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383175188569216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e1da14b4561f5458643963aea0125e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: {fileID: 0}
-  numberOfAttack: 1
-  delay: 0.35
-  delayAtStart: 0
-  projectilePool: {fileID: 0}
-  spawnType: 0
-  spawnPositions:
-  - {x: 0, y: 0, z: 0}
---- !u!114 &114252779867879794
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1997076762486888}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c081e1ef6320a6144a08ad3b17aba5c6, type: 3}

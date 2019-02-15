@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4742848602908998}
   - component: {fileID: 212830802025340746}
   - component: {fileID: 95439660896504720}
-  - component: {fileID: 114436569958525886}
   - component: {fileID: 60586127415320468}
   m_Layer: 11
   m_Name: wallHorz
@@ -86,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4617414439738250}
-  - component: {fileID: 114767104860115430}
+  - component: {fileID: 114893302887915218}
   m_Layer: 11
   m_Name: WallSpawnerHorz
   m_TagString: Untagged
@@ -128,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938762947558144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5067264, y: -0.8736656, z: -0.05636675}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4743855644818828}
@@ -143,8 +142,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019222411287574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5067264, y: 0.8736656, z: 0.05636675}
-  m_LocalScale: {x: 0.94, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.05, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4617414439738250}
   m_RootOrder: 1
@@ -262,19 +261,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114436569958525886
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1019222411287574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c081e1ef6320a6144a08ad3b17aba5c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: {fileID: 0}
---- !u!114 &114767104860115430
+--- !u!114 &114893302887915218
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,17 +269,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938762947558144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e1da14b4561f5458643963aea0125e, type: 3}
+  m_Script: {fileID: 11500000, guid: c081e1ef6320a6144a08ad3b17aba5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  numberOfAttack: 1
-  delay: 0.35
-  delayAtStart: 0
-  projectilePool: {fileID: 0}
-  spawnType: 0
-  spawnPositions:
-  - {x: 0, y: 0, z: 0}
 --- !u!212 &212229794799072914
 SpriteRenderer:
   m_ObjectHideFlags: 1

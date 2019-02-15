@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
   positionTarget: {x: 0, y: 2.4}
-  velocityModifier: 1
+  velocityModifier: 2
   animations:
   - name: Dash
     value: 0

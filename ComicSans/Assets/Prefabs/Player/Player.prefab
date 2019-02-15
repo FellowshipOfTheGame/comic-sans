@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc1a30e36f10b448b176baad7bf1a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionConstraints: {x: 5.875, y: 5}
+  positionConstraints: {x: 6.25, y: 5}
   speed: 10
   health:
     hp: 3

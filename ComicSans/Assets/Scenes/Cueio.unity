@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &48312720
+--- !u!1001 &47011084
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -217,19 +217,19 @@ Prefab:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114343592137337186, guid: 398c23da17d3fd3439d97b3454511902,
     type: 2}
-  m_PrefabInternal: {fileID: 48312720}
+  m_PrefabInternal: {fileID: 47011084}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &48312722 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114476409062469556, guid: 398c23da17d3fd3439d97b3454511902,
     type: 2}
-  m_PrefabInternal: {fileID: 48312720}
+  m_PrefabInternal: {fileID: 47011084}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &48312723 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114653875919321704, guid: 398c23da17d3fd3439d97b3454511902,
     type: 2}
-  m_PrefabInternal: {fileID: 48312720}
+  m_PrefabInternal: {fileID: 47011084}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &227854515
 Prefab:
@@ -622,11 +622,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114016277355024050, guid: 8fb3e166ca0adc941baad8e315a7bf33,
         type: 2}
-      propertyPath: health.spawnPoint
-      value: 
-      objectReference: {fileID: 858371425}
-    - target: {fileID: 114016277355024050, guid: 8fb3e166ca0adc941baad8e315a7bf33,
-        type: 2}
       propertyPath: health.healthIcons.Array.data[0]
       value: 
       objectReference: {fileID: 48312723}
@@ -640,6 +635,11 @@ Prefab:
       propertyPath: health.healthIcons.Array.data[2]
       value: 
       objectReference: {fileID: 48312721}
+    - target: {fileID: 114016277355024050, guid: 8fb3e166ca0adc941baad8e315a7bf33,
+        type: 2}
+      propertyPath: health.spawnPoint
+      value: 
+      objectReference: {fileID: 858371425}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb3e166ca0adc941baad8e315a7bf33, type: 2}
   m_IsPrefabAsset: 0

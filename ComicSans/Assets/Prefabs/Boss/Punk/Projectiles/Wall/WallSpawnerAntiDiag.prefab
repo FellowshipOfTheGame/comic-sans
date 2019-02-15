@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 4861307864981688}
   - component: {fileID: 212052303260854146}
   - component: {fileID: 95129997432355056}
-  - component: {fileID: 114760218217228234}
   - component: {fileID: 60013697310850358}
   m_Layer: 11
   m_Name: wallAntiDiag
@@ -86,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4227228913665472}
-  - component: {fileID: 114343465423578380}
+  - component: {fileID: 114171217529207594}
   m_Layer: 11
   m_Name: WallSpawnerAntiDiag
   m_TagString: Untagged
@@ -114,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939984955404710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5067264, y: -0.8736656, z: -0.05636675}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4911992998942736}
@@ -143,8 +142,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755590267036746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5067264, y: 0.8736656, z: 0.05636675}
-  m_LocalScale: {x: -0.94, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0.35, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4227228913665472}
   m_RootOrder: 1
@@ -280,31 +279,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114343465423578380
+--- !u!114 &114171217529207594
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939984955404710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e1da14b4561f5458643963aea0125e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: {fileID: 0}
-  numberOfAttack: 1
-  delay: 0.35
-  delayAtStart: 0
-  projectilePool: {fileID: 0}
-  spawnType: 0
-  spawnPositions:
-  - {x: 0, y: 0, z: 0}
---- !u!114 &114760218217228234
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1755590267036746}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c081e1ef6320a6144a08ad3b17aba5c6, type: 3}
