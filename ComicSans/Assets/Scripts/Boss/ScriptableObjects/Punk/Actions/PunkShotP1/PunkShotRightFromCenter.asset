@@ -20,7 +20,7 @@ MonoBehaviour:
   idleTime: 0.5
   projectileId: shot
   projectileSpawns:
-  - {x: -0.75, y: -1}
+  - {x: -0.75, y: -0.5}
   movementAnimations:
   - name: Shot
     value: 0

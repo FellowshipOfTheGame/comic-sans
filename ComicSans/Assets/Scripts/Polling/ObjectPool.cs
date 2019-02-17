@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [AddComponentMenu("Scripts/Pooling/Object Pool")]
 public class ObjectPool : MonoBehaviour {
 
 	[SerializeField] private GameObject baseObject;
+
+	[SerializeField] private bool isPermanentPoll;
 
 	public int initialObjectInstances = 8;
 	public int maxObjectInstances = 8;
@@ -15,6 +18,13 @@ public class ObjectPool : MonoBehaviour {
 
 	void Start() 
 	{
+
+		if(isPermanentPoll)
+		{
+			transform.SetParent(null);
+			DontDestroyOnLoad(gameObject);
+		}
+
 		// Creates the initial pool of objects.
 		for(int i = 0; i < initialObjectInstances; i++) 
 		{
@@ -90,6 +100,12 @@ public class ObjectPool : MonoBehaviour {
 
 			script.origin = this;
 			new_poll_obj.SetActive(false);
+
+			if(isPermanentPoll)
+			{
+				DontDestroyOnLoad(new_poll_obj);
+				SceneManager.sceneLoaded += script.OnSceneLoaded;
+			}
 
 			return new_poll_obj;
 

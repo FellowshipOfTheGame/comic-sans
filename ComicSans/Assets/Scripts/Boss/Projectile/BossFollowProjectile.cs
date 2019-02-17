@@ -62,13 +62,23 @@ public class BossFollowProjectile : ProjectileBase {
 		while (true)
 		{
 
-			Vector3 diff = target.transform.position - transform.position;
-         	diff.Normalize();
- 
-         	float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-         	transform.rotation = Quaternion.Euler(0f, 0f, 90 + rot_z);
+			if(target != null)
+			{
 
-			yield return new WaitForEndOfFrame();
+				Vector3 diff = target.transform.position - transform.position;
+				diff.Normalize();
+	
+				float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+				transform.rotation = Quaternion.Euler(0f, 0f, 90 + rot_z);
+
+				yield return new WaitForEndOfFrame();
+
+			} 
+			else
+			{
+				Debug.LogWarning("BossFollowProjectile.LookAt: Player not found!");
+				break;
+			}
 
 		}
 	}

@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Boss\BossHealthBar.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPattern.cs" />
      <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
+     <Compile Include="Assets\Scripts\Boss\BossPortal.cs" />
      <Compile Include="Assets\Scripts\Boss\BossScript.cs" />
      <Compile Include="Assets\Scripts\Boss\BossStateMachineHandler.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossAppearAttack.cs" />
@@ -72,26 +73,28 @@
      <Compile Include="Assets\Scripts\Boss\Projectile\BossProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossRepulsorAttack.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\PunkWallAttack.cs" />
-     <Compile Include="Assets\Scripts\HUDController.cs" />
-     <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\Menu\Options_Menu.cs" />
+     <Compile Include="Assets\Scripts\Misc\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Misc\SceneSettings.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Polling\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Polling\PooledObject.cs" />
      <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
      <Compile Include="Assets\Scripts\Projectile\SimpleProjectile.cs" />
+     <Compile Include="Assets\Scripts\UI &amp; HUD\HUDController.cs" />
+     <Compile Include="Assets\Scripts\UI &amp; HUD\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\UI &amp; HUD\Options_Menu.cs" />
      <None Include="Assets\Prefabs\Boss\Punk\Punk.txt" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Users/Du/Documents/Dev/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.ARModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
@@ -265,10 +268,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.20f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Users/Du/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Users/luise/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
- <HintPath>C:/Users/Du/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/luise/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

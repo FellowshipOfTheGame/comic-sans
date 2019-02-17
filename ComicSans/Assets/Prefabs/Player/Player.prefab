@@ -30,7 +30,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1330741672058978
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4765233241169798}
   - component: {fileID: 114840402726922120}
   m_Layer: 8
-  m_Name: buller_pool
+  m_Name: bullet_pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1042820488574006, guid: 73c9dd62a4b829543b21e29161e33011, type: 2}
+  isPermanentPoll: 1
   initialObjectInstances: 14
   maxObjectInstances: 20
   currentObjectInstances: 0

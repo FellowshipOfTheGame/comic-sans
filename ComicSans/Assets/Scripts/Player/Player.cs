@@ -59,11 +59,12 @@ public class Player : MonoBehaviour {
     {
         public float delay;
         public ObjectPool bulletPool;
+        [HideInInspector] public Coroutine ShootingCoroutine;
     }
     [SerializeField] private Shooting shooting;
 
     // Use this for initialization
-	void Start () {
+	void Awake () {
 
         if(instance != null)
 		{
@@ -90,10 +91,19 @@ public class Player : MonoBehaviour {
         if(_animator == null)
 			Debug.Log("Player.Start: No SpriteRenderer found on player!");
 
+	}
+
+    public void OnEnable()
+    {
         health.Hp = 3;
         PositionIcons();
 
-	}
+        if(shooting.ShootingCoroutine != null)
+        {
+            StopCoroutine(shooting.ShootingCoroutine);
+            shooting.ShootingCoroutine = null; 
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -136,10 +146,14 @@ public class Player : MonoBehaviour {
                                              0);
         }
 
-        if (Input.GetButtonDown("Fire1"))
-            InvokeRepeating("Shot", 0, shooting.delay);
+        if (Input.GetButton("Fire1"))
+            if(shooting.ShootingCoroutine == null)
+                shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
         if (Input.GetButtonUp("Fire1"))
-            CancelInvoke();
+        {
+            StopCoroutine(shooting.ShootingCoroutine);
+            shooting.ShootingCoroutine = null;
+        }
 
 	}
 
@@ -164,7 +178,7 @@ public class Player : MonoBehaviour {
             if(HUDController.instance != null)
                 HUDController.instance.DisableHUD();
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
     }
@@ -173,7 +187,7 @@ public class Player : MonoBehaviour {
     {
         float time = 0;
 
-        transform.position = health.spawnPoint.position;
+        transform.position = GameManager.instance.playerSettings.spawnPoint;
         if(_animator != null)
             _animator.SetBool("Invencible", true);
         _collider.enabled = false;
@@ -202,8 +216,20 @@ public class Player : MonoBehaviour {
         
     }
 
-    void Shot()
+    IEnumerator Shot(float delay)
     {
-        shooting.bulletPool.Spawn(transform.position + new Vector3( 0, 1, 0), transform.rotation);
+        while(true)
+        {
+
+            shooting.bulletPool.Spawn(transform.position + new Vector3( 0, 1, 0), transform.rotation);
+
+            float time = 0;
+            while(time < delay)
+            {
+                time += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+        }
     }
 }

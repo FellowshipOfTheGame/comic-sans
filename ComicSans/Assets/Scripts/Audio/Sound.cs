@@ -20,54 +20,21 @@ public class Sound
 	public int maxSimultaneousSources = 3;
 
 	// Sources are instantiated in Awake() and stored in here.
-	private List<AudioSource> sources;
+	[HideInInspector] public List<AudioSource> sources;
 
 	private int currentSource = 0;
-
-	public void CreateAudioSources() 
-	{
-		
-		sources = new List<AudioSource>();
-
-		for(int i = 0; i < maxSimultaneousSources; i++)
-		{
-
-			GameObject newAudioSourceGameObject = new GameObject();
-			newAudioSourceGameObject.name = clips[0].name + "_AudioSource_" + i;
-			newAudioSourceGameObject.transform.parent = AudioControlCenter.instance.transform;
-
-			AudioSource newAudioSource = newAudioSourceGameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-
-			// Configure the audio source.
-			newAudioSource.volume = volume;
-			newAudioSource.pitch = pitch;
-
-			if(type == Sound.Type.FX)
-				newAudioSource.loop = false;
-			else
-			{
-				newAudioSource.loop = true;
-				newAudioSource.clip = clips[0];
-				newAudioSource.Play(); // Music starts playing automatically at the start.
-
-				sources.Add(newAudioSource);
-				break; // Music will always use only one source.
-			}
-
-			sources.Add(newAudioSource);
-			
-		}
-		
-	}
 
 	public void Play()
 	{
 
 		if(type == Type.Music)
 		{
-			Debug.Log("Sound.Play: Restarting music (" + clips[0].name + ")...");
-			sources[currentSource].Stop();
-			sources[currentSource].Play();
+			if(sources[0].isPlaying)
+			{
+				Debug.Log("Sound.Play: Restarting music (" + clips[0].name + ")...");
+				sources[currentSource].Stop();
+			}
+			sources[0].Play();
 			return;
 		}
 
@@ -77,6 +44,14 @@ public class Sound
 		currentSource++;
 		if(currentSource == maxSimultaneousSources)
 			currentSource = 0;
+	}
+
+	public void Stop()
+	{
+
+		for(int i = 0; i < sources.Count; i++)
+			sources[i].Stop();
+
 	}
 
 }

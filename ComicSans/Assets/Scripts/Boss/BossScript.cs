@@ -147,6 +147,8 @@ public class BossScript : MonoBehaviour
 		else
 			Debug.LogWarning("BossScript.Die: No HUDController found!");
 
+		GameManager.instance.StartCoroutine(GameManager.instance.EndGame(3.5f));
+
 	}
 
 	public void Win()
@@ -156,6 +158,8 @@ public class BossScript : MonoBehaviour
 		
 		if(_animator != null)
 			_animator.Play("Win", 0);
+
+		GameManager.instance.StartCoroutine(GameManager.instance.EndGame(3.5f));
 
 	}
 

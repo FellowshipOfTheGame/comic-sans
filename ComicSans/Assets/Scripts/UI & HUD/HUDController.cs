@@ -6,6 +6,8 @@ public class HUDController : MonoBehaviour {
 
 	public static HUDController instance;
 
+	[SerializeField] private GameObject HUDContainer;
+
 	[SerializeField] private Image[] playerHealthIcons;
 	[SerializeField] private Image bossHealthBar;
 	[SerializeField] private Text bossNameText;
@@ -96,9 +98,13 @@ public class HUDController : MonoBehaviour {
 
 	public void InitializeBossHUD(string bossName, int bossLife) 
 	{
-		if(bossHealthBar != null)
-			bossHealthBar.enabled = true;
 		initialBossLife = bossLife;
+		if(bossHealthBar != null)
+		{
+			bossHealthBar.fillAmount = 1;
+			bossHealthBar.enabled = true;
+		}
+		
 
 		if(bossNameText != null)
 		{
@@ -116,26 +122,15 @@ public class HUDController : MonoBehaviour {
 
 	}
 
+	public void EnableHUD() {
+		
+		HUDContainer.SetActive(true);
+	
+	}
+
 	public void DisableHUD() {
 		
-		for(int i = 0; i < 3; i++) 
-		{
-
-			if(playerHealthIcons[i] == null)
-			{
-				Debug.LogWarning("HUDController.Disable: playerHealthIcon on position " + i + " is null!");
-				return;
-			}
-
-			playerHealthIcons[i].enabled = false;
-
-		}
-
-		if(bossHealthBar != null)
-			bossHealthBar.enabled = false;
-
-		if(bossNameText != null)
-			bossNameText.enabled = false;
+		HUDContainer.SetActive(false);
 	
 	}
 }
