@@ -59,7 +59,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1488259226159472
 GameObject:
   m_ObjectHideFlags: 1
@@ -498,9 +498,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
-  audioName: 
-  strenght: 3
-  duration: 4
+  audioName: scream
+  strength: 5
+  duration: 9
 --- !u!212 &212005150373734322
 SpriteRenderer:
   m_ObjectHideFlags: 1

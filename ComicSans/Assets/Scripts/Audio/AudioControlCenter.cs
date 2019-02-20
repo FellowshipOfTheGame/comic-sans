@@ -61,14 +61,25 @@ public class AudioControlCenter : MonoBehaviour
 			AudioSource newAudioSource = newAudioSourceGameObject.AddComponent(typeof(AudioSource)) as AudioSource;
 
 			// Configure the audio source.
-			newAudioSource.volume = sound.volume;
-			newAudioSource.pitch = sound.pitch;
-
 			if(sound.type == Sound.Type.FX)
+			{
+				newAudioSource.volume = sound.volume;
+				newAudioSource.pitch = sound.pitch;
+
 				newAudioSource.loop = false;
+			}
 			else
 			{
+
+				float volMultiplier = 1;
+				if(PlayerPrefs.HasKey("music_volume"))
+					volMultiplier = PlayerPrefs.GetFloat("music_volume");
+
+				newAudioSource.volume = sound.volume * volMultiplier;
+				newAudioSource.pitch = sound.pitch;
+				
 				newAudioSource.loop = true;
+
 				newAudioSource.clip = sound.clips[0];
 				sound.sources.Add(newAudioSource);
 				break; // Music will always use only one source.
@@ -89,15 +100,20 @@ public class AudioControlCenter : MonoBehaviour
 
 	}
 
+	public void Stop(string id) {
+
+		if(SoundDictionary.ContainsKey(id))
+			SoundDictionary[id].Stop();			
+		else
+			Debug.Log("AudioControlCenter.Stop: Dictinary doesn't contain the key: " + id + "!");
+
+	}
+
 	public void StopAllSounds()
 	{
 
 		foreach (KeyValuePair<string, Sound> soundEntry in SoundDictionary)
-		{
-
 			soundEntry.Value.Stop();
-
-		}
 
 	}
 }

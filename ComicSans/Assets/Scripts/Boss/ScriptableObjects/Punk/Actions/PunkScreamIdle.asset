@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: PunkScreamIdle
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  idleTime: 4.2
+  idleTime: 9
   animations: []

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossStateMachineHandler : StateMachineBehaviour {
 
+	public List<string> soundsToStop;
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	//override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {			
@@ -20,6 +21,13 @@ public class BossStateMachineHandler : StateMachineBehaviour {
 
 		if(stateInfo.IsName("Win") || stateInfo.IsName("Die"))
 		{
+
+			foreach(string soundId in soundsToStop)
+				if(AudioControlCenter.instance != null)
+					AudioControlCenter.instance.Stop(soundId);
+				else
+					Debug.LogWarning("BossStateMachineHandler.OnStateExit: AudioControlCenter not found!");
+
 			Destroy(BossScript.instance.gameObject);
 		}
 			

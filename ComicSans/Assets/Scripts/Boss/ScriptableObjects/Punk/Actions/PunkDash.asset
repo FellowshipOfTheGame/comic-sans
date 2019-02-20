@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Name: PunkDash
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  aceleration: 50
+  aceleration: 40
   chargeTime: 1
   positionConstraints: {x: 6, y: 5}
-  bounceAmount: 5
+  bounceAmount: 8
   lookingRight: 0
   chargeAnimations:
   - name: Shot
     value: 0
+  - name: Scream
+    value: 0
   - name: Dash
     value: 1
   dashAnimations: []
+  audioName: chainsaw

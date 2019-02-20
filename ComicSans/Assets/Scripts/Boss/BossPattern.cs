@@ -29,7 +29,15 @@ public class BossPattern : ScriptableObject {
     public enum Trigger
     {
         PlayerOnRight,
-        PlayerOnLeft
+        PlayerOnLeft,
+        PlayerOnScreenRight,
+        PlayerOnScreenLeft,
+        PlayerOnScreenTop,
+        PlayerOnScreenBottom,
+        PlayerOnScreenDiagonalTop,
+        PlayerOnScreenDiagonalBottom,
+        PlayerOnScreenAntiDiagonalTop,
+        PlayerOnScreenAntiDiagonalBottom
     }
     [Tooltip("The trigger to be satisfied in order for this pattern to be chosen by a previous one. NOTE: The criteria for the trigger to be satisfied is defined on a swich in BossScript.NextPattern, also: in case choiceType is set to Random this won't be used.")]
     public Trigger trigger;

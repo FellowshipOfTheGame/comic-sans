@@ -517,7 +517,7 @@ MonoBehaviour:
     sound:
       type: 1
       clips:
-      - {fileID: 8300000, guid: 03d8d973c11441f4090a062fa1bd99de, type: 3}
+      - {fileID: 8300000, guid: a6f8f015b9ff391459d2c088c7a51f67, type: 3}
       volume: 1
       pitch: 1
       maxSimultaneousSources: 3
@@ -526,7 +526,7 @@ MonoBehaviour:
     sound:
       type: 1
       clips:
-      - {fileID: 8300000, guid: 03d8d973c11441f4090a062fa1bd99de, type: 3}
+      - {fileID: 8300000, guid: dfffe4c4171fbab41a3126adc05db9e8, type: 3}
       volume: 1
       pitch: 1
       maxSimultaneousSources: 1
@@ -549,7 +549,7 @@ MonoBehaviour:
     sound:
       type: 0
       clips:
-      - {fileID: 8300000, guid: 3c20298dd42d15e4491e01eeb0932b55, type: 3}
+      - {fileID: 8300000, guid: 36c57af7f46b39441aea08927c3b73e7, type: 3}
       volume: 1
       pitch: 1
       maxSimultaneousSources: 1
@@ -558,8 +558,35 @@ MonoBehaviour:
     sound:
       type: 0
       clips:
-      - {fileID: 8300000, guid: 862c5ffdea5dcfb4b8d7f9a848125735, type: 3}
+      - {fileID: 8300000, guid: 66a388ad15520ed4c925281221454482, type: 3}
       volume: 1
+      pitch: 1
+      maxSimultaneousSources: 1
+      sources: []
+  - id: spit
+    sound:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 4c09060cbc2627f48a8656f423628ab2, type: 3}
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 1
+      sources: []
+  - id: chainsaw
+    sound:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 1ba0c9e29c3f4de428bca0a458b7ad64, type: 3}
+      volume: 0.5
+      pitch: 0.9
+      maxSimultaneousSources: 1
+      sources: []
+  - id: scream
+    sound:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 65d359fef2f29e94a90a2f8c1b396d7a, type: 3}
+      volume: 0.6
       pitch: 1
       maxSimultaneousSources: 1
       sources: []

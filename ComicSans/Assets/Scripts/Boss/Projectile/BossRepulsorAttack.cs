@@ -5,17 +5,17 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Projectiles/Boss/Repulsor Attack")]
 public class BossRepulsorAttack : ProjectileBase {
 
-	[SerializeField] private float strenght;	
+	[SerializeField] private float strength;	
 	[SerializeField] private float duration;
 
 	protected override void OnEnable () {
 		
 		base.OnEnable();
-		StartCoroutine(Repulse(strenght));
+		StartCoroutine(Repulse(strength));
 
 	}
 
-	IEnumerator Repulse(float strenght) {
+	IEnumerator Repulse(float strength) {
 
 		float time = 0;
 
@@ -26,6 +26,10 @@ public class BossRepulsorAttack : ProjectileBase {
 
 			while(time < duration) 
 			{
+
+				if(BossScript.instance == null)
+					break;
+
 				time += Time.fixedDeltaTime;
 
 				if(playerTransform == null)
@@ -34,7 +38,7 @@ public class BossRepulsorAttack : ProjectileBase {
 				Vector2 vet = playerTransform.position - transform.position;
 				vet = vet.normalized;
 
-				playerTransform.transform.Translate(vet * strenght * Time.deltaTime);
+				playerTransform.transform.Translate(vet * strength * Time.deltaTime);
 
 				yield return new WaitForFixedUpdate();
 

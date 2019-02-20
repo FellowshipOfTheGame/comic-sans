@@ -253,6 +253,60 @@ public class BossScript : MonoBehaviour
 						}
 						else
 							Debug.Log("BossScript.NextPattern: Player not found!");
+						break;
+					case BossPattern.Trigger.PlayerOnScreenRight:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.x >= 0)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
+
+						break;
+					case BossPattern.Trigger.PlayerOnScreenLeft:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.x < 0)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
+						break;
+					case BossPattern.Trigger.PlayerOnScreenTop:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.y >= 0)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
+
+						break;
+					case BossPattern.Trigger.PlayerOnScreenBottom:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.y < 0)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
 					break;
 				}
 			}
@@ -562,12 +616,17 @@ public class BossScript : MonoBehaviour
 		if(_animator != null)
 			SetAnimation(dash.chargeAnimations);
 
+		// Plays the audio.
+		if(AudioControlCenter.instance != null)
+			if(dash.audioName != null && dash.audioName != "none")
+			AudioControlCenter.instance.Play(dash.audioName);
+
 		// Waits for the charging time.
 		float time = 0f;
 		while(time < dash.chargeTime)
 		{
 			time += Time.fixedDeltaTime;
-			yield return new WaitForEndOfFrame();
+			yield return new WaitForFixedUpdate();
 		}
 
 		// Gets the 3D target position.
@@ -592,6 +651,12 @@ public class BossScript : MonoBehaviour
 
 			int bounces = 0;
 
+			// Used to guarantee that bounces can't be accounted 2 times because of physics limitations.
+			bool bounceLeft = false;
+			bool bounceRight = false;
+			bool bounceTop = false;
+			bool bounceBottom = false;
+
 			// Move the boss to the target position.
 			while (bounces < dash.bounceAmount) {			
 
@@ -605,11 +670,35 @@ public class BossScript : MonoBehaviour
 				if(Mathf.Abs(transform.position.x) > dash.positionConstraints.x || Mathf.Abs(transform.position.y) > dash.positionConstraints.y)
 				{
 
-					if(Mathf.Abs(transform.position.x) > dash.positionConstraints.x)
+					if(transform.position.x > dash.positionConstraints.x && !bounceRight)
+					{
+						dirVector = new Vector2(-dirVector.x, dirVector.y);
+						
+						bounceLeft = false;
+						bounceRight = true;
+					}
+					else if(transform.position.x < -dash.positionConstraints.x && !bounceLeft)
+					{
 						dirVector = new Vector2(-dirVector.x, dirVector.y);
 
-					if(Mathf.Abs(transform.position.y) > dash.positionConstraints.y)
+						bounceLeft = true;
+						bounceRight = false;
+					}
+
+					if(transform.position.y > dash.positionConstraints.y && !bounceTop)
+					{
 						dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+						bounceTop = true;
+						bounceBottom = false;
+					}
+					else if(transform.position.y < -dash.positionConstraints.y && !bounceBottom)
+					{
+						dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+						bounceTop = false;
+						bounceBottom = true;
+					}
 
 					bounces++;
 

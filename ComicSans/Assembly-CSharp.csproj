@@ -81,7 +81,7 @@
      <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
      <Compile Include="Assets\Scripts\Projectile\SimpleProjectile.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\HUDController.cs" />
-     <Compile Include="Assets\Scripts\UI &amp; HUD\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\UI &amp; HUD\Menu.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\Options_Menu.cs" />
      <None Include="Assets\Prefabs\Boss\Punk\Punk.txt" />
  <Reference Include="UnityEditor.StandardEvents">

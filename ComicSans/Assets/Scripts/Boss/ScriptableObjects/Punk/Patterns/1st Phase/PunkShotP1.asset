@@ -11,11 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
   m_Name: PunkShotP1
   m_EditorClassIdentifier: 
-  chance: 150
-  nextPattern:
-  - {fileID: 11400000, guid: 4622cd796cabd5049ae614cd7bee0433, type: 2}
   actions:
   - {fileID: 11400000, guid: 86a07f6d966dd5d4d8a6a0b54b150e78, type: 2}
   - {fileID: 11400000, guid: 9552268654a19294ba738dd75ed71f5e, type: 2}
   - {fileID: 11400000, guid: 59394754423368a479a5c922cf85b3f0, type: 2}
   - {fileID: 11400000, guid: 985be018037317d4da27f5cf02315f47, type: 2}
+  chance: 150
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: 3a7c99db271153045a31b47d0656a0f3, type: 2}

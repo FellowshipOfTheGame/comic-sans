@@ -14,8 +14,8 @@ public class Sound
 	// For the FX type a random clip from the array will be played each time.
 	public AudioClip[] clips = new AudioClip[]{};
 
-	public int volume = 1;
-	public int pitch = 1;
+	public float volume = 1.0f;
+	public float pitch = 1.0f;
 
 	public int maxSimultaneousSources = 3;
 

@@ -20,6 +20,8 @@ public class BossDash : BossAction {
 
     public List<AnimationSet> dashAnimations;
 
+    public string audioName;
+
     public override void DoAction()
     {
         caller.StartCoroutine(caller.ActionDash(this));

@@ -168,6 +168,10 @@ public class Player : MonoBehaviour {
     void TakeDamage()
     {
 
+        // Makes the player unable to take damage after defeating a Boss.
+        if(BossScript.instance == null)
+            return;
+
         health.Hp--;
         if (health.Hp > 0)
             StartCoroutine(ResetPlayer());
