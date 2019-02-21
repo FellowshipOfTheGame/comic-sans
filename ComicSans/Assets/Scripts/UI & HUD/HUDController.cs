@@ -51,7 +51,7 @@ public class HUDController : MonoBehaviour {
             }
 
             Vector3 iconPosition = playerHealthIcons[i].rectTransform.position;
-            iconPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + (60 * i);
+            iconPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + (80 * i);
             playerHealthIcons[i].rectTransform.position = iconPosition; 
 
         }

@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: CueioSoundtrack
+  showHUD: 1
 --- !u!4 &1226930576
 Transform:
   m_ObjectHideFlags: 0
