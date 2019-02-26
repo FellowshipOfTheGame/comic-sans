@@ -307,7 +307,51 @@ public class BossScript : MonoBehaviour
 						}
 						else
 							Debug.Log("BossScript.NextPattern: Player not found!");
-					break;
+						break;
+					case BossPattern.Trigger.PlayerOnScreenDiagonalTop:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.y >= Player.instance.transform.position.x)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						break;
+					case BossPattern.Trigger.PlayerOnScreenDiagonalBottom:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.y < Player.instance.transform.position.x)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						break;
+					case BossPattern.Trigger.PlayerOnScreenAntiDiagonalTop:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.y >= -Player.instance.transform.position.x)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						break;
+					case BossPattern.Trigger.PlayerOnScreenAntiDiagonalBottom:
+						if(Player.instance != null)
+						{
+							if(Player.instance.transform.position.y < -Player.instance.transform.position.x)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}	
+						break;
 				}
 			}
 		}
@@ -449,16 +493,25 @@ public class BossScript : MonoBehaviour
 		// Moves the boss to the target position doing attack on the way.
 		while (Vector3.Distance(targetPosition, transform.position) > 0.05f) {
 
-			// Goes to the next step and realizes an attack.
-			if(Vector3.Distance(nextStep, transform.position) <= 0.05f)
+			// Moves the Boss to the current step.
+			if(Vector3.Distance(nextStep, transform.position) > 0.05f)
 			{
+				// Plays the movementation animations.
+				if(_animator != null)
+					SetAnimation(attackMove.movementAnimations);
 
+				// Moves the boss.
+				transform.position = Vector3.MoveTowards(transform.position, nextStep, velocity * attackMove.velocityModifier * Time.deltaTime);
+
+			} 
+			else // Goes to the next step and realizes an attack.
+			{
+				
 				currentStep++;
 				nextStep = originalPos + ((targetPosition - originalPos) / attackMove.numberOfSteps) * currentStep;
 
 				if(currentStep != 1)
 				{
-
 					if(attackMove.stopBeforeAttack)
 					{
 						// Plays the idle animations and wait for some time.
@@ -467,8 +520,8 @@ public class BossScript : MonoBehaviour
 						timer = 0;
 						while(timer < attackMove.idleTime) 
 						{
-							timer += Time.deltaTime;
-							yield return new WaitForEndOfFrame();
+							timer += Time.fixedDeltaTime;
+							yield return new WaitForFixedUpdate();
 						}
 					}
 
@@ -483,7 +536,7 @@ public class BossScript : MonoBehaviour
 					else
 						Debug.Log("BossScript.ActionAttackMove: Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
 
-					yield return new WaitForEndOfFrame();
+					yield return new WaitForFixedUpdate();
 
 					if(attackMove.stopAfterAttack)
 					{
@@ -493,32 +546,30 @@ public class BossScript : MonoBehaviour
 						timer = 0;
 						while(timer < attackMove.idleTime) 
 						{
-							timer += Time.deltaTime;
-							yield return new WaitForEndOfFrame();
+							timer += Time.fixedDeltaTime;
+							yield return new WaitForFixedUpdate();
 						}
-					} 
-					else
-					{
-						// Plays the movementation animations.
-						if(_animator != null)
-							SetAnimation(attackMove.movementAnimations);
+						
 					}
 				}
-
-			} 
-			else // Moves.
-			{
-				// Plays the movementation animations.
-				if(_animator != null)
-					SetAnimation(attackMove.movementAnimations);
-
-				// Moves the boss.
-				transform.position = Vector3.MoveTowards(transform.position, nextStep, velocity * attackMove.velocityModifier * Time.deltaTime);
 			}
 
-			yield return new WaitForEndOfFrame();
+			yield return new WaitForFixedUpdate();
 
 		}
+
+		// Does the last attack.
+		if(_animator != null)
+			SetAnimation(attackMove.attackAnimations);
+
+		// Spawns all projectiles.
+		if(projectileDictionary.ContainsKey(attackMove.projectileId))
+			foreach(Vector2 spawn in attackMove.projectileSpawns)
+				projectileDictionary[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
+		else
+			Debug.Log("BossScript.ActionAttackMove: Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
+
+		yield return new WaitForEndOfFrame();
 
 		// Plays the idle animations.
 		if(_animator != null)
@@ -618,8 +669,8 @@ public class BossScript : MonoBehaviour
 
 		// Plays the audio.
 		if(AudioControlCenter.instance != null)
-			if(dash.audioName != null && dash.audioName != "none")
-			AudioControlCenter.instance.Play(dash.audioName);
+			if(dash.audioId != null && dash.audioId != "none")
+			AudioControlCenter.instance.Play(dash.audioId);
 
 		// Waits for the charging time.
 		float time = 0f;

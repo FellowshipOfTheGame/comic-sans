@@ -12,6 +12,7 @@ public abstract class BossAction : ScriptableObject {
 
 }
 
+// Struct to be used in order of facilitating the setting of animations.
 [System.Serializable]
 public struct AnimationSet {
 

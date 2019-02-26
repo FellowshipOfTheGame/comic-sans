@@ -26,7 +26,11 @@ MonoBehaviour:
     value: 1
   - name: Cags
     value: 0
-  idleAnimations: []
+  idleAnimations:
+  - name: Fly
+    value: 1
+  - name: Cags
+    value: 0
   attackAnimations:
   - name: Cags
     value: 1

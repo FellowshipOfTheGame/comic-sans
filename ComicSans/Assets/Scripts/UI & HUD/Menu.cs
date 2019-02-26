@@ -10,8 +10,8 @@ public class Menu : MonoBehaviour {
     [System.Serializable]
     private class Options
     {
-        public Slider gameVolume;
-        public Slider musicVolume;
+        public Slider gameVolume = null;
+        public Slider musicVolume = null;
     }
     [SerializeField] private Options options;
     

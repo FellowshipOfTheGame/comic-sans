@@ -25,4 +25,4 @@ MonoBehaviour:
   - name: Dash
     value: 1
   dashAnimations: []
-  audioName: chainsaw
+  audioId: chainsaw

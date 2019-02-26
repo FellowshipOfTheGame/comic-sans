@@ -47,17 +47,14 @@ public class Player : MonoBehaviour {
             }
         }
 
-        public Image[] healthIcons;
-
         public float invencibilityTime = 2f;
-        public Transform spawnPoint;
     }
     [SerializeField]private Health health;
 
     [System.Serializable]
     private class Shooting
     {
-        public float delay;
+        public float delay = 0.1f;
         public ObjectPool bulletPool;
         [HideInInspector] public Coroutine ShootingCoroutine;
     }
@@ -96,7 +93,6 @@ public class Player : MonoBehaviour {
     public void OnEnable()
     {
         health.Hp = 3;
-        PositionIcons();
 
         if(shooting.ShootingCoroutine != null)
         {
@@ -206,18 +202,6 @@ public class Player : MonoBehaviour {
             _animator.SetBool("Invencible", false);
         _collider.enabled = true;
 
-    }
-
-    private void PositionIcons() {
-
-        if(health.healthIcons.Length == 0)
-        {
-            Debug.Log("Player.PositionIcons: No healthIcons assigned! If you're on the Transition Scene ignore this message...");
-            return;
-        }
-
-       
-        
     }
 
     IEnumerator Shot(float delay)

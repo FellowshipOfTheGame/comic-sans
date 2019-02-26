@@ -7,7 +7,6 @@ public class SimpleProjectile : ProjectileBase {
 
 	[SerializeField] private float velocity = 5f;
 	[SerializeField] private float delayToAppear = 0f;
-	[SerializeField] private bool lockToParent = false;
 
 	private Rigidbody2D _rigidbody;
 	private SpriteRenderer _renderer;
