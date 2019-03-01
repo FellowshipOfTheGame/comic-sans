@@ -21,4 +21,5 @@ MonoBehaviour:
   choiceType: 0
   trigger: 0
   nextPattern:
-  - {fileID: 11400000, guid: f38a6a8d989d391408762ae25f85126f, type: 2}
+  - {fileID: 11400000, guid: 775031c3fcb159845981dca3acb237aa, type: 2}
+  - {fileID: 11400000, guid: 73396b407d254fb4ca507f13c1c7d662, type: 2}

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212066517056908268}
   - component: {fileID: 95370321237685496}
   m_Layer: 0
-  m_Name: WallPred3 (2)
+  m_Name: WallPred3_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212441230626571688}
   - component: {fileID: 95492448490876260}
   m_Layer: 0
-  m_Name: WallPred3
+  m_Name: WallPred3_m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 212749255708966466}
   - component: {fileID: 95827134140479006}
   m_Layer: 0
-  m_Name: WallPred3 (1)
+  m_Name: WallPred3_t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4227228913665472}
-  - component: {fileID: 114171217529207594}
+  - component: {fileID: 114652651266117922}
   m_Layer: 11
   m_Name: WallSpawnerAntiDiag
   m_TagString: Untagged
@@ -165,13 +165,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748261715179538}
-  m_LocalRotation: {x: -0, y: -0, z: 0.25070035, w: 0.9680647}
+  m_LocalRotation: {x: 0, y: -0, z: 0.17364846, w: -0.9848077}
   m_LocalPosition: {x: 0.35, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4339434265851012}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 29.038002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 340}
 --- !u!4 &4227228913665472
 Transform:
   m_ObjectHideFlags: 1
@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 1939984955404710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4911992998942736}
   m_Father: {fileID: 0}
@@ -193,7 +193,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1875249048483742}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 2.74, z: 0}
+  m_LocalPosition: {x: -3.5, y: 2.74, z: 0}
   m_LocalScale: {x: -1, y: 0.6666667, z: 1}
   m_Children: []
   m_Father: {fileID: 4525124020768368}
@@ -206,7 +206,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333138671890066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4073122977156156}
@@ -236,7 +236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252075153561180}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -1.7, z: 0}
+  m_LocalPosition: {x: 3.5, y: -1.7, z: 0}
   m_LocalScale: {x: -1, y: 0.6666667, z: 1}
   m_Children: []
   m_Father: {fileID: 4525124020768368}
@@ -249,8 +249,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755590267036746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1.5, z: 1}
+  m_LocalPosition: {x: -0.35, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4911992998942736}
   m_RootOrder: 0
@@ -428,7 +428,7 @@ Animator:
   m_GameObject: {fileID: 1429416227084290}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b19c6993e82e38843a9a87a9595fc107, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53db16b8daa3f004e964a5cf6cf6c078, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -455,7 +455,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114171217529207594
+--- !u!114 &114652651266117922
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,10 +463,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939984955404710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c081e1ef6320a6144a08ad3b17aba5c6, type: 3}
+  m_Script: {fileID: 11500000, guid: f884366bf372fdc45bc845c0fca13567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
+  duration: 11
+  audioName: spit
 --- !u!212 &212052303260854146
 SpriteRenderer:
   m_ObjectHideFlags: 1

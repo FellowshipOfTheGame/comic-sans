@@ -5,44 +5,32 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Projectiles/Boss/Punk/Wall Attack")]
 public class PunkWallAttack : PooledObject {
 
-	[SerializeField] private float appearDelay;
-	[SerializeField] private float disappearDelay;
-	[SerializeField] private GameObject wall;
-
-	public string audioName;
-
-	private float timer;
+	[SerializeField] private float duration = 8.0f;
+	[SerializeField] private string audioName;
 
 	void OnEnable()
 	{
 
-		timer = 0;
+		AudioControlCenter.instance.Play(audioName);
+		StartCoroutine(Disappear(duration));
 
 	}
 
-	void Update ()
+	IEnumerator Disappear(float duration)
 	{
-		
-		if(!wall.activeSelf)
+
+		float time = 0;
+		while(time < duration)
 		{
-			timer += Time.deltaTime;
-			if(timer >= appearDelay)
-			{
-				wall.SetActive(true);
-				timer = 0;
-				if(audioName != null && audioName != "")
-					AudioControlCenter.instance.Play(audioName);
-			}
+			time += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
 		}
+
+		if(origin != null)
+			Despawn();
 		else
-		{
-			timer += Time.deltaTime;
-			if(timer >= disappearDelay)
-				if(origin != null)
-					Despawn();
-				else
-					Destroy(this.gameObject);
-			
-		}
+			Destroy(gameObject);
+
 	}
+
 }

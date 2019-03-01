@@ -499,7 +499,7 @@ MonoBehaviour:
   origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
   audioName: scream
-  strength: 5
+  strength: 3.5
   duration: 9
 --- !u!212 &212005150373734322
 SpriteRenderer:
