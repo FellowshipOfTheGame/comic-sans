@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: CueioIdleStartP2
+  m_EditorClassIdentifier: 
+  chance: 100
+  nextPattern:
+  - {fileID: 11400000, guid: 8fadabf3580753344b043e9631bbc578, type: 2}
+  actions:
+  - {fileID: 11400000, guid: 6c17ae21e8fa1114cb2b8bc7aad20664, type: 2}
