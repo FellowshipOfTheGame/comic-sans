@@ -15,6 +15,8 @@ public class Shuriken : ProjectileBase{
 
     protected override void OnEnable()
     {
+        col = 0;
+
         foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("Damage"))
         {
             if (fooObj.name == "XingLing")
@@ -33,6 +35,7 @@ public class Shuriken : ProjectileBase{
         }
         else
             Debug.Log("Boss not defined");
+
 
     }
 
