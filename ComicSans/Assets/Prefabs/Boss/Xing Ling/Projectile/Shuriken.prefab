@@ -139,8 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   positionConstraints: {x: 10, y: 10}
-  audioName: 
-  speed: 4
+  audioName: shuriken
+  speed: 3
   Boss: {fileID: 0}
   rb: {fileID: 50785576847683446}
   col_times: 3

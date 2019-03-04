@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: XingLing2Phase
   m_EditorClassIdentifier: 
   initialPosition: {x: 0, y: 3}
-  invincibilityDuration: 3
+  invincibilityDuration: 1
   animationController: {fileID: 9100000, guid: 338606690b14c6b468b54d66d889ae26, type: 2}
   firstPattern: {fileID: 11400000, guid: cc5d255dfb10c37458ed04f514956353, type: 2}
   lifeToNextPhase: 1200

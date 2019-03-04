@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   positionConstraints: {x: 8, y: 8}
-  audioName: 
+  audioName: leque
   speed: 3.5
   width: 4.3
   height: 4
