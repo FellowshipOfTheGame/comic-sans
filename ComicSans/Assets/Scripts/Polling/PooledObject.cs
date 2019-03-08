@@ -16,7 +16,14 @@ public class PooledObject : MonoBehaviour {
 	}
 
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+	{
+		if(scene.name == "Menu")
+		{
+			SceneManager.sceneLoaded -= OnSceneLoaded;	
+			Destroy(gameObject);
+			return;
+		}
+
 		Despawn();
 	}
 }

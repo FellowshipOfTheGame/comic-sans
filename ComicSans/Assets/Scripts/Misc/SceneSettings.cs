@@ -7,6 +7,14 @@ public class SceneSettings : MonoBehaviour {
 	public string music;
 	public bool showHUD = true;	
 
+	[System.Serializable]
+	public class BossSettings
+	{
+		public GameObject boss;
+		public Vector2 spawm;
+	}
+	public BossSettings bossSettings;
+
 	void Start () {
 		
 		if(music != null && music != "none")
@@ -17,5 +25,12 @@ public class SceneSettings : MonoBehaviour {
 		else
 			HUDController.instance.EnableHUD();
 
+		SpawnBoss();
+
+	}
+
+	public void SpawnBoss()
+	{
+		Instantiate(bossSettings.boss, bossSettings.spawm, new Quaternion());
 	}
 }

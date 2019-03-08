@@ -8,7 +8,7 @@ public class BossPortal : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 
-		GameManager.instance.LoadScene(sceneName);
+		GameController.instance.LoadScene(sceneName);
 
 	}
 

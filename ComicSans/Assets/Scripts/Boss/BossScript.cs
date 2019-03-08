@@ -73,16 +73,17 @@ public class BossScript : MonoBehaviour
 		// Gets the default object scale.
 		defaultScale = transform.localScale;
 
-		StartMovimentation();
-
-		// Creates a dictionary of projectile types and its respective pools.
-		BuildProjectileDictionary();
-
 		// Initializes the boss health bar.
 		if(HUDController.instance != null)
 			HUDController.instance.InitializeBossHUD(bossName, Life);
 		else
 			Debug.LogWarning("BossScript.Awake: No HUDController found!");
+
+		// Creates a dictionary of projectile types and its respective pools.
+		BuildProjectileDictionary();
+
+		// Starts Boss movimentation.
+		StartMovimentation();		
 
 	}
 
@@ -147,11 +148,11 @@ public class BossScript : MonoBehaviour
 		else
 			Debug.LogWarning("BossScript.Die: No HUDController found!");
 
-		GameManager.instance.StartCoroutine(GameManager.instance.EndGame(3.5f));
+		GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, true));
 
 	}
 
-	public void Win()
+	public void PlayerDie()
 	{
 
 		StopAllCoroutines();
@@ -159,7 +160,7 @@ public class BossScript : MonoBehaviour
 		if(_animator != null)
 			_animator.Play("Win", 0);
 
-		GameManager.instance.StartCoroutine(GameManager.instance.EndGame(3.5f));
+		GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, false));
 
 	}
 

@@ -105,52 +105,79 @@ public class Player : MonoBehaviour {
 	void Update () {
 
         // Makes the player move.
-        Vector2 vel = new Vector2();
-        vel.x = (Input.GetAxisRaw("Horizontal"));
-        vel.y = Input.GetAxisRaw("Vertical");
-        vel.Normalize();
-        _rigidbody.velocity = vel * speed;
-
-        // Handles player animation.
-        if (vel.x != 0)
+        if(!GameController.instance.Paused)
         {
 
-            if(_animator != null)
-                _animator.SetBool("Mov_Horizontal", true);
+            Vector2 vel = new Vector2();
+            vel.x = (Input.GetAxisRaw("Horizontal"));
+            vel.y = Input.GetAxisRaw("Vertical");
+            vel.Normalize();
+            _rigidbody.velocity = vel * speed;
 
-            if(vel.x > 0)
-                _renderer.flipX = false;
+            // Handles player animation.
+            if (vel.x != 0)
+            {
+
+                if(_animator != null)
+                    _animator.SetBool("Mov_Horizontal", true);
+
+                if(vel.x > 0)
+                    _renderer.flipX = false;
+                else
+                    _renderer.flipX = true;
+
+            }
             else
-                _renderer.flipX = true;
+            {
+
+                if(_animator != null)         
+                    _animator.SetBool("Mov_Horizontal", false);
+
+                _renderer.flipX = false;
+
+            }
+
+            // Constraints the player to the player zone.
+            if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
+            {
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x, -positionConstraints.x, positionConstraints.x),
+                                                Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
+                                                0);
+            }
+
+            if (Input.GetButton("Fire1"))
+                if(shooting.ShootingCoroutine == null)
+                    shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
+            if (Input.GetButtonUp("Fire1"))
+            {
+                if(shooting.ShootingCoroutine != null)
+                {
+                    StopCoroutine(shooting.ShootingCoroutine);
+                    shooting.ShootingCoroutine = null;
+                }
+            }
+
+            // Pauses the game.
+            if(Input.GetButtonDown("Cancel"))
+            {
+                GameController.instance.SetPause(true);
+
+                // Used so the Player doesn't keep shooting after unpause if the the button is lifted.
+                if(shooting.ShootingCoroutine != null)
+                {
+                    StopCoroutine(shooting.ShootingCoroutine);
+                    shooting.ShootingCoroutine = null;
+                }
+
+            }
+
+        } else {
+
+            // Unauses the game.
+            if(Input.GetButtonDown("Cancel"))
+                GameController.instance.SetPause(false);
 
         }
-        else
-        {
-
-            if(_animator != null)         
-                _animator.SetBool("Mov_Horizontal", false);
-
-             _renderer.flipX = false;
-
-        }
-
-        // Constraints the player to the player zone.
-        if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
-        {
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -positionConstraints.x, positionConstraints.x),
-                                             Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
-                                             0);
-        }
-
-        if (Input.GetButton("Fire1"))
-            if(shooting.ShootingCoroutine == null)
-                shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
-        if (Input.GetButtonUp("Fire1"))
-        {
-            StopCoroutine(shooting.ShootingCoroutine);
-            shooting.ShootingCoroutine = null;
-        }
-
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -173,7 +200,7 @@ public class Player : MonoBehaviour {
             StartCoroutine(ResetPlayer());
         else
         {
-            BossScript.instance.Win();
+            BossScript.instance.PlayerDie();
             
             if(HUDController.instance != null)
                 HUDController.instance.DisableHUD();
@@ -187,7 +214,7 @@ public class Player : MonoBehaviour {
     {
         float time = 0;
 
-        transform.position = GameManager.instance.playerSettings.spawnPoint;
+        transform.position = GameController.instance.playerSettings.spawnPoint;
         if(_animator != null)
             _animator.SetBool("Invencible", true);
         _collider.enabled = false;

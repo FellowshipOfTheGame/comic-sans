@@ -73,7 +73,7 @@
      <Compile Include="Assets\Scripts\Boss\Projectile\BossProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\BossRepulsorAttack.cs" />
      <Compile Include="Assets\Scripts\Boss\Projectile\PunkWallAttack.cs" />
-     <Compile Include="Assets\Scripts\Misc\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Misc\GameController.cs" />
      <Compile Include="Assets\Scripts\Misc\SceneSettings.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Polling\ObjectPool.cs" />

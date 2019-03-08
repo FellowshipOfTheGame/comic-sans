@@ -113,7 +113,24 @@ public class AudioControlCenter : MonoBehaviour
 	{
 
 		foreach (KeyValuePair<string, Sound> soundEntry in SoundDictionary)
-			soundEntry.Value.Stop();
+				soundEntry.Value.Stop();
+
+	}
+
+	public void PauseSounds()
+	{
+
+		foreach (KeyValuePair<string, Sound> soundEntry in SoundDictionary)
+			if(soundEntry.Value.type == Sound.Type.FX)
+				soundEntry.Value.Pause();
+
+	}
+
+	public void UnPauseSounds()
+	{
+
+		foreach (KeyValuePair<string, Sound> soundEntry in SoundDictionary)
+			soundEntry.Value.UnPause();
 
 	}
 }

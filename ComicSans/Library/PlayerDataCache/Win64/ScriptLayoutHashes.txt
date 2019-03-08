@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-D:/luise/Desktop/ComicSans/ComicSans.exe
+D:/luise/Desktop/ComicSans.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Transition.unity
@@ -126,7 +126,7 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 58817177233ae02c9934f70bd9b4b1b8 Assembly-CSharp.dll:.BossAttack
-5753e5841706ba5d01fb386757d9b95c Assembly-CSharp.dll:.GameManager
+f9e885cdbb1d8a9fade29593111b4c7b Assembly-CSharp.dll:.GameController
 71eff04a1febd06c5accba359180cf58 Assembly-CSharp.dll:.ProjectileBase
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -142,7 +142,7 @@ da21fc3f8056b1f91c3dd09c7bf4f90a UnityEngine.Networking.dll:UnityEngine.Networki
 529a95e9e8e7686c4816e08fbb37183f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-4dffc2d507463d625ccd786c97548964 Assembly-CSharp.dll:.SceneSettings
+e78825d7bb05d6a2be6ce11c98dd1aed Assembly-CSharp.dll:.SceneSettings
 a21824e77b1a3ff5bcbcff19eed51589 Assembly-CSharp.dll:.BossFollowProjectile
 6a258be4349058a8ad746746c43e0b7a Assembly-CSharp.dll:.SimpleProjectile
 ddcae71b3f91386237efd012a9eef2be UnityEngine.TestRunner.dll:UnityEngine.TestTools.EnumerableSetUpTearDownCommandState

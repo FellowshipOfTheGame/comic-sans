@@ -20,9 +20,10 @@ public class ObjectPool : MonoBehaviour {
 	{
 
 		if(isPermanentPoll)
-		{
+		{	
 			transform.SetParent(null);
 			DontDestroyOnLoad(gameObject);
+			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
 
 		// Creates the initial pool of objects.
@@ -104,7 +105,7 @@ public class ObjectPool : MonoBehaviour {
 			if(isPermanentPoll)
 			{
 				DontDestroyOnLoad(new_poll_obj);
-				SceneManager.sceneLoaded += script.OnSceneLoaded;
+				SceneManager.sceneLoaded += script.OnSceneLoaded;				
 			}
 
 			return new_poll_obj;
@@ -114,6 +115,18 @@ public class ObjectPool : MonoBehaviour {
 		Debug.Log("ObjectPool.CreateNew: Object " + new_poll_obj.transform.name + " can't be pooled because it doesn't have a PooledObject component!");
 		Destroy(new_poll_obj);
 		return null;
+
+	}
+
+	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		
+		if(scene.name == "Menu")
+		{
+			SceneManager.sceneLoaded -= OnSceneLoaded;	
+			Destroy(gameObject);
+			return;
+		}
 
 	}
 }

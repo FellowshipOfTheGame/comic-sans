@@ -49,7 +49,8 @@ public class BossFollowProjectile : ProjectileBase {
 		while(true)
 		{
 
-			_rigidbody.AddForce( _rigidbody.mass * aceleration * -transform.up, ForceMode2D.Force);
+			if(!GameController.instance.Paused)
+				_rigidbody.AddForce( _rigidbody.mass * aceleration * -transform.up, ForceMode2D.Force);
 
 			yield return new WaitForEndOfFrame();
 		}

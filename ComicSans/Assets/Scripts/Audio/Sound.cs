@@ -22,6 +22,8 @@ public class Sound
 	// Sources are instantiated in Awake() and stored in here.
 	[HideInInspector] public List<AudioSource> sources;
 
+	private List<AudioSource> pausedSources;
+
 	private int currentSource = 0;
 
 	public void Play()
@@ -51,6 +53,34 @@ public class Sound
 
 		for(int i = 0; i < sources.Count; i++)
 			sources[i].Stop();
+
+	}
+
+	public void Pause()
+	{
+
+		if(pausedSources == null)
+			pausedSources = new List<AudioSource>();
+
+		for(int i = 0; i < sources.Count; i++)
+		{
+			sources[i].Pause();
+			pausedSources.Add(sources[i]);
+		}
+
+	}
+
+	public void UnPause()
+	{
+
+		if(pausedSources == null)
+			return;
+
+		for(int i = 0; i < pausedSources.Count; i++)
+		{
+			pausedSources[i].UnPause();
+			pausedSources.Remove(sources[i]);
+		}
 
 	}
 
