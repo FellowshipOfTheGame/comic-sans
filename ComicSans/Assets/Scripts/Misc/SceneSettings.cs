@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SceneSettings : MonoBehaviour {
 
+	public static SceneSettings instance;
+
 	public string music;
 	public bool showHUD = true;	
 
@@ -18,6 +20,13 @@ public class SceneSettings : MonoBehaviour {
 
 	void Start () {
 		
+		if(instance != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		instance = this;
+
 		if(music != null && music != "none")
 			AudioControlCenter.instance.Play(music);
 
@@ -35,4 +44,5 @@ public class SceneSettings : MonoBehaviour {
 	{
 		Instantiate(bossSettings.boss, bossSettings.spawm, new Quaternion());
 	}
+
 }

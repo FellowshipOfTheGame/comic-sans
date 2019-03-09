@@ -28,7 +28,8 @@ public class BossStateMachineHandler : StateMachineBehaviour {
 				else
 					Debug.LogWarning("BossStateMachineHandler.OnStateExit: AudioControlCenter not found!");
 
-			Destroy(BossScript.instance.gameObject);
+			BossScript.instance.Exit();
+			
 		}
 			
 	}

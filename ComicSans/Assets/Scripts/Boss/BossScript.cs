@@ -44,6 +44,8 @@ public class BossScript : MonoBehaviour
 
 	private Dictionary<string, ObjectPool> projectileDictionary; 
 
+	public List<GameObject> pooledObjects;
+
 	// Use this for initialization
 	private void Awake () 
 	{
@@ -108,6 +110,10 @@ public class BossScript : MonoBehaviour
 	private void Damage(int amount) 
 	{
 
+		// Used to guarantee the Boss can't be killed by a remaining shot after the Player's death. 
+		if(!Player.instance.gameObject.activeSelf)
+			return;
+
 		Life-=amount;
 
 		if(HUDController.instance != null)
@@ -166,6 +172,10 @@ public class BossScript : MonoBehaviour
 
 	public void Exit()
 	{
+		// Destroy objects pooled by the Boss.
+		foreach(GameObject obj in pooledObjects)
+			Destroy(obj);
+
 		Destroy(gameObject);
 	}
 
@@ -402,6 +412,10 @@ public class BossScript : MonoBehaviour
 
 		// Sets the boss to the initial conditions.
 		StopAllCoroutines();
+
+		// Despawns all previous phase projectiles.
+		foreach(GameObject obj in pooledObjects)
+			obj.GetComponent<PooledObject>().Despawn();
 
 		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
 

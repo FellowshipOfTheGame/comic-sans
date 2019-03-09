@@ -789,6 +789,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1690761952644898, guid: 8622888fcf8d0e2438ba2c813ba5c172, type: 2}
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 24
   maxObjectInstances: 32
   currentObjectInstances: 0
@@ -805,6 +807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1690761952644898, guid: 8cd474ca622ca6d48922da3ec801d929, type: 2}
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 8
   maxObjectInstances: 12
   currentObjectInstances: 0
@@ -821,6 +825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1121700847460506, guid: a1105e4486144ae46b5df7748cf73c75, type: 2}
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 1
   maxObjectInstances: 3
   currentObjectInstances: 0

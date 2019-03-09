@@ -260,6 +260,7 @@ MonoBehaviour:
   music: CueioSoundtrack
   showHUD: 1
   bossSettings:
+    bossScene: 1
     boss: {fileID: 1936587055363512, guid: b83692e10540f6549b31282bd2a44178, type: 2}
     spawm: {x: 0, y: 2.4}
 --- !u!4 &1226930576

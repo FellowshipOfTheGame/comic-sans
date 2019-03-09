@@ -793,7 +793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1462940995333064, guid: 3d5e88a3c475afd4489271fb2b792f3d, type: 2}
-  isPermanentPoll: 0
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 1
   maxObjectInstances: 1
   currentObjectInstances: 0
@@ -810,7 +811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1939984955404710, guid: 9085a3698b141e047b4bcbbada93c0ca, type: 2}
-  isPermanentPoll: 0
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 1
   maxObjectInstances: 1
   currentObjectInstances: 0
@@ -827,7 +829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1929508011900432, guid: 3db50c6c0e0c8af47a9ce7511356f0c6, type: 2}
-  isPermanentPoll: 0
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 1
   maxObjectInstances: 1
   currentObjectInstances: 0
@@ -844,7 +847,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1042820488574006, guid: f5463924cc2bee14596c1c0f0b2f265e, type: 2}
-  isPermanentPoll: 0
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 8
   maxObjectInstances: 12
   currentObjectInstances: 0
@@ -861,7 +865,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1383175188569216, guid: bed87e2252be9a84195582036bec5ff7, type: 2}
-  isPermanentPoll: 0
+  isPermanentPool: 0
+  isBossPool: 1
   initialObjectInstances: 1
   maxObjectInstances: 1
   currentObjectInstances: 0

@@ -468,7 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   duration: 11
-  audioName: spit
+  audioName: wall
 --- !u!212 &212052303260854146
 SpriteRenderer:
   m_ObjectHideFlags: 1

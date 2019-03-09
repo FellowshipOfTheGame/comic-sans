@@ -17,6 +17,14 @@ public class GameController : MonoBehaviour {
 	}
 	public PlayerSettings playerSettings;
 
+	private bool allowPlayerControl = true;
+	public bool AllowPlayerControl {
+		get
+		{
+			return allowPlayerControl;
+		}
+	}
+
 	private bool paused = false;
 	public bool Paused {
 		get
@@ -26,19 +34,20 @@ public class GameController : MonoBehaviour {
 	}
 	[SerializeField] private GameObject pauseMenu;
 	[SerializeField] private GameObject deathMenu;
+	[SerializeField] private GameObject victoryMenu;
 
 	void Awake()
 	{
-
-		Time.timeScale = 1;
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
 
 		if(instance != null)
 		{
 			Destroy(gameObject);
 			return;
 		}
+
+		Time.timeScale = 1;
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 
 		instance = this;
 		DontDestroyOnLoad(gameObject);
@@ -129,9 +138,8 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(playerWin)
-		{
-			LoadScene("Transition");
-		} else
+			SetVictoryMenu(true);
+		else
 			SetDeathMenu(true);
 
 	}
@@ -144,15 +152,50 @@ public class GameController : MonoBehaviour {
 		if(state == true)
 		{
 			Cursor.visible = true;
-			Cursor.lockState = CursorLockMode.None;
+			Cursor.lockState = CursorLockMode.None;			
+			allowPlayerControl = false;
 			deathMenu.SetActive(true);
 		} 
 		else
 		{
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
+			allowPlayerControl = true;
 			deathMenu.SetActive(false);
 		}
+
+	}
+
+	public void SetVictoryMenu(bool state)
+	{
+
+		Time.timeScale = 1;
+
+		if(state == true)
+		{
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+			allowPlayerControl = false;
+			victoryMenu.SetActive(true);
+		} 
+		else
+		{
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+			allowPlayerControl = true;
+			victoryMenu.SetActive(false);
+		}
+
+	}
+
+	public void RestartScene()
+	{
+
+		SceneSettings.instance.SpawnBoss();
+		Player.instance.transform.position = playerSettings.spawnPoint;
+		Player.instance.gameObject.SetActive(true);
+		allowPlayerControl = true;
+		HUDController.instance.EnableHUD();
 
 	}
 

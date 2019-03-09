@@ -142,12 +142,7 @@ MonoBehaviour:
   speed: 10
   health:
     hp: 3
-    healthIcons:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
     invencibilityTime: 2
-    spawnPoint: {fileID: 0}
   shooting:
     delay: 0.1
     bulletPool: {fileID: 114840402726922120}
@@ -163,7 +158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1042820488574006, guid: 73c9dd62a4b829543b21e29161e33011, type: 2}
-  isPermanentPoll: 1
+  isPermanentPool: 1
+  isBossPool: 0
   initialObjectInstances: 14
   maxObjectInstances: 20
   currentObjectInstances: 0

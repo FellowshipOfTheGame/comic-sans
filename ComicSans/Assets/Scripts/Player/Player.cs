@@ -99,83 +99,102 @@ public class Player : MonoBehaviour {
             StopCoroutine(shooting.ShootingCoroutine);
             shooting.ShootingCoroutine = null; 
         }
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        // Makes the player move.
-        if(!GameController.instance.Paused)
+        if(GameController.instance.AllowPlayerControl)
+        {
+            if(!GameController.instance.Paused)
+            {
+
+                // Makes the player move.
+                Vector2 vel = new Vector2();
+                vel.x = (Input.GetAxisRaw("Horizontal"));
+                vel.y = Input.GetAxisRaw("Vertical");
+                vel.Normalize();
+                _rigidbody.velocity = vel * speed;
+
+                // Handles player animation.
+                if (vel.x != 0)
+                {
+
+                    if(_animator != null)
+                        _animator.SetBool("Mov_Horizontal", true);
+
+                    if(vel.x > 0)
+                        _renderer.flipX = false;
+                    else
+                        _renderer.flipX = true;
+
+                }
+                else
+                {
+
+                    if(_animator != null)         
+                        _animator.SetBool("Mov_Horizontal", false);
+
+                    _renderer.flipX = false;
+
+                }
+
+                // Constraints the player to the player zone.
+                if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
+                {
+                    transform.position = new Vector3(Mathf.Clamp(transform.position.x, -positionConstraints.x, positionConstraints.x),
+                                                    Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
+                                                    0);
+                }
+
+                if (Input.GetButton("Fire1"))
+                    if(shooting.ShootingCoroutine == null)
+                        shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
+                if (Input.GetButtonUp("Fire1"))
+                {
+                    if(shooting.ShootingCoroutine != null)
+                    {
+                        StopCoroutine(shooting.ShootingCoroutine);
+                        shooting.ShootingCoroutine = null;
+                    }
+                }
+
+                // Pauses the game.
+                if(Input.GetButtonDown("Cancel"))
+                {
+                    GameController.instance.SetPause(true);
+
+                    // Used so the Player doesn't keep shooting after unpause if the the button is lifted.
+                    if(shooting.ShootingCoroutine != null)
+                    {
+                        StopCoroutine(shooting.ShootingCoroutine);
+                        shooting.ShootingCoroutine = null;
+                    }
+
+                }
+
+            } else {
+
+                // Unauses the game.
+                if(Input.GetButtonDown("Cancel"))
+                    GameController.instance.SetPause(false);
+
+            }
+        } 
+        else
         {
 
-            Vector2 vel = new Vector2();
-            vel.x = (Input.GetAxisRaw("Horizontal"));
-            vel.y = Input.GetAxisRaw("Vertical");
-            vel.Normalize();
-            _rigidbody.velocity = vel * speed;
+            // Stop player movement.
+            _animator.SetBool("Mov_Horizontal", false);
+            _rigidbody.velocity = Vector3.zero;
 
-            // Handles player animation.
-            if (vel.x != 0)
+             // Used to stop player shooting.
+            if(shooting.ShootingCoroutine != null)
             {
-
-                if(_animator != null)
-                    _animator.SetBool("Mov_Horizontal", true);
-
-                if(vel.x > 0)
-                    _renderer.flipX = false;
-                else
-                    _renderer.flipX = true;
-
+                StopCoroutine(shooting.ShootingCoroutine);
+                shooting.ShootingCoroutine = null;
             }
-            else
-            {
-
-                if(_animator != null)         
-                    _animator.SetBool("Mov_Horizontal", false);
-
-                _renderer.flipX = false;
-
-            }
-
-            // Constraints the player to the player zone.
-            if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
-            {
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x, -positionConstraints.x, positionConstraints.x),
-                                                Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
-                                                0);
-            }
-
-            if (Input.GetButton("Fire1"))
-                if(shooting.ShootingCoroutine == null)
-                    shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
-            if (Input.GetButtonUp("Fire1"))
-            {
-                if(shooting.ShootingCoroutine != null)
-                {
-                    StopCoroutine(shooting.ShootingCoroutine);
-                    shooting.ShootingCoroutine = null;
-                }
-            }
-
-            // Pauses the game.
-            if(Input.GetButtonDown("Cancel"))
-            {
-                GameController.instance.SetPause(true);
-
-                // Used so the Player doesn't keep shooting after unpause if the the button is lifted.
-                if(shooting.ShootingCoroutine != null)
-                {
-                    StopCoroutine(shooting.ShootingCoroutine);
-                    shooting.ShootingCoroutine = null;
-                }
-
-            }
-
-        } else {
-
-            // Unauses the game.
-            if(Input.GetButtonDown("Cancel"))
-                GameController.instance.SetPause(false);
 
         }
 	}

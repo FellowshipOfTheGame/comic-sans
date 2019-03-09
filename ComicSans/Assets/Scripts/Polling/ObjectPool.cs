@@ -8,7 +8,8 @@ public class ObjectPool : MonoBehaviour {
 
 	[SerializeField] private GameObject baseObject;
 
-	[SerializeField] private bool isPermanentPoll;
+	[SerializeField] private bool isPermanentPool;
+	[SerializeField] private bool isBossPool;
 
 	public int initialObjectInstances = 8;
 	public int maxObjectInstances = 8;
@@ -19,7 +20,7 @@ public class ObjectPool : MonoBehaviour {
 	void Start() 
 	{
 
-		if(isPermanentPoll)
+		if(isPermanentPool)
 		{	
 			transform.SetParent(null);
 			DontDestroyOnLoad(gameObject);
@@ -102,11 +103,14 @@ public class ObjectPool : MonoBehaviour {
 			script.origin = this;
 			new_poll_obj.SetActive(false);
 
-			if(isPermanentPoll)
+			if(isPermanentPool)
 			{
 				DontDestroyOnLoad(new_poll_obj);
 				SceneManager.sceneLoaded += script.OnSceneLoaded;				
 			}
+
+			if(isBossPool)
+				BossScript.instance.pooledObjects.Add(new_poll_obj);
 
 			return new_poll_obj;
 
