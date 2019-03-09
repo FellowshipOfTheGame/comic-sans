@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Punk.unity
     guid: a4f8442a863fb114fb85a0bee6a5d57f
+  - enabled: 1
+    path: Assets/Scenes/Xing.unity
+    guid: f448fe18f8673c745b7ec68700a1ef93
   m_configObjects: {}

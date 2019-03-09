@@ -2319,6 +2319,15 @@ MonoBehaviour:
       pitch: 1
       maxSimultaneousSources: 1
       sources: []
+  - id: kunai
+    sound:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 273efba1f4863e346a0fbb012d70f474, type: 3}
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 1
+      sources: []
 --- !u!114 &114599398951801458
 MonoBehaviour:
   m_ObjectHideFlags: 1

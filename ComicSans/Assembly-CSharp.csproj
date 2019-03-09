@@ -78,7 +78,10 @@
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Polling\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Polling\PooledObject.cs" />
+     <Compile Include="Assets\Scripts\Projectile\Kunai.cs" />
+     <Compile Include="Assets\Scripts\Projectile\Leque.cs" />
      <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
+     <Compile Include="Assets\Scripts\Projectile\Shuriken.cs" />
      <Compile Include="Assets\Scripts\Projectile\SimpleProjectile.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\HUDController.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\Menu.cs" />

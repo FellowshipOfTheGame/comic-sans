@@ -10,6 +10,7 @@ public class SceneSettings : MonoBehaviour {
 	[System.Serializable]
 	public class BossSettings
 	{
+		public bool bossScene = true;
 		public GameObject boss;
 		public Vector2 spawm;
 	}
@@ -25,7 +26,8 @@ public class SceneSettings : MonoBehaviour {
 		else
 			HUDController.instance.EnableHUD();
 
-		SpawnBoss();
+		if(bossSettings.bossScene)
+			SpawnBoss();
 
 	}
 
