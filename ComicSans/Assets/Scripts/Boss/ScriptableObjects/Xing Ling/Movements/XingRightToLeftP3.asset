@@ -18,15 +18,19 @@ MonoBehaviour:
   velocityModifier: 2
   stopBeforeAttack: 0
   stopAfterAttack: 0
-  idleTime: 0.1
+  idleTime: 0.2
   projectileId: kunai
   projectileSpawns:
   - {x: 0, y: -1}
   movementAnimations:
   - name: running
     value: 2
+  - name: kunai
+    value: 0
   idleAnimations:
   - name: kunai
+    value: 0
+  - name: running
     value: 0
   attackAnimations: []
   idleAtEnd: 1

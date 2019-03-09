@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\UI &amp; HUD\Menu.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\Options_Menu.cs" />
      <None Include="Assets\Prefabs\Boss\Punk\Punk.txt" />
+     <None Include="Assets\README.txt" />
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
@@ -272,9 +273,6 @@
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.6f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/PackageCache/com.unity.ads@2.0.8/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>D:/luise/Documents/FoG/comic-sans/ComicSans/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

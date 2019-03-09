@@ -15,10 +15,10 @@ MonoBehaviour:
   caller: {fileID: 0}
   numberOfSteps: 2
   positionTarget: {x: 0, y: 2.4}
-  velocityModifier: 1
+  velocityModifier: 1.25
   stopBeforeAttack: 0
-  stopAfterAttack: 0
-  idleTime: 0
+  stopAfterAttack: 1
+  idleTime: 0.35
   projectileId: kunai
   projectileSpawns:
   - {x: -0.15, y: -0.5}
@@ -27,10 +27,14 @@ MonoBehaviour:
   movementAnimations:
   - name: running
     value: 1
+  - name: kunai
+    value: 0
   idleAnimations:
   - name: kunai
+    value: 0
+  - name: running
     value: 0
   attackAnimations:
   - name: kunai
     value: 1
-  idleAtEnd: 1
+  idleAtEnd: 0

@@ -87,7 +87,7 @@ MonoBehaviour:
   positionConstraints: {x: 6, y: 5}
   audioName: kunai
   rb: {fileID: 50476202387879480}
-  speed: 10
+  speed: 8
   Bossa: {fileID: 0}
 --- !u!1 &1986010017774328
 GameObject:

@@ -16,4 +16,4 @@ MonoBehaviour:
   invincibilityDuration: 1
   animationController: {fileID: 9100000, guid: 338606690b14c6b468b54d66d889ae26, type: 2}
   firstPattern: {fileID: 11400000, guid: c0226838989eefa4e836e8447198d4f5, type: 2}
-  lifeToNextPhase: 1200
+  lifeToNextPhase: 900

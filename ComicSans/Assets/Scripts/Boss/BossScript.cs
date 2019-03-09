@@ -551,7 +551,7 @@ public class BossScript : MonoBehaviour
 					else
 						Debug.Log("BossScript.ActionAttackMove: Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
 
-					yield return new WaitForFixedUpdate();
+					yield return new WaitForEndOfFrame();
 
 					if(attackMove.stopAfterAttack)
 					{
@@ -574,6 +574,20 @@ public class BossScript : MonoBehaviour
 		}
 
 		// Does the last attack.
+		if(attackMove.stopBeforeAttack)
+		{
+			// Plays the idle animations and wait for some time.
+			if(_animator != null)
+				SetAnimation(attackMove.idleAnimations);
+			timer = 0;
+			while(timer < attackMove.idleTime) 
+			{
+				timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+		}
+
+		
 		if(_animator != null)
 			SetAnimation(attackMove.attackAnimations);
 
@@ -586,13 +600,26 @@ public class BossScript : MonoBehaviour
 
 		yield return new WaitForEndOfFrame();
 
-		// Plays the idle animations.
-		if(_animator != null)
-			SetAnimation(attackMove.idleAnimations);
+		if(attackMove.stopAfterAttack)
+		{
+			// Plays the idle animations and wait for some time.
+			if(_animator != null)
+				SetAnimation(attackMove.idleAnimations);
+			timer = 0;
+			while(timer < attackMove.idleTime) 
+			{
+				timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+			
+		}
 
 		// Idles at the end of the action.
 		if(attackMove.idleAtEnd) 
 		{
+			if(_animator != null)
+			SetAnimation(attackMove.idleAnimations);
+
 			timer = 0;
 			while(timer < attackMove.idleTime) 
 			{
