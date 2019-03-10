@@ -739,6 +739,15 @@ MonoBehaviour:
       pitch: 1
       maxSimultaneousSources: 1
       sources: []
+  - id: pawn
+    sound:
+      type: 0
+      clips:
+      - {fileID: 8300000, guid: 03f608cf2b21e5543b1ef01a90d2179e, type: 3}
+      volume: 1
+      pitch: 1
+      maxSimultaneousSources: 1
+      sources: []
 --- !u!1 &1218491173255476
 GameObject:
   m_ObjectHideFlags: 0

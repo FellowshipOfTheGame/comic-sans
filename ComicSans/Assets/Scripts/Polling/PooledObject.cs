@@ -8,14 +8,18 @@ public class PooledObject : MonoBehaviour {
 
 	public ObjectPool origin;
 
-	public void Despawn () {
+	public virtual void Despawn () {
 
-		gameObject.SetActive(false);
-		origin.Pool.Add(gameObject); 
+		if(origin != null)
+		{
+			gameObject.SetActive(false);
+			origin.Pool.Add(gameObject);
+		} else
+			Destroy(gameObject);
 
 	}
 
-	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	public virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 		if(scene.name == "Menu")
 		{
@@ -25,5 +29,6 @@ public class PooledObject : MonoBehaviour {
 		}
 
 		Despawn();
+
 	}
 }

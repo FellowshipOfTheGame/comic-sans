@@ -110,7 +110,7 @@ public class ObjectPool : MonoBehaviour {
 			}
 
 			if(isBossPool)
-				BossScript.instance.pooledObjects.Add(new_poll_obj);
+				BossScript.instance.pooledObjects.Add(script);
 
 			return new_poll_obj;
 

@@ -44,7 +44,7 @@ public class BossScript : MonoBehaviour
 
 	private Dictionary<string, ObjectPool> projectileDictionary; 
 
-	public List<GameObject> pooledObjects;
+	public List<PooledObject> pooledObjects;
 
 	// Use this for initialization
 	private void Awake () 
@@ -173,8 +173,8 @@ public class BossScript : MonoBehaviour
 	public void Exit()
 	{
 		// Destroy objects pooled by the Boss.
-		foreach(GameObject obj in pooledObjects)
-			Destroy(obj);
+		foreach(PooledObject obj in pooledObjects)
+			Destroy(obj.gameObject);
 
 		Destroy(gameObject);
 	}
@@ -414,9 +414,10 @@ public class BossScript : MonoBehaviour
 		StopAllCoroutines();
 
 		// Despawns all previous phase projectiles.
-		foreach(GameObject obj in pooledObjects)
-			obj.GetComponent<PooledObject>().Despawn();
-
+		
+		foreach(PooledObject obj in pooledObjects)
+			obj.Despawn();
+		
 		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
 
 		transform.position = new Vector3(phases[currentPhase].initialPosition.x, phases[currentPhase].initialPosition.y, 0);

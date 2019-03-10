@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-D:/luise/Desktop/ComicSans.exe
+D:/luise/Desktop/ComicSans/ComicSans.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Transition.unity
@@ -162,7 +162,7 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 2d7e55feabb1bc77281e58799d8e26f3 Assembly-CSharp.dll:.BossTeleport
-0246ac27b98ee3e7169e791759bc742f Assembly-CSharp.dll:.BossScript
+cf7b5b99ae276766f55b0ff81aab81d9 Assembly-CSharp.dll:.BossScript
 526d08204d3d8bab9d7552e9d4bb42a2 Assembly-CSharp.dll:.BossAttackMove
 484491860861dd15934712c9c95a9a88 Assembly-CSharp.dll:.Leque
 5fa4a5e03e40a5679e5dd97f7f669004 Assembly-CSharp.dll:.HUDController

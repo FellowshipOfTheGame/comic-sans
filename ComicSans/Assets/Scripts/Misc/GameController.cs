@@ -66,6 +66,8 @@ public class GameController : MonoBehaviour {
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 
+		StopAllCoroutines();
+
 		if(scene.name == "Menu")
 		{
 
@@ -138,7 +140,10 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(playerWin)
+		{
 			SetVictoryMenu(true);
+			Player.instance.DisableCollider();
+		}
 		else
 			SetDeathMenu(true);
 

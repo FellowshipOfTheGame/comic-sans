@@ -21,20 +21,14 @@ public class ProjectileBase : PooledObject {
 	{
 
 		if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
-			if(origin != null)
-				Despawn();
-			else
-				Destroy(this.gameObject);
+			Despawn();
         
     }
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 
-		if(origin != null)
-			Despawn();
-		else
-			Destroy(this.gameObject);
+		Despawn();
 
 	}
 }

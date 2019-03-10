@@ -92,6 +92,9 @@ public class Player : MonoBehaviour {
 
     public void OnEnable()
     {
+
+        _collider.enabled = true;
+
         health.Hp = 3;
 
         if(shooting.ShootingCoroutine != null)
@@ -265,5 +268,12 @@ public class Player : MonoBehaviour {
             }
 
         }
+    }
+
+    public void DisableCollider()
+    {
+
+        _collider.enabled = false;
+
     }
 }
