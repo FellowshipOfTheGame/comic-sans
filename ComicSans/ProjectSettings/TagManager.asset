@@ -6,11 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Wall
-  - Bullet
-  - Enemy_Bullet
-  - Low_Health
-  - Mid_Health
-  - Full_Health
+  - Damage
   layers:
   - Default
   - TransparentFX
@@ -24,7 +20,7 @@ TagManager:
   - PlayerProjectile
   - Enemy
   - EnemyProjectile
-  - 
+  - Portal
   - 
   - 
   - 

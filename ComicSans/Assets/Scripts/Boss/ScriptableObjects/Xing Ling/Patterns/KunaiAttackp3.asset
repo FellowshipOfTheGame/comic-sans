@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: KunaiAttackp3
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 92d61bef83141c544904dc734e0ae12a, type: 2}
+  - {fileID: 11400000, guid: c5bedb3d15affc74c906d7b5c3d0b6bb, type: 2}
+  - {fileID: 11400000, guid: a8401de87321b814dae57d16ea22cb0e, type: 2}
+  chance: 100
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: d57412e395e59b3489012c2ac6d5657f, type: 2}
+  - {fileID: 11400000, guid: dce35163b69633544a4d3bd73cfe02d3, type: 2}

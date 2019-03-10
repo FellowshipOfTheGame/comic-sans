@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: PunkIdleP2Transition
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: fbe4a2da81a76b34dbe5b428b9500db2, type: 2}
+  chance: 100
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: ae7093a44a1085c4ea100a0705dd33d3, type: 2}
+  - {fileID: 11400000, guid: 7546677229409f043978bf828c58e25e, type: 2}
