@@ -1,0 +1,5 @@
+Rebuild Audio Sytem.
+Remake Boss action system.
+- Link Action transition with animations?
+Better integrate everything using events.
+Improve GameController and SceneSettings iteration.

@@ -748,6 +748,15 @@ MonoBehaviour:
       pitch: 1
       maxSimultaneousSources: 1
       sources: []
+  - id: TransitionSoundtrack
+    sound:
+      type: 1
+      clips:
+      - {fileID: 8300000, guid: 25c57b0885addb44999027d971742a33, type: 3}
+      volume: 0.8
+      pitch: 1
+      maxSimultaneousSources: 1
+      sources: []
 --- !u!1 &1218491173255476
 GameObject:
   m_ObjectHideFlags: 0
