@@ -1,4 +1,4 @@
-![ComicSans Logo](\ComicSans\Assets\Sprites\UI\Logo.png)
+![ComicSans Logo](https://github.com/FellowshipOfTheGame/comic-sans/blob/cabral/ComicSans/Assets/Sprites/UI/Logo.png)
 
 ---
 
