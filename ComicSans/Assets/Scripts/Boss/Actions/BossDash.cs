@@ -26,8 +26,8 @@ public class BossDash : BossAction {
     [Tooltip("List of parameters (int) to be set on the Boss animator during the dash.")]
     public List<AnimationSet> dashAnimations;
 
-    [Tooltip("The id of the audio on the AudioControlCenter to be played during the dash.")]
-    public string audioId;
+    [Tooltip("The audio to be played during the dash.")]
+    public AudioInfo dashAudio;
 
     public override void DoAction()
     {

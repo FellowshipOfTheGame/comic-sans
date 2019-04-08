@@ -6,7 +6,7 @@ public class SceneSettings : MonoBehaviour {
 
 	public static SceneSettings instance;
 
-	public string music;
+	public AudioInfo backgroundMusic;
 	public bool showHUD = true;	
 
 	[System.Serializable]
@@ -27,8 +27,8 @@ public class SceneSettings : MonoBehaviour {
 		}
 		instance = this;
 
-		if(music != null && music != "none")
-			AudioControlCenter.instance.Play(music);
+		if(backgroundMusic != null)
+			AudioController.instance.Play(backgroundMusic);
 
 		if(!showHUD)
 			HUDController.instance.DisableHUD();

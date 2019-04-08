@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour {
 
 		}
 
-		AudioControlCenter.instance.StopAllSounds();
+		AudioController.instance.StopAllSounds();
 
 		SpawnPlayer();
 		
@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour {
 			Time.timeScale = 0;
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-			AudioControlCenter.instance.PauseSounds();
+			AudioController.instance.PauseSounds();
 			pauseMenu.SetActive(true);
 		} 
 		else 
@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour {
 			Time.timeScale = 1;
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
-			AudioControlCenter.instance.UnPauseSounds();
+			AudioController.instance.UnPauseSounds();
 			pauseMenu.SetActive(false);
 		}
 

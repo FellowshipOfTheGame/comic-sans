@@ -25,7 +25,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 ## SHORTERM:
 
-- [ ] Add music to level selection room.
+- [x] Add music to level selection room.
 - [ ] Fix Kunais with wrong rotation.
 - [ ] Carrot Pool has been remvoed from isBossPool in order to temporaly fix a bug with carrots on the second phase. Also player collider is now being disabled when Boss is defeated so the Player can't be hit by a carrot. Find a more permanet fix and revert this changes.
 - [ ] It's possible to win and lose at the same time.
@@ -34,7 +34,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 ## LONGTERM:
 
-- [ ] Rebuild audio system.
+- [x] Rebuild audio system.
 - [ ] Improve Boss action system.
 - [ ] Link Action transition with animations?
 - [ ] Better integrate everything using events?

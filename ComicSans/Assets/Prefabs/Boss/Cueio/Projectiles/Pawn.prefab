@@ -49,7 +49,7 @@ MonoBehaviour:
   appearDelay: 0.4
   disappearDelay: 0.6
   _collider: {fileID: 58473513156723174}
-  audioName: pawn
+  projectileAudio: {fileID: 11400000, guid: ad381fd98e4ac4c40a0ec3539e9d6bfd, type: 2}
 --- !u!58 &58473513156723174
 CircleCollider2D:
   m_ObjectHideFlags: 0

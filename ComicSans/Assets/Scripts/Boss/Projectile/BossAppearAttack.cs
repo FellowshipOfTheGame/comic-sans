@@ -9,7 +9,7 @@ public class BossAppearAttack : PooledObject {
 	[SerializeField] private float disappearDelay;
 	[SerializeField] private Collider2D _collider;
 
-	public string audioName;
+	public AudioInfo projectileAudio;
 
 	private float timer;
 
@@ -31,8 +31,8 @@ public class BossAppearAttack : PooledObject {
 			{
 				_collider.enabled = true;
 				timer = 0;
-				if(audioName != null && audioName != "")
-					AudioControlCenter.instance.Play(audioName);
+				if(projectileAudio != null)
+					AudioController.instance.Play(projectileAudio);
 			}
 		}
 		else

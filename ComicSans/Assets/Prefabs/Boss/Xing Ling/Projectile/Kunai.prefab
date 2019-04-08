@@ -85,7 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   positionConstraints: {x: 6, y: 5}
-  audioName: kunai
+  projectileAudio: {fileID: 11400000, guid: 099cc440366d55342a72f01e9a2f3e02, type: 2}
   rb: {fileID: 50476202387879480}
   speed: 8
   Bossa: {fileID: 0}

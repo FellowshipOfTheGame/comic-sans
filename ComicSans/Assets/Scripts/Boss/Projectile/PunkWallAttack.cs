@@ -6,12 +6,14 @@ using UnityEngine;
 public class PunkWallAttack : PooledObject {
 
 	[SerializeField] private float duration = 8.0f;
-	[SerializeField] private string audioName;
+	[SerializeField] private AudioInfo attackAudio;
 
 	void OnEnable()
 	{
 
-		AudioControlCenter.instance.Play(audioName);
+		if(AudioController.instance != null)
+			AudioController.instance.Play(attackAudio);
+
 		StartCoroutine(Disappear(duration));
 
 	}

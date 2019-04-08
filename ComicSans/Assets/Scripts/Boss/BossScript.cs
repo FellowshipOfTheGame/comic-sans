@@ -711,9 +711,9 @@ public class BossScript : MonoBehaviour
 			SetAnimation(dash.chargeAnimations);
 
 		// Plays the audio.
-		if(AudioControlCenter.instance != null)
-			if(dash.audioId != null && dash.audioId != "none")
-			AudioControlCenter.instance.Play(dash.audioId);
+		if(AudioController.instance != null)
+			if(dash.dashAudio != null)
+			AudioController.instance.Play(dash.dashAudio);
 
 		// Waits for the charging time.
 		float time = 0f;

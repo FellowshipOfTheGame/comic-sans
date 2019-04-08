@@ -23,8 +23,8 @@ public class BossStateMachineHandler : StateMachineBehaviour {
 		{
 
 			foreach(string soundId in soundsToStop)
-				if(AudioControlCenter.instance != null)
-					AudioControlCenter.instance.Stop(soundId);
+				if(AudioController.instance != null)
+					AudioController.instance.Stop(soundId);
 				else
 					Debug.LogWarning("BossStateMachineHandler.OnStateExit: AudioControlCenter not found!");
 

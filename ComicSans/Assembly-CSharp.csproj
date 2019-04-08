@@ -53,8 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Audio\AudioControlCenter.cs" />
-     <Compile Include="Assets\Scripts\Audio\Sound.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
+     <Compile Include="Assets\Scripts\Audio\AudioInfo.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAction.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttack.cs" />
      <Compile Include="Assets\Scripts\Boss\Actions\BossAttackMove.cs" />
