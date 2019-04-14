@@ -34,40 +34,6 @@ public class HUDController : MonoBehaviour {
 		if(bossNameText == null)
 			Debug.Log("HUDController.Awake: No Text component to display the Boss name assigned!");
 
-		PositionHUDItems();
-
-	}
-	
-	private void PositionHUDItems()
-	{
-
-		 // Positions the Player health icons.
-        for(int i = 0; i < playerHealthIcons.Length; i++) {
-
-            if(playerHealthIcons[i] == null)
-            {
-                Debug.LogWarning("HUDController.PositionHUDItems: playerHealthIcon on position " + i + " is null!");
-                return;
-            }
-
-            Vector3 iconPosition = playerHealthIcons[i].rectTransform.position;
-            iconPosition.x = (Screen.width / 2) - (Screen.height / 1.66f) + (80 * i);
-            playerHealthIcons[i].rectTransform.position = iconPosition; 
-
-        }
-
-		// Sets the health bar tranform to the correct position and size.
-		if(bossHealthBar != null)
-		{
-			Vector3 barPosition = bossHealthBar.rectTransform.position;
-			barPosition.x = (Screen.width / 2) + (Screen.height * 0.625f) - 15;
-			bossHealthBar.rectTransform.position = barPosition; 
-
-			Vector2 barSize = bossHealthBar.rectTransform.sizeDelta;
-			barSize.x = (Screen.height * 1.25f) - 20;
-			bossHealthBar.rectTransform.sizeDelta = barSize;
-		}
-
 	}
 
 	public void UpdatePlayerLifeIcons(int life)

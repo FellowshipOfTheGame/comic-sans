@@ -1,0 +1,2 @@
+- Modified menu scalling.
+- Added missing Xing music.
