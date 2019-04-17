@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Xing Ling/Shuriken")]
-public class Shuriken : ProjectileBase{
+public class Shuriken : BossProjectileBase{
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private Rigidbody2D rb;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Xing Ling/Kunai")]
-public class Kunai : ProjectileBase {
+public class Kunai : BossProjectileBase {
 
     public Rigidbody2D rb;
     public float speed;

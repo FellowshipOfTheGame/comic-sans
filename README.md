@@ -26,10 +26,10 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 ## SHORTERM:
 
 - [x] Add music to level selection room.
-- [ ] Fix Kunais with wrong rotation.
-- [ ] Carrot Pool has been remvoed from isBossPool in order to temporaly fix a bug with carrots on the second phase. Also player collider is now being disabled when Boss is defeated so the Player can't be hit by a carrot. Find a more permanet fix and revert this changes.
-- [ ] It's possible to win and lose at the same time.
-- [ ] Fix Player being able to lose 2 lifes when hit by more than one projectile at the same time.
+- [x] Fix Kunais with wrong rotation.
+- [x] Carrot Pool has been remvoed from isBossPool in order to temporaly fix a bug with carrots on the second phase. Also player collider is now being disabled when Boss is defeated so the Player can't be hit by a carrot. Find a more permanet fix and revert this changes.
+- [x] It's possible to win and lose at the same time.
+- [x] Fix Player being able to lose 2 lifes when hit by more than one projectile at the same time.
 - [ ] Better indicate some Boss attacks so Players can't die without knowing what was coming.
 
 ## LONGTERM:

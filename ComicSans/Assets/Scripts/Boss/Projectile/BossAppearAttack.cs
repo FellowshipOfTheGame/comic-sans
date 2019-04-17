@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Appear Projectile")]
-public class BossAppearAttack : PooledObject {
+public class BossAppearAttack : BossProjectileBase {
 
 	[SerializeField] private float appearDelay;
 	[SerializeField] private float disappearDelay;
 	[SerializeField] private Collider2D _collider;
 
-	public AudioInfo projectileAudio;
-
 	private float timer;
 
-	void OnEnable()
+	protected override void OnEnable()
 	{
+
+		if(BossScript.instance == null)
+        {
+            Debug.Log("BossProjectileBase.OnEnable: BossScript instance not found!");
+            return;
+        }
 
 		_collider.enabled = false;
 		timer = 0;

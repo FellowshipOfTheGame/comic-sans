@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Boss/Follow Projectile")]
-public class BossFollowProjectile : ProjectileBase {
+[AddComponentMenu("Scripts/Projectiles/Boss/Follow")]
+public class BossFollowProjectile : BossProjectileBase {
 
 	public Rigidbody2D _rigidbody;
 	public float delay = 1.0f;
@@ -49,7 +49,7 @@ public class BossFollowProjectile : ProjectileBase {
 		while(true)
 		{
 
-			if(!GameController.instance.Paused)
+			if(GameController.instance.currentGameState != GameController.GameState.Paused)
 				_rigidbody.AddForce( _rigidbody.mass * aceleration * -transform.up, ForceMode2D.Force);
 
 			yield return new WaitForEndOfFrame();

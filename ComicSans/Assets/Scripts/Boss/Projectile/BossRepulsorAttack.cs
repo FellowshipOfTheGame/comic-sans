@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Repulsor Attack")]
-public class BossRepulsorAttack : ProjectileBase {
+public class BossRepulsorAttack : BossProjectileBase {
 
 	[SerializeField] private float strength;	
 	[SerializeField] private float duration;

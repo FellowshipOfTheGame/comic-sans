@@ -6,6 +6,9 @@ using UnityEngine;
 public class BossScript : MonoBehaviour 
 {	
 
+	public delegate void DespawnProjectile();
+	public DespawnProjectile DespawnBossProjectiles;
+
 	public static BossScript instance;
 
 	public string bossName;
@@ -42,9 +45,7 @@ public class BossScript : MonoBehaviour
 	[System.Serializable]private struct ProjectilePool { public string id; public ObjectPool pool; }
 	[SerializeField] private ProjectilePool[] projectilePools;
 
-	private Dictionary<string, ObjectPool> projectileDictionary; 
-
-	public List<PooledObject> pooledObjects;
+	private Dictionary<string, ObjectPool> projectileDictionary;
 
 	// Use this for initialization
 	private void Awake () 
@@ -110,8 +111,7 @@ public class BossScript : MonoBehaviour
 	private void Damage(int amount) 
 	{
 
-		// Used to guarantee the Boss can't be killed by a remaining shot after the Player's death. 
-		if(!Player.instance.gameObject.activeSelf)
+		if(GameController.instance.currentGameState != GameController.GameState.Play)
 			return;
 
 		Life-=amount;
@@ -140,11 +140,15 @@ public class BossScript : MonoBehaviour
 	private void Die() 
 	{
 
+		GameController.instance.currentGameState = GameController.GameState.Win;
+
 		Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
 
 		transform.localScale = defaultScale;
 
 		StopAllCoroutines();
+		if(DespawnBossProjectiles != null)
+			DespawnBossProjectiles();
 		
 		if(_animator != null)
 			_animator.Play("Die", 0);
@@ -161,7 +165,11 @@ public class BossScript : MonoBehaviour
 	public void PlayerDie()
 	{
 
+		GameController.instance.currentGameState = GameController.GameState.Lose;
+
 		StopAllCoroutines();
+		if(DespawnBossProjectiles != null)
+			DespawnBossProjectiles();
 		
 		if(_animator != null)
 			_animator.Play("Win", 0);
@@ -172,10 +180,6 @@ public class BossScript : MonoBehaviour
 
 	public void Exit()
 	{
-		// Destroy objects pooled by the Boss.
-		foreach(PooledObject obj in pooledObjects)
-			Destroy(obj.gameObject);
-
 		Destroy(gameObject);
 	}
 
@@ -414,9 +418,8 @@ public class BossScript : MonoBehaviour
 		StopAllCoroutines();
 
 		// Despawns all previous phase projectiles.
-		
-		foreach(PooledObject obj in pooledObjects)
-			obj.Despawn();
+		if(DespawnBossProjectiles != null)
+			DespawnBossProjectiles();
 		
 		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
 

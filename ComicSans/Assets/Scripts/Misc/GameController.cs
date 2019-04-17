@@ -25,13 +25,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	private bool paused = false;
-	public bool Paused {
-		get
-		{
-			return paused;
-		}
-	}
+	public enum GameState { Play, Paused, Win, Lose, WinScreen, LoseScreen }
+	public GameState currentGameState;
+
 	[SerializeField] private GameObject pauseMenu;
 	[SerializeField] private GameObject deathMenu;
 	[SerializeField] private GameObject victoryMenu;
@@ -90,7 +86,8 @@ public class GameController : MonoBehaviour {
 		AudioController.instance.StopAllSounds();
 
 		SpawnPlayer();
-		
+		currentGameState = GameState.Play;
+
 	}
 
 	private void SpawnPlayer()
@@ -107,9 +104,17 @@ public class GameController : MonoBehaviour {
 
 	public void SetPause(bool state) {
 
-		paused = state;
+		if(currentGameState == GameState.Play)
+			currentGameState = GameState.Paused;
+		else if(currentGameState == GameState.Paused)
+			currentGameState = GameState.Play;
+		else
+		{
+			Debug.LogWarning("GameController.SetPause: Attempt to pause the game when the Player has already won or lost!");
+			return;
+		}
 
-		if(paused)
+		if(currentGameState == GameState.Paused)
 		{
 			Time.timeScale = 0;
 			Cursor.visible = true;
@@ -117,7 +122,7 @@ public class GameController : MonoBehaviour {
 			AudioController.instance.PauseSounds();
 			pauseMenu.SetActive(true);
 		} 
-		else 
+		else if(currentGameState == GameState.Play)
 		{
 			Time.timeScale = 1;
 			Cursor.visible = false;
@@ -141,11 +146,14 @@ public class GameController : MonoBehaviour {
 
 		if(playerWin)
 		{
+			currentGameState = GameState.WinScreen;
 			SetVictoryMenu(true);
-			Player.instance.DisableCollider();
 		}
 		else
+		{
+			currentGameState = GameState.LoseScreen;
 			SetDeathMenu(true);
+		}
 
 	}
 
@@ -201,6 +209,8 @@ public class GameController : MonoBehaviour {
 		Player.instance.gameObject.SetActive(true);
 		allowPlayerControl = true;
 		HUDController.instance.EnableHUD();
+
+		currentGameState = GameState.Play;
 
 	}
 

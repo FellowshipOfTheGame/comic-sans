@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Xing Ling/Leque")]
-public class Leque : ProjectileBase {
+public class Leque : BossProjectileBase {
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float width;

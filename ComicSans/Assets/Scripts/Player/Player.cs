@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     private Collider2D _collider;
     private SpriteRenderer _renderer;
 
+    private bool invincible = false;
+
     [SerializeField]private Vector2 positionConstraints = new Vector2( 8, 8);
     
     [SerializeField] private float speed;    
@@ -110,7 +112,7 @@ public class Player : MonoBehaviour {
 
         if(GameController.instance.AllowPlayerControl)
         {
-            if(!GameController.instance.Paused)
+            if(GameController.instance.currentGameState == GameController.GameState.Play || GameController.instance.currentGameState == GameController.GameState.Win)
             {
 
                 // Makes the player move.
@@ -206,12 +208,15 @@ public class Player : MonoBehaviour {
     {
 
         if (collision.collider.tag == "Damage")
-            TakeDamage();         
+            Damage();         
 
     }
 
-    void TakeDamage()
+    void Damage()
     {
+
+        if(invincible || GameController.instance.currentGameState != GameController.GameState.Play)
+            return;
 
         // Makes the player unable to take damage after defeating a Boss.
         if(BossScript.instance == null)
@@ -219,7 +224,10 @@ public class Player : MonoBehaviour {
 
         health.Hp--;
         if (health.Hp > 0)
+        {
+            invincible = true;
             StartCoroutine(ResetPlayer());
+        }
         else
         {
             BossScript.instance.PlayerDie();
@@ -237,6 +245,7 @@ public class Player : MonoBehaviour {
         float time = 0;
 
         transform.position = GameController.instance.playerSettings.spawnPoint;
+        
         if(_animator != null)
             _animator.SetBool("Invencible", true);
         _collider.enabled = false;
@@ -250,6 +259,8 @@ public class Player : MonoBehaviour {
         if(_animator != null)
             _animator.SetBool("Invencible", false);
         _collider.enabled = true;
+
+        invincible = false;
 
     }
 
@@ -266,14 +277,6 @@ public class Player : MonoBehaviour {
                 time += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
-
         }
-    }
-
-    public void DisableCollider()
-    {
-
-        _collider.enabled = false;
-
     }
 }

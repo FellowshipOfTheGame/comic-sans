@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Punk/Wall Attack")]
-public class PunkWallAttack : PooledObject {
+public class PunkWallAttack : BossProjectileBase {
 
 	[SerializeField] private float duration = 8.0f;
 	[SerializeField] private AudioInfo attackAudio;
