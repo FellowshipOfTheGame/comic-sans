@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Cueio.unity
+- path: Assets/Scenes/Punk.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0

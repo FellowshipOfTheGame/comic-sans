@@ -13,6 +13,24 @@ public class BossIdle : BossAction {
 
     public override void DoAction()
     {
-        caller.StartCoroutine(caller.ActionIdle(this));
+        caller.StartCoroutine(Idle());
     }
+
+    public IEnumerator Idle()
+	{
+
+		// Play the idle animation.
+		caller.SetAnimation(animations);
+
+		// Idles for some time.
+		float timer = 0;
+		while(timer < idleTime) 
+		{
+			timer += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
+		}
+
+		caller.NextAction();
+
+	}
 }

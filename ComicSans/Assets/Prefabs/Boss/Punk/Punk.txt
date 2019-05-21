@@ -1,5 +1,0 @@
-- Ataques:
- Contato: o boss se movimenta contra o player e aplica dano de contato.
- Catarro: projéteis atirados contra o player.
- Parede de catarro: criação de paredes pré definidas que reduzem o espaço de fuga do player.
- Grito: empurra o player, que se tocar na parede perde vida.

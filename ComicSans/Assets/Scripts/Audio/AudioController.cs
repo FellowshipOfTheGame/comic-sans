@@ -20,7 +20,8 @@ public class AudioController : MonoBehaviour
 	private Dictionary<string, AudioDictEntry> AudioDictionary = null;
 
 	// Use this for initialization
-	void Awake () {
+	void Awake () 
+	{
 		
 		// Destroy a previous instance of this script.
 		if(AudioController.instance != null) 
@@ -36,7 +37,8 @@ public class AudioController : MonoBehaviour
 	}
 	
 	// Add an Audio to the dictionary.
-	public void Add(AudioInfo sound) {
+	public void Add(AudioInfo sound) 
+	{
 
 		if(AudioDictionary == null)
 			AudioDictionary = new Dictionary<string, AudioDictEntry>();
@@ -105,7 +107,8 @@ public class AudioController : MonoBehaviour
 	}
 
 	// Plays an audio by id.
-	public void Play(string id) {
+	public void Play(string id) 
+	{
 
 		if(AudioDictionary == null || AudioDictionary.Count == 0) {
 			Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
@@ -126,8 +129,9 @@ public class AudioController : MonoBehaviour
 
 	}
 
-	// Plays an audio by id, if it doesn't exist creates it.
-	public void Play(AudioInfo audio) {
+	// Plays an audio, if it doesn't exist creates it.
+	public void Play(AudioInfo audio) 
+	{
 
 		// Add the audio to the dictionary if it doesn't exist.
 		if(AudioDictionary == null || !AudioDictionary.ContainsKey(audio.id))
@@ -138,8 +142,42 @@ public class AudioController : MonoBehaviour
 
 	}
 
+	// Plays an audio after a delay, if it doesn't exist creates it.
+	public void Play(AudioInfo audio, float delay) 
+	{
+
+		// Add the audio to the dictionary if it doesn't exist.
+		if(AudioDictionary == null || !AudioDictionary.ContainsKey(audio.id))
+			Add(audio);
+
+		if(delay <= 0) // Plays the audio immediately.
+			Play(audio.id);
+		else // Plays the audio after a delay.
+			StartCoroutine(PlayAudioDelayed(audio, delay));
+
+	}
+
+	IEnumerator PlayAudioDelayed(AudioInfo audio, float delay)
+	{
+
+		float time = 0;
+
+		while(time < delay)
+		{
+
+			time += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();			
+
+		}
+
+		// Plays the sound.
+		Play(audio.id);
+
+	}
+
 	// Stops a sound by id.
-	public void Stop(string id) {
+	public void Stop(string id) 
+	{
 
 		if(AudioDictionary == null || AudioDictionary.Count == 0) {
 			Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");

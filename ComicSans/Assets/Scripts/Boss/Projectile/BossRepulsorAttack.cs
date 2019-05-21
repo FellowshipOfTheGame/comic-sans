@@ -14,7 +14,20 @@ public class BossRepulsorAttack : BossProjectileBase {
 
 	protected override void OnEnable () {
 		
-		base.OnEnable();
+		if(predictObject != null) predictObject.SetActive(true);
+		if(damageObject != null) damageObject.SetActive(false);
+		
+		if(BossScript.instance == null)
+        {
+            Debug.Log("BossRepulsorAttack.OnEnable: BossScript instance not found!");
+            return;
+        }
+
+        BossScript.instance.DespawnBossProjectiles += Despawn;
+
+		if(projectileAudio != null)
+			AudioController.instance.Play(projectileAudio, delay);
+			
 		StartCoroutine(Repulse(strength));
 
 	}

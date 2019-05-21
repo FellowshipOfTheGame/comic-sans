@@ -15,6 +15,23 @@ public class BossAttack : BossAction {
 
     public override void DoAction()
     {
-        caller.ActionAttack(this);
+        Attack();
     }
+
+    public void Attack()
+	{
+
+		// Sets the animation for this attack.
+		caller.SetAnimation(animations);
+
+		// Spawns all projectiles.
+		if(caller.projectileDictionary.ContainsKey(projectileId))
+			foreach(Vector2 spawn in projectileSpawns)
+				caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.x, spawn.y, 0), caller.transform.rotation);
+		else
+			Debug.Log("BossAttack.Attack: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
+
+		caller.NextAction();
+
+	}
 }

@@ -28,6 +28,112 @@ public class BossDash : BossAction {
 
     public override void DoAction()
     {
-        caller.StartCoroutine(caller.ActionDash(this));
+        caller.StartCoroutine(Dash());
     }
+
+    public IEnumerator Dash() {
+
+		// Sets the charge animation.
+		caller.SetAnimation(chargeAnimations);
+
+        Vector3 defaultScale = caller.transform.localScale;
+
+		// Plays the audio.
+		if(AudioController.instance != null)
+			if(dashAudio != null)
+			AudioController.instance.Play(dashAudio);
+
+		// Waits for the charging time.
+		float time = 0f;
+		while(time < chargeTime)
+		{
+			time += Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
+		}
+
+		// Gets the 3D target position.
+		Vector2 dirVector;
+		if(Player.instance != null) {
+
+			// Sets the dash animation.
+			caller.SetAnimation(dashAnimations);
+
+			dirVector = Player.instance.transform.position - caller.transform.position;
+			dirVector.Normalize();
+
+			float accel = 0;
+
+			if(!lookingRight && dirVector.x > 0)
+				caller.transform.localScale = new Vector3(-caller.transform.localScale.x, caller.transform.localScale.y, caller.transform.localScale.z);
+			else if(lookingRight && dirVector.x < 0)
+				caller.transform.localScale = new Vector3(-caller.transform.localScale.x, caller.transform.localScale.y, caller.transform.localScale.z);
+			else
+				caller.transform.localScale = defaultScale;
+
+			int bounces = 0;
+
+			// Used to guarantee that bounces can't be accounted 2 times because of physics limitations.
+			bool bounceLeft = false;
+			bool bounceRight = false;
+			bool bounceTop = false;
+			bool bounceBottom = false;
+
+			// Move the boss to the target position.
+			while (bounces < bounceAmount) {			
+
+				// Moves to the target position.
+				if(bounces == 0)
+					accel += aceleration * Time.deltaTime;
+				caller.transform.Translate(dirVector * accel * Time.deltaTime);
+
+				yield return new WaitForEndOfFrame();
+
+				if(Mathf.Abs(caller.transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(caller.transform.position.y) > SceneSettings.instance.positionConstraints.y)
+				{
+
+					if(caller.transform.position.x > SceneSettings.instance.positionConstraints.x && !bounceRight)
+					{
+						dirVector = new Vector2(-dirVector.x, dirVector.y);
+						
+						bounceLeft = false;
+						bounceRight = true;
+					}
+					else if(caller.transform.position.x < -SceneSettings.instance.positionConstraints.x && !bounceLeft)
+					{
+						dirVector = new Vector2(-dirVector.x, dirVector.y);
+
+						bounceLeft = true;
+						bounceRight = false;
+					}
+
+					if(caller.transform.position.y > SceneSettings.instance.positionConstraints.y && !bounceTop)
+					{
+						dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+						bounceTop = true;
+						bounceBottom = false;
+					}
+					else if(caller.transform.position.y < -SceneSettings.instance.positionConstraints.y && !bounceBottom)
+					{
+						dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+						bounceTop = false;
+						bounceBottom = true;
+					}
+
+					bounces++;
+
+				}
+
+			}
+		}
+		else 
+		{
+			Debug.Log("BossScript.Dash: Player not found");
+		}
+
+		caller.transform.localScale = defaultScale;
+		caller.NextAction();
+
+	}
 }

@@ -21,6 +21,58 @@ public class BossTeleport : BossAction {
 
     public override void DoAction()
     {
-        caller.StartCoroutine(caller.ActionTeleport(this));
+        caller.StartCoroutine(Teleport());
     }
+
+    public IEnumerator Teleport ()
+	{
+		float timer = 0;
+		if(teleportType == TeleportType.AnimationThenTP)
+		{
+			// Plays the animation and idles.
+			caller.SetAnimation(animations);
+
+			while(timer < delay) 
+			{
+					timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+
+			// Them teleport.
+			caller.transform.position = new Vector3(destination.x, destination.y, 0);
+
+			caller.NextAction();
+
+		}
+		else if(teleportType == TeleportType.TPThenAnimation)
+		{			
+			
+			// Teleport.
+			caller.transform.position = new Vector3(destination.x, destination.y, 0);
+
+			// Them plays the animation and idles.
+			caller.SetAnimation(animations);
+
+			while(timer < delay) 
+			{
+					timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+
+			caller.NextAction();
+
+		}
+		else
+		{
+			// Play the animations.
+			if(teleportType == TeleportType.AnimatedTP)
+            
+			caller.SetAnimation(animations);
+
+			// Teleports simultaneously.
+			caller.transform.position = new Vector3(destination.x, destination.y, 0);
+
+			caller.NextAction();
+		}
+	}
 }

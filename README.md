@@ -36,7 +36,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 ## LONGTERM:
 
 - [x] Rebuild audio system.
-- [ ] Improve Boss action system.
+- [X] Improve Boss action system.
 - [ ] Link Action transition with animations. (?)
 - [ ] Better integrate everything using events. (?)
 - [X] Move some values to SceneSettings.

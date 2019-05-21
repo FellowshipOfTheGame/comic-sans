@@ -37,6 +37,139 @@ public class BossAttackMove : BossAction {
 
     public override void DoAction()
     {
-        caller.StartCoroutine(caller.ActionAttackMove(this));
+        caller.StartCoroutine(AttackMove());
     }
+
+    public IEnumerator AttackMove()
+	{
+
+		float timer = 0;
+
+		Vector3 originalPos = caller.transform.position;
+		Vector3 targetPosition = new Vector3(positionTarget.x, positionTarget.y, 0);
+		Vector3 nextStep = caller.transform.position;
+
+		int currentStep = 0;
+
+		// Moves the boss to the target position doing attack on the way.
+		while (Vector3.Distance(targetPosition, caller.transform.position) > 0.05f) {
+
+			// Moves the Boss to the current step.
+			if(Vector3.Distance(nextStep, caller.transform.position) > 0.05f)
+			{
+				// Plays the movementation animations.
+				caller.SetAnimation(movementAnimations);
+
+				// Moves the boss.
+				caller.transform.position = Vector3.MoveTowards(caller.transform.position, nextStep, caller.velocity * velocityModifier * Time.deltaTime);
+
+			} 
+			else // Goes to the next step and realizes an attack.
+			{
+				
+				currentStep++;
+				nextStep = originalPos + ((targetPosition - originalPos) / numberOfSteps) * currentStep;
+
+				if(currentStep != 1)
+				{
+					if(stopBeforeAttack)
+					{
+						// Plays the idle animations and wait for some time.
+						caller.SetAnimation(idleAnimations);
+                        
+						timer = 0;
+						while(timer < idleTime) 
+						{
+							timer += Time.fixedDeltaTime;
+							yield return new WaitForFixedUpdate();
+						}
+					}
+
+					// Plays the attack animations.
+					caller.SetAnimation(attackAnimations);
+
+					// Spawns all projectiles.
+					if(caller.projectileDictionary.ContainsKey(projectileId))
+						foreach(Vector2 spawn in projectileSpawns)
+							caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.x, spawn.y, 0), caller.transform.rotation);
+					else
+						Debug.Log("BossAttackMove.AttackMove: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
+
+					yield return new WaitForEndOfFrame();
+
+					if(stopAfterAttack)
+					{
+						// Plays the idle animations and wait for some time.
+						caller.SetAnimation(idleAnimations);
+						timer = 0;
+						while(timer < idleTime) 
+						{
+							timer += Time.fixedDeltaTime;
+							yield return new WaitForFixedUpdate();
+						}
+						
+					}
+				}
+			}
+
+			yield return new WaitForFixedUpdate();
+
+		}
+
+		// Does the last attack.
+		if(stopBeforeAttack)
+		{
+			// Plays the idle animations and wait for some time.
+			caller.SetAnimation(idleAnimations);
+
+			timer = 0;
+			while(timer < idleTime) 
+			{
+				timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+		}
+
+		
+		caller.SetAnimation(attackAnimations);
+
+		// Spawns all projectiles.
+		if(caller.projectileDictionary.ContainsKey(projectileId))
+			foreach(Vector2 spawn in projectileSpawns)
+				caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.x, spawn.y, 0), caller.transform.rotation);
+		else
+			Debug.Log("BossAttackMove.AttackMove: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
+
+		yield return new WaitForEndOfFrame();
+
+		if(stopAfterAttack)
+		{
+			// Plays the idle animations and wait for some time.
+			caller.SetAnimation(idleAnimations);
+
+			timer = 0;
+			while(timer < idleTime) 
+			{
+				timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+			
+		}
+
+		// Idles at the end of the action.
+		if(idleAtEnd) 
+		{
+			caller.SetAnimation(idleAnimations);
+
+			timer = 0;
+			while(timer < idleTime) 
+			{
+				timer += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
+		}		
+
+		caller.NextAction();
+
+	}
 }

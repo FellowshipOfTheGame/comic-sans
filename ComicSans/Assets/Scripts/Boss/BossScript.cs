@@ -24,7 +24,7 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
-	[SerializeField] private float velocity = 4.0f;
+	public float velocity = 4.0f;
 
 	[SerializeField] private GameObject _colliders;
 	private Rigidbody2D _rigidbody;
@@ -38,14 +38,12 @@ public class BossScript : MonoBehaviour
 
 	private Vector2 previousPos;
 
-	private Vector3 defaultScale;
-
 	private Animator _animator;
 
 	[System.Serializable]private struct ProjectilePool { public string id; public ObjectPool pool; }
 	[SerializeField] private ProjectilePool[] projectilePools;
 
-	private Dictionary<string, ObjectPool> projectileDictionary;
+	public Dictionary<string, ObjectPool> projectileDictionary;
 
 	// Use this for initialization
 	private void Awake () 
@@ -72,9 +70,6 @@ public class BossScript : MonoBehaviour
 		_rigidbody = GetComponentInChildren<Rigidbody2D>();
 		if(_rigidbody == null)
 			Debug.LogWarning("BossScript.Awake: No Rigidbody found on " + transform.name + "!");
-
-		// Gets the default object scale.
-		defaultScale = transform.localScale;
 
 		// Initializes the boss health bar.
 		if(HUDController.instance != null)
@@ -144,8 +139,6 @@ public class BossScript : MonoBehaviour
 
 		Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
 
-		transform.localScale = defaultScale;
-
 		StopAllCoroutines();
 		if(DespawnBossProjectiles != null)
 			DespawnBossProjectiles();
@@ -211,7 +204,7 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	private void NextAction ()
+	public void NextAction ()
 	{
 
 		// Gets the action to be executed.
@@ -425,8 +418,6 @@ public class BossScript : MonoBehaviour
 
 		transform.position = new Vector3(phases[currentPhase].initialPosition.x, phases[currentPhase].initialPosition.y, 0);
 
-		transform.localScale = defaultScale;
-
 		currentPattern = phases[currentPhase].firstPattern;
 		
 		_animator.runtimeAnimatorController = phases[currentPhase].animationController;
@@ -456,364 +447,7 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	public IEnumerator ActionMove(BossMovement movement)
-	{
-
-		// Sets the movement animation.
-		if(_animator != null)
-			SetAnimation(movement.animations);
-
-		// Gets the 3D target position.
-		Vector3 targetPosition = new Vector3(movement.positionTarget.x, movement.positionTarget.y, 0);
-
-		// Move the boss to the target position.
-		while (Vector3.Distance(targetPosition, transform.position) > 0.05f) {			
-
-			// Moves to the target position.
-			transform.position = Vector3.MoveTowards(transform.position, targetPosition, velocity * movement.velocityModifier * Time.deltaTime);
-
-			yield return new WaitForEndOfFrame();
-
-		}
-
-		NextAction();
-
-	}
-
-	public void ActionAttack(BossAttack attack)
-	{
-
-		// Sets the animation for this attack.
-		if(_animator != null)
-			SetAnimation(attack.animations);
-
-		// Spawns all projectiles.
-		if(projectileDictionary.ContainsKey(attack.projectileId))
-			foreach(Vector2 spawn in attack.projectileSpawns)
-				projectileDictionary[attack.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
-		else
-			Debug.Log("BossScript.ActionAttack: Could not spawn projectile " + attack.projectileId + " because there is no ObjectPool with that id!");
-
-		NextAction();
-
-	}
-
-	public IEnumerator ActionAttackMove(BossAttackMove attackMove)
-	{
-
-		float timer = 0;
-
-		Vector3 originalPos = transform.position;
-		Vector3 targetPosition = new Vector3(attackMove.positionTarget.x, attackMove.positionTarget.y, 0);
-		Vector3 nextStep = transform.position;
-
-		int currentStep = 0;
-
-		// Moves the boss to the target position doing attack on the way.
-		while (Vector3.Distance(targetPosition, transform.position) > 0.05f) {
-
-			// Moves the Boss to the current step.
-			if(Vector3.Distance(nextStep, transform.position) > 0.05f)
-			{
-				// Plays the movementation animations.
-				if(_animator != null)
-					SetAnimation(attackMove.movementAnimations);
-
-				// Moves the boss.
-				transform.position = Vector3.MoveTowards(transform.position, nextStep, velocity * attackMove.velocityModifier * Time.deltaTime);
-
-			} 
-			else // Goes to the next step and realizes an attack.
-			{
-				
-				currentStep++;
-				nextStep = originalPos + ((targetPosition - originalPos) / attackMove.numberOfSteps) * currentStep;
-
-				if(currentStep != 1)
-				{
-					if(attackMove.stopBeforeAttack)
-					{
-						// Plays the idle animations and wait for some time.
-						if(_animator != null)
-							SetAnimation(attackMove.idleAnimations);
-						timer = 0;
-						while(timer < attackMove.idleTime) 
-						{
-							timer += Time.fixedDeltaTime;
-							yield return new WaitForFixedUpdate();
-						}
-					}
-
-					// Plays the attack animations.
-					if(_animator != null)
-						SetAnimation(attackMove.attackAnimations);
-
-					// Spawns all projectiles.
-					if(projectileDictionary.ContainsKey(attackMove.projectileId))
-						foreach(Vector2 spawn in attackMove.projectileSpawns)
-							projectileDictionary[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
-					else
-						Debug.Log("BossScript.ActionAttackMove: Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
-
-					yield return new WaitForEndOfFrame();
-
-					if(attackMove.stopAfterAttack)
-					{
-						// Plays the idle animations and wait for some time.
-						if(_animator != null)
-							SetAnimation(attackMove.idleAnimations);
-						timer = 0;
-						while(timer < attackMove.idleTime) 
-						{
-							timer += Time.fixedDeltaTime;
-							yield return new WaitForFixedUpdate();
-						}
-						
-					}
-				}
-			}
-
-			yield return new WaitForFixedUpdate();
-
-		}
-
-		// Does the last attack.
-		if(attackMove.stopBeforeAttack)
-		{
-			// Plays the idle animations and wait for some time.
-			if(_animator != null)
-				SetAnimation(attackMove.idleAnimations);
-			timer = 0;
-			while(timer < attackMove.idleTime) 
-			{
-				timer += Time.fixedDeltaTime;
-				yield return new WaitForFixedUpdate();
-			}
-		}
-
-		
-		if(_animator != null)
-			SetAnimation(attackMove.attackAnimations);
-
-		// Spawns all projectiles.
-		if(projectileDictionary.ContainsKey(attackMove.projectileId))
-			foreach(Vector2 spawn in attackMove.projectileSpawns)
-				projectileDictionary[attackMove.projectileId].Spawn(transform.position + new Vector3( spawn.x, spawn.y, 0), transform.rotation);
-		else
-			Debug.Log("BossScript.ActionAttackMove: Could not spawn projectile " + attackMove.projectileId + " because there is no ObjectPool with that id!");
-
-		yield return new WaitForEndOfFrame();
-
-		if(attackMove.stopAfterAttack)
-		{
-			// Plays the idle animations and wait for some time.
-			if(_animator != null)
-				SetAnimation(attackMove.idleAnimations);
-			timer = 0;
-			while(timer < attackMove.idleTime) 
-			{
-				timer += Time.fixedDeltaTime;
-				yield return new WaitForFixedUpdate();
-			}
-			
-		}
-
-		// Idles at the end of the action.
-		if(attackMove.idleAtEnd) 
-		{
-			if(_animator != null)
-			SetAnimation(attackMove.idleAnimations);
-
-			timer = 0;
-			while(timer < attackMove.idleTime) 
-			{
-				timer += Time.deltaTime;
-				yield return new WaitForEndOfFrame();
-			}
-		}		
-
-		NextAction();
-
-	}
-
-	public IEnumerator ActionIdle(BossIdle idle)
-	{
-
-		// Play the idle animation.
-		if(_animator != null)
-			SetAnimation(idle.animations);
-
-		// Idles for some time.
-		float timer = 0;
-		while(timer < idle.idleTime) 
-		{
-			timer += Time.fixedDeltaTime;
-			yield return new WaitForFixedUpdate();
-		}
-
-		NextAction();
-
-	}
-
-	public IEnumerator ActionTeleport (BossTeleport teleport)
-	{
-		float timer = 0;
-		if(teleport.teleportType == BossTeleport.TeleportType.AnimationThenTP)
-		{
-			// Plays the animation and idles.
-			if(_animator != null)
-				SetAnimation(teleport.animations);
-			while(timer < teleport.delay) 
-			{
-					timer += Time.fixedDeltaTime;
-				yield return new WaitForFixedUpdate();
-			}
-
-			// Them teleport.
-			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
-
-			NextAction();
-
-		}
-		else if(teleport.teleportType == BossTeleport.TeleportType.TPThenAnimation)
-		{			
-			
-			// Teleport.
-			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
-
-			// Them plays the animation and idles.
-			if(_animator != null)
-				SetAnimation(teleport.animations);
-			while(timer < teleport.delay) 
-			{
-					timer += Time.fixedDeltaTime;
-				yield return new WaitForFixedUpdate();
-			}
-
-			NextAction();
-
-		}
-		else
-		{
-			// Play the animations.
-			if(teleport.teleportType == BossTeleport.TeleportType.AnimatedTP)
-				if(_animator != null)
-					SetAnimation(teleport.animations);
-
-			// Teleports simultaneously.
-			transform.position = new Vector3(teleport.destination.x, teleport.destination.y, 0);
-
-			NextAction();
-		}
-	}
-
-	public IEnumerator ActionDash(BossDash dash) {
-
-		// Sets the charge animation.
-		if(_animator != null)
-			SetAnimation(dash.chargeAnimations);
-
-		// Plays the audio.
-		if(AudioController.instance != null)
-			if(dash.dashAudio != null)
-			AudioController.instance.Play(dash.dashAudio);
-
-		// Waits for the charging time.
-		float time = 0f;
-		while(time < dash.chargeTime)
-		{
-			time += Time.fixedDeltaTime;
-			yield return new WaitForFixedUpdate();
-		}
-
-		// Gets the 3D target position.
-		Vector2 dirVector;
-		if(Player.instance != null) {
-
-			// Sets the dash animation.
-			if(_animator != null)
-				SetAnimation(dash.dashAnimations);
-
-			dirVector = Player.instance.transform.position - transform.position;
-			dirVector.Normalize();
-
-			float accel = 0;
-
-			if(!dash.lookingRight && dirVector.x > 0)
-				transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-			else if(dash.lookingRight && dirVector.x < 0)
-				transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-			else
-				transform.localScale = defaultScale;
-
-			int bounces = 0;
-
-			// Used to guarantee that bounces can't be accounted 2 times because of physics limitations.
-			bool bounceLeft = false;
-			bool bounceRight = false;
-			bool bounceTop = false;
-			bool bounceBottom = false;
-
-			// Move the boss to the target position.
-			while (bounces < dash.bounceAmount) {			
-
-				// Moves to the target position.
-				if(bounces == 0)
-					accel += dash.aceleration * Time.deltaTime;
-				transform.Translate(dirVector * accel * Time.deltaTime);
-
-				yield return new WaitForEndOfFrame();
-
-				if(Mathf.Abs(transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(transform.position.y) > SceneSettings.instance.positionConstraints.y)
-				{
-
-					if(transform.position.x > SceneSettings.instance.positionConstraints.x && !bounceRight)
-					{
-						dirVector = new Vector2(-dirVector.x, dirVector.y);
-						
-						bounceLeft = false;
-						bounceRight = true;
-					}
-					else if(transform.position.x < -SceneSettings.instance.positionConstraints.x && !bounceLeft)
-					{
-						dirVector = new Vector2(-dirVector.x, dirVector.y);
-
-						bounceLeft = true;
-						bounceRight = false;
-					}
-
-					if(transform.position.y > SceneSettings.instance.positionConstraints.y && !bounceTop)
-					{
-						dirVector = new Vector2(dirVector.x, -dirVector.y);
-
-						bounceTop = true;
-						bounceBottom = false;
-					}
-					else if(transform.position.y < -SceneSettings.instance.positionConstraints.y && !bounceBottom)
-					{
-						dirVector = new Vector2(dirVector.x, -dirVector.y);
-
-						bounceTop = false;
-						bounceBottom = true;
-					}
-
-					bounces++;
-
-				}
-
-			}
-		}
-		else 
-		{
-			Debug.Log("BossScript.ActionDash: Player not found");
-		}
-
-		transform.localScale = defaultScale;
-		NextAction();
-
-	}
-
-	private void SetAnimation(List<AnimationSet> animations)
+	public void SetAnimation(List<AnimationSet> animations)
 	{
 
 		// Sets all animation parameters.

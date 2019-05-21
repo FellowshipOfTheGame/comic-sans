@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248264250629810}
   - component: {fileID: 61227167755142028}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: collider_l
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.65, y: 0}
+  m_Offset: {x: -5.25, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4483407057433372}
   - component: {fileID: 212923126779642734}
   - component: {fileID: 95696449747199376}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -250
   m_Sprite: {fileID: 21300000, guid: 87e946477c2922547a016f0c3db6e9fc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 4595673263808246}
   - component: {fileID: 212005150373734322}
   - component: {fileID: 95654759453557840}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -250
   m_Sprite: {fileID: 21300000, guid: 87e946477c2922547a016f0c3db6e9fc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4666852708678894}
   - component: {fileID: 61902211228302170}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: collider_t
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 5.6}
+  m_Offset: {x: 0, y: 5.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -411,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4907463830929856}
   - component: {fileID: 61842385724458252}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: collider_b
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -5.6}
+  m_Offset: {x: 0, y: -5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521406209063250}
   - component: {fileID: 61009426978808874}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: collider_r
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.65, y: 0}
+  m_Offset: {x: 5.25, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 4027690003233598}
   - component: {fileID: 212877214550733076}
   - component: {fileID: 95571943203023298}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -250
   m_Sprite: {fileID: 21300000, guid: 87e946477c2922547a016f0c3db6e9fc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 4031020240504350}
   - component: {fileID: 212762240792912948}
   - component: {fileID: 95738536505445810}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -250
   m_Sprite: {fileID: 21300000, guid: 87e946477c2922547a016f0c3db6e9fc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

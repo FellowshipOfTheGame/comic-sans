@@ -231,7 +231,7 @@ public class Player : MonoBehaviour {
 
         if(GameController.instance.currentGameState == GameController.GameState.Paused)
             GameController.instance.SetPause(false);
-        else
+        else if(GameController.instance.currentGameState == GameController.GameState.Play)
             GameController.instance.SetPause(true);
 
     }

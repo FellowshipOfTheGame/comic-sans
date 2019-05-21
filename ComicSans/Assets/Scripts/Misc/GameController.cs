@@ -74,6 +74,8 @@ public class GameController : MonoBehaviour {
 		SpawnPlayer();
 		currentGameState = GameState.Play;
 
+		SceneSettings.instance.OnReady();
+
 	}
 
 	private void SpawnPlayer()
@@ -199,11 +201,14 @@ public class GameController : MonoBehaviour {
 	public void RestartScene()
 	{
 
-		SceneSettings.instance.SpawnBoss();
 		Player.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 		Player.instance.gameObject.SetActive(true);
+
 		allowPlayerControl = true;
+
 		HUDController.instance.EnableHUD();
+
+		SceneSettings.instance.SpawnBoss();
 
 		currentGameState = GameState.Play;
 
