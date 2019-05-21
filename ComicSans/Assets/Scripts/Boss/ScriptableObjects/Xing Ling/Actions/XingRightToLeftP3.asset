@@ -4,34 +4,34 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51958cd68a45a4eba7295b60d23728, type: 3}
-  m_Name: PunkShotRightFromCenter
+  m_Name: XingRightToLeftP3
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  numberOfSteps: 4
-  positionTarget: {x: 5, y: 2.4}
+  numberOfSteps: 10
+  positionTarget: {x: -5, y: 2.4}
   velocityModifier: 2
   stopBeforeAttack: 0
-  stopAfterAttack: 1
-  idleTime: 0.5
-  projectileId: shot
+  stopAfterAttack: 0
+  idleTime: 0.2
+  projectileId: kunai
   projectileSpawns:
-  - {x: -0.75, y: -0.5}
+  - position: {x: 0, y: -1}
+    rotation: 0
   movementAnimations:
-  - name: Shot
-    value: 0
-  - name: Scream
+  - name: running
+    value: 2
+  - name: kunai
     value: 0
   idleAnimations:
-  - name: Shot
+  - name: kunai
     value: 0
-  - name: Scream
+  - name: running
     value: 0
-  attackAnimations:
-  - name: Shot
-    value: 1
+  attackAnimations: []
   idleAtEnd: 1

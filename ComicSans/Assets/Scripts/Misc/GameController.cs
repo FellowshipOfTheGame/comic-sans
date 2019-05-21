@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour {
 	void Awake()
 	{
 
+		// Destroy this object if a previous instance already exists.
 		if(instance != null)
 		{
 			Destroy(gameObject);
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour {
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 
+		// Creates a singleton of this script.
 		instance = this;
 		DontDestroyOnLoad(gameObject);
 
@@ -68,8 +70,6 @@ public class GameController : MonoBehaviour {
 			return;
 
 		}
-
-		AudioController.instance.StopAllSounds();
 
 		SpawnPlayer();
 		currentGameState = GameState.Play;

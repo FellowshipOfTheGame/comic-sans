@@ -38,10 +38,13 @@ public class SceneSettings : MonoBehaviour {
 	public void OnReady()
 	{
 
-		if(!showHUD)
-			HUDController.instance.DisableHUD();
-		else
-			HUDController.instance.EnableHUD();
+		if(HUDController.instance != null)
+		{
+			if(!showHUD)
+				HUDController.instance.DisableHUD();
+			else
+				HUDController.instance.EnableHUD();
+		}
 
 		if(backgroundMusic != null)
 			AudioController.instance.Play(backgroundMusic);

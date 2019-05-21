@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51958cd68a45a4eba7295b60d23728, type: 3}
-  m_Name: XingLeftToCenter
+  m_Name: XingLeftToCenterP3
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  numberOfSteps: 2
+  numberOfSteps: 1
   positionTarget: {x: 0, y: 2.4}
   velocityModifier: 1.25
   stopBeforeAttack: 0
@@ -21,9 +21,12 @@ MonoBehaviour:
   idleTime: 0.35
   projectileId: kunai
   projectileSpawns:
-  - {x: -0.15, y: -0.5}
-  - {x: 0, y: -0.5}
-  - {x: 0.15, y: -0.5}
+  - position: {x: -0.15, y: -0.5}
+    rotation: -16.5
+  - position: {x: 0, y: -0.5}
+    rotation: 0
+  - position: {x: 0.15, y: -0.5}
+    rotation: 16.5
   movementAnimations:
   - name: running
     value: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioDictEntry {
 
@@ -23,7 +24,7 @@ public class AudioController : MonoBehaviour
 	void Awake () 
 	{
 		
-		// Destroy a previous instance of this script.
+		// Destroy this object if a previous instance already exists.
 		if(AudioController.instance != null) 
 		{
 			Destroy(gameObject);
@@ -33,7 +34,16 @@ public class AudioController : MonoBehaviour
 		// Creates a singleton of this script.
 		AudioController.instance = this;
 		DontDestroyOnLoad(gameObject);
+
+		SceneManager.sceneLoaded += OnSceneLoaded;
 		
+	}
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+
+		StopAllSounds();
+
 	}
 	
 	// Add an Audio to the dictionary.

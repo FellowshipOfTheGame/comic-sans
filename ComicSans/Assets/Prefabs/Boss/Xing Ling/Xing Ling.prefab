@@ -96,7 +96,6 @@ MonoBehaviour:
     pool: {fileID: 114746570819848080}
   - id: Shuriken
     pool: {fileID: 114955374197276886}
-  pooledObjects: []
 --- !u!50 &50495388990375424
 Rigidbody2D:
   serializedVersion: 4
@@ -327,7 +326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1647536783989042, guid: 5d64625d55ed53144b95747f4c84ba52, type: 3}
   isPermanentPool: 0
-  isBossPool: 1
   initialObjectInstances: 1
   maxObjectInstances: 2
   currentObjectInstances: 0
@@ -377,7 +375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseObject: {fileID: 1527257963869028, guid: 11d18e97f950f4747be1778da84754fb, type: 3}
   isPermanentPool: 0
-  isBossPool: 1
   initialObjectInstances: 14
   maxObjectInstances: 14
   currentObjectInstances: 0
@@ -496,9 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseObject: {fileID: 1895834304593568, guid: fb84967f4fa4ff64ab015cffa486f9fb, type: 3}
+  baseObject: {fileID: 1895834304593568, guid: e417003b63d05ed4c8d23ecdf3c9c1a7, type: 3}
   isPermanentPool: 0
-  isBossPool: 1
   initialObjectInstances: 12
   maxObjectInstances: 12
   currentObjectInstances: 0

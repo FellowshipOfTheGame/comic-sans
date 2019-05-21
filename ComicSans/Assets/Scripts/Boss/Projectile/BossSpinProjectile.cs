@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Boss/Xing Ling/Leque")]
-public class Leque : BossProjectileBase {
+[AddComponentMenu("Scripts/Projectiles/Boss/Spin")]
+public class BossSpinProjectile : BossProjectileBase {
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float width;
     [SerializeField] private float height;
-    [SerializeField] private float center_x;
-    [SerializeField] private float center_y;
+    [SerializeField] private Vector2 center;
 
     protected override void OnEnable()
     {
@@ -21,12 +20,12 @@ public class Leque : BossProjectileBase {
     
     IEnumerator Spining()
     {
-        float timer = 0;
+        float angle = 0;
 
-        while(timer < 2 * Mathf.PI)
+        while(angle < 2 * Mathf.PI)
         { 
-            timer += Time.fixedDeltaTime * speed;
-            transform.position = new Vector3(Mathf.Cos(timer+Mathf.PI/2) * width + center_x, Mathf.Sin(timer+Mathf.PI/2) * height + center_y, 0);
+            angle += Time.fixedDeltaTime * speed;
+            transform.position = new Vector3(Mathf.Cos(angle+Mathf.PI/2) * width + center.x, Mathf.Sin(angle+Mathf.PI/2) * height + center.y, 0);
             yield return new WaitForFixedUpdate();
         }
 

@@ -59,7 +59,7 @@ public class SimpleProjectile : ProjectileBase {
 		}
 
 		_renderer.enabled = true;
-		_rigidbody.velocity = Vector3.up * velocity;
+		_rigidbody.velocity = transform.up * velocity;
 
 		if(origin != null)
 			transform.SetParent(null);

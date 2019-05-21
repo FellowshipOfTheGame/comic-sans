@@ -26,25 +26,30 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 ## SHORTERM:
 
+- [ ] Better indicate some Boss attacks so Players can't die without knowing what was coming.
+- [ ] Add sound tagging system to AudioController to better control sounds.
+- [ ] Make menus work with keyboard and controller.
+- [ ] Make the game abble to be played with touch.
+- [ ] Ensure controller works properly.
+
+## LONGTERM:
+
+- [ ] Link Action transition with animations. (?)
+- [ ] Better integrate everything using events. (?)
+- [ ] Custom loading screens to each scene. (?)
+
+# DONE:
+
 - [x] Add music to level selection room.
 - [x] Fix Kunais with wrong rotation.
 - [x] Carrot Pool has been remvoed from isBossPool in order to temporaly fix a bug with carrots on the second phase. Also player collider is now being disabled when Boss is defeated so the Player can't be hit by a carrot. Find a more permanet fix and revert this changes.
 - [x] It's possible to win and lose at the same time.
 - [x] Fix Player being able to lose 2 lifes when hit by more than one projectile at the same time.
-- [ ] Better indicate some Boss attacks so Players can't die without knowing what was coming.
-
-## LONGTERM:
-
+- [X] Make shot button a toggle.
+- [X] Move some values to SceneSettings.
 - [x] Rebuild audio system.
 - [X] Improve Boss action system.
-- [ ] Link Action transition with animations. (?)
-- [ ] Better integrate everything using events. (?)
-- [X] Move some values to SceneSettings.
-- [ ] Make menus work with keyboard and controller.
-- [ ] Ensure controller works properly.
-- [X] Make shot button a toggle.
-- [ ] Make the game abble to be played with touch. (?)
-
+  
 ---
 
 ## The following sound effects where used on the game:

@@ -19,6 +19,9 @@ public class Menu : MonoBehaviour {
     void Start()
     {
         GetVolume();
+
+        SceneSettings.instance.OnReady();
+        
     }
 
     public void Play()

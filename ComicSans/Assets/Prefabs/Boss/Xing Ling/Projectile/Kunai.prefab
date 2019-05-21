@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4275946624131284}
   - component: {fileID: 50476202387879480}
   - component: {fileID: 70455370798157424}
-  - component: {fileID: 114860717275737328}
+  - component: {fileID: 1363871844523304120}
   m_Layer: 11
-  m_Name: Kunai
+  m_Name: Kunai 1
   m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &114860717275737328
+--- !u!114 &1363871844523304120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,15 +80,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895834304593568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66df1e57db70f74b82f44268b6fb489, type: 3}
+  m_Script: {fileID: 11500000, guid: 963fee2aee0ed4e4798760c23a9e6ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  positionConstraints: {x: 6, y: 5}
   projectileAudio: {fileID: 11400000, guid: 099cc440366d55342a72f01e9a2f3e02, type: 2}
-  rb: {fileID: 50476202387879480}
-  speed: 8
-  Bossa: {fileID: 0}
+  velocity: -8
+  delayToAppear: 0
 --- !u!1 &1986010017774328
 GameObject:
   m_ObjectHideFlags: 0

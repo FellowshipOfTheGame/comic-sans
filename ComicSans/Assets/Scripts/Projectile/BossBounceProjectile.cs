@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Boss/Xing Ling/Shuriken")]
-public class Shuriken : BossProjectileBase{
+[AddComponentMenu("Scripts/Projectiles/Boss/Bounce")]
+public class BossBounceProjectile : BossProjectileBase{
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private Rigidbody2D rb;

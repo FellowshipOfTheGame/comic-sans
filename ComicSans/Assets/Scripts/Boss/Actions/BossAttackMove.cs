@@ -23,7 +23,7 @@ public class BossAttackMove : BossAction {
     [Tooltip("The id of the projectile on the Boss projectilePools.")]
     public string projectileId;
     [Tooltip("A projectile will be spawned in each projectileSpawn position relative to the Boss.")]
-    public List<Vector2> projectileSpawns;
+    public List<ProjectileSpawn> projectileSpawns;
 
     [Tooltip("List of parameters (int) to be set on the Boss animator during movimentation.")]
     public List<AnimationSet> movementAnimations;
@@ -90,8 +90,8 @@ public class BossAttackMove : BossAction {
 
 					// Spawns all projectiles.
 					if(caller.projectileDictionary.ContainsKey(projectileId))
-						foreach(Vector2 spawn in projectileSpawns)
-							caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.x, spawn.y, 0), caller.transform.rotation);
+						foreach(ProjectileSpawn spawn in projectileSpawns)
+							caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(new Vector3(0, 0, spawn.rotation)));
 					else
 						Debug.Log("BossAttackMove.AttackMove: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
 
@@ -135,8 +135,8 @@ public class BossAttackMove : BossAction {
 
 		// Spawns all projectiles.
 		if(caller.projectileDictionary.ContainsKey(projectileId))
-			foreach(Vector2 spawn in projectileSpawns)
-				caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.x, spawn.y, 0), caller.transform.rotation);
+			foreach(ProjectileSpawn spawn in projectileSpawns)
+				caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(new Vector3(0, 0, spawn.rotation)));
 		else
 			Debug.Log("BossAttackMove.AttackMove: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
 

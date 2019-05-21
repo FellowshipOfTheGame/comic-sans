@@ -10,10 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ac6d92598425b749a828243febafd5c, type: 3}
-  m_Name: PunkScream
+  m_Name: ShurikenStandOriginal
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: scream
+  projectileId: Shuriken
   projectileSpawns:
-  - {x: 0, y: -2.4}
+  - position: {x: -1, y: -1}
+    rotation: 0
+  - position: {x: 1, y: -1}
+    rotation: 0
+  - position: {x: -0.5, y: -1}
+    rotation: 0
+  - position: {x: 0.5, y: -1}
+    rotation: 0
   animations: []
