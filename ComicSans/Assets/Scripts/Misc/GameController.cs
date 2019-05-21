@@ -50,13 +50,6 @@ public class GameController : MonoBehaviour {
 
 		SceneManager.sceneLoaded += OnSceneLoaded;
 
-		if(Player.instance == null)
-		{
-			GameObject _player = Instantiate(playerSettings.prefab, playerSettings.spawnPoint, new Quaternion());
-			DontDestroyOnLoad(_player);
-			_player.SetActive(true);
-		}
-
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -93,13 +86,22 @@ public class GameController : MonoBehaviour {
 	private void SpawnPlayer()
 	{
 
-		if(Player.instance.gameObject.activeSelf)
-			Player.instance.OnEnable();
-		else
-			Player.instance.gameObject.SetActive(true);
+		if(Player.instance == null)
+		{
+			
+			GameObject _player = Instantiate(playerSettings.prefab, playerSettings.spawnPoint, new Quaternion());
+			DontDestroyOnLoad(_player);
 
-		Player.instance.transform.position = playerSettings.spawnPoint;
+		} else {
 
+			if(Player.instance.gameObject.activeSelf)
+				Player.instance.OnEnable();
+			else
+				Player.instance.gameObject.SetActive(true);
+
+			Player.instance.transform.position = playerSettings.spawnPoint;
+
+		}
 	}
 
 	public void SetPause(bool state) {

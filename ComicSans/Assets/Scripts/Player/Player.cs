@@ -9,9 +9,12 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
-	private Animator _animator;
+	private InputManager _input;
+
     private Rigidbody2D _rigidbody;
     private Collider2D _collider;
+
+	private Animator _animator;
     private SpriteRenderer _renderer;
 
     private bool invincible = false;
@@ -56,11 +59,16 @@ public class Player : MonoBehaviour {
     [System.Serializable]
     private class Shooting
     {
+        public bool isShooting = false;
+
         public float delay = 0.1f;
         public ObjectPool bulletPool;
         [HideInInspector] public Coroutine ShootingCoroutine;
     }
     [SerializeField] private Shooting shooting;
+
+    // Stores if input events are setup on InputManager.
+    private bool inputEventsOk = false;
 
     // Use this for initialization
 	void Awake () {
@@ -73,40 +81,77 @@ public class Player : MonoBehaviour {
 
 		instance = this;
 
-		_animator = GetComponentInChildren<Animator>();
-		if(_animator == null)
-			Debug.Log("Player.Start: No Animator found on player!");
+		// Gets the InputManager of the Player.
+        _input = GetComponentInChildren<InputManager>();    
 
-
+        // Gets the RigidBody of the Player.
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
-        if(_animator == null)
-			Debug.Log("Player.Start: No Rigidbody2D found on player!");
 
-        _collider = GetComponentInChildren<Collider2D>();
-        if(_animator == null)
-			Debug.Log("Player.Start: No Collider2D found on player!");
+        // Gets the Collider of the Player.
+        _collider = GetComponentInChildren<Collider2D>();   
 
+        // Gets the Animator of the Player.
+		_animator = GetComponentInChildren<Animator>();
+
+        // Gets the SpriteRenderer of the Player.
         _renderer = GetComponentInChildren<SpriteRenderer>();
-        if(_animator == null)
-			Debug.Log("Player.Start: No SpriteRenderer found on player!");
 
 	}
 
     public void OnEnable()
     {
 
-        _collider.enabled = true;
+        // Logs errors if some essential component is missing.
+        if(_input == null)
+			Debug.LogError("Player.OnEnable: No InputManager found on player!");
+        if(_rigidbody == null)
+			Debug.LogError("Player.OnEnable: No Rigidbody2D found on player!");
+        if(_collider == null)
+			Debug.LogError("Player.OnEnable: No Collider2D found on player!");
+        if(_renderer == null)
+			Debug.LogError("Player.OnEnable: No SpriteRenderer found on player!");
+        if(_animator == null)
+			Debug.LogError("Player.OnEnable: No Animator found on player!");
+        
 
-        health.Hp = 3;
+        _collider.enabled = true; // Guarantees the player collider is enabled.
+        health.Hp = 3; // Reset the player life.
 
+        // Guarantees the player is not shooting.
+        shooting.isShooting = false;
         if(shooting.ShootingCoroutine != null)
         {
             StopCoroutine(shooting.ShootingCoroutine);
             shooting.ShootingCoroutine = null; 
         }
+
+        // Adds the input events to the input manager.
+        if(_input != null && !inputEventsOk)
+        {
+            _input.OnShotDown += ToggleShooting;
+            _input.OnPauseDown += TogglePause;
+
+            inputEventsOk = true;
+        }
         
     }
 	
+
+    public void OnDisable()
+    {
+
+        // Removes the input events to the input manager.
+        if(_input != null)
+        {
+            _input.OnShotDown -= ToggleShooting;
+            _input.OnPauseDown -= TogglePause;
+
+            inputEventsOk = false;
+        }
+        
+    }
+
+
 	// Update is called once per frame
 	void Update () {
 
@@ -115,11 +160,12 @@ public class Player : MonoBehaviour {
             if(GameController.instance.currentGameState == GameController.GameState.Play || GameController.instance.currentGameState == GameController.GameState.Win)
             {
 
-                // Makes the player move.
+                // Makes the Player move.
                 Vector2 vel = new Vector2();
-                vel.x = (Input.GetAxisRaw("Horizontal"));
-                vel.y = Input.GetAxisRaw("Vertical");
-                vel.Normalize();
+                
+                vel.x = _input.xAxis;
+                vel.y = _input.yAxis;
+
                 _rigidbody.velocity = vel * speed;
 
                 // Handles player animation.
@@ -152,57 +198,40 @@ public class Player : MonoBehaviour {
                                                     Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
                                                     0);
                 }
-
-                if (Input.GetButton("Fire1"))
-                    if(shooting.ShootingCoroutine == null)
-                        shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
-                if (Input.GetButtonUp("Fire1"))
-                {
-                    if(shooting.ShootingCoroutine != null)
-                    {
-                        StopCoroutine(shooting.ShootingCoroutine);
-                        shooting.ShootingCoroutine = null;
-                    }
-                }
-
-                // Pauses the game.
-                if(Input.GetButtonDown("Cancel"))
-                {
-                    GameController.instance.SetPause(true);
-
-                    // Used so the Player doesn't keep shooting after unpause if the the button is lifted.
-                    if(shooting.ShootingCoroutine != null)
-                    {
-                        StopCoroutine(shooting.ShootingCoroutine);
-                        shooting.ShootingCoroutine = null;
-                    }
-
-                }
-
-            } else {
-
-                // Unauses the game.
-                if(Input.GetButtonDown("Cancel"))
-                    GameController.instance.SetPause(false);
-
             }
-        } 
-        else
-        {
-
-            // Stop player movement.
-            _animator.SetBool("Mov_Horizontal", false);
-            _rigidbody.velocity = Vector3.zero;
-
-             // Used to stop player shooting.
-            if(shooting.ShootingCoroutine != null)
-            {
-                StopCoroutine(shooting.ShootingCoroutine);
-                shooting.ShootingCoroutine = null;
-            }
-
         }
 	}
+
+    // Makes the Player start and stop shooting.s
+    public void ToggleShooting() 
+    {
+
+        shooting.isShooting =! shooting.isShooting;
+
+        // Makes the Player shoot.
+        if (shooting.isShooting && shooting.ShootingCoroutine == null)
+        {
+                shooting.ShootingCoroutine = StartCoroutine(Shot(shooting.delay));
+
+        }
+        else if(shooting.ShootingCoroutine != null)
+        {
+                StopCoroutine(shooting.ShootingCoroutine);
+                shooting.ShootingCoroutine = null;
+        }
+
+    }
+
+    // Makes the Player pause and unpause the game.
+    public void TogglePause()
+    {
+
+        if(GameController.instance.currentGameState == GameController.GameState.Paused)
+            GameController.instance.SetPause(false);
+        else
+            GameController.instance.SetPause(true);
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
