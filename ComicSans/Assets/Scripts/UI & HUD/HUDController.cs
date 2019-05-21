@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[AddComponentMenu("Scripts/HUD Controller")]
+[AddComponentMenu("Scripts/Controller/HUD")]
 public class HUDController : MonoBehaviour {
 
 	public static HUDController instance;
@@ -59,7 +59,6 @@ public class HUDController : MonoBehaviour {
 			else
 				playerHealthIcons[i].enabled = false;
 		}
-
 	}
 
 	public void InitializeBossHUD(string bossName, int bossLife) 
@@ -70,7 +69,6 @@ public class HUDController : MonoBehaviour {
 			bossHealthBar.fillAmount = 1;
 			bossHealthBar.enabled = true;
 		}
-		
 
 		if(bossNameText != null)
 		{

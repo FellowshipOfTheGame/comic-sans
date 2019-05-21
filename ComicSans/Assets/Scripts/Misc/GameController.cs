@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[AddComponentMenu("Scripts/Controller/Game")]
 public class GameController : MonoBehaviour {
 
 	public static GameController instance;
 
-	[System.Serializable]
-	public class PlayerSettings
-	{
-		
-		public GameObject prefab;
-		public Vector2 spawnPoint;
-
-	}
-	public PlayerSettings playerSettings;
+	public GameObject playerPrefab;
 
 	private bool allowPlayerControl = true;
 	public bool AllowPlayerControl {
@@ -89,7 +82,7 @@ public class GameController : MonoBehaviour {
 		if(Player.instance == null)
 		{
 			
-			GameObject _player = Instantiate(playerSettings.prefab, playerSettings.spawnPoint, new Quaternion());
+			GameObject _player = Instantiate(playerPrefab, SceneSettings.instance.playerSpawnPoint, new Quaternion());
 			DontDestroyOnLoad(_player);
 
 		} else {
@@ -99,7 +92,7 @@ public class GameController : MonoBehaviour {
 			else
 				Player.instance.gameObject.SetActive(true);
 
-			Player.instance.transform.position = playerSettings.spawnPoint;
+			Player.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 
 		}
 	}
@@ -207,7 +200,7 @@ public class GameController : MonoBehaviour {
 	{
 
 		SceneSettings.instance.SpawnBoss();
-		Player.instance.transform.position = playerSettings.spawnPoint;
+		Player.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 		Player.instance.gameObject.SetActive(true);
 		allowPlayerControl = true;
 		HUDController.instance.EnableHUD();

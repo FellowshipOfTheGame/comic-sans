@@ -11,7 +11,7 @@ public class AudioDictEntry {
 
 }
 
-[AddComponentMenu("Scripts/Audio Controller")]
+[AddComponentMenu("Scripts/Controller/Audio")]
 public class AudioController : MonoBehaviour 
 {
 

@@ -10,9 +10,6 @@ public class BossDash : BossAction {
 
     [Tooltip("The time the Boss will wait before dashing.")]
 	public float chargeTime;
-	
-    [Tooltip("The bounds of the game area.")]
-    public Vector2 positionConstraints = new Vector2( 8, 8);
 
     [Tooltip("The amount of times the Boss will touch the wall before stopping.")]
     public int bounceAmount = 5;

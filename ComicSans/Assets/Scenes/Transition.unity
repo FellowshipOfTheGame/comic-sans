@@ -978,6 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 11400000, guid: af697e4698e19bc40830a594b09824e3, type: 2}
   showHUD: 0
+  playerSpawnPoint: {x: 0, y: -3.3}
   bossSettings:
     bossScene: 0
     boss: {fileID: 0}

@@ -21,6 +21,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
     - Ricardo Luiz
 
 ---
+
 # TO DO:
 
 ## SHORTERM:
@@ -36,13 +37,12 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 - [x] Rebuild audio system.
 - [ ] Improve Boss action system.
-- [ ] Link Action transition with animations?
-- [ ] Better integrate everything using events?
-- [ ] Improve GameController and SceneSettings iteration.
+- [ ] Link Action transition with animations. (?)
+- [ ] Better integrate everything using events. (?)
+- [X] Move some values to SceneSettings.
 - [ ] Make menus work with keyboard and controller.
-- [ ] Ensure contoller works properly.
-- [ ] Add ability to move with mouse. (?) 
-- [ ] Make shot button a toggle. (?)
+- [ ] Ensure controller works properly.
+- [X] Make shot button a toggle.
 - [ ] Make the game abble to be played with touch. (?)
 
 ---

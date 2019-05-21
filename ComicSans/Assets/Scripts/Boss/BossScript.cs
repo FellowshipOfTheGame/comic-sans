@@ -764,17 +764,17 @@ public class BossScript : MonoBehaviour
 
 				yield return new WaitForEndOfFrame();
 
-				if(Mathf.Abs(transform.position.x) > dash.positionConstraints.x || Mathf.Abs(transform.position.y) > dash.positionConstraints.y)
+				if(Mathf.Abs(transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(transform.position.y) > SceneSettings.instance.positionConstraints.y)
 				{
 
-					if(transform.position.x > dash.positionConstraints.x && !bounceRight)
+					if(transform.position.x > SceneSettings.instance.positionConstraints.x && !bounceRight)
 					{
 						dirVector = new Vector2(-dirVector.x, dirVector.y);
 						
 						bounceLeft = false;
 						bounceRight = true;
 					}
-					else if(transform.position.x < -dash.positionConstraints.x && !bounceLeft)
+					else if(transform.position.x < -SceneSettings.instance.positionConstraints.x && !bounceLeft)
 					{
 						dirVector = new Vector2(-dirVector.x, dirVector.y);
 
@@ -782,14 +782,14 @@ public class BossScript : MonoBehaviour
 						bounceRight = false;
 					}
 
-					if(transform.position.y > dash.positionConstraints.y && !bounceTop)
+					if(transform.position.y > SceneSettings.instance.positionConstraints.y && !bounceTop)
 					{
 						dirVector = new Vector2(dirVector.x, -dirVector.y);
 
 						bounceTop = true;
 						bounceBottom = false;
 					}
-					else if(transform.position.y < -dash.positionConstraints.y && !bounceBottom)
+					else if(transform.position.y < -SceneSettings.instance.positionConstraints.y && !bounceBottom)
 					{
 						dirVector = new Vector2(dirVector.x, -dirVector.y);
 

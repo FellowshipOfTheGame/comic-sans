@@ -5586,9 +5586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8157c575f3fed9e4c8524051a3d3c3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSettings:
-    prefab: {fileID: 1303615257074040, guid: 8fb3e166ca0adc941baad8e315a7bf33, type: 3}
-    spawnPoint: {x: 0, y: -3.3}
+  playerPrefab: {fileID: 1303615257074040, guid: 8fb3e166ca0adc941baad8e315a7bf33,
+    type: 3}
+  currentGameState: 0
   pauseMenu: {fileID: 1560079885267846}
   deathMenu: {fileID: 1477248190287730}
   victoryMenu: {fileID: 1670036201778180}

@@ -289,10 +289,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 11400000, guid: 506d2f02e4c0bfd4bb32ae73578f1276, type: 2}
   showHUD: 1
+  playerSpawnPoint: {x: 0, y: -3.3}
+  positionConstraints: {x: 6.25, y: 5}
   bossSettings:
     bossScene: 1
     boss: {fileID: 1220511299655858, guid: df3a38bf65fe55c4c95c1497351e8e14, type: 3}
-    spawm: {x: 0, y: 2.4}
+    spawn: {x: 0, y: 2.4}
 --- !u!4 &600394758
 Transform:
   m_ObjectHideFlags: 0

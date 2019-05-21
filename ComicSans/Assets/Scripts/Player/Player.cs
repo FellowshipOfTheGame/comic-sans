@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
-	private InputManager _input;
+	private InputController _input;
 
     private Rigidbody2D _rigidbody;
     private Collider2D _collider;
@@ -18,8 +18,6 @@ public class Player : MonoBehaviour {
     private SpriteRenderer _renderer;
 
     private bool invincible = false;
-
-    [SerializeField]private Vector2 positionConstraints = new Vector2( 8, 8);
     
     [SerializeField] private float speed;    
 
@@ -81,8 +79,8 @@ public class Player : MonoBehaviour {
 
 		instance = this;
 
-		// Gets the InputManager of the Player.
-        _input = GetComponentInChildren<InputManager>();    
+		// Gets the InputController of the Player.
+        _input = GetComponentInChildren<InputController>();    
 
         // Gets the RigidBody of the Player.
         _rigidbody = GetComponentInChildren<Rigidbody2D>();
@@ -192,10 +190,12 @@ public class Player : MonoBehaviour {
                 }
 
                 // Constraints the player to the player zone.
-                if(Mathf.Abs(transform.position.x) > positionConstraints.x || Mathf.Abs(transform.position.y) > positionConstraints.y)
+                if(Mathf.Abs(transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(transform.position.y) > SceneSettings.instance.positionConstraints.y)
                 {
-                    transform.position = new Vector3(Mathf.Clamp(transform.position.x, -positionConstraints.x, positionConstraints.x),
-                                                    Mathf.Clamp(transform.position.y, -positionConstraints.y, positionConstraints.y),
+                    transform.position = new Vector3(Mathf.Clamp(transform.position.x, 
+                                                    -SceneSettings.instance.positionConstraints.x, SceneSettings.instance.positionConstraints.x),
+                                                    Mathf.Clamp(transform.position.y, 
+                                                    -SceneSettings.instance.positionConstraints.y, SceneSettings.instance.positionConstraints.y),
                                                     0);
                 }
             }
@@ -205,6 +205,9 @@ public class Player : MonoBehaviour {
     // Makes the Player start and stop shooting.s
     public void ToggleShooting() 
     {
+
+        if(GameController.instance != null && GameController.instance.currentGameState == GameController.GameState.Paused) 
+            return;
 
         shooting.isShooting =! shooting.isShooting;
 
@@ -271,20 +274,28 @@ public class Player : MonoBehaviour {
 
     IEnumerator ResetPlayer()
     {
+
+        // Guarantees the Player is not moving.
+        _rigidbody.velocity = Vector2.zero;        
+
         float time = 0;
 
-        transform.position = GameController.instance.playerSettings.spawnPoint;
+        // Repositions the Player on the spawnPoint.
+        transform.position = SceneSettings.instance.playerSpawnPoint;
         
+        // Set invincibility animation.
         if(_animator != null)
             _animator.SetBool("Invencible", true);
         _collider.enabled = false;
 
+        // Makes the Player invincible for some time.
         while(time < health.invencibilityTime)
         {
             time += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
+        // Stops invincibility animation.
         if(_animator != null)
             _animator.SetBool("Invencible", false);
         _collider.enabled = true;

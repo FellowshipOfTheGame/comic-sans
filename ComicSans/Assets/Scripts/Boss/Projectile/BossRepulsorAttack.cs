@@ -5,8 +5,12 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Projectiles/Boss/Repulsor Attack")]
 public class BossRepulsorAttack : BossProjectileBase {
 
-	[SerializeField] private float strength;	
-	[SerializeField] private float duration;
+	[SerializeField] private float delay = 1f;
+	[SerializeField] private float strength = 3.5f;	
+	[SerializeField] private float duration = 9f;
+
+	[SerializeField] private GameObject damageObject;
+	[SerializeField] private GameObject predictObject;
 
 	protected override void OnEnable () {
 		
@@ -18,6 +22,20 @@ public class BossRepulsorAttack : BossProjectileBase {
 	IEnumerator Repulse(float strength) {
 
 		float time = 0;
+
+		while(time < delay) {
+
+			time += Time.fixedDeltaTime;
+
+			yield return new WaitForFixedUpdate();
+
+		}
+
+		if(predictObject != null) predictObject.SetActive(false);
+
+		time = 0;
+
+		if(damageObject != null) damageObject.SetActive(true);
 
 		if(Player.instance != null)
 		{
