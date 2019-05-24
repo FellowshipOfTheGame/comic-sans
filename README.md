@@ -28,12 +28,15 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 - [ ] Better indicate some Boss attacks so Players can't die without knowing what was coming.
 - [ ] Add sound tagging system to AudioController to better control sounds.
-- [ ] Make menus work with keyboard and controller.
-- [ ] Make the game abble to be played with touch.
-- [ ] Ensure controller works properly.
+- [ ] Make the game possible to be played with controller.
+- [ ] Make the game possible to be played with touch.
+- [ ] Add instructions screen on Menu.
 
 ## LONGTERM:
 
+- [ ] Add "bomb" system to game.
+- [ ] Make the Player gain abilities by defeating a Boss.
+- [ ] Finalize the new Boss.
 - [ ] Link Action transition with animations. (?)
 - [ ] Better integrate everything using events. (?)
 - [ ] Custom loading screens to each scene. (?)

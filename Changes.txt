@@ -1,0 +1,5 @@
+- Fixed Punk scream attack on wrong position.
+- Added version number to Menu (needs custom fonts to numbers and dots)
+- BUG: 
+|- Punk wall remains after phase change.
+|- Punk scream remains after death.
