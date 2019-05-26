@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Scream
   m_EditorClassIdentifier: 
   id: punk_scream
+  tag: Boss
   type: 0
   clips:
   - {fileID: 8300000, guid: 65d359fef2f29e94a90a2f8c1b396d7a, type: 3}

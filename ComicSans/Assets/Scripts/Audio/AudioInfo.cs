@@ -6,7 +6,11 @@ using UnityEngine;
 public class AudioInfo : ScriptableObject
 {
 
+	// Used to refer to a specific sound.
 	public string id;
+
+	// Used to mark a group of sounds.
+	public string tag;
 
 	// Sounds of the music type will not be paused and will be played automatically at start.
 	public enum Type { FX, Music };

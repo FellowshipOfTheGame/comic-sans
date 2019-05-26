@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SpitWall
   m_EditorClassIdentifier: 
   id: spit_wall
+  tag: Boss
   type: 0
   clips:
   - {fileID: 8300000, guid: bc53f3f9d9fced34e873f23c55f0f76c, type: 3}

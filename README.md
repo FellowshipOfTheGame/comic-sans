@@ -27,7 +27,8 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 ## SHORTERM:
 
 - [ ] Better indicate some Boss attacks so Players can't die without knowing what was coming.
-- [ ] Add sound tagging system to AudioController to better control sounds.
+- [X] Add sound tagging system to AudioController to better control sounds.
+- [ ] Improve prefab pooling system (take some aspects from the Audio system).
 - [ ] Make the game possible to be played with controller.
 - [ ] Make the game possible to be played with touch.
 - [ ] Add instructions screen on Menu.

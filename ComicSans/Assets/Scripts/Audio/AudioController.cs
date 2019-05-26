@@ -207,6 +207,23 @@ public class AudioController : MonoBehaviour
 
 	}
 
+	// Stops all sounds with an specific tag.
+	public void StopWithTag(string tag)
+	{
+		if(AudioDictionary == null || AudioDictionary.Count == 0) {
+			Debug.Log("AudioController.StopWithTag: Dictinary is empty!");
+			return;
+		}
+
+		foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary)
+		{
+			if(entry.Value.audio.tag == tag)
+				foreach(AudioSource source in entry.Value.sources)
+					source.Stop();
+		}
+
+	}
+
 	// Stops all sounds.
 	public void StopAllSounds()
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Boss/Boss")]
+[AddComponentMenu("Scripts/Boss")]
 public class BossScript : MonoBehaviour 
 {	
 
@@ -173,7 +173,11 @@ public class BossScript : MonoBehaviour
 
 	public void Exit()
 	{
+
+		// Stops the necessary Boss sounds.
+		AudioController.instance.StopWithTag("Boss");
 		Destroy(gameObject);
+
 	}
 
 	private void StartMovimentation()

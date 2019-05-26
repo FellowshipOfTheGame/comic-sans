@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shuriken
   m_EditorClassIdentifier: 
   id: shuriken
+  tag: Boss
   type: 0
   clips:
   - {fileID: 8300000, guid: 7120c74b1e6faf24e888d01629ffc164, type: 3}

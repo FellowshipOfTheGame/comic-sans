@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cags
   m_EditorClassIdentifier: 
   id: cags
+  tag: Boss
   type: 0
   clips:
   - {fileID: 8300000, guid: 66a388ad15520ed4c925281221454482, type: 3}
