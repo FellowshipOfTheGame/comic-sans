@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Appear Projectile")]
-public class BossAppearAttack : BossProjectileBase {
+public class BossAppearAttack : ProjectileBase {
 
-	[SerializeField] private float appearDelay;
-	[SerializeField] private float disappearDelay;
-	[SerializeField] private Collider2D _collider;
+	[SerializeField] private float appearDelay = 0.4f;
+	[SerializeField] private float disappearDelay = 0.6f;
+	[SerializeField] private Collider2D _collider = null;
 
 	private float timer;
 
@@ -16,7 +16,7 @@ public class BossAppearAttack : BossProjectileBase {
 
 		if(BossScript.instance == null)
         {
-            Debug.Log("BossProjectileBase.OnEnable: BossScript instance not found!");
+            Debug.Log("BossAppearAttack.OnEnable: BossScript instance not found!");
             return;
         }
 

@@ -5,11 +5,11 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Projectiles/Simple")]
 public class SimpleProjectile : ProjectileBase {
 
-	[SerializeField] private float velocity = 5f;
-	[SerializeField] private float delayToAppear = 0f;
+	[SerializeField] protected float velocity = 5f;
+	[SerializeField] protected float delayToAppear = 0f;
 
-	private Rigidbody2D _rigidbody;
-	private SpriteRenderer _renderer;
+	protected Rigidbody2D _rigidbody;
+	protected SpriteRenderer _renderer;
 
 	protected override void OnEnable () 
 	{

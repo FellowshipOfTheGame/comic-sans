@@ -65,7 +65,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4090357384278896}
-  - {fileID: 4921139372758036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,21 +80,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6f7c7c72a40f0488cf74ebfe503d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossName: <i>Xing Ling</i>
-  life: 3000
+  health:
+    parent: {fileID: 0}
+    maxHp: 3000
+    hp: 3000
+    invincibilityTime: 2
   velocity: 4
+  warmupAudio:
+  - {fileID: 11400000, guid: 099cc440366d55342a72f01e9a2f3e02, type: 2}
+  - {fileID: 11400000, guid: 7381c444aca6267438add265ff804a03, type: 2}
+  - {fileID: 11400000, guid: 54f7e7e7ebddeed44bce17687f14392a, type: 2}
+  warmupPools:
+  - {fileID: 11400000, guid: fd6f1989a64691f4d9d97dc536c9f7b2, type: 2}
+  - {fileID: 11400000, guid: 68c02cd59352dd146b135f065cde2a9c, type: 2}
+  - {fileID: 11400000, guid: ca35705dfea123b48bbb6ac923f3cfdd, type: 2}
+  id: xing
+  bossName: <i>Xing Ling</i>
   _colliders: {fileID: 1032877927398090}
   phases:
   - {fileID: 11400000, guid: 445b0723cc7bfd442836d1e7856dc6be, type: 2}
   - {fileID: 11400000, guid: 352692a28f85d92498443ce023de8b73, type: 2}
   - {fileID: 11400000, guid: ba233832df977b34295580476644ea93, type: 2}
-  projectilePools:
-  - id: kunai
-    pool: {fileID: 114808072736790454}
-  - id: leque
-    pool: {fileID: 114746570819848080}
-  - id: Shuriken
-    pool: {fileID: 114955374197276886}
 --- !u!50 &50495388990375424
 Rigidbody2D:
   serializedVersion: 4
@@ -248,137 +253,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1453059848155568
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4921139372758036}
-  m_Layer: 10
-  m_Name: projectile_pools
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4921139372758036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453059848155568}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4318812529470984}
-  - {fileID: 4099562586665046}
-  - {fileID: 4171323741803704}
-  m_Father: {fileID: 4346608491943124}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1480663239020480
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4099562586665046}
-  - component: {fileID: 114746570819848080}
-  m_Layer: 10
-  m_Name: leque
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4099562586665046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480663239020480}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4921139372758036}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114746570819848080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480663239020480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseObject: {fileID: 1647536783989042, guid: 5d64625d55ed53144b95747f4c84ba52, type: 3}
-  isPermanentPool: 0
-  initialObjectInstances: 1
-  maxObjectInstances: 2
-  currentObjectInstances: 0
-  Pool: []
---- !u!1 &1515721892786726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4171323741803704}
-  - component: {fileID: 114955374197276886}
-  m_Layer: 10
-  m_Name: shuriken
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4171323741803704
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515721892786726}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4921139372758036}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114955374197276886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515721892786726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseObject: {fileID: 1527257963869028, guid: 11d18e97f950f4747be1778da84754fb, type: 3}
-  isPermanentPool: 0
-  initialObjectInstances: 14
-  maxObjectInstances: 14
-  currentObjectInstances: 0
-  Pool: []
 --- !u!1 &1846462892497010
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,55 +324,6 @@ PolygonCollider2D:
       - {x: 0.098549664, y: -0.5085902}
       - {x: 0.4276737, y: 0.20502567}
       - {x: 0.32839864, y: 0.7092972}
---- !u!1 &1857841230082640
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4318812529470984}
-  - component: {fileID: 114808072736790454}
-  m_Layer: 10
-  m_Name: kunai
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4318812529470984
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857841230082640}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4921139372758036}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114808072736790454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857841230082640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseObject: {fileID: 1895834304593568, guid: e417003b63d05ed4c8d23ecdf3c9c1a7, type: 3}
-  isPermanentPool: 0
-  initialObjectInstances: 12
-  maxObjectInstances: 12
-  currentObjectInstances: 0
-  Pool: []
 --- !u!1 &1161918514951869638
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kunai
   m_EditorClassIdentifier: 
   id: kunai
-  tag: Boss
+  tag: xing
   type: 0
   clips:
   - {fileID: 8300000, guid: 00539000694626741885ddb1aa9872a4, type: 3}

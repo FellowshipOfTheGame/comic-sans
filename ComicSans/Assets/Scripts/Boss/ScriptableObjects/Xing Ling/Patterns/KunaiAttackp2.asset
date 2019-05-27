@@ -4,18 +4,19 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
-  m_Name: KunaiAttackp2
+  m_Name: KunaiAttackP2
   m_EditorClassIdentifier: 
-  chance: 100
-  nextPattern:
-  - {fileID: 11400000}
-  - {fileID: 11400000, guid: cc5d255dfb10c37458ed04f514956353, type: 2}
   actions:
-  - {fileID: 11400000, guid: b1c239892fb599e4eb1893a71b261dbe, type: 2}
-  - {fileID: 11400000, guid: bd833ea7f68fab84b97f42b3c32673f5, type: 2}
-  - {fileID: 11400000, guid: f26f33e45522bc04bbd717576faa4fe8, type: 2}
+  - {fileID: 11400000, guid: e03df4ec5f80c5046b9585a9671dfec1, type: 2}
+  - {fileID: 11400000, guid: 6b8c302aa672eba47aa71584dfcb919b, type: 2}
+  chance: 100
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: 0d6d06fbaee507046a15a53e3ba63259, type: 2}

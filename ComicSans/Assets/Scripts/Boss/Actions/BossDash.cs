@@ -53,12 +53,12 @@ public class BossDash : BossAction {
 
 		// Gets the 3D target position.
 		Vector2 dirVector;
-		if(Player.instance != null) {
+		if(PlayerScript.instance != null) {
 
 			// Sets the dash animation.
 			caller.SetAnimation(dashAnimations);
 
-			dirVector = Player.instance.transform.position - caller.transform.position;
+			dirVector = PlayerScript.instance.transform.position - caller.transform.position;
 			dirVector.Normalize();
 
 			float accel = 0;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   id: punk_dash
-  tag: Boss
+  tag: punk
   type: 0
   clips:
   - {fileID: 8300000, guid: 1ba0c9e29c3f4de428bca0a458b7ad64, type: 3}

@@ -19,7 +19,7 @@ MonoBehaviour:
   stopBeforeAttack: 0
   stopAfterAttack: 0
   idleTime: 1
-  projectileId: feces
+  projectilePool: {fileID: 11400000, guid: 858f7b410712ffa49b4a3a8f24ecf3c8, type: 2}
   projectileSpawns:
   - position: {x: 0, y: -1.8}
     rotation: 0

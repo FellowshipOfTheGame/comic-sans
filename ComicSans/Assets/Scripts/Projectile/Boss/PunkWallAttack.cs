@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Punk/Wall Attack")]
-public class PunkWallAttack : BossProjectileBase {
+public class PunkWallAttack : ProjectileBase {
 
 	[SerializeField] private float duration = 8.0f;
-	[SerializeField] private AudioInfo attackAudio;
 
-	void OnEnable()
+	protected override void OnEnable()
 	{
 
-		if(AudioController.instance != null)
-			AudioController.instance.Play(attackAudio);
+		base.OnEnable();
 
 		StartCoroutine(Disappear(duration));
 

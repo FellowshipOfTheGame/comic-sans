@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1040236289024410
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4580655885598830}
-  - component: {fileID: 114805810095057956}
-  m_Layer: 10
-  m_Name: tp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4580655885598830
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040236289024410}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4668412985328814}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114805810095057956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040236289024410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseObject: {fileID: 1121700847460506, guid: a1105e4486144ae46b5df7748cf73c75, type: 3}
-  isPermanentPool: 0
-  isBossPool: 1
-  initialObjectInstances: 1
-  maxObjectInstances: 3
-  currentObjectInstances: 0
-  Pool: []
 --- !u!1 &1045785664449398
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,39 +168,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
---- !u!1 &1370192372024966
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4668412985328814}
-  m_Layer: 10
-  m_Name: projectile_pools
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4668412985328814
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370192372024966}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4348515665920106}
-  - {fileID: 4940382633617582}
-  - {fileID: 4580655885598830}
-  m_Father: {fileID: 4993833562419202}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487613405768682
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,56 +261,6 @@ PolygonCollider2D:
       - {x: -0.060128286, y: 1.0481849}
       - {x: 0.28690565, y: 0.5359285}
       - {x: 0.10072559, y: 0.23899865}
---- !u!1 &1516600125519210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4348515665920106}
-  - component: {fileID: 114202297057954868}
-  m_Layer: 10
-  m_Name: carrot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4348515665920106
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516600125519210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4668412985328814}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114202297057954868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516600125519210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseObject: {fileID: 1690761952644898, guid: 8622888fcf8d0e2438ba2c813ba5c172, type: 3}
-  isPermanentPool: 0
-  isBossPool: 0
-  initialObjectInstances: 24
-  maxObjectInstances: 32
-  currentObjectInstances: 0
-  Pool: []
 --- !u!1 &1606642354038726
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,56 +386,6 @@ PolygonCollider2D:
       - {x: 0.8072572, y: -0.6808448}
       - {x: 0.8895529, y: -0.36320043}
       - {x: 0.79189146, y: -0.24082518}
---- !u!1 &1749028865568440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4940382633617582}
-  - component: {fileID: 114699895889273898}
-  m_Layer: 10
-  m_Name: feces
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4940382633617582
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1749028865568440}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4668412985328814}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114699895889273898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1749028865568440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9164ee633310398459b83030e3529a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseObject: {fileID: 1690761952644898, guid: 8cd474ca622ca6d48922da3ec801d929, type: 3}
-  isPermanentPool: 0
-  isBossPool: 1
-  initialObjectInstances: 8
-  maxObjectInstances: 12
-  currentObjectInstances: 0
-  Pool: []
 --- !u!1 &1865117937619210
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +606,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4796578653914442}
-  - {fileID: 4668412985328814}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -805,21 +621,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6f7c7c72a40f0488cf74ebfe503d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossName: C<b>u</b> eio
-  life: 4000
+  health:
+    parent: {fileID: 0}
+    maxHp: 4000
+    hp: 4000
+    invincibilityTime: 2
   velocity: 4
+  warmupAudio:
+  - {fileID: 11400000, guid: 779c499e64a2a2742ac9c59c0041e9e3, type: 2}
+  - {fileID: 11400000, guid: a67d1c7feff31d7418066ac9c50e7f17, type: 2}
+  - {fileID: 11400000, guid: ad381fd98e4ac4c40a0ec3539e9d6bfd, type: 2}
+  warmupPools:
+  - {fileID: 11400000, guid: a21a3b7694df95841a8df6fa4d2964e6, type: 2}
+  - {fileID: 11400000, guid: 858f7b410712ffa49b4a3a8f24ecf3c8, type: 2}
+  - {fileID: 11400000, guid: 15f31079975ed2a428b478f544cc8865, type: 2}
+  - {fileID: 11400000, guid: a891b09b8f5fc1f448dd812e1a929cff, type: 2}
+  id: cueio
+  bossName: C<b><size=52>u</size></b>eio
   _colliders: {fileID: 1606642354038726}
   phases:
   - {fileID: 11400000, guid: 4df9cff7c397eb241b8149539787e849, type: 2}
   - {fileID: 11400000, guid: 333d3c514c12d0d4fafb20b123ea27ed, type: 2}
-  projectilePools:
-  - id: carrot
-    pool: {fileID: 114202297057954868}
-  - id: feces
-    pool: {fileID: 114699895889273898}
-  - id: tp
-    pool: {fileID: 114805810095057956}
-  pooledObjects: []
 --- !u!50 &50547907271110350
 Rigidbody2D:
   serializedVersion: 4

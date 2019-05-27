@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Projectile Spawner")]
-public class BossProjectileSpawner : BossProjectileBase {
+public class BossProjectileSpawner : ProjectileBase {
 
-	[SerializeField] private int numberOfAttack;
-	[SerializeField] private float delay;
-	[SerializeField] private bool delayAtStart;
+	[SerializeField] private int numberOfAttack = 8;
+	[SerializeField] private float delay = 0.35f;
+	[SerializeField] private bool delayAtStart = false;
 
-	private int currentAttack;
+	private int currentAttack = 0;
 	private float timer = 0;
 
-	[SerializeField] ObjectPool projectilePool;
+	[SerializeField] PoolInfo projectilePool = null;
 
 	enum SpawnType { SinglePosition, MultiplePosition, PlayerPosition }
-	[SerializeField] private SpawnType spawnType;
-	[SerializeField] private Vector3[] spawnPositions;
+	[SerializeField] private SpawnType spawnType = SpawnType.PlayerPosition;
 
-	void OnEnable () 
+	[SerializeField] private List<ProjectileSpawn> spawnPositions = null;
+
+	protected override void OnEnable () 
 	{
 
 		currentAttack = 0;
+		
 		if(!delayAtStart)
 			timer = delay + 1;
 
@@ -38,6 +40,9 @@ public class BossProjectileSpawner : BossProjectileBase {
 
 				currentAttack++;
 				timer = 0;
+
+				if(currentAttack > spawnPositions.Count)
+					currentAttack = 0;
 			}
 
 			timer += Time.deltaTime;
@@ -56,17 +61,17 @@ public class BossProjectileSpawner : BossProjectileBase {
 		
 		if(spawnType == SpawnType.SinglePosition) 
 		{
-			 projectilePool.Spawn(spawnPositions[0], new Quaternion());
+			PoolingController.instance.Spawn(projectilePool, spawnPositions[0].position, Quaternion.Euler(0, 0, spawnPositions[0].rotation));
 		} 
 		else if(spawnType == SpawnType.MultiplePosition) 
 		{
-			projectilePool.Spawn(spawnPositions[currentAttack], new Quaternion());
+			PoolingController.instance.Spawn(projectilePool, spawnPositions[currentAttack].position, Quaternion.Euler(0, 0, spawnPositions[currentAttack].rotation));
 		}
 		else
 		{
 				
-			if(Player.instance != null)
-				projectilePool.Spawn(Player.instance.transform.position, new Quaternion());
+			if(PlayerScript.instance != null)
+				PoolingController.instance.Spawn(projectilePool, PlayerScript.instance.transform.position, new Quaternion());
 			else
 				Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
 		}

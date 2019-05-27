@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Leque
   m_EditorClassIdentifier: 
   id: leque
-  tag: Boss
+  tag: xing
   type: 0
   clips:
   - {fileID: 8300000, guid: 5aa01e999f91bff40ad09f6c78fb8057, type: 3}

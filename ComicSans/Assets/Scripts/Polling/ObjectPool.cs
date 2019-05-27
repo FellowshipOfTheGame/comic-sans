@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 [AddComponentMenu("Scripts/Pooling/Object Pool")]
 public class ObjectPool : MonoBehaviour {
 
-	[SerializeField] private GameObject baseObject;
+	public string id;
 
-	[SerializeField] private bool isPermanentPool;
+	public string _tag;
+
+	public PoolInfo.Type type;
+
+	public GameObject baseObject;
 
 	public int initialObjectInstances = 8;
 	public int maxObjectInstances = 8;
@@ -16,15 +20,15 @@ public class ObjectPool : MonoBehaviour {
 
 	public List<GameObject> Pool;
 
-	void Start() 
+	public delegate void DespawnPool();
+	public DespawnPool DespawnPoolObjects;
+
+	public void Initialize() 
 	{
 
-		if(isPermanentPool)
-		{	
-			transform.SetParent(null);
-			DontDestroyOnLoad(gameObject);
-			SceneManager.sceneLoaded += OnSceneLoaded;
-		}
+		// Initializes an empty list of objects.
+		Pool = new List<GameObject>();
+		currentObjectInstances = 0;
 
 		// Creates the initial pool of objects.
 		for(int i = 0; i < initialObjectInstances; i++) 
@@ -36,7 +40,7 @@ public class ObjectPool : MonoBehaviour {
 				Pool.Add(new_poll_obj);
 			else
 			{
-				Debug.Log("ObjectPool.Start: Failed to instantiate a new instance of " + baseObject.name + "!");
+				Debug.Log("ObjectPool.Initialize: Failed to instantiate a new instance of " + baseObject.name + "!");
 				break;
 			}
 
@@ -93,20 +97,18 @@ public class ObjectPool : MonoBehaviour {
 
 		GameObject new_poll_obj = Instantiate(baseObject, position, rotation);
 		PooledObject script = new_poll_obj.GetComponent<PooledObject>();
-			
+
 		if(script != null)
 		{
+
+			DontDestroyOnLoad(new_poll_obj);
+
+			DespawnPoolObjects += script.Despawn;
 
 			currentObjectInstances++;
 
 			script.origin = this;
 			new_poll_obj.SetActive(false);
-
-			if(isPermanentPool)
-			{
-				DontDestroyOnLoad(new_poll_obj);
-				SceneManager.sceneLoaded += script.OnSceneLoaded;				
-			}
 
 			return new_poll_obj;
 
@@ -118,15 +120,19 @@ public class ObjectPool : MonoBehaviour {
 
 	}
 
-	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-	{
-		
-		if(scene.name == "Menu")
-		{
-			SceneManager.sceneLoaded -= OnSceneLoaded;	
-			Destroy(gameObject);
-			return;
-		}
+	protected void OnDestroy()
+    {
+        
+		PoolingController.instance.Remove(id);
 
-	}
+		if(DespawnPoolObjects != null)
+			DespawnPoolObjects();
+
+		while(Pool.Count > 0)
+		{
+			Destroy(Pool[0]);
+			Pool.RemoveAt(0);
+		}
+    }
+
 }

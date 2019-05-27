@@ -6,11 +6,11 @@ public class HUDController : MonoBehaviour {
 
 	public static HUDController instance;
 
-	[SerializeField] private GameObject HUDContainer;
+	[SerializeField] private GameObject HUDContainer = null;
 
-	[SerializeField] private Image[] playerHealthIcons;
-	[SerializeField] private Image bossHealthBar;
-	[SerializeField] private Text bossNameText;
+	[SerializeField] private Image[] playerHealthIcons = null;
+	[SerializeField] private Image bossHealthBar = null;
+	[SerializeField] private Text bossNameText = null;
 	
 
 	private int initialBossLife = 5000;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pawn
   m_EditorClassIdentifier: 
   id: pawn
-  tag: Boss
+  tag: cueio
   type: 0
   clips:
   - {fileID: 8300000, guid: 03f608cf2b21e5543b1ef01a90d2179e, type: 3}

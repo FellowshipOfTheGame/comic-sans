@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,7 +13,7 @@ MonoBehaviour:
   m_Name: PunkP3
   m_EditorClassIdentifier: 
   initialPosition: {x: 0, y: 2.4}
-  invincibilityDuration: 1
+  invincibilityMultiplier: 0.5
   animationController: {fileID: 9100000, guid: 17b3c9b6497e28f44a9435b8743f552a, type: 2}
   firstPattern: {fileID: 11400000, guid: 3805f8f52a1115646a40d5eea37090de, type: 2}
-  lifeToNextPhase: -1
+  healthToNextPhase: -1

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Repulsor Attack")]
-public class BossRepulsorAttack : BossProjectileBase {
+public class BossRepulsorAttack : ProjectileBase {
 
 	[SerializeField] private float delay = 1f;
 	[SerializeField] private float strength = 3.5f;	
 	[SerializeField] private float duration = 9f;
 
-	[SerializeField] private GameObject damageObject;
-	[SerializeField] private GameObject predictObject;
+	[SerializeField] private GameObject damageObject = null;
+	[SerializeField] private GameObject predictObject = null;
 
 	protected override void OnEnable () {
 		
@@ -22,8 +22,6 @@ public class BossRepulsorAttack : BossProjectileBase {
             Debug.Log("BossRepulsorAttack.OnEnable: BossScript instance not found!");
             return;
         }
-
-        BossScript.instance.DespawnBossProjectiles += Despawn;
 
 		if(projectileAudio != null)
 			AudioController.instance.Play(projectileAudio, delay);
@@ -50,10 +48,10 @@ public class BossRepulsorAttack : BossProjectileBase {
 
 		if(damageObject != null) damageObject.SetActive(true);
 
-		if(Player.instance != null)
+		if(PlayerScript.instance != null)
 		{
 
-			Transform playerTransform = Player.instance.transform;
+			Transform playerTransform = PlayerScript.instance.transform;
 
 			while(time < duration) 
 			{

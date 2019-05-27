@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PunkSpitDiag
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: diag
+  projectilePool: {fileID: 11400000, guid: cef3c7209e83b5c458050a671ac01b33, type: 2}
   projectileSpawns:
   - position: {x: 0, y: -2.4}
     rotation: 0

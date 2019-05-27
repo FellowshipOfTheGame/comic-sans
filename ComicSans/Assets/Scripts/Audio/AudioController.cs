@@ -53,13 +53,22 @@ public class AudioController : MonoBehaviour
 		if(AudioDictionary == null)
 			AudioDictionary = new Dictionary<string, AudioDictEntry>();
 
-		AudioDictEntry entry = new AudioDictEntry();
+		if(!AudioDictionary.ContainsKey(sound.id))
+		{
 
-		entry.audio = sound;
-		entry.currentSource = 0;
-		entry.sources = CreateAudioSources(sound);
+			AudioDictEntry entry = new AudioDictEntry();
 
-		AudioDictionary.Add(sound.id, entry);
+			entry.audio = sound;
+			entry.currentSource = 0;
+			entry.sources = CreateAudioSources(sound);
+
+			AudioDictionary.Add(sound.id, entry);
+
+		} 
+		else 
+		{
+			Debug.Log("AudioController.Add: Audio with id \"" + sound.id + "\" is already on the dictionary!");
+		}
 
 	}
 
@@ -121,7 +130,7 @@ public class AudioController : MonoBehaviour
 	{
 
 		if(AudioDictionary == null || AudioDictionary.Count == 0) {
-			Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
+			Debug.Log("AudioController.Play: Dictinary is empty!");
 			return;
 		}
 
@@ -190,7 +199,7 @@ public class AudioController : MonoBehaviour
 	{
 
 		if(AudioDictionary == null || AudioDictionary.Count == 0) {
-			Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
+			Debug.Log("AudioController.Stop: Dictinary is empty!");
 			return;
 		}
 
@@ -219,7 +228,8 @@ public class AudioController : MonoBehaviour
 		{
 			if(entry.Value.audio.tag == tag)
 				foreach(AudioSource source in entry.Value.sources)
-					source.Stop();
+					if(source != null)
+						source.Stop();
 		}
 
 	}

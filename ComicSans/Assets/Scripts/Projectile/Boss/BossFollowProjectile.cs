@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Follow")]
-public class BossFollowProjectile : BossProjectileBase {
+public class BossFollowProjectile : ProjectileBase {
 
 	public Rigidbody2D _rigidbody;
 	public float delay = 1.0f;
@@ -16,8 +16,8 @@ public class BossFollowProjectile : BossProjectileBase {
 		base.OnEnable();
 
 		GameObject target = null;
-		if(Player.instance != null)
-			target = Player.instance.gameObject;
+		if(PlayerScript.instance != null)
+			target = PlayerScript.instance.gameObject;
 			
 		if(target == null)
 			Debug.LogWarning("BossFollowProjectile.OnEnable: Player not found!");

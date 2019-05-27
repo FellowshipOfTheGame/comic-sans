@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CarrotLineLAttack
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: carrot
+  projectilePool: {fileID: 11400000, guid: a21a3b7694df95841a8df6fa4d2964e6, type: 2}
   projectileSpawns:
   - position: {x: 1.5, y: -0.2}
     rotation: 0

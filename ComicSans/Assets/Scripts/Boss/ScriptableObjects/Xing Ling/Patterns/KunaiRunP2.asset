@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: KunaiRunP2
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: eedc99f30511d1f4db2245bd55d864cd, type: 2}
+  - {fileID: 11400000, guid: b8fa8e59f499943459a57e3540357561, type: 2}
+  - {fileID: 11400000, guid: ed92d3ce3ad56694b975c7c70eb06b5f, type: 2}
+  chance: 100
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: 6d5cf45ff3eb61149b79251aa87477a8, type: 2}
+  - {fileID: 11400000, guid: cc5d255dfb10c37458ed04f514956353, type: 2}

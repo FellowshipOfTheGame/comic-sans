@@ -20,8 +20,8 @@ public class BossAttackMove : BossAction {
     [Tooltip("The amount of time the Boss will wait when idleing.")]
     public float idleTime;
 
-    [Tooltip("The id of the projectile on the Boss projectilePools.")]
-    public string projectileId;
+    [Tooltip("The projectile pool to spawn the projectile from.")]
+    public PoolInfo projectilePool;
     [Tooltip("A projectile will be spawned in each projectileSpawn position relative to the Boss.")]
     public List<ProjectileSpawn> projectileSpawns;
 
@@ -89,11 +89,8 @@ public class BossAttackMove : BossAction {
 					caller.SetAnimation(attackAnimations);
 
 					// Spawns all projectiles.
-					if(caller.projectileDictionary.ContainsKey(projectileId))
-						foreach(ProjectileSpawn spawn in projectileSpawns)
-							caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(new Vector3(0, 0, spawn.rotation)));
-					else
-						Debug.Log("BossAttackMove.AttackMove: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
+					foreach(ProjectileSpawn spawn in projectileSpawns)
+						PoolingController.instance.Spawn(projectilePool, caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(0, 0, spawn.rotation));
 
 					yield return new WaitForEndOfFrame();
 
@@ -134,11 +131,8 @@ public class BossAttackMove : BossAction {
 		caller.SetAnimation(attackAnimations);
 
 		// Spawns all projectiles.
-		if(caller.projectileDictionary.ContainsKey(projectileId))
-			foreach(ProjectileSpawn spawn in projectileSpawns)
-				caller.projectileDictionary[projectileId].Spawn(caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(new Vector3(0, 0, spawn.rotation)));
-		else
-			Debug.Log("BossAttackMove.AttackMove: Could not spawn projectile " + projectileId + " because there is no ObjectPool with that id!");
+		foreach(ProjectileSpawn spawn in projectileSpawns)
+			PoolingController.instance.Spawn(projectilePool, caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(0, 0, spawn.rotation));
 
 		yield return new WaitForEndOfFrame();
 

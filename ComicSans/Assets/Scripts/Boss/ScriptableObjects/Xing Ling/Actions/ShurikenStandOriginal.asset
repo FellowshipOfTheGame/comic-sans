@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShurikenStandOriginal
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: Shuriken
+  projectilePool: {fileID: 11400000, guid: ca35705dfea123b48bbb6ac923f3cfdd, type: 2}
   projectileSpawns:
   - position: {x: -1, y: -1}
     rotation: 0

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: TeleportAttack
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: tp
-  projectileSpawns2:
-  - {x: 0, y: 0}
+  projectilePool: {fileID: 11400000, guid: a891b09b8f5fc1f448dd812e1a929cff, type: 2}
   projectileSpawns:
   - position: {x: 0, y: 0}
     rotation: 0

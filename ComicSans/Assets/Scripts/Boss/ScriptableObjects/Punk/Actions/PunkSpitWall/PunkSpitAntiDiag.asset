@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PunkSpitAntiDiag
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: antiDiag
+  projectilePool: {fileID: 11400000, guid: 10fe0ba8af7736544a2d55c33b2dfcf2, type: 2}
   projectileSpawns:
   - position: {x: 0, y: -2.4}
     rotation: 0

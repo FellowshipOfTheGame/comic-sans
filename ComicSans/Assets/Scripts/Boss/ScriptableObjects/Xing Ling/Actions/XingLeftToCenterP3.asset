@@ -19,7 +19,7 @@ MonoBehaviour:
   stopBeforeAttack: 0
   stopAfterAttack: 1
   idleTime: 0.35
-  projectileId: kunai
+  projectilePool: {fileID: 11400000, guid: fd6f1989a64691f4d9d97dc536c9f7b2, type: 2}
   projectileSpawns:
   - position: {x: -0.15, y: -0.5}
     rotation: -16.5

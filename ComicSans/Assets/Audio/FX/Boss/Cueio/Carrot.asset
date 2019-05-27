@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   id: carrot
-  tag: Boss
+  tag: cueio
   type: 0
   clips:
   - {fileID: 8300000, guid: 36c57af7f46b39441aea08927c3b73e7, type: 3}

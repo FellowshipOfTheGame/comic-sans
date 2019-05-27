@@ -3,7 +3,7 @@
 [AddComponentMenu("Scripts/Scene/Portal")]
 public class ScenePortal : MonoBehaviour {
 
-	[SerializeField] private string sceneName;
+	[SerializeField] private string sceneName = "";
 
 	void OnTriggerEnter2D(Collider2D other)
 	{

@@ -84,12 +84,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  positionConstraints: {x: 10, y: 10}
   projectileAudio: {fileID: 11400000, guid: 54f7e7e7ebddeed44bce17687f14392a, type: 2}
-  speed: 3
-  rb: {fileID: 50785576847683446}
-  col_times: 3
-  walls: {x: 6, y: 5}
+  velocity: -4.5
+  delayToAppear: 0
+  bounceAmount: 3
 --- !u!1 &1777551008738242
 GameObject:
   m_ObjectHideFlags: 0

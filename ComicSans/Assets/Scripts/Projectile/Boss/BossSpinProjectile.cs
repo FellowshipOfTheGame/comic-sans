@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Scripts/Projectiles/Boss/Spin")]
-public class BossSpinProjectile : BossProjectileBase {
+public class BossSpinProjectile : ProjectileBase {
 
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float width;
-    [SerializeField] private float height;
-    [SerializeField] private Vector2 center;
+    [SerializeField] private float width = 3.5f;
+    [SerializeField] private float height = 4.3f;
+    [SerializeField] private Vector2 center = Vector2.zero;
 
     protected override void OnEnable()
     {

@@ -19,11 +19,11 @@ public class GameController : MonoBehaviour {
 	}
 
 	public enum GameState { Play, Paused, Win, Lose, WinScreen, LoseScreen }
-	public GameState currentGameState;
+	public GameState currentGameState = GameState.Play;
 
-	[SerializeField] private GameObject pauseMenu;
-	[SerializeField] private GameObject deathMenu;
-	[SerializeField] private GameObject victoryMenu;
+	[SerializeField] private GameObject pauseMenu = null;
+	[SerializeField] private GameObject deathMenu = null;
+	[SerializeField] private GameObject victoryMenu = null;
 
 	void Awake()
 	{
@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 
 			// Destroys the Player and GameController.
-			Destroy(Player.instance.gameObject);
+			Destroy(PlayerScript.instance.gameObject);
 			Destroy(gameObject);
 
 			return;
@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour {
 	private void SpawnPlayer()
 	{
 
-		if(Player.instance == null)
+		if(PlayerScript.instance == null)
 		{
 			
 			GameObject _player = Instantiate(playerPrefab, SceneSettings.instance.playerSpawnPoint, new Quaternion());
@@ -89,12 +89,12 @@ public class GameController : MonoBehaviour {
 
 		} else {
 
-			if(Player.instance.gameObject.activeSelf)
-				Player.instance.OnEnable();
+			if(PlayerScript.instance.gameObject.activeSelf)
+				PlayerScript.instance.Initialize();
 			else
-				Player.instance.gameObject.SetActive(true);
+				PlayerScript.instance.gameObject.SetActive(true);
 
-			Player.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
+			PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 
 		}
 	}
@@ -201,8 +201,8 @@ public class GameController : MonoBehaviour {
 	public void RestartScene()
 	{
 
-		Player.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
-		Player.instance.gameObject.SetActive(true);
+		PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
+		PlayerScript.instance.gameObject.SetActive(true);
 
 		allowPlayerControl = true;
 
@@ -212,11 +212,6 @@ public class GameController : MonoBehaviour {
 
 		currentGameState = GameState.Play;
 
-	}
-
-	public void QuitToMainMenu()
-	{
-		SceneManager.LoadSceneAsync("Menu");
 	}
 
 	public void LoadScene(string sceneName)

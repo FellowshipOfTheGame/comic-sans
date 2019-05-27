@@ -2,34 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Boss")]
-public class BossScript : MonoBehaviour 
-{	
-
-	public delegate void DespawnProjectile();
-	public DespawnProjectile DespawnBossProjectiles;
+[AddComponentMenu("Scripts/Entity/Boss")]
+public class BossScript : EntityScript 
+{
 
 	public static BossScript instance;
 
+	public string id;
+
 	public string bossName;
 
-	[SerializeField] private int life = 4000;
-	private int Life 
-	{
-		get { return life; }
-		set 
-		{
-			if(value < 0) life = 0; 
-			else life = value; 
-		}
-	}
+	[SerializeField] private GameObject _colliders = null;
+	private Rigidbody2D _rigidbody = null;
 
-	public float velocity = 4.0f;
-
-	[SerializeField] private GameObject _colliders;
-	private Rigidbody2D _rigidbody;
-
-	[SerializeField] private List<BossPhase> phases;
+	[SerializeField] private List<BossPhase> phases = null;
 	private int currentPhase = 0;
 
 	private BossPattern currentPattern;
@@ -40,13 +26,8 @@ public class BossScript : MonoBehaviour
 
 	private Animator _animator;
 
-	[System.Serializable]private struct ProjectilePool { public string id; public ObjectPool pool; }
-	[SerializeField] private ProjectilePool[] projectilePools;
-
-	public Dictionary<string, ObjectPool> projectileDictionary;
-
 	// Use this for initialization
-	private void Awake () 
+	protected override void Awake () 
 	{
 
 		if(instance != null)
@@ -56,6 +37,8 @@ public class BossScript : MonoBehaviour
 		}
 
 		instance = this;
+
+		base.Awake();
 
 		// Finds the boss Animator.
 		_animator = GetComponentInChildren<Animator>();
@@ -73,122 +56,24 @@ public class BossScript : MonoBehaviour
 
 		// Initializes the boss health bar.
 		if(HUDController.instance != null)
-			HUDController.instance.InitializeBossHUD(bossName, Life);
+			HUDController.instance.InitializeBossHUD(bossName, health.Hp);
 		else
 			Debug.LogWarning("BossScript.Awake: No HUDController found!");
 
-		// Creates a dictionary of projectile types and its respective pools.
-		BuildProjectileDictionary();
-
 		// Starts Boss movimentation.
-		StartMovimentation();		
+		Initialize();		
 
 	}
 
-	private void BuildProjectileDictionary()
-	{
-
-		projectileDictionary = new Dictionary<string, ObjectPool>();
-		for(int i = 0; i < projectilePools.Length; i++)
-			projectileDictionary.Add(projectilePools[i].id, projectilePools[i].pool);
-
-	}
-
-	private void OnCollisionEnter2D (Collision2D collision)
-	{
-
-		// If the boss has collided with a bullet deals damage to it.
-		if(collision.transform.tag == "Damage")
-			Damage(10);
-
-	}
-
-	private void Damage(int amount) 
-	{
-
-		if(GameController.instance.currentGameState != GameController.GameState.Play)
-			return;
-
-		Life-=amount;
-
-		if(HUDController.instance != null)
-			HUDController.instance.UpdateBossHealthBar(Life);
-		else
-			Debug.LogWarning("BossScript.Damage: No HUDController found!");
-
-		if(Life <= 0)
-		{
-			Die();
-			return;
-		}
-
-		if(Life < phases[currentPhase].lifeToNextPhase)
-		{
-			if(phases.Count > currentPhase + 1)
-				NextPhase();
-			else
-				Debug.Log("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
-		}
-
-	}
-
-	private void Die() 
-	{
-
-		GameController.instance.currentGameState = GameController.GameState.Win;
-
-		Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
-
-		StopAllCoroutines();
-		if(DespawnBossProjectiles != null)
-			DespawnBossProjectiles();
-		
-		if(_animator != null)
-			_animator.Play("Die", 0);
-
-		if(HUDController.instance != null)
-			HUDController.instance.DisableHUD();
-		else
-			Debug.LogWarning("BossScript.Die: No HUDController found!");
-
-		GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, true));
-
-	}
-
-	public void PlayerDie()
-	{
-
-		GameController.instance.currentGameState = GameController.GameState.Lose;
-
-		StopAllCoroutines();
-		if(DespawnBossProjectiles != null)
-			DespawnBossProjectiles();
-		
-		if(_animator != null)
-			_animator.Play("Win", 0);
-
-		GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, false));
-
-	}
-
-	public void Exit()
-	{
-
-		// Stops the necessary Boss sounds.
-		AudioController.instance.StopWithTag("Boss");
-		Destroy(gameObject);
-
-	}
-
-	private void StartMovimentation()
+	public void Initialize()
 	{
 
 		if(phases.Count < 1) {
-			Debug.LogError("BossScript.StartMovimentation " + transform.name + " has no phases!");
+			Debug.LogError("BossScript.Initialize " + transform.name + " has no phases!");
 			return;
 		}
 
-		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
+		StartCoroutine(Reset(phases[currentPhase].invincibilityMultiplier));
 
 		if(_animator != null)
 			_animator.runtimeAnimatorController = phases[currentPhase].animationController;
@@ -196,7 +81,7 @@ public class BossScript : MonoBehaviour
 		// Initializes the boss movement pattern.
 		if(phases[currentPhase].firstPattern == null)
 		{
-			Debug.Log("BossScript.StartMovimentation: " + transform.name + "'s current phase has no first pattern.");
+			Debug.Log("BossScript.Initialize: " + transform.name + "'s current phase has no first pattern.");
 			return;
 		}
 		currentPattern = phases[currentPhase].firstPattern;
@@ -240,9 +125,9 @@ public class BossScript : MonoBehaviour
 				switch (pattern.trigger)
 				{
 					case BossPattern.Trigger.PlayerOnRight:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.x > transform.position.x)
+							if(PlayerScript.instance.transform.position.x > transform.position.x)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -254,9 +139,9 @@ public class BossScript : MonoBehaviour
 
 						break;
 					case BossPattern.Trigger.PlayerOnLeft:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.x < transform.position.x)
+							if(PlayerScript.instance.transform.position.x < transform.position.x)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -267,9 +152,9 @@ public class BossScript : MonoBehaviour
 							Debug.Log("BossScript.NextPattern: Player not found!");
 						break;
 					case BossPattern.Trigger.PlayerOnScreenRight:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.x >= 0)
+							if(PlayerScript.instance.transform.position.x >= 0)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -281,9 +166,9 @@ public class BossScript : MonoBehaviour
 
 						break;
 					case BossPattern.Trigger.PlayerOnScreenLeft:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.x < 0)
+							if(PlayerScript.instance.transform.position.x < 0)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -294,9 +179,9 @@ public class BossScript : MonoBehaviour
 							Debug.Log("BossScript.NextPattern: Player not found!");
 						break;
 					case BossPattern.Trigger.PlayerOnScreenTop:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.y >= 0)
+							if(PlayerScript.instance.transform.position.y >= 0)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -308,9 +193,9 @@ public class BossScript : MonoBehaviour
 
 						break;
 					case BossPattern.Trigger.PlayerOnScreenBottom:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.y < 0)
+							if(PlayerScript.instance.transform.position.y < 0)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -321,9 +206,9 @@ public class BossScript : MonoBehaviour
 							Debug.Log("BossScript.NextPattern: Player not found!");
 						break;
 					case BossPattern.Trigger.PlayerOnScreenDiagonalTop:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.y >= Player.instance.transform.position.x)
+							if(PlayerScript.instance.transform.position.y >= PlayerScript.instance.transform.position.x)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -332,9 +217,9 @@ public class BossScript : MonoBehaviour
 						}
 						break;
 					case BossPattern.Trigger.PlayerOnScreenDiagonalBottom:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.y < Player.instance.transform.position.x)
+							if(PlayerScript.instance.transform.position.y < PlayerScript.instance.transform.position.x)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -343,9 +228,9 @@ public class BossScript : MonoBehaviour
 						}
 						break;
 					case BossPattern.Trigger.PlayerOnScreenAntiDiagonalTop:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.y >= -Player.instance.transform.position.x)
+							if(PlayerScript.instance.transform.position.y >= -PlayerScript.instance.transform.position.x)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -354,9 +239,9 @@ public class BossScript : MonoBehaviour
 						}
 						break;
 					case BossPattern.Trigger.PlayerOnScreenAntiDiagonalBottom:
-						if(Player.instance != null)
+						if(PlayerScript.instance != null)
 						{
-							if(Player.instance.transform.position.y < -Player.instance.transform.position.x)
+							if(PlayerScript.instance.transform.position.y < -PlayerScript.instance.transform.position.x)
 							{
 								currentPattern = pattern;
 								currentAction = 0;
@@ -415,10 +300,9 @@ public class BossScript : MonoBehaviour
 		StopAllCoroutines();
 
 		// Despawns all previous phase projectiles.
-		if(DespawnBossProjectiles != null)
-			DespawnBossProjectiles();
+		PoolingController.instance.DespawnBossObjects();
 		
-		StartCoroutine(Invincible(phases[currentPhase].invincibilityDuration));
+		StartCoroutine(Reset(phases[currentPhase].invincibilityMultiplier));
 
 		transform.position = new Vector3(phases[currentPhase].initialPosition.x, phases[currentPhase].initialPosition.y, 0);
 
@@ -434,20 +318,93 @@ public class BossScript : MonoBehaviour
 
 	}
 
-	public IEnumerator Invincible(float duration)
+		protected override void Damage() 
+	{
+
+		if(GameController.instance.currentGameState != GameController.GameState.Play)
+			return;
+
+		health.Hp-=10;
+
+		if(health.Hp <= 0)
+		{
+			Die();
+			return;
+		}
+
+		if(health.Hp < phases[currentPhase].healthToNextPhase)
+		{
+			if(phases.Count > currentPhase + 1)
+				NextPhase();
+			else
+				Debug.Log("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
+		}
+
+	}
+
+	protected override IEnumerator Reset(float invincibilityMultiplier)
 	{
 
 		_colliders.SetActive(false);
 
 		// Idles for some time.
 		float timer = 0;
-		while(timer < duration) 
+		while(timer < health.invincibilityTime * invincibilityMultiplier) 
 		{
 			timer += Time.fixedDeltaTime;
 			yield return new WaitForFixedUpdate();
 		}
 
 		_colliders.SetActive(true);
+
+		
+
+	}
+
+	protected override void UpdateLifeHUD()
+	{
+		
+		if(HUDController.instance != null)
+            HUDController.instance.UpdateBossHealthBar(health.Hp);
+        else
+            Debug.LogWarning("PlayerScript.UpdateLifeHUD: No HUDController found!");
+
+	}
+
+	protected override void Die() 
+	{
+
+		GameController.instance.currentGameState = GameController.GameState.Win;
+
+		Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
+
+		StopAllCoroutines();
+		PoolingController.instance.DespawnBossObjects();
+		
+		if(_animator != null)
+			_animator.Play("Die", 0);
+
+		if(HUDController.instance != null)
+			HUDController.instance.DisableHUD();
+		else
+			Debug.LogWarning("BossScript.Die: No HUDController found!");
+
+		GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, true));
+
+	}
+
+	public void PlayerDie()
+	{
+
+		GameController.instance.currentGameState = GameController.GameState.Lose;
+
+		StopAllCoroutines();
+		PoolingController.instance.DespawnBossObjects();
+		
+		if(_animator != null)
+			_animator.Play("Win", 0);
+
+		GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, false));
 
 	}
 
@@ -457,6 +414,17 @@ public class BossScript : MonoBehaviour
 		// Sets all animation parameters.
 		foreach (AnimationSet anim in animations)
 			_animator.SetInteger(anim.name, anim.value);
+
+	}
+
+	protected void OnDestroy()
+	{
+
+		// Stops the necessary Boss sounds  (must be marked with this script Boss "id").
+		AudioController.instance.StopWithTag(id);
+
+		// Destroys the pools generated by this Boss (must be marked with this script Boss "id").	
+		PoolingController.instance.DestroyWithTag(id);
 
 	}
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PunkSpitVert
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectileId: vert
+  projectilePool: {fileID: 11400000, guid: 4c7e722bf405f3048b6a3d5ff4f0bafe, type: 2}
   projectileSpawns:
   - position: {x: 0, y: -2.4}
     rotation: 0

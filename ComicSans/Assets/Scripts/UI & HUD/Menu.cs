@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour {
         public Slider gameVolume = null;
         public Slider musicVolume = null;
     }
-    [SerializeField] private Options options;
+    [SerializeField] private Options options = null;
     
 
     void Start()

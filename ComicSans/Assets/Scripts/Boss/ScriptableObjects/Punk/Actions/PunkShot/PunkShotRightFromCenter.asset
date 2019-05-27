@@ -19,7 +19,7 @@ MonoBehaviour:
   stopBeforeAttack: 0
   stopAfterAttack: 1
   idleTime: 0.5
-  projectileId: shot
+  projectilePool: {fileID: 11400000, guid: 4c7e722bf405f3048b6a3d5ff4f0bafe, type: 2}
   projectileSpawns:
   - position: {x: -0.75, y: -0.5}
     rotation: 0

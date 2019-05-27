@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spit
   m_EditorClassIdentifier: 
   id: spit
-  tag: Boss
+  tag: punk
   type: 0
   clips:
   - {fileID: 8300000, guid: 4c09060cbc2627f48a8656f423628ab2, type: 3}
