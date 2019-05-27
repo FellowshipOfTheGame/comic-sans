@@ -23,6 +23,9 @@ public class PlayerScript : EntityScript {
 
         public float delay = 0.1f;
         public PoolInfo bulletPool = null;
+
+        public ProjectileSpawn spawn = new ProjectileSpawn();
+
         [HideInInspector] public Coroutine ShootingCoroutine = null;
     }
     [SerializeField] private Shooting shooting = null;
@@ -173,7 +176,17 @@ public class PlayerScript : EntityScript {
         }
         else
         {
+            // Guarantees the Player is not moving.
             _rigidbody.velocity = Vector3.zero;
+
+            // Guarantees the Player is not shooting.
+            shooting.isShooting = false;
+            if(shooting.ShootingCoroutine != null)
+            {
+                StopCoroutine(shooting.ShootingCoroutine);
+                shooting.ShootingCoroutine = null; 
+            }
+
         }
 	}
 
@@ -181,8 +194,11 @@ public class PlayerScript : EntityScript {
     public void ToggleShooting() 
     {
 
-        if(GameController.instance != null && GameController.instance.currentGameState == GameController.GameState.Paused) 
+        if(GameController.instance != null && 
+        !(GameController.instance.currentGameState == GameController.GameState.Play || GameController.instance.currentGameState == GameController.GameState.Win))
+        { 
             return;
+        }
 
         shooting.isShooting =! shooting.isShooting;
 
@@ -282,7 +298,10 @@ public class PlayerScript : EntityScript {
         while(true)
         {
 
-            PoolingController.instance.Spawn(shooting.bulletPool, transform.position + new Vector3( 0, 1, 0), transform.rotation);
+            PoolingController.instance.Spawn(shooting.bulletPool, new Vector3(transform.position.x + shooting.spawn.position.x,
+                                                                              transform.position.y + shooting.spawn.position.y,
+                                                                              transform.position.z),
+                                                                              Quaternion.Euler(0, 0, shooting.spawn.rotation));
 
             float time = 0;
             while(time < delay)

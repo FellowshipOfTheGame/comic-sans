@@ -84,17 +84,15 @@
      <Compile Include="Assets\Scripts\Projectile\Boss\BossProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Projectile\Boss\BossRepulsorAttack.cs" />
      <Compile Include="Assets\Scripts\Projectile\Boss\BossSpinProjectile.cs" />
-     <Compile Include="Assets\Scripts\Projectile\Boss\PunkWallAttack.cs" />
      <Compile Include="Assets\Scripts\Projectile\ProjectileBase.cs" />
      <Compile Include="Assets\Scripts\Projectile\SimpleProjectile.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\HUDController.cs" />
      <Compile Include="Assets\Scripts\UI &amp; HUD\Menu.cs" />
-     <Compile Include="Assets\Scripts\UI &amp; HUD\Options_Menu.cs" />
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Users/Du/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/luise/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Users/Du/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/luise/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.ARModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>

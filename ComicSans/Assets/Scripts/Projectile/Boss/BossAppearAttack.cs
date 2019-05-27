@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Boss/Appear Projectile")]
+[AddComponentMenu("Scripts/Projectiles/Boss/Appear")]
 public class BossAppearAttack : ProjectileBase {
 
 	[SerializeField] private float appearDelay = 0.4f;
@@ -20,17 +20,20 @@ public class BossAppearAttack : ProjectileBase {
             return;
         }
 
-		_collider.enabled = false;
+		if(_collider != null)
+			_collider.enabled = false;
 		timer = 0;
 
 	}
 
-	void Update ()
+	protected override void FixedUpdate ()
 	{
 		
-		if(!_collider.enabled)
+		base.FixedUpdate();
+
+		if(_collider != null && !_collider.enabled)
 		{
-			timer += Time.deltaTime;
+			timer += Time.fixedDeltaTime;
 			if(timer >= appearDelay)
 			{
 				_collider.enabled = true;
@@ -41,13 +44,9 @@ public class BossAppearAttack : ProjectileBase {
 		}
 		else
 		{
-			timer += Time.deltaTime;
+			timer += Time.fixedDeltaTime;
 			if(timer >= disappearDelay)
-				if(origin != null)
-					Despawn();
-				else
-					Destroy(this.gameObject);
-			
+					Despawn();			
 		}
 	}
 }

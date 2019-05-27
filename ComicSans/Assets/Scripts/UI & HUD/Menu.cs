@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[AddComponentMenu("Scripts/Menu/Menu")]
+[AddComponentMenu("Scripts/Menu")]
 public class Menu : MonoBehaviour {
 
     [System.Serializable]
@@ -51,6 +51,9 @@ public class Menu : MonoBehaviour {
         PlayerPrefs.SetFloat("music_volume", options.musicVolume.value);
 
         AudioListener.volume = options.gameVolume.value;
+        
+        if(AudioController.instance != null)
+            AudioController.instance.UpdateMusicVolume();
 
     }
 

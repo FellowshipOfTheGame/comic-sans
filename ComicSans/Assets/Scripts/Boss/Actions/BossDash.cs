@@ -81,50 +81,54 @@ public class BossDash : BossAction {
 			// Move the boss to the target position.
 			while (bounces < bounceAmount) {			
 
-				// Moves to the target position.
-				if(bounces == 0)
-					accel += aceleration * Time.deltaTime;
-				caller.transform.Translate(dirVector * accel * Time.deltaTime);
 
-				yield return new WaitForEndOfFrame();
-
-				if(Mathf.Abs(caller.transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(caller.transform.position.y) > SceneSettings.instance.positionConstraints.y)
+				// Doesn't execute the code if time is stoped.
+				if(Time.timeScale != 0)
 				{
+					// Moves to the target position.
+					if(bounces == 0)
+						accel += aceleration * Time.deltaTime;
+					caller.transform.Translate(dirVector * accel * Time.fixedDeltaTime);
 
-					if(caller.transform.position.x > SceneSettings.instance.positionConstraints.x && !bounceRight)
+					yield return new WaitForFixedUpdate();
+
+					if(Mathf.Abs(caller.transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(caller.transform.position.y) > SceneSettings.instance.positionConstraints.y)
 					{
-						dirVector = new Vector2(-dirVector.x, dirVector.y);
-						
-						bounceLeft = false;
-						bounceRight = true;
+
+						if(caller.transform.position.x > SceneSettings.instance.positionConstraints.x && !bounceRight)
+						{
+							dirVector = new Vector2(-dirVector.x, dirVector.y);
+							
+							bounceLeft = false;
+							bounceRight = true;
+						}
+						else if(caller.transform.position.x < -SceneSettings.instance.positionConstraints.x && !bounceLeft)
+						{
+							dirVector = new Vector2(-dirVector.x, dirVector.y);
+
+							bounceLeft = true;
+							bounceRight = false;
+						}
+
+						if(caller.transform.position.y > SceneSettings.instance.positionConstraints.y && !bounceTop)
+						{
+							dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+							bounceTop = true;
+							bounceBottom = false;
+						}
+						else if(caller.transform.position.y < -SceneSettings.instance.positionConstraints.y && !bounceBottom)
+						{
+							dirVector = new Vector2(dirVector.x, -dirVector.y);
+
+							bounceTop = false;
+							bounceBottom = true;
+						}
+
+						bounces++;
+
 					}
-					else if(caller.transform.position.x < -SceneSettings.instance.positionConstraints.x && !bounceLeft)
-					{
-						dirVector = new Vector2(-dirVector.x, dirVector.y);
-
-						bounceLeft = true;
-						bounceRight = false;
-					}
-
-					if(caller.transform.position.y > SceneSettings.instance.positionConstraints.y && !bounceTop)
-					{
-						dirVector = new Vector2(dirVector.x, -dirVector.y);
-
-						bounceTop = true;
-						bounceBottom = false;
-					}
-					else if(caller.transform.position.y < -SceneSettings.instance.positionConstraints.y && !bounceBottom)
-					{
-						dirVector = new Vector2(dirVector.x, -dirVector.y);
-
-						bounceTop = false;
-						bounceBottom = true;
-					}
-
-					bounces++;
-
-				}
-
+				} else yield return new WaitForEndOfFrame();
 			}
 		}
 		else 

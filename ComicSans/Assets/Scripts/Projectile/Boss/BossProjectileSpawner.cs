@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Boss/Projectile Spawner")]
+[AddComponentMenu("Scripts/Projectiles/Boss/Spawner")]
 public class BossProjectileSpawner : ProjectileBase {
 
 	[SerializeField] private int numberOfAttack = 8;

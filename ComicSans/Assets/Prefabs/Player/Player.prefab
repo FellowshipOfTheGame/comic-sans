@@ -118,7 +118,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: 0.3}
+  m_Offset: {x: 0, y: 0.6}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!95 &95219514545264632
@@ -169,6 +169,7 @@ MonoBehaviour:
   health:
     parent: {fileID: 0}
     maxHp: 3
+    hp: 3
     invincibilityTime: 2
   velocity: 10
   warmupAudio:
@@ -179,3 +180,6 @@ MonoBehaviour:
     isShooting: 0
     delay: 0.1
     bulletPool: {fileID: 11400000, guid: 686c2bd2a359f114d9b16a9d5b1a4f79, type: 2}
+    spawn:
+      position: {x: 0, y: 1}
+      rotation: 0

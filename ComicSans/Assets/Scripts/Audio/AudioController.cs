@@ -277,4 +277,25 @@ public class AudioController : MonoBehaviour
 					source.UnPause();
 
 	}
+
+	// Updates the music volume with the modifier set in options.
+	public void UpdateMusicVolume()
+	{
+
+		if(AudioDictionary == null) return;
+
+		float volMultiplier = 1;
+		if(PlayerPrefs.HasKey("music_volume"))
+			volMultiplier = PlayerPrefs.GetFloat("music_volume");
+
+		foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary)
+			if(entry.Value.audio.type == AudioInfo.Type.Music)
+			{
+
+				foreach(AudioSource source in entry.Value.sources)
+					source.volume = entry.Value.audio.volume * volMultiplier;
+
+			}
+
+	}
 }

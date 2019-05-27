@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4920372326234100}
-  - component: {fileID: 114048326125063112}
+  - component: {fileID: -5237027759458679397}
   m_Layer: 11
   m_Name: WallSpawnerDiag
   m_TagString: Untagged
@@ -96,7 +96,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114048326125063112
+--- !u!114 &-5237027759458679397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,12 +105,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383175188569216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f884366bf372fdc45bc845c0fca13567, type: 3}
+  m_Script: {fileID: 11500000, guid: 72a71ed0e9429184fba6614d4d09403f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   projectileAudio: {fileID: 11400000, guid: e437ec7efb759ff4f993f3a4917c5487, type: 2}
-  duration: 11
+  appearDelay: 0
+  disappearDelay: 11
+  _collider: {fileID: 0}
 --- !u!1 &1692840945376856
 GameObject:
   m_ObjectHideFlags: 0

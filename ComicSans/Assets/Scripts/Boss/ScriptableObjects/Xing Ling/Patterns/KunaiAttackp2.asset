@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
-  m_Name: KunaiAttackP2
+  m_Name: KunaiAttackp2
   m_EditorClassIdentifier: 
   actions:
   - {fileID: 11400000, guid: e03df4ec5f80c5046b9585a9671dfec1, type: 2}
