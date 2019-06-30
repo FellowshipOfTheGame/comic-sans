@@ -198,8 +198,25 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	public void QuitToLobby(bool win)
+	{
+
+		string sceneName;
+
+		if(win)
+			sceneName = SceneSettings.instance.winLobbySceneName;
+		else
+			sceneName = SceneSettings.instance.loseLobbySceneName;
+
+		Debug.Log("GameController.QuitToLobby: Loading " + sceneName + "...");
+		SceneManager.LoadSceneAsync(sceneName);
+
+	}
+
 	public void RestartScene()
 	{
+
+		Debug.Log("GameController.RestartScene: Restarting...");
 
 		PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 		PlayerScript.instance.gameObject.SetActive(true);

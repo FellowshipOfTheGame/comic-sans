@@ -1,0 +1,9 @@
+- Fixed BossFollowProjectile using deltaTime instead of fixedDeltaTime (This made projectile velocity FPS dependant).
+- Setup the game to not run in background.
+- Fixed Punk Wall Attack audio not playing.
+- Reduced Kunai collider radius.
+- Reduced Player invincibility time.
+- Added a StartRoom Scene as the new start scene.
+- Now the player must defeat Cueio before going to the old Transition scene and access the other Bosses.
+- Added instructions at the background of the StartRoom.
+- Started adding Hero.

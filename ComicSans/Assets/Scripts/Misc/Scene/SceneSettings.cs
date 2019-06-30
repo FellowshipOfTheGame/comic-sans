@@ -23,6 +23,9 @@ public class SceneSettings : MonoBehaviour {
 	}
 	public BossSettings bossSettings;
 
+	public string loseLobbySceneName = "TransitionRoom";
+	public string winLobbySceneName = "TransitionRoom";
+
 	void Awake () 
 	{
 		

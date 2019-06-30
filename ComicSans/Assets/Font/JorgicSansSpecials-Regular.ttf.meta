@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 46e55fa533d30144ea9ab5bb3f81ba73
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jorgic Sans Specials
+  fontNames:
+  - Jorgic Sans Specials
+  - Calligraphr
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8106f9d2e12b1ca47900a71e83cbf63c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

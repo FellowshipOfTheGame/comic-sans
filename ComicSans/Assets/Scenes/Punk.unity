@@ -226,6 +226,8 @@ MonoBehaviour:
     bossScene: 1
     boss: {fileID: 1936587055363512, guid: 326bbfc3a46245f41b01189c5f38c121, type: 3}
     spawn: {x: 0, y: 2.4}
+  loseLobbySceneName: TransitionRoom
+  winLobbySceneName: TransitionRoom
 --- !u!4 &343194502
 Transform:
   m_ObjectHideFlags: 0

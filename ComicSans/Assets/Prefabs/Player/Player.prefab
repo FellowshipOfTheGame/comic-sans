@@ -170,7 +170,7 @@ MonoBehaviour:
     parent: {fileID: 0}
     maxHp: 3
     hp: 3
-    invincibilityTime: 2
+    invincibilityTime: 1.5
   velocity: 10
   warmupAudio:
   - {fileID: 11400000, guid: d3aa0992f63f22147bfded9f8b76cfe5, type: 2}

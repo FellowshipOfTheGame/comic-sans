@@ -637,7 +637,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15f31079975ed2a428b478f544cc8865, type: 2}
   - {fileID: 11400000, guid: a891b09b8f5fc1f448dd812e1a929cff, type: 2}
   id: cueio
-  bossName: C<b><size=48>u</size></b>eio
+  bossName: C<size=48><b>u</b></size>eio
   _colliders: {fileID: 1606642354038726}
   phases:
   - {fileID: 11400000, guid: 4df9cff7c397eb241b8149539787e849, type: 2}
