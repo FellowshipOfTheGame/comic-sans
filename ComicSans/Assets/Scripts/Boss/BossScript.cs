@@ -151,6 +151,19 @@ public class BossScript : EntityScript
 						else
 							Debug.Log("BossScript.NextPattern: Player not found!");
 						break;
+					case BossPattern.Trigger.PlayerOnTop:
+						if(PlayerScript.instance != null)
+						{
+							if(PlayerScript.instance.transform.position.y > transform.position.y)
+							{
+								currentPattern = pattern;
+								currentAction = 0;
+								return;
+							}
+						}
+						else
+							Debug.Log("BossScript.NextPattern: Player not found!");
+						break;
 					case BossPattern.Trigger.PlayerOnScreenRight:
 						if(PlayerScript.instance != null)
 						{

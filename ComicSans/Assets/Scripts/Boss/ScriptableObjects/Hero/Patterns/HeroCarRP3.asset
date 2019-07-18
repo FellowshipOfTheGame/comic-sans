@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: HeroCarRP3
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 891061d3e5b4bf34c9959f4baf1fb795, type: 2}
+  - {fileID: 11400000, guid: b285ecb96f5323f469abf76031fbfb20, type: 2}
+  - {fileID: 11400000, guid: 4286c00b92ee93a4fb910f0bc078b27d, type: 2}
+  - {fileID: 11400000, guid: 92d53352a3528dd40a48817d7ba682fb, type: 2}
+  - {fileID: 11400000, guid: 5f634c0e9bd46b54db697acfbbf33900, type: 2}
+  chance: 175
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: ed07c5c547027914d9f89a6a823cd391, type: 2}

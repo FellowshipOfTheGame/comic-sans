@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac6d92598425b749a828243febafd5c, type: 3}
+  m_Name: HeroCarL
+  m_EditorClassIdentifier: 
+  caller: {fileID: 0}
+  projectilePool: {fileID: 11400000, guid: a62ee37fb0ef590489d4067bb3482c29, type: 2}
+  projectileSpawns:
+  - position: {x: 4.2, y: 0}
+    rotation: 0
+  animations: []

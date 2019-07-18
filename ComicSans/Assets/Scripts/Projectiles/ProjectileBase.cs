@@ -5,6 +5,8 @@ using UnityEngine;
 [AddComponentMenu("Scripts/Projectiles/Base")]
 public class ProjectileBase : PooledObject {
 
+	[SerializeField] protected bool destroyOnContact = true;
+
 	public AudioInfo projectileAudio;
 
 	protected virtual void OnEnable () 
@@ -26,7 +28,8 @@ public class ProjectileBase : PooledObject {
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 
-		Despawn();
+		if(destroyOnContact)
+			Despawn();
 
 	}
 }

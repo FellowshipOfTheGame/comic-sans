@@ -30,6 +30,7 @@ public class BossPattern : ScriptableObject {
     {
         PlayerOnRight,
         PlayerOnLeft,
+        PlayerOnTop,
         PlayerOnScreenRight,
         PlayerOnScreenLeft,
         PlayerOnScreenTop,
