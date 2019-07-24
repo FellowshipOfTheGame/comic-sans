@@ -7,6 +7,9 @@ public class BossPhase : ScriptableObject {
 
     [Header("Phase start settings:")]
 
+    [Tooltip("The Boss name to be used for this phase.")]
+    public string bossPhaseName = "Boss";
+
     [Tooltip("The initial position the Boss will appear.")]
     public Vector2 initialPosition = new Vector2(0, 3);
 

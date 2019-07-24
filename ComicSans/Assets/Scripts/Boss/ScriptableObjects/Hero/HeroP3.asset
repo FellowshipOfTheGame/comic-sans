@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a8356d8e452d54ab81b90ddfc1fc73, type: 3}
   m_Name: HeroP3
   m_EditorClassIdentifier: 
+  bossPhaseName: <b>O Homem Capivara</b>
   initialPosition: {x: 0, y: 2}
   invincibilityMultiplier: 0.5
   animationController: {fileID: 9100000, guid: 825f930983d61864a92fbed37fa1ef01, type: 2}

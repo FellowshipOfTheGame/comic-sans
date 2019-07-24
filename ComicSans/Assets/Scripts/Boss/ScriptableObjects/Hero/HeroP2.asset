@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a8356d8e452d54ab81b90ddfc1fc73, type: 3}
   m_Name: HeroP2
   m_EditorClassIdentifier: 
+  bossPhaseName: O Espetacular Osvaldo
   initialPosition: {x: 0, y: 2}
   invincibilityMultiplier: 0.5
   animationController: {fileID: 9100000, guid: cbe84769ff3373e4184722c820213955, type: 2}

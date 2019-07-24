@@ -86,6 +86,14 @@ public class HUDController : MonoBehaviour {
 
 	}
 
+	public void UpdateBossName (string name)
+	{
+
+		if(bossNameText != null)
+			bossNameText.text = name;
+
+	}
+
 	public void EnableHUD() {
 		
 		HUDContainer.SetActive(true);

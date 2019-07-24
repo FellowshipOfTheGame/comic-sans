@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/StartRoom.unity
     guid: c9374821813ee9a4bbf55d08f111fc6c
   - enabled: 1
-    path: Assets/Scenes/Cueio.unity
+    path: Assets/Scenes/CueioTutorial.unity
     guid: 8d2a0e321a240a647b16e56ca28034cb
   - enabled: 1
-    path: Assets/Scenes/TransitionRoom.unity
+    path: Assets/Scenes/LobbyRoom.unity
     guid: 18e66cb935aebaf42814ebca5c4e17af
+  - enabled: 1
+    path: Assets/Scenes/Cueio.unity
+    guid: 53be30ca0c3859d4f9b2adb74646371b
   - enabled: 1
     path: Assets/Scenes/Punk.unity
     guid: a4f8442a863fb114fb85a0bee6a5d57f

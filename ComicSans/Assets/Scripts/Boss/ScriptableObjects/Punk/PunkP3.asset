@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a8356d8e452d54ab81b90ddfc1fc73, type: 3}
   m_Name: PunkP3
   m_EditorClassIdentifier: 
+  bossPhaseName: <b>Punk</b> <i><size=32>Meu Queixo</size></i>
   initialPosition: {x: 0, y: 2.4}
   invincibilityMultiplier: 0.5
   animationController: {fileID: 9100000, guid: 17b3c9b6497e28f44a9435b8743f552a, type: 2}

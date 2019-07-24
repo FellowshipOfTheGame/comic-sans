@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: HeroP3CarrapatRP
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: a55626d3c1cf63b4cacf03ee76f51908, type: 2}
+  - {fileID: 11400000, guid: e90e743f33a203f4286b3b8f1bf0aa28, type: 2}
+  - {fileID: 11400000, guid: 5b978c493dcb7d3479ee2db6e1bc427e, type: 2}
+  - {fileID: 11400000, guid: 5f634c0e9bd46b54db697acfbbf33900, type: 2}
+  chance: 100
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: ed07c5c547027914d9f89a6a823cd391, type: 2}

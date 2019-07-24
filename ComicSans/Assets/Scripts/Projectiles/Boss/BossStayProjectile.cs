@@ -24,6 +24,9 @@ public class BossStayProjectile : ProjectileBase {
 
 		base.OnEnable();
 
+		targetPosition = new Vector3(99, 99, 99);
+		reachedTarget = false;
+
 		GameObject target = null;
 		if(PlayerScript.instance != null)
 			target = PlayerScript.instance.gameObject;
@@ -31,17 +34,17 @@ public class BossStayProjectile : ProjectileBase {
 		if(target == null)
 			Debug.LogWarning("BossFollowProjectile.OnEnable: Player not found!");
 
-		targetPosition = new Vector3(99, 99, 99);
 		StartCoroutine(Follow(target));
 
 	}
 
-	private void Update()
+	protected override void FixedUpdate () 
 	{
 
-		if(Vector3.Distance(transform.position, targetPosition) < 1f)
+		if(Mathf.Abs(transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(transform.position.y) > SceneSettings.instance.positionConstraints.y)
 			reachedTarget = true;
-	}
+        
+    }
 
 	protected IEnumerator Follow(GameObject target)
 	{
@@ -60,6 +63,9 @@ public class BossStayProjectile : ProjectileBase {
 
 		while(!reachedTarget)
 		{
+
+			if(Vector3.Distance(transform.position, targetPosition) < 1f)
+				reachedTarget = true;
 
 			if(GameController.instance.currentGameState != GameController.GameState.Paused)
 				_rigidbody.AddForce( _rigidbody.mass * aceleration * dirVet, ForceMode2D.Force);

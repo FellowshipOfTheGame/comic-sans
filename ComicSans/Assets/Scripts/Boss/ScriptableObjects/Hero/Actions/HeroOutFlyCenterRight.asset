@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
   positionTarget: {x: 9, y: -0.9}
-  velocityModifier: 4.25
+  velocityModifier: 5
   animations:
   - name: Fly
     value: 2

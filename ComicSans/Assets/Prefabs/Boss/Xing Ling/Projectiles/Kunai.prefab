@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4275946624131284
 Transform:
   m_ObjectHideFlags: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
+  destroyOnContact: 1
   projectileAudio: {fileID: 11400000, guid: 099cc440366d55342a72f01e9a2f3e02, type: 2}
   velocity: -8
   delayToAppear: 0

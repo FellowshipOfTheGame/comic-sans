@@ -54,12 +54,6 @@ public class BossScript : EntityScript
 		if(_rigidbody == null)
 			Debug.LogWarning("BossScript.Awake: No Rigidbody found on " + transform.name + "!");
 
-		// Initializes the boss health bar.
-		if(HUDController.instance != null)
-			HUDController.instance.InitializeBossHUD(bossName, health.Hp);
-		else
-			Debug.LogWarning("BossScript.Awake: No HUDController found!");
-
 		// Starts Boss movimentation.
 		Initialize();		
 
@@ -68,17 +62,26 @@ public class BossScript : EntityScript
 	public void Initialize()
 	{
 
+		// Checks if there is a phase.
 		if(phases.Count < 1) {
 			Debug.LogError("BossScript.Initialize " + transform.name + " has no phases!");
 			return;
 		}
 
+		// Initializes the Boss health bar.
+		if(HUDController.instance != null)
+			HUDController.instance.InitializeBossHUD(phases[currentPhase].bossPhaseName, health.Hp);
+		else
+			Debug.LogWarning("BossScript.Initialize: No HUDController found!");
+
+		// Start the Boss invincibility.
 		StartCoroutine(Reset(phases[currentPhase].invincibilityMultiplier));
 
+		// Sets the Boss AnimationController.
 		if(_animator != null)
 			_animator.runtimeAnimatorController = phases[currentPhase].animationController;
 
-		// Initializes the boss movement pattern.
+		// Initializes the Boss movementation.
 		if(phases[currentPhase].firstPattern == null)
 		{
 			Debug.Log("BossScript.Initialize: " + transform.name + "'s current phase has no first pattern.");
@@ -308,6 +311,12 @@ public class BossScript : EntityScript
 		currentPhase++;
 
 		Debug.Log("BossScript.NextPhase: " + transform.name + " has gone to phase " + (currentPhase + 1) + ".");
+
+		// Sets the Boss phase name.
+		if(HUDController.instance != null)
+			HUDController.instance.UpdateBossName(phases[currentPhase].bossPhaseName);
+		else
+			Debug.LogWarning("BossScript.NextPhase: No HUDController found!");
 
 		// Sets the boss to the initial conditions.
 		StopAllCoroutines();
