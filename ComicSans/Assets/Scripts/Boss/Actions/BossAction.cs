@@ -1,31 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class BossAction : ScriptableObject {
+namespace ComicSans.Boss.ActionSystem
+{
 
-	[HideInInspector]
-	public BossScript caller;
+	// Base script for the an action in the Boss ActionSystem.
+	public abstract class BossAction : ScriptableObject {
 
-	// Use this for initialization of the action.
-	public abstract void DoAction ();
+		[HideInInspector]
+		public BossScript caller;
 
-}
+		// Use this for initialization of the action.
+		public abstract void DoAction ();
 
-// Struct to be used in order of facilitating the setting of animations.
-[System.Serializable]
-public struct AnimationSet {
-
-	public string name;
-	public int value;
-
-}
-
-// Struct to be used in order of facilitating the setting of projectile spwans.
-[System.Serializable]
-public struct ProjectileSpawn {
-
-	public Vector2 position;
-	public float rotation;
+	}
 
 }

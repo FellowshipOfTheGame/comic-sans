@@ -1,43 +1,52 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "newMovement", menuName = "Boss/Movement", order = 1)]
-public class BossMovement : BossAction {
+using ComicSans.DataContainers;
 
-    [Tooltip("Where the Boss should move to.")]
-    public Vector2 positionTarget;
-    [Tooltip("Modifier to be applied to the Boss velocity.")]
-    public float velocityModifier;
+namespace ComicSans.Boss.ActionSystem
+{
 
-    [Tooltip("List of parameters (int) to be set on the Boss animator.")]
-    public List<AnimationSet> animations;
+	// Contains the data and execution code for an movement in the Boss ActionSystem.
+	[CreateAssetMenu(fileName = "newMovement", menuName = "Boss/Movement", order = 1)]
+	public class BossMovement : BossAction {
 
-    public override void DoAction()
-    {
-        caller.StartCoroutine(Move());
-    }
+		[Tooltip("Where the Boss should move to.")]
+		public Vector2 positionTarget;
+		[Tooltip("Modifier to be applied to the Boss velocity.")]
+		public float velocityModifier;
 
-    public IEnumerator Move()
-	{
+		[Tooltip("List of parameters (int) to be set on the Boss animator.")]
+		public List<AnimationSet> animations;
 
-		// Sets the movement animation.
-		caller.SetAnimation(animations);
-
-		// Gets the 3D target position.
-		Vector3 targetPosition = new Vector3(positionTarget.x, positionTarget.y, 0);
-
-		// Move the boss to the target position.
-		while (Vector3.Distance(targetPosition, caller.transform.position) > 0.05f) {			
-
-			// Moves to the target position.
-			caller.transform.position = Vector3.MoveTowards(caller.transform.position, targetPosition, caller.velocity * velocityModifier * Time.deltaTime);
-
-			yield return new WaitForEndOfFrame();
-
+		public override void DoAction()
+		{
+			caller.StartCoroutine(Move());
 		}
 
-		caller.NextAction();
+		public IEnumerator Move()
+		{
+
+			// Sets the movement animation.
+			caller.SetAnimation(animations);
+
+			// Gets the 3D target position.
+			Vector3 targetPosition = new Vector3(positionTarget.x, positionTarget.y, 0);
+
+			// Move the boss to the target position.
+			while (Vector3.Distance(targetPosition, caller.transform.position) > 0.05f) {			
+
+				// Moves to the target position.
+				caller.transform.position = Vector3.MoveTowards(caller.transform.position, targetPosition, caller.velocity * velocityModifier * Time.deltaTime);
+
+				yield return new WaitForEndOfFrame();
+
+			}
+
+			caller.NextAction();
+
+		}
+	}
 
 	}
-}

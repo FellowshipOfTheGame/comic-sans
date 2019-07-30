@@ -1,78 +1,87 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "newIdle", menuName = "Boss/Teleport", order = 5)]
-public class BossTeleport : BossAction {
+using ComicSans.DataContainers;
 
-    
-    public enum TeleportType {AnimationThenTP, TPThenAnimation, AnimatedTP, JustTP};
-    [Tooltip("How the Boss should teleport to.")]
-    public TeleportType teleportType;
+namespace ComicSans.Boss.ActionSystem
+{
 
-    [Tooltip("Where the Boss should")]
-    public Vector2 destination;
+	// Contains the data and execution code for an teleport in the Boss ActionSystem.
+	[CreateAssetMenu(fileName = "newIdle", menuName = "Boss/Teleport", order = 5)]
+	public class BossTeleport : BossAction {
 
-    [Tooltip("Time to be used when the Boss needs to wait.")]
-    public float delay;
+		
+		public enum TeleportType {AnimationThenTP, TPThenAnimation, AnimatedTP, JustTP};
+		[Tooltip("How the Boss should teleport to.")]
+		public TeleportType teleportType;
 
-    [Tooltip("List of parameters (int) to be set on the Boss animator.")]
-    public List<AnimationSet> animations;
+		[Tooltip("Where the Boss should")]
+		public Vector2 destination;
 
-    public override void DoAction()
-    {
-        caller.StartCoroutine(Teleport());
-    }
+		[Tooltip("Time to be used when the Boss needs to wait.")]
+		public float delay;
 
-    public IEnumerator Teleport ()
-	{
-		float timer = 0;
-		if(teleportType == TeleportType.AnimationThenTP)
+		[Tooltip("List of parameters (int) to be set on the Boss animator.")]
+		public List<AnimationSet> animations;
+
+		public override void DoAction()
 		{
-			// Plays the animation and idles.
-			caller.SetAnimation(animations);
-
-			while(timer < delay) 
-			{
-					timer += Time.fixedDeltaTime;
-				yield return new WaitForFixedUpdate();
-			}
-
-			// Them teleport.
-			caller.transform.position = new Vector3(destination.x, destination.y, 0);
-
-			caller.NextAction();
-
+			caller.StartCoroutine(Teleport());
 		}
-		else if(teleportType == TeleportType.TPThenAnimation)
-		{			
-			
-			// Teleport.
-			caller.transform.position = new Vector3(destination.x, destination.y, 0);
 
-			// Them plays the animation and idles.
-			caller.SetAnimation(animations);
-
-			while(timer < delay) 
-			{
-					timer += Time.fixedDeltaTime;
-				yield return new WaitForFixedUpdate();
-			}
-
-			caller.NextAction();
-
-		}
-		else
+		public IEnumerator Teleport ()
 		{
-			// Play the animations.
-			if(teleportType == TeleportType.AnimatedTP)
-            
-			caller.SetAnimation(animations);
+			float timer = 0;
+			if(teleportType == TeleportType.AnimationThenTP)
+			{
+				// Plays the animation and idles.
+				caller.SetAnimation(animations);
 
-			// Teleports simultaneously.
-			caller.transform.position = new Vector3(destination.x, destination.y, 0);
+				while(timer < delay) 
+				{
+						timer += Time.fixedDeltaTime;
+					yield return new WaitForFixedUpdate();
+				}
 
-			caller.NextAction();
+				// Them teleport.
+				caller.transform.position = new Vector3(destination.x, destination.y, 0);
+
+				caller.NextAction();
+
+			}
+			else if(teleportType == TeleportType.TPThenAnimation)
+			{			
+				
+				// Teleport.
+				caller.transform.position = new Vector3(destination.x, destination.y, 0);
+
+				// Them plays the animation and idles.
+				caller.SetAnimation(animations);
+
+				while(timer < delay) 
+				{
+						timer += Time.fixedDeltaTime;
+					yield return new WaitForFixedUpdate();
+				}
+
+				caller.NextAction();
+
+			}
+			else
+			{
+				// Play the animations.
+				if(teleportType == TeleportType.AnimatedTP)
+				
+				caller.SetAnimation(animations);
+
+				// Teleports simultaneously.
+				caller.transform.position = new Vector3(destination.x, destination.y, 0);
+
+				caller.NextAction();
+			}
 		}
 	}
+
 }

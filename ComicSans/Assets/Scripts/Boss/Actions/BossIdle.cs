@@ -1,36 +1,45 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "newIdle", menuName = "Boss/Idle", order = 6)]
-public class BossIdle : BossAction {
+using ComicSans.DataContainers;
 
-    [Tooltip("The amount of time the Boss will idle.")]
-    public float idleTime;
+namespace ComicSans.Boss.ActionSystem
+{
 
-    [Tooltip("List of parameters (int) to be set on the Boss animator.")]
-    public List<AnimationSet> animations;
+	// Contains the data and execution code for an idle in the Boss ActionSystem.
+	[CreateAssetMenu(fileName = "newIdle", menuName = "Boss/Idle", order = 6)]
+	public class BossIdle : BossAction {
 
-    public override void DoAction()
-    {
-        caller.StartCoroutine(Idle());
-    }
+		[Tooltip("The amount of time the Boss will idle.")]
+		public float idleTime;
 
-    public IEnumerator Idle()
-	{
+		[Tooltip("List of parameters (int) to be set on the Boss animator.")]
+		public List<AnimationSet> animations;
 
-		// Play the idle animation.
-		caller.SetAnimation(animations);
-
-		// Idles for some time.
-		float timer = 0;
-		while(timer < idleTime) 
+		public override void DoAction()
 		{
-			timer += Time.fixedDeltaTime;
-			yield return new WaitForFixedUpdate();
+			caller.StartCoroutine(Idle());
 		}
 
-		caller.NextAction();
+		public IEnumerator Idle()
+		{
 
+			// Play the idle animation.
+			caller.SetAnimation(animations);
+
+			// Idles for some time.
+			float timer = 0;
+			while(timer < idleTime) 
+			{
+				timer += Time.fixedDeltaTime;
+				yield return new WaitForFixedUpdate();
+			}
+
+			caller.NextAction();
+
+		}
 	}
+
 }

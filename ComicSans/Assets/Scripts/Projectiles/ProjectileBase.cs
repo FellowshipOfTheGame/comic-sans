@@ -1,35 +1,46 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Base")]
-public class ProjectileBase : PooledObject {
+using ComicSans.PoolingSystem;
 
-	[SerializeField] protected bool destroyOnContact = true;
+namespace ComicSans.Projectiles
+{
 
-	public AudioInfo projectileAudio;
+	[AddComponentMenu("Scripts/Projectiles/Base")]
+	public class ProjectileBase : PooledObject {
 
-	protected virtual void OnEnable () 
-	{
+		[SerializeField] protected bool destroyOnContact = true;
 
-		if(projectileAudio != null)
-			AudioController.instance.Play(projectileAudio);
+		public AudioInfo projectileAudio;
 
+		protected virtual void OnEnable () 
+		{
+
+			// Plays the audio at start.
+			if(projectileAudio != null)
+				AudioController.instance.Play(projectileAudio);
+
+		}
+
+		// Destroy the projectile if it gets out of Scene bounds.
+		protected virtual void FixedUpdate () 
+		{
+
+			if(Mathf.Abs(transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(transform.position.y) > SceneSettings.instance.positionConstraints.y)
+				Despawn();
+			
+		}
+
+		// Destroy the projectile on collision if enabled.
+		protected virtual void OnCollisionEnter2D(Collision2D collision)
+		{
+
+			if(destroyOnContact)
+				Despawn();
+
+		}
 	}
 
-	protected virtual void FixedUpdate () 
-	{
-
-		if(Mathf.Abs(transform.position.x) > SceneSettings.instance.positionConstraints.x || Mathf.Abs(transform.position.y) > SceneSettings.instance.positionConstraints.y)
-			Despawn();
-        
-    }
-
-	protected virtual void OnCollisionEnter2D(Collision2D collision)
-	{
-
-		if(destroyOnContact)
-			Despawn();
-
-	}
 }

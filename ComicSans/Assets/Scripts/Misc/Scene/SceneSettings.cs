@@ -1,64 +1,73 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[AddComponentMenu("Scripts/Scene/Settings")]
-public class SceneSettings : MonoBehaviour {
+using ComicSans.UIandHUD;
 
-	public static SceneSettings instance;
+namespace ComicSans
+{
 
-	public AudioInfo backgroundMusic;
-	public bool showHUD = true;	
+	// Contrains data and code for controlling a specific Scene.
+	[AddComponentMenu("Scripts/Scene/Settings")]
+	public class SceneSettings : MonoBehaviour {
 
-	public Vector2 playerSpawnPoint = new Vector2(0, -3.3f);
+		public static SceneSettings instance;
 
-	public Vector2 positionConstraints = new Vector2( 6.25f, 5f);
+		public AudioInfo backgroundMusic;
+		public bool showHUD = true;	
 
-	[System.Serializable]
-	public class BossSettings
-	{
-		public bool bossScene = true;
-		public GameObject boss;
-		public Vector2 spawn = new Vector2( 0, 2.4f);
-	}
-	public BossSettings bossSettings;
+		public Vector2 playerSpawnPoint = new Vector2(0, -3.3f);
 
-	public string loseLobbySceneName = "TransitionRoom";
-	public string winLobbySceneName = "TransitionRoom";
+		public Vector2 positionConstraints = new Vector2( 6.25f, 5f);
 
-	void Awake () 
-	{
-		
-		if(instance != null)
+		[System.Serializable]
+		public class BossSettings
 		{
-			Destroy(gameObject);
-			return;
+			public bool bossScene = true;
+			public GameObject boss;
+			public Vector2 spawn = new Vector2( 0, 2.4f);
 		}
-		instance = this;			
+		public BossSettings bossSettings;
 
-	}
+		public string loseLobbySceneName = "TransitionRoom";
+		public string winLobbySceneName = "TransitionRoom";
 
-	public void OnReady()
-	{
-
-		if(HUDController.instance != null)
+		void Awake () 
 		{
-			if(!showHUD)
-				HUDController.instance.DisableHUD();
-			else
-				HUDController.instance.EnableHUD();
+			
+			if(instance != null)
+			{
+				Destroy(gameObject);
+				return;
+			}
+			instance = this;			
+
 		}
 
-		if(backgroundMusic != null)
-			AudioController.instance.Play(backgroundMusic);
+		public void OnReady()
+		{
 
-		if(bossSettings.bossScene)
-			SpawnBoss();
-	}
+			if(HUDController.instance != null)
+			{
+				if(!showHUD)
+					HUDController.instance.DisableHUD();
+				else
+					HUDController.instance.EnableHUD();
+			}
 
-	public void SpawnBoss()
-	{
-		Instantiate(bossSettings.boss, bossSettings.spawn, new Quaternion());
+			if(backgroundMusic != null)
+				AudioController.instance.Play(backgroundMusic);
+
+			if(bossSettings.bossScene)
+				SpawnBoss();
+		}
+
+		public void SpawnBoss()
+		{
+			Instantiate(bossSettings.boss, bossSettings.spawn, new Quaternion());
+		}
+
 	}
 
 }

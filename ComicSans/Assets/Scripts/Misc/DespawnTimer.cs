@@ -1,34 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DespawnTimer : PooledObject
+using System.Collections;
+using System.Collections.Generic;
+
+using ComicSans.PoolingSystem;
+
+namespace ComicSans 
 {
 
-    [SerializeField] float despawnTime = 2f;
-
-    void OnEnable()
+    // Despawns a pooled object after a time.
+    public class DespawnTimer : PooledObject
     {
 
-        StartCoroutine(DespawnTime());
+        [SerializeField] float despawnTime = 2f;
 
-    }
-
-    IEnumerator DespawnTime() 
-    {
-
-        float time = 0;
-
-        while (time < despawnTime)
+        void OnEnable()
         {
-            
-            time += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
+
+            StartCoroutine(DespawnTime());
 
         }
 
-        Despawn();
+        IEnumerator DespawnTime() 
+        {
 
+            float time = 0;
+
+            while (time < despawnTime)
+            {
+                
+                time += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+
+            }
+
+            Despawn();
+
+        }
     }
 
 }

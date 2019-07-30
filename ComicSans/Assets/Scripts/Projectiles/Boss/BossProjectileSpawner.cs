@@ -1,80 +1,90 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[AddComponentMenu("Scripts/Projectiles/Boss/Spawner")]
-public class BossProjectileSpawner : ProjectileBase {
+using ComicSans.Player;
+using ComicSans.PoolingSystem;
+using ComicSans.DataContainers;
 
-	[SerializeField] private int numberOfAttack = 8;
-	[SerializeField] private float delay = 0.35f;
-	[SerializeField] private bool delayAtStart = false;
+namespace ComicSans.Projectiles.Boss
+{
 
-	private int currentAttack = 0;
-	private float timer = 0;
+	[AddComponentMenu("Scripts/Projectiles/Boss/Spawner")]
+	public class BossProjectileSpawner : ProjectileBase {
 
-	[SerializeField] PoolInfo projectilePool = null;
+		[SerializeField] private int numberOfAttack = 8;
+		[SerializeField] private float delay = 0.35f;
+		[SerializeField] private bool delayAtStart = false;
 
-	enum SpawnType { SinglePosition, MultiplePosition, PlayerPosition }
-	[SerializeField] private SpawnType spawnType = SpawnType.PlayerPosition;
+		private int currentAttack = 0;
+		private float timer = 0;
 
-	[SerializeField] private List<ProjectileSpawn> spawnPositions = null;
+		[SerializeField] PoolInfo projectilePool = null;
 
-	protected override void OnEnable () 
-	{
+		enum SpawnType { SinglePosition, MultiplePosition, PlayerPosition }
+		[SerializeField] private SpawnType spawnType = SpawnType.PlayerPosition;
 
-		currentAttack = 0;
-		
-		if(!delayAtStart)
-			timer = delay + 1;
+		[SerializeField] private List<ProjectileSpawn> spawnPositions = null;
 
-	}
-
-	private void Update () {
-		
-		if(currentAttack < numberOfAttack) 
+		protected override void OnEnable () 
 		{
-			if(timer >= delay) 
+
+			currentAttack = 0;
+			
+			if(!delayAtStart)
+				timer = delay + 1;
+
+		}
+
+		private void Update () {
+			
+			if(currentAttack < numberOfAttack) 
 			{
-				
-				Attack();
+				if(timer >= delay) 
+				{
+					
+					Attack();
 
-				currentAttack++;
-				timer = 0;
+					currentAttack++;
+					timer = 0;
 
-				if(currentAttack > spawnPositions.Count)
-					currentAttack = 0;
+					if(currentAttack > spawnPositions.Count)
+						currentAttack = 0;
+				}
+
+				timer += Time.deltaTime;
+
+			} 
+			else
+			{
+				if(origin != null)
+					Despawn();
+				else
+					Destroy(this.gameObject);
+			}
+		}
+
+		private void Attack() {
+			
+			if(spawnType == SpawnType.SinglePosition) 
+			{
+				PoolingController.instance.Spawn(projectilePool, spawnPositions[0].position, Quaternion.Euler(0, 0, spawnPositions[0].rotation));
+			} 
+			else if(spawnType == SpawnType.MultiplePosition) 
+			{
+				PoolingController.instance.Spawn(projectilePool, spawnPositions[currentAttack].position, Quaternion.Euler(0, 0, spawnPositions[currentAttack].rotation));
+			}
+			else
+			{
+					
+				if(PlayerScript.instance != null)
+					PoolingController.instance.Spawn(projectilePool, PlayerScript.instance.transform.position, new Quaternion());
+				else
+					Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
 			}
 
-			timer += Time.deltaTime;
-
-		} 
-		else
-		{
-			if(origin != null)
-				Despawn();
-			else
-				Destroy(this.gameObject);
 		}
 	}
 
-	private void Attack() {
-		
-		if(spawnType == SpawnType.SinglePosition) 
-		{
-			PoolingController.instance.Spawn(projectilePool, spawnPositions[0].position, Quaternion.Euler(0, 0, spawnPositions[0].rotation));
-		} 
-		else if(spawnType == SpawnType.MultiplePosition) 
-		{
-			PoolingController.instance.Spawn(projectilePool, spawnPositions[currentAttack].position, Quaternion.Euler(0, 0, spawnPositions[currentAttack].rotation));
-		}
-		else
-		{
-				
-			if(PlayerScript.instance != null)
-				PoolingController.instance.Spawn(projectilePool, PlayerScript.instance.transform.position, new Quaternion());
-			else
-				Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
-		}
-
-	}
 }

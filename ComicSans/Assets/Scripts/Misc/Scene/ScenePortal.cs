@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("Scripts/Scene/Portal")]
-public class ScenePortal : MonoBehaviour {
+namespace ComicSans
+{
 
-	[SerializeField] private string sceneName = "";
+	// Controls a Scene Portal.
+	[AddComponentMenu("Scripts/Scene/Portal")]
+	public class ScenePortal : MonoBehaviour {
 
-	void OnTriggerEnter2D(Collider2D other)
-	{
+		[SerializeField] private string sceneName = "";
 
-		GameController.instance.LoadScene(sceneName);
+		void OnTriggerEnter2D(Collider2D other)
+		{
+
+			GameController.instance.LoadScene(sceneName);
+
+		}
 
 	}
 

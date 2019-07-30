@@ -1,30 +1,37 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "newBossPhase", menuName = "Boss/Phase", order = 1)]
-public class BossPhase : ScriptableObject {
+namespace ComicSans.Boss.ActionSystem
+{
 
-    [Header("Phase start settings:")]
+    // Contains the data for a phase in the Boss ActionSystem.    
+    [CreateAssetMenu(fileName = "newBossPhase", menuName = "Boss/Phase", order = 1)]
+    public class BossPhase : ScriptableObject {
 
-    [Tooltip("The Boss name to be used for this phase.")]
-    public string bossPhaseName = "Boss";
+        [Header("Phase start settings:")]
 
-    [Tooltip("The initial position the Boss will appear.")]
-    public Vector2 initialPosition = new Vector2(0, 3);
+        [Tooltip("The Boss name to be used for this phase.")]
+        public string bossPhaseName = "Boss";
 
-    [Tooltip("Multiplier to the time the Boss will not take damage from hits.")]
-    public float invincibilityMultiplier = 1.0f;
+        [Tooltip("The initial position the Boss will appear.")]
+        public Vector2 initialPosition = new Vector2(0, 3);
 
-    [Tooltip("The AnimationController to be used by the Boss on this phase.")]
-    public RuntimeAnimatorController animationController;
+        [Tooltip("Multiplier to the time the Boss will not take damage from hits.")]
+        public float invincibilityMultiplier = 1.0f;
 
-    [Tooltip("The initial pattern that will be executed after $invincibilityDuration seconds. Remember that this pattern's nextAction settings will determine the actions that will follow on this phase.")]
-    public BossPattern firstPattern;
+        [Tooltip("The AnimationController to be used by the Boss on this phase.")]
+        public RuntimeAnimatorController animationController;
 
-    [Header("Phase end settings:")]
+        [Tooltip("The initial pattern that will be executed after $invincibilityDuration seconds. Remember that this pattern's nextAction settings will determine the actions that will follow on this phase.")]
+        public BossPattern firstPattern;
 
-    [Tooltip("When below this health the Boss will go to the next phase on the BossScript phases list. NOTE: If this is the last phase set this number to a negative value.")]
-    public int healthToNextPhase = -1;
+        [Header("Phase end settings:")]
+
+        [Tooltip("When below this health the Boss will go to the next phase on the BossScript phases list. NOTE: If this is the last phase set this number to a negative value.")]
+        public int healthToNextPhase = -1;
+
+    }
 
 }
