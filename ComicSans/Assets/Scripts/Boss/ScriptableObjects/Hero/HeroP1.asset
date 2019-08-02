@@ -17,4 +17,4 @@ MonoBehaviour:
   invincibilityMultiplier: 1.5
   animationController: {fileID: 9100000, guid: 99f9ad16eb9ea7f4c9628e1e731e1c41, type: 2}
   firstPattern: {fileID: 11400000, guid: 72c716e9354048a43b634b8391f0fdbb, type: 2}
-  healthToNextPhase: 2600
+  healthToNextPhase: 3000

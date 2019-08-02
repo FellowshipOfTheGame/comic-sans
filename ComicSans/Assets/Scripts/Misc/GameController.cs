@@ -27,12 +27,14 @@ namespace ComicSans
 			}
 		}
 
-		public enum GameState { Play, Paused, Win, Lose, WinScreen, LoseScreen }
+		public enum GameState { Play, Paused, Win, Lose, WinScreen, LoseScreen, LoadingScreen }
 		public GameState currentGameState = GameState.Play;
 
 		[SerializeField] private GameObject pauseMenu = null;
 		[SerializeField] private GameObject deathMenu = null;
 		[SerializeField] private GameObject victoryMenu = null;
+		[SerializeField] private GameObject loadingScreen = null;
+		[SerializeField] private GameObject loadingFadeEffect = null;
 
 		void Awake()
 		{
@@ -82,6 +84,9 @@ namespace ComicSans
 
 			SpawnPlayer();
 			currentGameState = GameState.Play;
+			allowPlayerControl = true;
+
+			StartCoroutine(FadeIn());
 
 			SceneSettings.instance.OnReady();
 
@@ -111,9 +116,15 @@ namespace ComicSans
 		public void SetPause(bool state) {
 
 			if(currentGameState == GameState.Play)
+			{
 				currentGameState = GameState.Paused;
+				allowPlayerControl = false;
+			}
 			else if(currentGameState == GameState.Paused)
+			{
 				currentGameState = GameState.Play;
+				allowPlayerControl = true;
+			}
 			else
 			{
 				Debug.LogWarning("GameController.SetPause: Attempt to pause the game when the Player has already won or lost!");
@@ -173,6 +184,7 @@ namespace ComicSans
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;			
 				allowPlayerControl = false;
+				PlayerScript.instance.StopMovimentation();
 				deathMenu.SetActive(true);
 			} 
 			else
@@ -195,6 +207,7 @@ namespace ComicSans
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
 				allowPlayerControl = false;
+				PlayerScript.instance.StopMovimentation();
 				victoryMenu.SetActive(true);
 			} 
 			else
@@ -217,8 +230,15 @@ namespace ComicSans
 			else
 				sceneName = SceneSettings.instance.loseLobbySceneName;
 
-			Debug.Log("GameController.QuitToLobby: Loading " + sceneName + "...");
-			SceneManager.LoadSceneAsync(sceneName);
+			LoadScene(sceneName);
+
+		}
+
+		public void QuitToMainMenu(bool win)
+		{
+
+			PlayerScript.instance.StopMovimentation();
+			LoadScene("Menu");
 
 		}
 
@@ -242,9 +262,76 @@ namespace ComicSans
 
 		public void LoadScene(string sceneName)
 		{
+
 			Debug.Log("GameController.LoadScene: Loading " + sceneName + "...");
-			SceneManager.LoadSceneAsync(sceneName);
+			currentGameState = GameState.LoadingScreen;
+
+			pauseMenu.SetActive(false);
+			deathMenu.SetActive(false);
+			victoryMenu.SetActive(false);
+
+			Time.timeScale = 1;
+			allowPlayerControl = false;
+			StartCoroutine(SceneLoading(sceneName));
+
 		}
+
+		private IEnumerator SceneLoading(string sceneName)
+		{
+
+			// Fades out the scene.
+			RectTransform rect = loadingFadeEffect.GetComponent<RectTransform>();
+			while(rect.localScale.magnitude > 0.01f)
+			{
+				
+				Vector3 newScale = rect.localScale - Vector3.one * Time.deltaTime;
+				newScale.x = Mathf.Clamp(newScale.x, 0.005f, 1.0f);
+				newScale.y = Mathf.Clamp(newScale.y, 0.005f, 1.0f);
+				newScale.z = Mathf.Clamp(newScale.z, 0.005f, 1.0f);
+
+				rect.localScale = newScale;
+
+				yield return new WaitForEndOfFrame();
+
+			}
+
+			// Displays the loading screen.
+			loadingScreen.SetActive(true);
+			yield return new WaitForEndOfFrame();
+
+			// Start loading the scene.
+			SceneManager.LoadSceneAsync(sceneName);
+
+		}
+
+		private IEnumerator FadeIn()
+		{
+
+			// Hides the loading screen.
+			loadingScreen.SetActive(false);
+
+			// Fades out the scene.
+			RectTransform rect = loadingFadeEffect.GetComponent<RectTransform>();
+			while(rect.localScale.magnitude < 1f)
+			{
+
+				if(currentGameState == GameState.LoadingScreen) break;
+
+				Vector3 newScale = rect.localScale + Vector3.one * Time.deltaTime;
+				newScale.x = Mathf.Clamp(newScale.x, 0.005f, 1.0f);
+				newScale.y = Mathf.Clamp(newScale.y, 0.005f, 1.0f);
+				newScale.z = Mathf.Clamp(newScale.z, 0.005f, 1.0f);
+
+				rect.localScale = newScale;
+
+				yield return new WaitForEndOfFrame();
+
+			}
+
+			if(currentGameState != GameState.LoadingScreen) rect.localScale = Vector3.one;
+
+		}
+		
 	}
 
 }

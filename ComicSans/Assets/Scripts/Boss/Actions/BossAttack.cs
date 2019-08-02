@@ -29,8 +29,8 @@ namespace ComicSans.Boss.ActionSystem
         public void Attack()
         {
 
-            // Sets the animation for this attack.
             caller.SetAnimation(animations);
+
             foreach(ProjectileSpawn spawn in projectileSpawns)
                 PoolingController.instance.Spawn(projectilePool, caller.transform.position + new Vector3( spawn.position.x, spawn.position.y, 0), Quaternion.Euler(0, 0, spawn.rotation));
 

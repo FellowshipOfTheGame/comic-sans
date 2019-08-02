@@ -20,6 +20,9 @@ namespace ComicSans.Boss.ActionSystem
 		[Tooltip("List of parameters (int) to be set on the Boss animator.")]
 		public List<AnimationSet> animations;
 
+		[Tooltip("Audio to be played by the movement.")]
+		public AudioInfo audio;
+
 		public override void DoAction()
 		{
 			caller.StartCoroutine(Move());
@@ -30,6 +33,9 @@ namespace ComicSans.Boss.ActionSystem
 
 			// Sets the movement animation.
 			caller.SetAnimation(animations);
+
+			// Plays the audio.
+			if(audio != null) AudioController.instance.Play(audio);
 
 			// Gets the 3D target position.
 			Vector3 targetPosition = new Vector3(positionTarget.x, positionTarget.y, 0);

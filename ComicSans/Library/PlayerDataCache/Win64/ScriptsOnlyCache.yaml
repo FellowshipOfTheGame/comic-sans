@@ -3,43 +3,41 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AudioController
     - AudioInfo
-    - BossAppearAttack
-    - BossAttack
-    - BossAttackMove
-    - BossBounceProjectile
-    - BossDash
-    - BossFollowProjectile
-    - BossIdle
-    - BossMovement
-    - BossPattern
-    - BossPhase
-    - BossProjectileSpawner
-    - BossRepulsorAttack
-    - BossScript
-    - BossSpinProjectile
-    - BossStateMachineHandler
-    - BossStayProjectile
-    - BossTeleport
-    - DespawnTimer
-    - GameController
-    - HUDController
-    - InputController
-    - Menu
-    - ObjectPool
-    - PlayerScript
-    - PoolInfo
-    - PoolingController
-    - ProjectileBase
-    - ScenePortal
-    - SceneSettings
-    - SimpleProjectile
+    - ComicSans.Boss.ActionSystem.BossAttack
+    - ComicSans.Boss.ActionSystem.BossAttackMove
+    - ComicSans.Boss.ActionSystem.BossDash
+    - ComicSans.Boss.ActionSystem.BossIdle
+    - ComicSans.Boss.ActionSystem.BossMovement
+    - ComicSans.Boss.ActionSystem.BossPattern
+    - ComicSans.Boss.ActionSystem.BossPhase
+    - ComicSans.Boss.ActionSystem.BossTeleport
+    - ComicSans.Boss.BossScript
+    - ComicSans.Boss.BossStateMachineHandler
+    - ComicSans.DespawnTimer
+    - ComicSans.GameController
+    - ComicSans.InputController
+    - ComicSans.Player.PlayerScript
+    - ComicSans.PoolingSystem.ObjectPool
+    - ComicSans.PoolingSystem.PoolInfo
+    - ComicSans.PoolingSystem.PoolingController
+    - ComicSans.Projectiles.Boss.BossAppearAttack
+    - ComicSans.Projectiles.Boss.BossBounceProjectile
+    - ComicSans.Projectiles.Boss.BossFollowProjectile
+    - ComicSans.Projectiles.Boss.BossProjectileSpawner
+    - ComicSans.Projectiles.Boss.BossRepulsorAttack
+    - ComicSans.Projectiles.Boss.BossSpinProjectile
+    - ComicSans.Projectiles.Boss.BossStayProjectile
+    - ComicSans.Projectiles.ProjectileBase
+    - ComicSans.Projectiles.SimpleProjectile
+    - ComicSans.ScenePortal
+    - ComicSans.SceneSettings
+    - ComicSans.UIandHUD.HUDController
+    - ComicSans.UIandHUD.Menu
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -118,39 +116,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9448}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9458}
-    - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9460}
     - Class: 114
       Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9474}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9494}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9556}
-    - Class: 114
-      Script: {instanceID: 9558}
+      Script: {instanceID: 9498}
     - Class: 114
       Script: {instanceID: 9560}
     - Class: 114
       Script: {instanceID: 9562}
     - Class: 114
+      Script: {instanceID: 9564}
+    - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9600}
+      Script: {instanceID: 9570}
     - Class: 114
       Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
     - Class: 114
       Script: {instanceID: 9616}
     - Class: 114
-      Script: {instanceID: 9618}
+      Script: {instanceID: 9620}
+    - Class: 114
+      Script: {instanceID: 9622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -231,39 +229,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9448}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9458}
-    - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9460}
     - Class: 114
       Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9474}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9494}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9556}
-    - Class: 114
-      Script: {instanceID: 9558}
+      Script: {instanceID: 9498}
     - Class: 114
       Script: {instanceID: 9560}
     - Class: 114
       Script: {instanceID: 9562}
     - Class: 114
+      Script: {instanceID: 9564}
+    - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9600}
+      Script: {instanceID: 9570}
     - Class: 114
       Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
     - Class: 114
       Script: {instanceID: 9616}
     - Class: 114
-      Script: {instanceID: 9618}
+      Script: {instanceID: 9620}
+    - Class: 114
+      Script: {instanceID: 9622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -340,39 +338,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9448}
     - Class: 114
-      Script: {instanceID: 9450}
-    - Class: 114
       Script: {instanceID: 9452}
     - Class: 114
       Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9464}
+      Script: {instanceID: 9456}
     - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9466}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9494}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9556}
+      Script: {instanceID: 9498}
     - Class: 114
-      Script: {instanceID: 9558}
+      Script: {instanceID: 9560}
     - Class: 114
       Script: {instanceID: 9562}
     - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9600}
+      Script: {instanceID: 9570}
     - Class: 114
       Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
     - Class: 114
       Script: {instanceID: 9616}
     - Class: 114
-      Script: {instanceID: 9618}
+      Script: {instanceID: 9620}
+    - Class: 114
+      Script: {instanceID: 9622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -443,23 +441,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9446}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9494}
-    - Class: 114
-      Script: {instanceID: 9562}
+      Script: {instanceID: 9498}
     - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9604}
+      Script: {instanceID: 9570}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
+    - Class: 114
+      Script: {instanceID: 9616}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -489,15 +487,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 83
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -522,14 +514,16 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9444}
     - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9494}
+      Script: {instanceID: 9498}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -603,37 +597,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9448}
     - Class: 114
-      Script: {instanceID: 9450}
-    - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9452}
     - Class: 114
       Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9474}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9494}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9558}
-    - Class: 114
-      Script: {instanceID: 9560}
+      Script: {instanceID: 9498}
     - Class: 114
       Script: {instanceID: 9562}
     - Class: 114
+      Script: {instanceID: 9564}
+    - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9600}
+      Script: {instanceID: 9570}
     - Class: 114
       Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
     - Class: 114
       Script: {instanceID: 9616}
     - Class: 114
-      Script: {instanceID: 9618}
-    - Class: 114
       Script: {instanceID: 9620}
+    - Class: 114
+      Script: {instanceID: 9622}
+    - Class: 114
+      Script: {instanceID: 9626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -704,23 +698,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9446}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9494}
-    - Class: 114
-      Script: {instanceID: 9562}
+      Script: {instanceID: 9498}
     - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9604}
+      Script: {instanceID: 9570}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
+    - Class: 114
+      Script: {instanceID: 9616}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -795,21 +789,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9448}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9454}
+      Script: {instanceID: 9456}
     - Class: 114
-      Script: {instanceID: 9468}
+      Script: {instanceID: 9470}
     - Class: 114
-      Script: {instanceID: 9472}
+      Script: {instanceID: 9476}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9496}
     - Class: 114
-      Script: {instanceID: 9494}
-    - Class: 114
-      Script: {instanceID: 9558}
-    - Class: 114
-      Script: {instanceID: 9560}
+      Script: {instanceID: 9498}
     - Class: 114
       Script: {instanceID: 9562}
     - Class: 114
@@ -817,15 +807,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9566}
     - Class: 114
-      Script: {instanceID: 9600}
+      Script: {instanceID: 9568}
+    - Class: 114
+      Script: {instanceID: 9570}
     - Class: 114
       Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9612}
+      Script: {instanceID: 9608}
     - Class: 114
       Script: {instanceID: 9616}
     - Class: 114
-      Script: {instanceID: 9618}
+      Script: {instanceID: 9620}
+    - Class: 114
+      Script: {instanceID: 9622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -845,15 +839,15 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: 9726b059120a29b2a38b0be0e2e22c6e
+      Hash: 19110ef255ed2576b1af1c256bea4c16
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossMovement
   - hash:
       serializedVersion: 2
       Hash: b91014e617540632479de5501bd6e07e
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossAppearAttack
   - hash:
       serializedVersion: 2
@@ -1051,7 +1045,7 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: eea6cb4aabfdb7a04168ad275f394972
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss
     className: BossStateMachineHandler
   - hash:
       serializedVersion: 2
@@ -1247,27 +1241,27 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 8e6d5037462739ef62507b2e8d6d3a13
+      Hash: ac5ff5b11119a1b00b341590c55b40b9
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.PoolingSystem
     className: ObjectPool
   - hash:
       serializedVersion: 2
       Hash: 847d135d8822bfeeafa0c55df43abe0c
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossDash
   - hash:
       serializedVersion: 2
-      Hash: b697164aa5b6639840a3b8d224d0a683
+      Hash: abb514938d3ab1de1c7eb8f119e46bfa
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.UIandHUD
     className: Menu
   - hash:
       serializedVersion: 2
       Hash: bacaf953bf028adca5d9cb12b6d50357
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossProjectileSpawner
   - hash:
       serializedVersion: 2
@@ -1279,61 +1273,61 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: d91fcd9ac7bd86d3d771dd6171620fad
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans
     className: ScenePortal
   - hash:
       serializedVersion: 2
       Hash: 00c409c2e6674935309d24a1da645139
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossAttack
   - hash:
       serializedVersion: 2
-      Hash: 06d05744dda7ebbe120c93e8a3339fac
+      Hash: 1c0d15d859302ae0d02076937744f41f
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans
     className: GameController
   - hash:
       serializedVersion: 2
       Hash: ba3328d2f43b57edd27aa6621afd04bb
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans
     className: DespawnTimer
   - hash:
       serializedVersion: 2
       Hash: 692947981c7ea48d4fde817efd94010e
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossBounceProjectile
   - hash:
       serializedVersion: 2
       Hash: 2d85d5ae0ee9bdefaf5483dc96241c91
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles
     className: ProjectileBase
   - hash:
       serializedVersion: 2
-      Hash: 870bfdaf6da5a4bc3a85dc3a215c7559
+      Hash: a5547538d3180ff346ef426ba694cfce
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossStayProjectile
   - hash:
       serializedVersion: 2
       Hash: 9b2a9646c6740c1ffe90fede0c3f2422
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans
     className: SceneSettings
   - hash:
       serializedVersion: 2
       Hash: 42b43aa89fc7f3a0fb587e78a1429ed1
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossFollowProjectile
   - hash:
       serializedVersion: 2
       Hash: af0d95f233947f1071c33c9aa50493ad
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles
     className: SimpleProjectile
   - hash:
       serializedVersion: 2
@@ -1375,7 +1369,7 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: 6d6851dc485bdc3ebfbb2f94006e4fe2
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans
     className: InputController
   - hash:
       serializedVersion: 2
@@ -1387,79 +1381,79 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: 2d7e55feabb1bc77281e58799d8e26f3
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossTeleport
   - hash:
       serializedVersion: 2
-      Hash: b714fae4c2ab2c80c231f55fcaee59bc
+      Hash: c24ed4b02adba9dad78c8dae0dd9c81a
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss
     className: BossScript
   - hash:
       serializedVersion: 2
       Hash: f88323b4bc21925baa42ffeaeb1d732a
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossAttackMove
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.PoolingSystem
     className: PoolingController
   - hash:
       serializedVersion: 2
       Hash: d7dbec670b099c727f5c1e17c563b103
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossSpinProjectile
   - hash:
       serializedVersion: 2
       Hash: 5fa4a5e03e40a5679e5dd97f7f669004
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.UIandHUD
     className: HUDController
   - hash:
       serializedVersion: 2
       Hash: 4f48a18d3694f725fd336f649ce68ce9
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossPhase
   - hash:
       serializedVersion: 2
       Hash: f52f024df35d6f952c780dc130ca4f3f
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Player
     className: PlayerScript
   - hash:
       serializedVersion: 2
       Hash: 09f7524f053953515fcc637198ea402d
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.PoolingSystem
     className: PoolInfo
   - hash:
       serializedVersion: 2
-      Hash: 20c3fb19e1d5c2b026814c493724bc0d
+      Hash: 7e43891a2026d93ac0c4a09ca58eca59
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossIdle
   - hash:
       serializedVersion: 2
       Hash: 19616fe957da9909f271be9f881cd76d
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Boss.ActionSystem
     className: BossPattern
   - hash:
       serializedVersion: 2
       Hash: f38991d08b0374fcce86e04b27eb01db
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.Projectiles.Boss
     className: BossRepulsorAttack
   - hash:
       serializedVersion: 2
       Hash: 4749f7f9586acc4a99fca740fd260342
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
+    namespaceName: ComicSans.PoolingSystem
     className: PooledObject
   platform: 19
   scenePathNames:
@@ -1471,4 +1465,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Punk.unity
   - Assets/Scenes/Xing.unity
   - Assets/Scenes/Hero.unity
-  playerPath: C:/Users/luise/Desktop/ComicSans-2_0_0B/ComicSans.exe
+  playerPath: C:/Users/luise/Desktop/ComicSans/ComicSans.exe

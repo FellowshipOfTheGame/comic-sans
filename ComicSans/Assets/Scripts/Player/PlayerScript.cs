@@ -185,19 +185,20 @@ namespace ComicSans.Player
                     }
                 }
             }
-            else
+        }
+
+        public void StopMovimentation()
+        {
+
+            // Guarantees the Player is not moving.
+            _rigidbody.velocity = Vector3.zero;
+
+            // Guarantees the Player is not shooting.
+            shooting.isShooting = false;
+            if(shooting.ShootingCoroutine != null)
             {
-                // Guarantees the Player is not moving.
-                _rigidbody.velocity = Vector3.zero;
-
-                // Guarantees the Player is not shooting.
-                shooting.isShooting = false;
-                if(shooting.ShootingCoroutine != null)
-                {
-                    StopCoroutine(shooting.ShootingCoroutine);
-                    shooting.ShootingCoroutine = null; 
-                }
-
+                StopCoroutine(shooting.ShootingCoroutine);
+                shooting.ShootingCoroutine = null; 
             }
         }
 

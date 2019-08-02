@@ -18,6 +18,15 @@ namespace ComicSans.UIandHUD
             public Slider musicVolume = null;
         }
         [SerializeField] private Options options = null;
+
+        [System.Serializable]
+        private class Loading
+        {
+            public GameObject loadingScreen = null;
+            public GameObject loadingFadeEffect = null;
+            public GameObject sceneWall = null;
+        }
+        [SerializeField] private Loading loading = null;
         
 
         void Start()
@@ -29,10 +38,46 @@ namespace ComicSans.UIandHUD
         }
 
         public void Play()
-        {
-            Debug.Log("MainMenu.Play: Loading scene with index " + (SceneManager.GetActiveScene().buildIndex + 1) + "...");
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1); 
-        }
+		{
+
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+			Debug.Log("MainMenu.Play: Loading scene with index " + sceneIndex + "...");
+
+			Time.timeScale = 1;
+			StartCoroutine(SceneLoading(sceneIndex));
+
+		}
+
+		private IEnumerator SceneLoading(int sceneIndex)
+		{
+
+			// Fades out the scene.
+			RectTransform rect = loading.loadingFadeEffect.GetComponent<RectTransform>();
+			while(rect.localScale.magnitude > 0.01f)
+			{
+				
+                if(rect.localScale.magnitude < 0.5f && !loading.sceneWall.activeSelf)
+                    loading.sceneWall.SetActive(true);
+
+				Vector3 newScale = rect.localScale - Vector3.one * Time.deltaTime;
+				newScale.x = Mathf.Clamp(newScale.x, 0.005f, 1.0f);
+				newScale.y = Mathf.Clamp(newScale.y, 0.005f, 1.0f);
+				newScale.z = Mathf.Clamp(newScale.z, 0.005f, 1.0f);
+
+				rect.localScale = newScale;
+
+				yield return new WaitForEndOfFrame();
+
+			}
+
+			// Displays the loading screen.
+			loading.loadingScreen.SetActive(true);
+            yield return new WaitForEndOfFrame();
+
+			// Start loading the scene.
+			SceneManager.LoadSceneAsync(sceneIndex);
+
+		}
 
         public void GetVolume()
         {

@@ -73,6 +73,9 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 * https://freesound.org/people/PorkMuncher/sounds/263595/
 * https://freesound.org/people/denao270/sounds/346373/
 * https://freesound.org/people/Timbre/sounds/85618/
+* https://freesound.org/people/EFlexMusic/sounds/396270/
+* https://freesound.org/people/rrreed/sounds/322525/
+* https://freesound.org/people/Maemi_no_yume/sounds/398634/
 
 ---
 

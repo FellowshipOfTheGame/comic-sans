@@ -11,15 +11,18 @@ namespace ComicSans.Projectiles.Boss
 	[AddComponentMenu("Scripts/Projectiles/Boss/Stay")]
 	public class BossStayProjectile : ProjectileBase {
 
-		public Rigidbody2D _rigidbody;
+		[SerializeField] private Rigidbody2D _rigidbody = null;
 
-		public Animator _animator;
+		[SerializeField] private Animator _animator = null;
 
-		public float delay = 1.0f;
+		[SerializeField] private float delay = 1.0f;
 
-		public float stay = 5.0f;
+		[SerializeField] private float stay = 5.0f;
 
-		public float aceleration = 10.0f;
+		[SerializeField] private float aceleration = 10.0f;
+
+		[SerializeField] private AudioInfo hitAudio = null;
+
 
 		private bool reachedTarget = false;
 
@@ -83,6 +86,7 @@ namespace ComicSans.Projectiles.Boss
 			_rigidbody.velocity = Vector3.zero;
 
 			if(_animator != null) _animator.SetInteger("Stay", 1);
+			if(hitAudio != null) AudioController.instance.Play(hitAudio);
 
 			timer = 0;
 			while(timer < stay)

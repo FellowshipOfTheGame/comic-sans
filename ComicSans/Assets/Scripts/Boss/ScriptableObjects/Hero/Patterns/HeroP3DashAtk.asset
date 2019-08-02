@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeroP3DashAtk
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: bc7ad3574aba579479f971c6b462184f, type: 2}
+  - {fileID: 11400000, guid: 1173c963d6609df46adb8f37109ee6e9, type: 2}
   - {fileID: 11400000, guid: bd5abf0e323b9214e83a0e5cb0a543df, type: 2}
   chance: 0
   choiceType: 1

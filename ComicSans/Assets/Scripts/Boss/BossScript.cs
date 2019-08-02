@@ -21,8 +21,6 @@ namespace ComicSans.Boss
 
 		public string id;
 
-		public string bossName;
-
 		[SerializeField] private GameObject _colliders = null;
 		private Rigidbody2D _rigidbody = null;
 
@@ -32,8 +30,6 @@ namespace ComicSans.Boss
 		private BossPattern currentPattern;
 
 		private int currentAction = 0;
-
-		private Vector2 previousPos;
 
 		private Animator _animator;
 
@@ -116,7 +112,7 @@ namespace ComicSans.Boss
 			if(currentAction >= currentPattern.actions.Count) 
 				NextPattern();
 
-			currentPattern.actions[currentAction].caller = this;
+			currentPattern.actions[currentAction].caller = this; // Sets the caller of the action to this script.
 			currentPattern.actions[currentAction].DoAction();
 
 		} 
@@ -351,7 +347,7 @@ namespace ComicSans.Boss
 
 		}
 
-			protected override void Damage() 
+		protected override void Damage() 
 		{
 
 			if(GameController.instance.currentGameState != GameController.GameState.Play)
@@ -378,7 +374,7 @@ namespace ComicSans.Boss
 		protected override IEnumerator Reset(float invincibilityMultiplier)
 		{
 
-			_colliders.SetActive(false);
+			_colliders.SetActive(false); // Disable Boss colliders so it doesn't take damage.
 
 			// Idles for some time.
 			float timer = 0;
@@ -388,9 +384,7 @@ namespace ComicSans.Boss
 				yield return new WaitForFixedUpdate();
 			}
 
-			_colliders.SetActive(true);
-
-			
+			_colliders.SetActive(true); // Re-enables Boss colliders.
 
 		}
 

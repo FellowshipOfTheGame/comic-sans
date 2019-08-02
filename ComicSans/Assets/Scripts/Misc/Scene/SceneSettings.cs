@@ -45,6 +45,7 @@ namespace ComicSans
 
 		}
 
+		// Starts the scene when ready.
 		public void OnReady()
 		{
 

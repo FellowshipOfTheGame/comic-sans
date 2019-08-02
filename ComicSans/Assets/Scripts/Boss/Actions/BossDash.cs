@@ -71,6 +71,7 @@ namespace ComicSans.Boss.ActionSystem
 
 				float accel = 0;
 
+				// Makes the Boss look to the correct direction.
 				if(!lookingRight && dirVector.x > 0)
 					caller.transform.localScale = new Vector3(-caller.transform.localScale.x, caller.transform.localScale.y, caller.transform.localScale.z);
 				else if(lookingRight && dirVector.x < 0)

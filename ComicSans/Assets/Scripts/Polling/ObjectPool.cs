@@ -120,7 +120,8 @@ namespace ComicSans.PoolingSystem
 		protected void OnDestroy()
 		{
 			
-			PoolingController.instance.Remove(poolInfo.id);
+			if(poolInfo != null)
+				PoolingController.instance.Remove(poolInfo.id);
 
 			if(DespawnPoolObjects != null)
 				DespawnPoolObjects();

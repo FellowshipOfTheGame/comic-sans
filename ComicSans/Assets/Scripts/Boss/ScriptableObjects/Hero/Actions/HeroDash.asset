@@ -25,4 +25,4 @@ MonoBehaviour:
   - name: Laser
     value: 0
   dashAnimations: []
-  dashAudio: {fileID: 0}
+  dashAudio: {fileID: 11400000, guid: 99edfca4d7914ae48a09226e04f35193, type: 2}

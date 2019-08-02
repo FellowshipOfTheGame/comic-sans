@@ -204,12 +204,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
   destroyOnContact: 1
-  projectileAudio: {fileID: 11400000, guid: 779c499e64a2a2742ac9c59c0041e9e3, type: 2}
+  projectileAudio: {fileID: 11400000, guid: c413de08093e1ee45948e1cccd2f459c, type: 2}
   _rigidbody: {fileID: 8894075439496026333}
   _animator: {fileID: 2560830887913380696}
   delay: 1
   stay: 12.5
   aceleration: 45
+  hitAudio: {fileID: 11400000, guid: 0ca69b89d1d43cd449590e9d27feda04, type: 2}
 --- !u!50 &8894075439496026333
 Rigidbody2D:
   serializedVersion: 4

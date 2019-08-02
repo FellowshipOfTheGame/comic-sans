@@ -18,6 +18,9 @@ namespace ComicSans.Boss.ActionSystem
 		[Tooltip("List of parameters (int) to be set on the Boss animator.")]
 		public List<AnimationSet> animations;
 
+		[Tooltip("Audio to be played by the movement.")]
+		public AudioInfo audio;
+
 		public override void DoAction()
 		{
 			caller.StartCoroutine(Idle());
@@ -28,6 +31,9 @@ namespace ComicSans.Boss.ActionSystem
 
 			// Play the idle animation.
 			caller.SetAnimation(animations);
+
+			// Plays the audio.
+			if(audio != null) AudioController.instance.Play(audio);
 
 			// Idles for some time.
 			float timer = 0;

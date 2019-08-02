@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeroFlyAtkLP1
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 60bf6cad7da3f484b8a96f26f491902d, type: 2}
+  - {fileID: 11400000, guid: ed2d3664fbee2fd488909cbf838898af, type: 2}
   - {fileID: 11400000, guid: 788151eedb93dae4197b88fb31ff90b6, type: 2}
   - {fileID: 11400000, guid: 7eb601fc1ff062c4fb78655cd5688dc7, type: 2}
   - {fileID: 11400000, guid: 816f47a9fe0ab7b4dbbecaba49c0433b, type: 2}

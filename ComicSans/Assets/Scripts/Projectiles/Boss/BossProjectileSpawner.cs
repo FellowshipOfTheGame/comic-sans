@@ -37,8 +37,10 @@ namespace ComicSans.Projectiles.Boss
 
 		}
 
-		private void Update () {
+		protected override void FixedUpdate () {
 			
+			base.FixedUpdate();
+
 			if(currentAttack < numberOfAttack) 
 			{
 				if(timer >= delay) 
@@ -53,7 +55,7 @@ namespace ComicSans.Projectiles.Boss
 						currentAttack = 0;
 				}
 
-				timer += Time.deltaTime;
+				timer += Time.fixedDeltaTime;
 
 			} 
 			else

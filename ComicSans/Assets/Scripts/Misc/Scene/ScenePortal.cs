@@ -11,9 +11,7 @@ namespace ComicSans
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
-
 			GameController.instance.LoadScene(sceneName);
-
 		}
 
 	}
