@@ -53,16 +53,16 @@ namespace ComicSans.UIandHUD
 
 			// Fades out the scene.
 			RectTransform rect = loading.loadingFadeEffect.GetComponent<RectTransform>();
-			while(rect.localScale.magnitude > 0.01f)
+            while(rect.localScale.x > 0.02f)
 			{
 				
                 if(rect.localScale.magnitude < 0.5f && !loading.sceneWall.activeSelf)
                     loading.sceneWall.SetActive(true);
 
-				Vector3 newScale = rect.localScale - Vector3.one * Time.deltaTime;
-				newScale.x = Mathf.Clamp(newScale.x, 0.005f, 1.0f);
-				newScale.y = Mathf.Clamp(newScale.y, 0.005f, 1.0f);
-				newScale.z = Mathf.Clamp(newScale.z, 0.005f, 1.0f);
+				Vector3 newScale = rect.localScale - Vector3.one * 4.0f * Time.deltaTime;
+				newScale.x = Mathf.Clamp(newScale.x, 0.019f, 2.5f);
+				newScale.y = Mathf.Clamp(newScale.y, 0.019f, 2.5f);
+				newScale.z = Mathf.Clamp(newScale.z, 0.019f, 2.5f);
 
 				rect.localScale = newScale;
 

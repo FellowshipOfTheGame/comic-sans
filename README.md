@@ -26,14 +26,12 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 ## SHORTERM:
 
-- [ ] Make the game possible to be played with controller.
 - [ ] Make the game possible to be played with touch.
-
-## LONGTERM:
-
-- [ ] Add "bomb" system to game. (?)
-- [ ] Make the Player gain abilities by defeating a Boss. (?)
-- [ ] Custom loading screens for each scene. (?)
+- [x] Make the game possible to be played with controller (not tested).
+- [x] Make the game possible to be played only with keyboard.
+- [ ] Custom loading screens for each Boss.
+- [ ] Make Xing Ling's Triple Kunais target player position.
+- [ ] Improve Oswaldos's laser attack.
 
 # DONE:
 
@@ -76,6 +74,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 * https://freesound.org/people/EFlexMusic/sounds/396270/
 * https://freesound.org/people/rrreed/sounds/322525/
 * https://freesound.org/people/Maemi_no_yume/sounds/398634/
+* https://freesound.org/people/Tomlija/sounds/104803/
 
 ---
 

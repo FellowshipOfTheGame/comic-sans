@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 using System.Collections;
@@ -17,6 +18,7 @@ namespace ComicSans
 
 		public static GameController instance;
 
+		[Space(10)]
 		public GameObject playerPrefab;
 
 		private bool allowPlayerControl = true;
@@ -30,11 +32,24 @@ namespace ComicSans
 		public enum GameState { Play, Paused, Win, Lose, WinScreen, LoseScreen, LoadingScreen }
 		public GameState currentGameState = GameState.Play;
 
+		[Space(10)]
 		[SerializeField] private GameObject pauseMenu = null;
+		[SerializeField] private GameObject pauseMenuInitialSelection = null;
+
+		[Space(10)]
 		[SerializeField] private GameObject deathMenu = null;
+		[SerializeField] private GameObject deathMenuInitialSelection = null;
+
+		[Space(10)]
 		[SerializeField] private GameObject victoryMenu = null;
+		[SerializeField] private GameObject victoryMenuInitialSelection = null;
+
+		[Space(10)]
 		[SerializeField] private GameObject loadingScreen = null;
 		[SerializeField] private GameObject loadingFadeEffect = null;
+
+		[Space(10)]
+		[SerializeField] private EventSystem eventSystem = null;
 
 		void Awake()
 		{
@@ -137,6 +152,7 @@ namespace ComicSans
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
 				AudioController.instance.PauseSounds();
+				eventSystem.SetSelectedGameObject(pauseMenuInitialSelection);
 				pauseMenu.SetActive(true);
 			} 
 			else if(currentGameState == GameState.Play)
@@ -185,7 +201,8 @@ namespace ComicSans
 				Cursor.lockState = CursorLockMode.None;			
 				allowPlayerControl = false;
 				PlayerScript.instance.StopMovimentation();
-				deathMenu.SetActive(true);
+				eventSystem.SetSelectedGameObject(deathMenuInitialSelection);
+				deathMenu.SetActive(true);				
 			} 
 			else
 			{
@@ -208,6 +225,7 @@ namespace ComicSans
 				Cursor.lockState = CursorLockMode.None;
 				allowPlayerControl = false;
 				PlayerScript.instance.StopMovimentation();
+				eventSystem.SetSelectedGameObject(victoryMenuInitialSelection);
 				victoryMenu.SetActive(true);
 			} 
 			else
@@ -281,13 +299,13 @@ namespace ComicSans
 
 			// Fades out the scene.
 			RectTransform rect = loadingFadeEffect.GetComponent<RectTransform>();
-			while(rect.localScale.magnitude > 0.01f)
+			while(rect.localScale.x > 0.02f)
 			{
 				
-				Vector3 newScale = rect.localScale - Vector3.one * Time.deltaTime;
-				newScale.x = Mathf.Clamp(newScale.x, 0.005f, 1.0f);
-				newScale.y = Mathf.Clamp(newScale.y, 0.005f, 1.0f);
-				newScale.z = Mathf.Clamp(newScale.z, 0.005f, 1.0f);
+				Vector3 newScale = rect.localScale - Vector3.one * 4.0f * Time.deltaTime;
+				newScale.x = Mathf.Clamp(newScale.x, 0.019f, 2.5f);
+				newScale.y = Mathf.Clamp(newScale.y, 0.019f, 2.5f);
+				newScale.z = Mathf.Clamp(newScale.z, 0.019f, 2.5f);
 
 				rect.localScale = newScale;
 
@@ -312,15 +330,15 @@ namespace ComicSans
 
 			// Fades out the scene.
 			RectTransform rect = loadingFadeEffect.GetComponent<RectTransform>();
-			while(rect.localScale.magnitude < 1f)
+			while(rect.localScale.x < 2.5f)
 			{
 
 				if(currentGameState == GameState.LoadingScreen) break;
 
-				Vector3 newScale = rect.localScale + Vector3.one * Time.deltaTime;
-				newScale.x = Mathf.Clamp(newScale.x, 0.005f, 1.0f);
-				newScale.y = Mathf.Clamp(newScale.y, 0.005f, 1.0f);
-				newScale.z = Mathf.Clamp(newScale.z, 0.005f, 1.0f);
+				Vector3 newScale = rect.localScale + Vector3.one * 4.0f * Time.deltaTime;
+				newScale.x = Mathf.Clamp(newScale.x, 0.019f, 2.5f);
+				newScale.y = Mathf.Clamp(newScale.y, 0.019f, 2.5f);
+				newScale.z = Mathf.Clamp(newScale.z, 0.019f, 2.5f);
 
 				rect.localScale = newScale;
 
@@ -328,7 +346,7 @@ namespace ComicSans
 
 			}
 
-			if(currentGameState != GameState.LoadingScreen) rect.localScale = Vector3.one;
+			if(currentGameState != GameState.LoadingScreen) rect.localScale = 2.5f * Vector3.one;
 
 		}
 		
