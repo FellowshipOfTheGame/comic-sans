@@ -372,8 +372,8 @@ MonoBehaviour:
     bossScene: 1
     boss: {fileID: 1220511299655858, guid: df3a38bf65fe55c4c95c1497351e8e14, type: 3}
     spawn: {x: 0, y: 2.4}
-  loseLobbySceneName: LobbyRoom
-  winLobbySceneName: LobbyRoom
+  loseLobbySceneName: Lobby
+  winLobbySceneName: Lobby
   winScreenObject: {fileID: 838640674}
   winScreenTime: 4
 --- !u!4 &600394758

@@ -25,9 +25,11 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 # TO DO:
 
 - [ ] Make the game possible to be played with touch.
-- [ ] Custom loading screens for each Boss.
 - [ ] Make Xing Ling's Triple Kunais target player position.
 - [ ] Improve Oswaldos's laser attack.
+- [ ] Add despawn animation to Oswaldo's car attack.
+- [ ] Make the player appear back on the Lobby next to the laste enterd room.
+- [ ] Add end game screen when the Player defeats all Bosses.
 
 # DONE:
 
@@ -47,6 +49,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Finalize the new Boss.
 - [x] Make the game possible to be played with controller (not tested).
 - [x] Make the game possible to be played only with keyboard.
+- [x] End screens for each Boss when the player wins.s
   
 ---
 

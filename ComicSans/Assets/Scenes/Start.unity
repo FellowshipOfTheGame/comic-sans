@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab08334e60b8c64ca876e0d179c4e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: LobbyRoom
+  sceneName: Lobby
 --- !u!61 &887331074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -798,8 +798,10 @@ MonoBehaviour:
     bossScene: 0
     boss: {fileID: 0}
     spawn: {x: 0, y: 2.4}
-  loseLobbySceneName: TransitionRoom
-  winLobbySceneName: TransitionRoom
+  loseLobbySceneName: Start
+  winLobbySceneName: Start
+  winScreenObject: {fileID: 0}
+  winScreenTime: 3
 --- !u!4 &2145225795
 Transform:
   m_ObjectHideFlags: 0

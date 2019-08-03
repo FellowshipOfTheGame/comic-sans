@@ -563,7 +563,7 @@ Animator:
   m_GameObject: {fileID: 1934044225117630}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34875fab97042bb488df203227305c75, type: 2}
+  m_Controller: {fileID: 9100000, guid: 17b3c9b6497e28f44a9435b8743f552a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -634,12 +634,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cef3c7209e83b5c458050a671ac01b33, type: 2}
   - {fileID: 11400000, guid: 0722944e2c4789e4ea2456bcfceae90b, type: 2}
   id: punk
-  bossName: <b>Punk</b> <i><size=32>Meu Queixo</size></i>
   _colliders: {fileID: 1568018184556194}
   phases:
   - {fileID: 11400000, guid: 98e0a47a9fc09484fb152ebfa03804d1, type: 2}
   - {fileID: 11400000, guid: b5acd574fd0155b45a4af624db04454d, type: 2}
   - {fileID: 11400000, guid: 3f69e6d84cd061b4fb4b5215ce8c4d4e, type: 2}
+  deathAnimationTime: 3.5
 --- !u!50 &50547907271110350
 Rigidbody2D:
   serializedVersion: 4

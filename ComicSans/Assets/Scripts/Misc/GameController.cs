@@ -196,6 +196,9 @@ namespace ComicSans
 					yield return new WaitForFixedUpdate();
 				}
 
+				if(SceneSettings.instance.winScreenObject != null)
+					SceneSettings.instance.winScreenObject.SetActive(false);
+
 				currentGameState = GameState.WinScreen;
 				SetVictoryMenu(true);
 			}

@@ -1241,8 +1241,10 @@ MonoBehaviour:
     bossScene: 0
     boss: {fileID: 0}
     spawn: {x: 0, y: 2.4}
-  loseLobbySceneName: TransitionLobby
-  winLobbySceneName: TransitionLobby
+  loseLobbySceneName: Lobby
+  winLobbySceneName: Lobby
+  winScreenObject: {fileID: 0}
+  winScreenTime: 3
 --- !u!4 &2145225795
 Transform:
   m_ObjectHideFlags: 0
