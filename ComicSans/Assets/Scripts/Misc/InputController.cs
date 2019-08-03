@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ namespace ComicSans
     public class InputController : MonoBehaviour
     {
         
+        public static InputController instance;
+
         // Stores if the game is being played on Android or iOS.
-        private bool isTouchDevice;
+        public bool isTouchDevice = false;
 
         // Stores the values the movement axis.
         public float xAxis, yAxis;
@@ -25,17 +28,41 @@ namespace ComicSans
         // Used to call functions that need to happen when the Pause button is pressed.
         public event OnInput OnPauseDown;
 
+        public GameObject touchJoystick = null;
+        public GameObject touchFire = null;
+        public GameObject touchPause = null;
+
+        
         private void Awake() 
         {
 
+            // Destroy this object if a previous instance already exists.
+			if(instance != null)
+			{
+				Destroy(gameObject);
+				return;
+			}
+
+            // Creates a singleton of this script.
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+
             // Detects if the game is being played on a touch device.
-            #if UNITY_IPHONE
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
                 isTouchDevice = true;
-            #elif UNITY_ANDROID
-                isTouchDevice = true;
-            #else
+            else
                 isTouchDevice = false;
-            #endif
+
+            touchJoystick = GameObject.Find("TOUCH_JOYSTICK");
+            touchFire = GameObject.Find("TOUCH_FIRE");
+            touchPause = GameObject.Find("TOUCH_PAUSE");
+            
+            if(!isTouchDevice)
+            {
+                touchJoystick.SetActive(false);
+                touchFire.gameObject.SetActive(false);
+                touchPause.gameObject.SetActive(false);
+            }
 
         }
 
@@ -54,11 +81,32 @@ namespace ComicSans
                 if(Input.GetButtonDown("Cancel"))
                     if(OnShotDown != null) OnPauseDown();
 
-            } else {
+            }
+        }
 
-                // TODO
+        public void SetTouchUI(bool state)
+        {
+
+            touchJoystick.SetActive(state);
+            touchFire.gameObject.SetActive(state);
+            touchPause.gameObject.SetActive(state);
+
+        }
+
+        public void InputTouch(string touchControl)
+        {
+
+            if(isTouchDevice) {
+
+                Debug.LogWarning("InputController.TouchShot: Touch button activated on non-touch device!");  
 
             }
+
+            if(touchControl == "shot")
+                OnShotDown();
+            else if(touchControl == "pause")
+                OnPauseDown();
+
         }
 
     }

@@ -24,11 +24,7 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 # TO DO:
 
-## SHORTERM:
-
 - [ ] Make the game possible to be played with touch.
-- [x] Make the game possible to be played with controller (not tested).
-- [x] Make the game possible to be played only with keyboard.
 - [ ] Custom loading screens for each Boss.
 - [ ] Make Xing Ling's Triple Kunais target player position.
 - [ ] Improve Oswaldos's laser attack.
@@ -49,6 +45,8 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Better indicate some Boss attacks so Players can't die without knowing what was coming.
 - [x] Add instructions screen.
 - [x] Finalize the new Boss.
+- [x] Make the game possible to be played with controller (not tested).
+- [x] Make the game possible to be played only with keyboard.
   
 ---
 

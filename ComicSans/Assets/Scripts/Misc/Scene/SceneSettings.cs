@@ -31,7 +31,10 @@ namespace ComicSans
 		public BossSettings bossSettings;
 
 		public string loseLobbySceneName = "TransitionRoom";
+
 		public string winLobbySceneName = "TransitionRoom";
+		public GameObject winScreenObject = null;
+		public float winScreenTime = 3.0f;
 
 		void Awake () 
 		{

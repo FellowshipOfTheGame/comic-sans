@@ -153,6 +153,8 @@ namespace ComicSans
 				Cursor.lockState = CursorLockMode.None;
 				AudioController.instance.PauseSounds();
 				eventSystem.SetSelectedGameObject(pauseMenuInitialSelection);
+				if(InputController.instance.isTouchDevice)
+					InputController.instance.SetTouchUI(false);
 				pauseMenu.SetActive(true);
 			} 
 			else if(currentGameState == GameState.Play)
@@ -161,16 +163,18 @@ namespace ComicSans
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				AudioController.instance.UnPauseSounds();
+				if(InputController.instance.isTouchDevice)
+					InputController.instance.SetTouchUI(true);
 				pauseMenu.SetActive(false);
 			}
 
 		}
 
-		public IEnumerator EndGame (float delay, bool playerWin) {
+		public IEnumerator EndGame (float animDelay, bool playerWin) {
 			
 			float time = 0;
 
-			while(time < delay)
+			while(time < animDelay)
 			{
 				time += Time.fixedDeltaTime;
 				yield return new WaitForFixedUpdate();
@@ -179,6 +183,19 @@ namespace ComicSans
 
 			if(playerWin)
 			{
+
+				if(SceneSettings.instance.winScreenObject != null)
+					SceneSettings.instance.winScreenObject.SetActive(true);
+
+				PlayerScript.instance.gameObject.SetActive(false);
+
+				time = 0;
+				while(time < SceneSettings.instance.winScreenTime)
+				{
+					time += Time.fixedDeltaTime;
+					yield return new WaitForFixedUpdate();
+				}
+
 				currentGameState = GameState.WinScreen;
 				SetVictoryMenu(true);
 			}
@@ -202,6 +219,8 @@ namespace ComicSans
 				allowPlayerControl = false;
 				PlayerScript.instance.StopMovimentation();
 				eventSystem.SetSelectedGameObject(deathMenuInitialSelection);
+				if(InputController.instance.isTouchDevice)
+					InputController.instance.SetTouchUI(false);
 				deathMenu.SetActive(true);				
 			} 
 			else
@@ -209,6 +228,8 @@ namespace ComicSans
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				allowPlayerControl = true;
+				if(InputController.instance.isTouchDevice)
+					InputController.instance.SetTouchUI(true);
 				deathMenu.SetActive(false);
 			}
 
@@ -226,6 +247,8 @@ namespace ComicSans
 				allowPlayerControl = false;
 				PlayerScript.instance.StopMovimentation();
 				eventSystem.SetSelectedGameObject(victoryMenuInitialSelection);
+				if(InputController.instance.isTouchDevice)
+					InputController.instance.SetTouchUI(false);
 				victoryMenu.SetActive(true);
 			} 
 			else
@@ -233,6 +256,8 @@ namespace ComicSans
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				allowPlayerControl = true;
+				if(InputController.instance.isTouchDevice)
+					InputController.instance.SetTouchUI(true);
 				victoryMenu.SetActive(false);
 			}
 

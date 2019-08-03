@@ -18,9 +18,6 @@ namespace ComicSans.Player
     public class PlayerScript : EntityScript {
 
         public static PlayerScript instance;
-
-        private InputController _input;
-
         private Rigidbody2D _rigidbody;
         private Collider2D _collider;
 
@@ -55,10 +52,7 @@ namespace ComicSans.Player
 
             instance = this;
 
-            base.Awake();
-
-            // Gets the InputController of the Player.
-            _input = GetComponentInChildren<InputController>();    
+            base.Awake(); 
 
             // Gets the RigidBody of the Player.
             _rigidbody = GetComponentInChildren<Rigidbody2D>();
@@ -85,8 +79,8 @@ namespace ComicSans.Player
         {
 
             // Logs errors if some essential component is missing.
-            if(_input == null)
-                Debug.LogError("Player.OnEnable: No InputManager found on player!");
+            if(InputController.instance == null)
+                Debug.LogError("Player.OnEnable: No InputManager found!");
             if(_rigidbody == null)
                 Debug.LogError("Player.OnEnable: No Rigidbody2D found on player!");
             if(_collider == null)
@@ -109,10 +103,10 @@ namespace ComicSans.Player
             }
 
             // Adds the input events to the input manager.
-            if(_input != null && !inputEventsOk)
+            if(!inputEventsOk)
             {
-                _input.OnShotDown += ToggleShooting;
-                _input.OnPauseDown += TogglePause;
+                InputController.instance.OnShotDown += ToggleShooting;
+                InputController.instance.OnPauseDown += TogglePause;
 
                 inputEventsOk = true;
             }
@@ -124,13 +118,10 @@ namespace ComicSans.Player
         {
 
             // Removes the input events to the input manager.
-            if(_input != null)
-            {
-                _input.OnShotDown -= ToggleShooting;
-                _input.OnPauseDown -= TogglePause;
+            InputController.instance.OnShotDown -= ToggleShooting;
+            InputController.instance.OnPauseDown -= TogglePause;
 
-                inputEventsOk = false;
-            }
+            inputEventsOk = false;
             
         }
 
@@ -146,8 +137,8 @@ namespace ComicSans.Player
                     // Makes the Player move.
                     Vector2 vel = new Vector2();
                     
-                    vel.x = _input.xAxis;
-                    vel.y = _input.yAxis;
+                    vel.x =  InputController.instance.xAxis;
+                    vel.y =  InputController.instance.yAxis;
 
                     _rigidbody.velocity = vel * velocity;
 

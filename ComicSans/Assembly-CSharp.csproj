@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Misc\ProjectileSpawn.cs" />
      <Compile Include="Assets\Scripts\Misc\Scene\ScenePortal.cs" />
      <Compile Include="Assets\Scripts\Misc\Scene\SceneSettings.cs" />
+     <Compile Include="Assets\Scripts\Misc\UITouchHandler.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\Polling\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Polling\PooledObject.cs" />

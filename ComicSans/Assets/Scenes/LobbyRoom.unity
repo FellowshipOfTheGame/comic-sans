@@ -229,7 +229,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532361037}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -593,7 +593,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951288164}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -823,7 +823,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462260853}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1008,12 +1008,12 @@ PrefabInstance:
     - target: {fileID: 6111272681538156037, guid: 4ece3d179af2cd748b8c0d581a9c5726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 553.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6111272681538156037, guid: 4ece3d179af2cd748b8c0d581a9c5726,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 159.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6111272681538156037, guid: 4ece3d179af2cd748b8c0d581a9c5726,
         type: 3}
@@ -1100,7 +1100,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703346090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

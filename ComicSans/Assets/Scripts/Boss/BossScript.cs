@@ -33,6 +33,8 @@ namespace ComicSans.Boss
 
 		private Animator _animator;
 
+		[SerializeField] private float deathAnimationTime = 3.5f;
+
 		// Use this for initialization
 		protected override void Awake () 
 		{
@@ -416,7 +418,7 @@ namespace ComicSans.Boss
 			else
 				Debug.LogWarning("BossScript.Die: No HUDController found!");
 
-			GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, true));
+			GameController.instance.StartCoroutine(GameController.instance.EndGame(deathAnimationTime, true));
 
 		}
 
@@ -431,7 +433,7 @@ namespace ComicSans.Boss
 			if(_animator != null)
 				_animator.Play("Win", 0);
 
-			GameController.instance.StartCoroutine(GameController.instance.EndGame(3.5f, false));
+			GameController.instance.StartCoroutine(GameController.instance.EndGame(deathAnimationTime, false));
 
 		}
 
