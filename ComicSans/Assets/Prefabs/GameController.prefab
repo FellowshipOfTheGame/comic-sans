@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return to the Lobby
+  m_Text: Go to the Lobby
 --- !u!1 &1020123359915228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2264,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return to the Lobby
+  m_Text: Go to the Lobby
 --- !u!1 &1477248190287730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3232,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114645446814737760}
         m_MethodName: QuitToMainMenu
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3403,7 +3403,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114645446814737760}
         m_MethodName: QuitToMainMenu
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3649,7 +3649,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114645446814737760}
         m_MethodName: QuitToLobby
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4827,7 +4827,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114645446814737760}
         m_MethodName: QuitToMainMenu
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5612,7 +5612,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114645446814737760}
         m_MethodName: QuitToLobby
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5692,6 +5692,9 @@ MonoBehaviour:
   loadingScreen: {fileID: 36487079345675934}
   loadingFadeEffect: {fileID: 6927567342855314457}
   eventSystem: {fileID: 114429254636981844}
+  returnSpawnPos: {x: Infinity, y: Infinity}
+  bossesToEndGame: 4
+  endGameScene: EndGame
 --- !u!1 &1997392244351994
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,8 @@ namespace ComicSans
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 
-			StopAllSounds();
+			if(SceneSettings.instance.stopSounds)
+				StopAllSounds();
 
 		}
 		
@@ -142,9 +143,12 @@ namespace ComicSans
 
 				AudioDictEntry entry = AudioDictionary[id];
 
+				if(entry.audio.type == AudioInfo.Type.Music && entry.sources[entry.currentSource].isPlaying) return;
+				
 				entry.sources[entry.currentSource].clip = entry.audio.clips[Random.Range(0, entry.audio.clips.Length)];
 				entry.sources[entry.currentSource].Play();
 				entry.currentSource = (entry.currentSource) % entry.audio.maxSimultaneousSources;
+				
 					
 			} else
 				Debug.Log("AudioController.Play: Dictinary doesn't contain the key: " + id + "!");

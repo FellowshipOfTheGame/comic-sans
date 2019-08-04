@@ -403,9 +403,10 @@ namespace ComicSans.Boss
 		protected override void Die() 
 		{
 
+			GameController.instance.defeatedBosses.Add(id);
 			GameController.instance.currentGameState = GameController.GameState.Win;
 
-			Debug.Log("BossScript.Die: " + transform.name + " has been defeated!");
+			Debug.Log("BossScript.Die: " + transform.name + " has been defeated! (" + GameController.instance.defeatedBosses.Count + " different Bosses defeated)");
 
 			StopAllCoroutines();
 			PoolingController.instance.DespawnBossObjects();
@@ -418,7 +419,8 @@ namespace ComicSans.Boss
 			else
 				Debug.LogWarning("BossScript.Die: No HUDController found!");
 
-			GameController.instance.StartCoroutine(GameController.instance.EndGame(deathAnimationTime, true));
+			
+			GameController.instance.StartCoroutine(GameController.instance.EndScene(deathAnimationTime, true));
 
 		}
 
@@ -433,7 +435,7 @@ namespace ComicSans.Boss
 			if(_animator != null)
 				_animator.Play("Win", 0);
 
-			GameController.instance.StartCoroutine(GameController.instance.EndGame(deathAnimationTime, false));
+			GameController.instance.StartCoroutine(GameController.instance.EndScene(deathAnimationTime, false));
 
 		}
 

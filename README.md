@@ -28,8 +28,12 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [ ] Make Xing Ling's Triple Kunais target player position.
 - [ ] Improve Oswaldos's laser attack.
 - [ ] Add despawn animation to Oswaldo's car attack.
-- [ ] Make the player appear back on the Lobby next to the laste enterd room.
-- [ ] Add end game screen when the Player defeats all Bosses.
+- [ ] Clean up code for possible final commit.
+
+# BUGS:
+
+- [ ] Punk scream doesn't stop on death (minor).
+- [ ] Oswaldo sometimes get it's animations fliped on the x-axis (medium).
 
 # DONE:
 
@@ -38,18 +42,21 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Carrot Pool has been remvoed from isBossPool in order to temporaly fix a bug with carrots on the second phase. Also player collider is now being disabled when Boss is defeated so the Player can't be hit by a carrot. Find a more permanet fix and revert this changes.
 - [x] It's possible to win and lose at the same time.
 - [x] Fix Player being able to lose 2 lifes when hit by more than one projectile at the same time.
-- [X] Make shot button a toggle.
-- [X] Move some values to SceneSettings.
+- [x] Make shot button a toggle.
+- [x] Move some values to SceneSettings.
 - [x] Rebuild audio system.
-- [X] Improve Boss action system.
-- [X] Add sound tagging system to AudioController to better control sounds.
-- [X] Improve prefab pooling system (take some aspects from the Audio system).
+- [x] Improve Boss action system.
+- [x] Add sound tagging system to AudioController to better control sounds.
+- [x] Improve prefab pooling system (take some aspects from the Audio system).
 - [x] Better indicate some Boss attacks so Players can't die without knowing what was coming.
 - [x] Add instructions screen.
 - [x] Finalize the new Boss.
 - [x] Make the game possible to be played with controller (not tested).
 - [x] Make the game possible to be played only with keyboard.
-- [x] End screens for each Boss when the player wins.s
+- [x] End screens for each Boss when the player wins.
+- [x] Improved start of the game.
+- [x] Make the player appear back on the Lobby next to the last entered room.
+- [x] Add end game screen when the Player defeats all Bosses.
   
 ---
 

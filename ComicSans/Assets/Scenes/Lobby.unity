@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Hero
+  returnSpawnPosition: {x: -3.85, y: -0.15}
 --- !u!61 &216957587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ GameObject:
   - component: {fileID: 635696925}
   - component: {fileID: 635696924}
   m_Layer: 0
-  m_Name: BG2
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,6 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Xing
+  returnSpawnPosition: {x: 0, y: 3}
 --- !u!1 &1657668002
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Punk
+  returnSpawnPosition: {x: 3.85, y: 0.2}
 --- !u!1001 &1694149098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1204,6 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Cueio
+  returnSpawnPosition: {x: 0, y: -2.2}
 --- !u!1 &2145225793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,15 +1238,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 11400000, guid: af697e4698e19bc40830a594b09824e3, type: 2}
+  stopSounds: 0
   showHUD: 0
   playerSpawnPoint: {x: 0, y: -2.2}
+  useReturnPos: 1
   positionConstraints: {x: 6.25, y: 5}
   bossSettings:
     bossScene: 0
     boss: {fileID: 0}
     spawn: {x: 0, y: 2.4}
-  loseLobbySceneName: Lobby
-  winLobbySceneName: Lobby
+  returnSceneName: Lobby
   winScreenObject: {fileID: 0}
   winScreenTime: 3
 --- !u!4 &2145225795

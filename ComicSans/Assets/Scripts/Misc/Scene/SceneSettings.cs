@@ -15,9 +15,11 @@ namespace ComicSans
 		public static SceneSettings instance;
 
 		public AudioInfo backgroundMusic;
+		public bool stopSounds = true;
 		public bool showHUD = true;	
 
 		public Vector2 playerSpawnPoint = new Vector2(0, -3.3f);
+		public bool useReturnPos = false;
 
 		public Vector2 positionConstraints = new Vector2( 6.25f, 5f);
 
@@ -30,9 +32,7 @@ namespace ComicSans
 		}
 		public BossSettings bossSettings;
 
-		public string loseLobbySceneName = "TransitionRoom";
-
-		public string winLobbySceneName = "TransitionRoom";
+		public string returnSceneName = "Lobby";
 		public GameObject winScreenObject = null;
 		public float winScreenTime = 3.0f;
 

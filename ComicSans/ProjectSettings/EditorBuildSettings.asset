@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 186ed93ecc7882247bebe2d55cd35fef
   - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: c9374821813ee9a4bbf55d08f111fc6c
+    path: Assets/Scenes/Tutorial.unity
+    guid: 5c9dab1b37ea5534face8d5d0087336f
   - enabled: 1
-    path: Assets/Scenes/CueioTutorial.unity
-    guid: 8d2a0e321a240a647b16e56ca28034cb
+    path: Assets/Scenes/Story.unity
+    guid: 60c595280fac6a14d9700087a9a41176
+  - enabled: 1
+    path: Assets/Scenes/Choose.unity
+    guid: c9374821813ee9a4bbf55d08f111fc6c
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 18e66cb935aebaf42814ebca5c4e17af
@@ -29,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hero.unity
     guid: 0d00fd1d7682f0443b420fb2684f7279
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 47ff59ef8196e094886ba18bd0c8a8a0
+  - enabled: 1
+    path: Assets/Scenes/Congrats.unity
+    guid: 377788e0f85d93c498e6aaf652b71dc2
   m_configObjects: {}

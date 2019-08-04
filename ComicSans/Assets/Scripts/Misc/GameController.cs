@@ -51,6 +51,13 @@ namespace ComicSans
 		[Space(10)]
 		[SerializeField] private EventSystem eventSystem = null;
 
+		[HideInInspector] public Vector2 returnSpawnPos = Vector2.positiveInfinity;
+
+		public HashSet<string> defeatedBosses = new HashSet<string>();
+		[SerializeField] private int bossesToEndGame = 4;
+		[SerializeField] private string endGameScene = "EndGame";
+		private bool gameEnded = false;
+
 		void Awake()
 		{
 
@@ -70,6 +77,10 @@ namespace ComicSans
 			DontDestroyOnLoad(gameObject);
 
 			SceneManager.sceneLoaded += OnSceneLoaded;
+
+			returnSpawnPos = Vector2.positiveInfinity;
+
+			gameEnded = false;
 
 		}
 
@@ -113,17 +124,25 @@ namespace ComicSans
 			if(PlayerScript.instance == null)
 			{
 				
-				GameObject _player = Instantiate(playerPrefab, SceneSettings.instance.playerSpawnPoint, new Quaternion());
+				GameObject _player;
+				if(SceneSettings.instance.useReturnPos && returnSpawnPos != Vector2.positiveInfinity)
+					_player = Instantiate(playerPrefab, returnSpawnPos, new Quaternion());
+				else
+					_player = Instantiate(playerPrefab, SceneSettings.instance.playerSpawnPoint, new Quaternion());
+
 				DontDestroyOnLoad(_player);
 
 			} else {
+
+				if(SceneSettings.instance.useReturnPos && returnSpawnPos != Vector2.positiveInfinity)
+					PlayerScript.instance.transform.position = returnSpawnPos;
+				else
+					PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 
 				if(PlayerScript.instance.gameObject.activeSelf)
 					PlayerScript.instance.Initialize();
 				else
 					PlayerScript.instance.gameObject.SetActive(true);
-
-				PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 
 			}
 		}
@@ -170,7 +189,7 @@ namespace ComicSans
 
 		}
 
-		public IEnumerator EndGame (float animDelay, bool playerWin) {
+		public IEnumerator EndScene (float animDelay, bool playerWin) {
 			
 			float time = 0;
 
@@ -266,21 +285,20 @@ namespace ComicSans
 
 		}
 
-		public void QuitToLobby(bool win)
+		public void QuitToLobby()
 		{
 
-			string sceneName;
-
-			if(win)
-				sceneName = SceneSettings.instance.winLobbySceneName;
+			if(defeatedBosses.Count < bossesToEndGame || gameEnded)
+				LoadScene(SceneSettings.instance.returnSceneName);
 			else
-				sceneName = SceneSettings.instance.loseLobbySceneName;
-
-			LoadScene(sceneName);
+			{
+				gameEnded = true;
+				LoadScene(endGameScene);
+			}
 
 		}
 
-		public void QuitToMainMenu(bool win)
+		public void QuitToMainMenu()
 		{
 
 			PlayerScript.instance.StopMovimentation();
@@ -344,6 +362,10 @@ namespace ComicSans
 			// Displays the loading screen.
 			loadingScreen.SetActive(true);
 			yield return new WaitForEndOfFrame();
+
+			// Stops all sounds if exiting a Boss scene.
+			if(SceneSettings.instance.bossSettings.bossScene)
+				AudioController.instance.StopAllSounds();
 
 			// Start loading the scene.
 			SceneManager.LoadSceneAsync(sceneName);

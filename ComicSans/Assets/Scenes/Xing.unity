@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 11400000, guid: 506d2f02e4c0bfd4bb32ae73578f1276, type: 2}
+  stopSounds: 1
   showHUD: 1
   playerSpawnPoint: {x: 0, y: -3.3}
   positionConstraints: {x: 6.25, y: 5}
@@ -372,8 +373,7 @@ MonoBehaviour:
     bossScene: 1
     boss: {fileID: 1220511299655858, guid: df3a38bf65fe55c4c95c1497351e8e14, type: 3}
     spawn: {x: 0, y: 2.4}
-  loseLobbySceneName: Lobby
-  winLobbySceneName: Lobby
+  returnSceneName: Lobby
   winScreenObject: {fileID: 838640674}
   winScreenTime: 4
 --- !u!4 &600394758
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 635696925}
   - component: {fileID: 635696924}
   m_Layer: 0
-  m_Name: BGHorz
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
