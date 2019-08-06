@@ -15,9 +15,11 @@ namespace ComicSans.Projectiles.Boss
 
 		[SerializeField] private Animator _animator = null;
 
-		[SerializeField] private float delay = 1.0f;
+		[SerializeField] private float spawnDelay = 1.0f;
 
 		[SerializeField] private float stay = 5.0f;
+		
+		[SerializeField] private float despawnDelay = 1.0f;
 
 		[SerializeField] private float aceleration = 10.0f;
 
@@ -59,9 +61,10 @@ namespace ComicSans.Projectiles.Boss
 		{
 			
 			if(_animator != null) _animator.SetInteger("Stay", 0);
+			if(_animator != null) _animator.SetInteger("Despawn", 0);
 			
 			float timer = 0;
-			while(timer < delay)
+			while(timer < spawnDelay)
 			{
 				timer += Time.fixedDeltaTime;
 				yield return new WaitForFixedUpdate();
@@ -90,6 +93,17 @@ namespace ComicSans.Projectiles.Boss
 
 			timer = 0;
 			while(timer < stay)
+			{
+
+				timer += Time.fixedDeltaTime;
+
+				yield return new WaitForFixedUpdate();
+			}
+
+			if(_animator != null) _animator.SetInteger("Despawn", 1);
+
+			timer = 0;
+			while(timer < despawnDelay)
 			{
 
 				timer += Time.fixedDeltaTime;

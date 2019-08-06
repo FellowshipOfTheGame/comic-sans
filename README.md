@@ -24,16 +24,14 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 # TO DO:
 
+- [ ] Add new ending.
 - [ ] Make the game possible to be played with touch.
-- [ ] Make Xing Ling's Triple Kunais target player position.
-- [ ] Improve Oswaldos's laser attack.
-- [ ] Add despawn animation to Oswaldo's car attack.
 - [ ] Clean up code for possible final commit.
 
-# BUGS:
+# TEST:
 
-- [ ] Punk scream doesn't stop on death (minor).
-- [ ] Oswaldo sometimes get it's animations fliped on the x-axis (medium).
+- [ ] Fixed Punk scream not stoping on death.
+- [ ] Fixed Oswaldo sometimes getting it's animations fliped on the x-axis.
 
 # DONE:
 
@@ -50,13 +48,14 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Improve prefab pooling system (take some aspects from the Audio system).
 - [x] Better indicate some Boss attacks so Players can't die without knowing what was coming.
 - [x] Add instructions screen.
-- [x] Finalize the new Boss.
-- [x] Make the game possible to be played with controller (not tested).
+- [x] Add a new Boss.
 - [x] Make the game possible to be played only with keyboard.
+- [x] Make the game possible to be played with controller (not tested).
 - [x] End screens for each Boss when the player wins.
 - [x] Improved start of the game.
 - [x] Make the player appear back on the Lobby next to the last entered room.
 - [x] Add end game screen when the Player defeats all Bosses.
+- [X] Make Xing Ling's Triple Kunais target player position.
   
 ---
 

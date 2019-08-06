@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e03df4ec5f80c5046b9585a9671dfec1, type: 2}
   - {fileID: 11400000, guid: 6b8c302aa672eba47aa71584dfcb919b, type: 2}
   chance: 100
-  choiceType: 0
-  trigger: 0
+  choiceType: 2
+  trigger: 2
   nextPattern:
   - {fileID: 11400000, guid: 0d6d06fbaee507046a15a53e3ba63259, type: 2}

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: laser_r
   tag: hero
   type: 1
-  baseObject: {fileID: 4413401142815667131, guid: a334b3319c7cd0a4c91dc3a5f8a360b9,
+  baseObject: {fileID: 4435863200023845879, guid: 58944aa3c89cd6d4582e0a9b365851b3,
     type: 3}
-  initialObjectInstances: 1
-  maxObjectInstances: 1
+  initialObjectInstances: 2
+  maxObjectInstances: 2

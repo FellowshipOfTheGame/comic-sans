@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: XingKunaiCenterAttack
   m_EditorClassIdentifier: 
   caller: {fileID: 0}
-  projectilePool: {fileID: 11400000, guid: fd6f1989a64691f4d9d97dc536c9f7b2, type: 2}
+  projectilePool: {fileID: 11400000, guid: 48c0b5abe08fdeb479a0bc3945a49693, type: 2}
   projectileSpawns:
-  - position: {x: -0.15, y: -0.5}
-    rotation: -16.5
-  - position: {x: 0, y: -0.5}
+  - position: {x: 0, y: 0}
     rotation: 0
-  - position: {x: 0.15, y: -0.5}
-    rotation: 16.5
   animations:
   - name: kunai
     value: 1

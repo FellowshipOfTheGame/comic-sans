@@ -241,7 +241,7 @@ Animator:
   m_GameObject: {fileID: 1934044225117630}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 825f930983d61864a92fbed37fa1ef01, type: 2}
+  m_Controller: {fileID: 9100000, guid: cbe84769ff3373e4184722c820213955, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -301,19 +301,25 @@ MonoBehaviour:
     hp: 4000
     invincibilityTime: 2
   velocity: 4
-  warmupAudio: []
+  warmupAudio:
+  - {fileID: 11400000, guid: b63a10b42e017e54da18543c26309a87, type: 2}
+  - {fileID: 11400000, guid: c413de08093e1ee45948e1cccd2f459c, type: 2}
+  - {fileID: 11400000, guid: 99edfca4d7914ae48a09226e04f35193, type: 2}
+  - {fileID: 11400000, guid: 0ca69b89d1d43cd449590e9d27feda04, type: 2}
+  - {fileID: 11400000, guid: d16e800fd72e38843b7c2bff194cead4, type: 2}
+  - {fileID: 11400000, guid: 9d1786d20c37b2b479755c111c188ead, type: 2}
   warmupPools:
   - {fileID: 11400000, guid: 963f3e1f92d55a14abf4745cb130378c, type: 2}
   - {fileID: 11400000, guid: a62ee37fb0ef590489d4067bb3482c29, type: 2}
   - {fileID: 11400000, guid: 39c49dcf407eff440ad18871a709d7ab, type: 2}
   - {fileID: 11400000, guid: eb0e489cf136ec14baedbb3a09158a97, type: 2}
   id: hero
-  bossName: O Espetacular Osvaldo
   _colliders: {fileID: 1606642354038726}
   phases:
   - {fileID: 11400000, guid: 9c9d57dedd3814344a9050dea050c6a1, type: 2}
   - {fileID: 11400000, guid: 83f32de4f54f826459f206ec834cf49d, type: 2}
   - {fileID: 11400000, guid: c47c645dff7633e4f801137d724f01d3, type: 2}
+  deathAnimationTime: 3.5
 --- !u!50 &50547907271110350
 Rigidbody2D:
   serializedVersion: 4

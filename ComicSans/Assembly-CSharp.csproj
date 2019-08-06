@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\Projectiles\Boss\BossFollowProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Boss\BossProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Boss\BossRepulsorAttack.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\Boss\BossRotateProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Boss\BossSpinProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Boss\BossStayProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectiles\ProjectileBase.cs" />

@@ -3164,6 +3164,7 @@ MonoBehaviour:
   stopSounds: 0
   showHUD: 0
   playerSpawnPoint: {x: 0, y: -3.3}
+  useReturnPos: 0
   positionConstraints: {x: 6.25, y: 5}
   bossSettings:
     bossScene: 0

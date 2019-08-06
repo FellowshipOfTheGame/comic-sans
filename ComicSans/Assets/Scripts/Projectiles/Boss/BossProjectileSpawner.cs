@@ -22,7 +22,7 @@ namespace ComicSans.Projectiles.Boss
 
 		[SerializeField] PoolInfo projectilePool = null;
 
-		enum SpawnType { SinglePosition, MultiplePosition, PlayerPosition }
+		enum SpawnType { SinglePosition, MultiplePosition, PlayerPosition, PlayerFacing }
 		[SerializeField] private SpawnType spawnType = SpawnType.PlayerPosition;
 
 		[SerializeField] private List<ProjectileSpawn> spawnPositions = null;
@@ -37,9 +37,7 @@ namespace ComicSans.Projectiles.Boss
 
 		}
 
-		protected override void FixedUpdate () {
-			
-			base.FixedUpdate();
+		protected void Update () {
 
 			if(currentAttack < numberOfAttack) 
 			{
@@ -77,11 +75,29 @@ namespace ComicSans.Projectiles.Boss
 			{
 				PoolingController.instance.Spawn(projectilePool, spawnPositions[currentAttack].position, Quaternion.Euler(0, 0, spawnPositions[currentAttack].rotation));
 			}
-			else
+			else if (spawnType == SpawnType.PlayerPosition)
 			{
 					
 				if(PlayerScript.instance != null)
 					PoolingController.instance.Spawn(projectilePool, PlayerScript.instance.transform.position, new Quaternion());
+				else
+					Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
+			}
+			else if (spawnType == SpawnType.PlayerFacing)
+			{
+					
+				if(PlayerScript.instance != null)
+				{
+
+					Vector3 spawnPos = transform.position + new Vector3(spawnPositions[currentAttack].position.x, spawnPositions[currentAttack].position.y, 0);
+					Vector3 diff = PlayerScript.instance.transform.position - spawnPos;
+
+					float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+					Quaternion rotation = Quaternion.Euler(0f, 0f, 90 + rot_z + spawnPositions[currentAttack].rotation);
+
+					PoolingController.instance.Spawn(projectilePool, spawnPos, rotation);
+
+				}
 				else
 					Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
 			}

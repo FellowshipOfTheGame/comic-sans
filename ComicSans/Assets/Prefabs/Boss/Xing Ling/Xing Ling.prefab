@@ -94,13 +94,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fd6f1989a64691f4d9d97dc536c9f7b2, type: 2}
   - {fileID: 11400000, guid: 68c02cd59352dd146b135f065cde2a9c, type: 2}
   - {fileID: 11400000, guid: ca35705dfea123b48bbb6ac923f3cfdd, type: 2}
+  - {fileID: 11400000, guid: 48c0b5abe08fdeb479a0bc3945a49693, type: 2}
   id: xing
-  bossName: <i>Xing Ling</i>
   _colliders: {fileID: 1032877927398090}
   phases:
   - {fileID: 11400000, guid: 445b0723cc7bfd442836d1e7856dc6be, type: 2}
   - {fileID: 11400000, guid: 352692a28f85d92498443ce023de8b73, type: 2}
   - {fileID: 11400000, guid: ba233832df977b34295580476644ea93, type: 2}
+  deathAnimationTime: 3.5
 --- !u!50 &50495388990375424
 Rigidbody2D:
   serializedVersion: 4

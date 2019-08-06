@@ -15,7 +15,7 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: 8b75b85aa00bb4541a68990e32e3335d, type: 2}
   - {fileID: 11400000, guid: c8c9de3c3714e5b48a14753ed2d51bf9, type: 2}
-  - {fileID: 11400000, guid: efd0907833974a141bc7dad0b58c2241, type: 2}
+  - {fileID: 11400000, guid: 286d953627826cc4e9fb1c2407e289c8, type: 2}
   - {fileID: 11400000, guid: bffb0c623106f4e44b8ec4965756b4ba, type: 2}
   chance: 75
   choiceType: 0

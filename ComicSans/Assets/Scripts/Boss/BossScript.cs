@@ -128,6 +128,8 @@ namespace ComicSans.Boss
 				return;	
 			}
 
+			transform.localScale = Vector3.one; // Ensures the Boss scale can't be left wrong by a previous pattern.
+
 			// Checks the choice types for next pattern.
 			foreach(BossPattern pattern in currentPattern.nextPattern)
 			{
@@ -332,18 +334,25 @@ namespace ComicSans.Boss
 
 			// Despawns all previous phase projectiles.
 			PoolingController.instance.DespawnBossObjects();
+
+			// Stops all previous phase sounds.
+			AudioController.instance.StopWithTag(id);
 			
 			StartCoroutine(Reset(phases[currentPhase].invincibilityMultiplier));
 
+			// Resets the Boss position.
 			transform.position = new Vector3(phases[currentPhase].initialPosition.x, phases[currentPhase].initialPosition.y, 0);
 
+			// Sets the first pattern.
 			currentPattern = phases[currentPhase].firstPattern;
 			
+			// Assigns the new AnimationController.
 			_animator.runtimeAnimatorController = phases[currentPhase].animationController;
 
 			// Gets the action to be executed.
 			currentAction = 0;
 
+			// Initiates new phase's first pattern actions.
 			currentPattern.actions[currentAction].caller = this;
 			currentPattern.actions[currentAction].DoAction();
 

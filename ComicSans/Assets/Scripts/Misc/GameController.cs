@@ -80,6 +80,8 @@ namespace ComicSans
 
 			returnSpawnPos = Vector2.positiveInfinity;
 
+			defeatedBosses = new HashSet<string>();
+
 			gameEnded = false;
 
 		}
