@@ -13,17 +13,22 @@ namespace ComicSans.Boss
 {
 
 	// The base script for the Bosses.
+	// IMPORTANT: Remember to add a BossStateMachineHandler on the last Boss phase AnimationController in the 'Win' and 'Die' states.
 	[AddComponentMenu("Scripts/Entity/Boss")]
 	public class BossScript : EntityScript 
 	{
 
 		public static BossScript instance;
 
+		[Tooltip("Used to uniquile identify this Boss and to tag it's Audios and Projectiles.")]
 		public string id;
 
+		[Tooltip("Object containing all the colliders used by the Boss.")]
 		[SerializeField] private GameObject _colliders = null;
+
 		private Rigidbody2D _rigidbody = null;
 
+		[Tooltip("List of phases used by the current Boss.")]
 		[SerializeField] private List<BossPhase> phases = null;
 		private int currentPhase = 0;
 
@@ -33,7 +38,8 @@ namespace ComicSans.Boss
 
 		private Animator _animator;
 
-		[SerializeField] private float deathAnimationTime = 3.5f;
+		[Tooltip("Delay after the Boss end animation.")]
+		public float endAnimationDelay = 1.25f;
 
 		// Use this for initialization
 		protected override void Awake () 
@@ -93,7 +99,7 @@ namespace ComicSans.Boss
 			// Initializes the Boss movementation.
 			if(phases[currentPhase].firstPattern == null)
 			{
-				Debug.Log("BossScript.Initialize: " + transform.name + "'s current phase has no first pattern.");
+				Debug.LogWarning("BossScript.Initialize: " + transform.name + "'s current phase has no first pattern.");
 				return;
 			}
 			currentPattern = phases[currentPhase].firstPattern;
@@ -124,7 +130,7 @@ namespace ComicSans.Boss
 
 			if(currentPattern.nextPattern.Count == 0)
 			{
-				Debug.Log("BossScript.NextPattern: Current pattern has no nextPattern on " + transform.name + "!");
+				Debug.LogWarning("BossScript.NextPattern: Current pattern has no nextPattern on " + transform.name + "!");
 				return;	
 			}
 
@@ -149,7 +155,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 
 							break;
 						case BossPattern.Trigger.PlayerOnLeft:
@@ -163,7 +169,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 							break;
 						case BossPattern.Trigger.PlayerOnTop:
 							if(PlayerScript.instance != null)
@@ -176,7 +182,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 							break;
 						case BossPattern.Trigger.PlayerOnScreenRight:
 							if(PlayerScript.instance != null)
@@ -189,7 +195,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 
 							break;
 						case BossPattern.Trigger.PlayerOnScreenLeft:
@@ -203,7 +209,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 							break;
 						case BossPattern.Trigger.PlayerOnScreenTop:
 							if(PlayerScript.instance != null)
@@ -216,7 +222,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 
 							break;
 						case BossPattern.Trigger.PlayerOnScreenBottom:
@@ -230,7 +236,7 @@ namespace ComicSans.Boss
 								}
 							}
 							else
-								Debug.Log("BossScript.NextPattern: Player not found!");
+								Debug.LogWarning("BossScript.NextPattern: Player not found!");
 							break;
 						case BossPattern.Trigger.PlayerOnScreenDiagonalTop:
 							if(PlayerScript.instance != null)
@@ -311,9 +317,7 @@ namespace ComicSans.Boss
 				}
 			}	
 
-			Debug.LogError("BossScript.NextPattern: No pattern randomly selected on " + transform.name + "! Either dark magic happened, or (more probable) someone did something wrong with the selection code. Defaulting to the first pattern on the list....");
-			currentPattern = currentPattern.nextPattern[0];
-			currentAction = 0;
+			Debug.LogError("BossScript.NextPattern: No pattern randomly selected on " + transform.name + "! Either dark magic happened, or (more probable) someone did something wrong with the selection code.");
 
 		}
 
@@ -377,11 +381,12 @@ namespace ComicSans.Boss
 				if(phases.Count > currentPhase + 1)
 					NextPhase();
 				else
-					Debug.Log("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
+					Debug.LogWarning("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
 			}
 
 		}
 
+		// Resets the Boss position and aplies invincibility in scene transitions.
 		protected override IEnumerator Reset(float invincibilityMultiplier)
 		{
 
@@ -412,39 +417,48 @@ namespace ComicSans.Boss
 		protected override void Die() 
 		{
 
+			// Adds the Boss to the lsit of defeated Bosses and sets the game state.
 			GameController.instance.defeatedBosses.Add(id);
 			GameController.instance.currentGameState = GameController.GameState.Win;
 
 			Debug.Log("BossScript.Die: " + transform.name + " has been defeated! (" + GameController.instance.defeatedBosses.Count + " different Bosses defeated)");
 
+			// Stops coroutines and despawns projectiles.
 			StopAllCoroutines();
 			PoolingController.instance.DespawnBossObjects();
 			
+			// Sets the animation.
 			if(_animator != null)
 				_animator.Play("Die", 0);
 
+			// Disables the HUD.
 			if(HUDController.instance != null)
 				HUDController.instance.DisableHUD();
 			else
 				Debug.LogWarning("BossScript.Die: No HUDController found!");
 
-			
-			GameController.instance.StartCoroutine(GameController.instance.EndScene(deathAnimationTime, true));
-
 		}
 
-		public void PlayerDie()
+		// Called by the player when it's defeated by the Boss.
+		public void PlayerDefeated()
 		{
 
+			// Sets the game state.
 			GameController.instance.currentGameState = GameController.GameState.Lose;
 
+			// Stops coroutines and despawns projectiles.
 			StopAllCoroutines();
 			PoolingController.instance.DespawnBossObjects();
 			
+			// Sets the animation.
 			if(_animator != null)
 				_animator.Play("Win", 0);
 
-			GameController.instance.StartCoroutine(GameController.instance.EndScene(deathAnimationTime, false));
+			// Disables the HUD.
+			if(HUDController.instance != null)
+				HUDController.instance.DisableHUD();
+			else
+				Debug.LogWarning("BossScript.Die: No HUDController found!");
 
 		}
 

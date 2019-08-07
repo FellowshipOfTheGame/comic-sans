@@ -18,6 +18,7 @@ namespace ComicSans.Player
     public class PlayerScript : EntityScript {
 
         public static PlayerScript instance;
+
         private Rigidbody2D _rigidbody;
         private Collider2D _collider;
 
@@ -27,21 +28,27 @@ namespace ComicSans.Player
         [System.Serializable]
         private class Shooting
         {
-            public bool isShooting = false;
+            [HideInInspector] public bool isShooting = false;
 
+            [Tooltip("Delay between shots.")]
             public float delay = 0.1f;
+
+            [Tooltip("Prefab pool to be used for the shots.")]
             public PoolInfo bulletPool = null;
 
+            [Tooltip("Positions where the projectiles should be spawned.")]
             public ProjectileSpawn spawn = new ProjectileSpawn();
 
+            // Shooting coroutine, used for starting and stoping the shooting.
             [HideInInspector] public Coroutine ShootingCoroutine = null;
         }
+        
+        [Tooltip("Configurations realted to the player shooting.")]
         [SerializeField] private Shooting shooting = null;
 
         // Stores if input events are setup on InputManager.
         private bool inputEventsOk = false;
 
-        // Use this for initialization
         protected override void Awake () {
 
             if(instance != null)
@@ -255,7 +262,7 @@ namespace ComicSans.Player
 
         protected override void Die()
         {
-            BossScript.instance.PlayerDie();
+            BossScript.instance.PlayerDefeated();
                 
             if(HUDController.instance != null)
                 HUDController.instance.DisableHUD();

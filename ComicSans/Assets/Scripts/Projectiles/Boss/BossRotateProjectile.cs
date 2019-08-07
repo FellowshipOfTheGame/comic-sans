@@ -6,10 +6,14 @@ using System.Collections.Generic;
 namespace ComicSans.Projectiles.Boss
 {
 
+    // Rotates a projectile.
     [AddComponentMenu("Scripts/Projectiles/Boss/Rotate")]
     public class BossRotateProjectile : ProjectileBase {
 
+        [Tooltip("Rotation velocity (degrees/s).")]
         [SerializeField] private float angularSpeed = 180;
+
+        [Tooltip("Angle to rotate by (degrees).")]
         [SerializeField] private float rotateAmount = 180;
 
         protected override void OnEnable()
@@ -24,6 +28,7 @@ namespace ComicSans.Projectiles.Boss
         {
             float curAngle = 0;
 
+            // Rotates until reaching the angle.
             while(angularSpeed > 0  && curAngle < rotateAmount || angularSpeed < 0  && curAngle > rotateAmount)
             {
 
@@ -36,10 +41,8 @@ namespace ComicSans.Projectiles.Boss
 
             }
 
-            if(origin != null)
-                Despawn();
-            else
-                Destroy(this.gameObject);
+            Despawn();
+
         }
 
         protected override void OnCollisionEnter2D(Collision2D collision) {}

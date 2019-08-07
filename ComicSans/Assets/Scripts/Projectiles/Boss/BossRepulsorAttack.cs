@@ -12,15 +12,24 @@ namespace ComicSans.Projectiles.Boss
 	[AddComponentMenu("Scripts/Projectiles/Boss/Repulsor Attack")]
 	public class BossRepulsorAttack : ProjectileBase {
 
+		[Tooltip("Delay before starting repulsing.")]
 		[SerializeField] private float delay = 1f;
+
+		[Tooltip("Strenght of the repulsion.")]
 		[SerializeField] private float strength = 3.5f;	
+
+		[Tooltip("Duration of the repulsion.")]
 		[SerializeField] private float duration = 9f;
 
+		[Tooltip("GameObject that will cause damage during the repulsion.")]
 		[SerializeField] private GameObject damageObject = null;
+
+		[Tooltip("GameObject used before the repulsion start to warn where the Player will take damage.")]
 		[SerializeField] private GameObject predictObject = null;
 
 		protected override void OnEnable () {
 			
+			// Leaves the predictObject active at start.
 			if(predictObject != null) predictObject.SetActive(true);
 			if(damageObject != null) damageObject.SetActive(false);
 			
@@ -30,6 +39,7 @@ namespace ComicSans.Projectiles.Boss
 				return;
 			}
 
+			// Plays the audio after the delay.
 			if(projectileAudio != null)
 				AudioController.instance.Play(projectileAudio, delay);
 				
@@ -39,8 +49,9 @@ namespace ComicSans.Projectiles.Boss
 
 		IEnumerator Repulse(float strength) {
 
-			float time = 0;
 
+			// Waits for the delay.
+			float time = 0;
 			while(time < delay) {
 
 				time += Time.fixedDeltaTime;
@@ -49,32 +60,29 @@ namespace ComicSans.Projectiles.Boss
 
 			}
 
+			// Disables the predictObject and enables the damageObject.
 			if(predictObject != null) predictObject.SetActive(false);
-
-			time = 0;
-
 			if(damageObject != null) damageObject.SetActive(true);
 
+			// Checks if the Player exists.
 			if(PlayerScript.instance != null)
 			{
 
+				// Gets the Player transform.
 				Transform playerTransform = PlayerScript.instance.transform;
 
+				// Repulses for the duration time.
+				time = 0;
 				while(time < duration) 
 				{
 
-					if(BossScript.instance == null)
-						break;
-
-					time += Time.fixedDeltaTime;
-
-					if(playerTransform == null)
-						break;
-
+					// Calculates and applies the repulsion force.
 					Vector2 vet = playerTransform.position - transform.position;
 					vet = vet.normalized;
 
 					playerTransform.transform.Translate(vet * strength * Time.deltaTime);
+
+					time += Time.fixedDeltaTime;
 
 					yield return new WaitForFixedUpdate();
 
@@ -82,13 +90,11 @@ namespace ComicSans.Projectiles.Boss
 			}
 			else
 			{
-				Debug.Log("BossRepulsorAttack.Repulse: Player not found!");
+				Debug.LogWarning("BossRepulsorAttack.Repulse: Player not found!");
 			}
 
-			if(origin != null)
-				Despawn();
-			else
-				Destroy(this.gameObject);
+			
+			Despawn();
 
 		}
 	}

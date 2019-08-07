@@ -50,7 +50,10 @@ namespace ComicSans
 
         protected bool invincible;
 
+        [Tooltip("Audios to be pre-initialized at Awake.")]
         [SerializeField] protected List<AudioInfo> warmupAudio;
+
+        [Tooltip("Prefab pools to be pre-initialized at Awake.")]
         [SerializeField] protected List<PoolInfo> warmupPools;
         
         protected virtual void Awake()

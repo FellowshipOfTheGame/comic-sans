@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e4fa3265f65684d8bac80c6520dc9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundsToStop: []
 --- !u!114 &114607750050897680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -59,7 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e4fa3265f65684d8bac80c6520dc9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundsToStop: []
 --- !u!1101 &1101079142549164542
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -6,7 +6,10 @@ namespace ComicSans.DataContainers {
 	[System.Serializable]
 	public struct ProjectileSpawn {
 
+		[Tooltip("Position to spawn the projectile.")]
 		public Vector2 position;
+
+		[Tooltip("Position to spawn the projectile, on the z-axis.")]
 		public float rotation;
 
 	}

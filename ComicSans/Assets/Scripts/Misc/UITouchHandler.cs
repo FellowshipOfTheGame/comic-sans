@@ -13,19 +13,11 @@ namespace ComicSans
     [AddComponentMenu("Scripts/Misc/UI Touch Handler")]
     public class UITouchHandler : MonoBehaviour
     {
-        public void TouchShot()
-        {
+        // Informs the InputController that the shot button has been pressed.
+        public void TouchShot() { InputController.instance.InputTouch("shot"); }
 
-            InputController.instance.InputTouch("shot");
-
-        }
-
-        public void TouchPause()
-        {
-
-            InputController.instance.InputTouch("pause");
-
-        }
+        // Informs the InputController that the pause button has been pressed.
+        public void TouchPause() { InputController.instance.InputTouch("pause"); }
 
     }
 

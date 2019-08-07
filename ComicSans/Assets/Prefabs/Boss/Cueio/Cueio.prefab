@@ -637,11 +637,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15f31079975ed2a428b478f544cc8865, type: 2}
   - {fileID: 11400000, guid: a891b09b8f5fc1f448dd812e1a929cff, type: 2}
   id: cueio
-  bossName: C<size=48><b>u</b></size>eio
   _colliders: {fileID: 1606642354038726}
   phases:
   - {fileID: 11400000, guid: 4df9cff7c397eb241b8149539787e849, type: 2}
   - {fileID: 11400000, guid: 333d3c514c12d0d4fafb20b123ea27ed, type: 2}
+  endAnimationDelay: 1.25
 --- !u!50 &50547907271110350
 Rigidbody2D:
   serializedVersion: 4

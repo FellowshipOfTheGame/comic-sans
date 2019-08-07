@@ -8,11 +8,14 @@ using ComicSans.PoolingSystem;
 namespace ComicSans.Projectiles
 {
 
+	// Basic projectile functionality.
 	[AddComponentMenu("Scripts/Projectiles/Base")]
 	public class ProjectileBase : PooledObject {
 
+		[Tooltip("If the projectile should Despawn after hiting something.")]
 		[SerializeField] protected bool destroyOnContact = true;
 
+		[Tooltip("Projectile audio, normally played at projectile spawn.")]
 		public AudioInfo projectileAudio;
 
 		protected virtual void OnEnable () 

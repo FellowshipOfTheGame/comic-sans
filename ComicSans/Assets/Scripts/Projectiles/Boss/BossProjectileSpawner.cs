@@ -13,11 +13,19 @@ namespace ComicSans.Projectiles.Boss
 	[AddComponentMenu("Scripts/Projectiles/Boss/Spawner")]
 	public class BossProjectileSpawner : ProjectileBase {
 
+		[Tooltip("Number of projectiles to be spawned.")]
 		[SerializeField] private int numberOfAttack = 8;
+
+		[Tooltip("Delay between each projectile.")]
 		[SerializeField] private float delay = 0.35f;
+
+		[Tooltip("Should the delay be used at the first projectile.")]
 		[SerializeField] private bool delayAtStart = false;
 
+		// Current attack number.
 		private int currentAttack = 0;
+
+		// Used to control the time between delays. 
 		private float timer = 0;
 
 		[SerializeField] PoolInfo projectilePool = null;
@@ -32,16 +40,18 @@ namespace ComicSans.Projectiles.Boss
 
 			currentAttack = 0;
 			
-			if(!delayAtStart)
-				timer = delay + 1;
+			if(!delayAtStart) 		// If there is no delay at start sets time to a high value so the the first projectile.
+				timer = delay + 1;  // appears immediatly.
+			else
+				timer = 0;
 
 		}
 
 		protected void Update () {
 
-			if(currentAttack < numberOfAttack) 
+			if(currentAttack < numberOfAttack) // Verifies if all attacks have been performed.
 			{
-				if(timer >= delay) 
+				if(timer >= delay) // Waits for the time to be greater than the delay.
 				{
 					
 					Attack();
@@ -53,29 +63,25 @@ namespace ComicSans.Projectiles.Boss
 						currentAttack = 0;
 				}
 
-				timer += Time.fixedDeltaTime;
+				timer += Time.deltaTime;
 
 			} 
 			else
-			{
-				if(origin != null)
-					Despawn();
-				else
-					Destroy(this.gameObject);
-			}
+				Despawn();
+			
 		}
 
 		private void Attack() {
 			
-			if(spawnType == SpawnType.SinglePosition) 
+			if(spawnType == SpawnType.SinglePosition) // Spawns a single projectile.
 			{
 				PoolingController.instance.Spawn(projectilePool, spawnPositions[0].position, Quaternion.Euler(0, 0, spawnPositions[0].rotation));
 			} 
-			else if(spawnType == SpawnType.MultiplePosition) 
+			else if(spawnType == SpawnType.MultiplePosition) // Spawns multiples projectiles.
 			{
 				PoolingController.instance.Spawn(projectilePool, spawnPositions[currentAttack].position, Quaternion.Euler(0, 0, spawnPositions[currentAttack].rotation));
 			}
-			else if (spawnType == SpawnType.PlayerPosition)
+			else if (spawnType == SpawnType.PlayerPosition) // Spawns a projectile on the Player's position.
 			{
 					
 				if(PlayerScript.instance != null)
@@ -83,12 +89,13 @@ namespace ComicSans.Projectiles.Boss
 				else
 					Debug.LogWarning("ProjectileSpawner.Attack: Player not found!");
 			}
-			else if (spawnType == SpawnType.PlayerFacing)
+			else if (spawnType == SpawnType.PlayerFacing) // Spawns a projectile facing the Player.
 			{
 					
 				if(PlayerScript.instance != null)
 				{
 
+					// Note that for this case the relative position to this objec will be used for the spawn.
 					Vector3 spawnPos = transform.position + new Vector3(spawnPositions[currentAttack].position.x, spawnPositions[currentAttack].position.y, 0);
 					Vector3 diff = PlayerScript.instance.transform.position - spawnPos;
 

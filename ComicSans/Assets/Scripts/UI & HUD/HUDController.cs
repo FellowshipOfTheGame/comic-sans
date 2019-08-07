@@ -4,18 +4,26 @@ using UnityEngine.UI;
 namespace ComicSans.UIandHUD
 {
 
+	// Controls the game HUD.
 	[AddComponentMenu("Scripts/Controller/HUD")]
 	public class HUDController : MonoBehaviour {
 
 		public static HUDController instance;
 
+		[Tooltip("Parent GameObject for the other HUD objects.")]
 		[SerializeField] private GameObject HUDContainer = null;
 
+		[Tooltip("UI elements for the player lifes, element 0 will be the last to disappear.")]
 		[SerializeField] private Image[] playerHealthIcons = null;
+
+		[Tooltip("UI for the Boss health bar.")]
 		[SerializeField] private Image bossHealthBar = null;
+
+		[Tooltip("UI to display the Boss name.")]
 		[SerializeField] private Text bossNameText = null;
 		
 
+		// Used to store the inital Boss life to calculate how much of the Boss life should be filled.
 		private int initialBossLife = 5000;
 
 		private void Awake () {
@@ -66,14 +74,15 @@ namespace ComicSans.UIandHUD
 
 		public void InitializeBossHUD(string bossName, int bossLife) 
 		{
-			initialBossLife = bossLife;
-			if(bossHealthBar != null)
+			initialBossLife = bossLife; // Stores the initial Boss life.
+
+			if(bossHealthBar != null) // Sets the Boss health bar to be fully filled.
 			{
-				bossHealthBar.fillAmount = 1;
+				bossHealthBar.fillAmount = 1; 
 				bossHealthBar.enabled = true;
 			}
 
-			if(bossNameText != null)
+			if(bossNameText != null) // Set the Boss name.
 			{
 				bossNameText.text = bossName;
 				bossNameText.enabled = true;
@@ -81,11 +90,12 @@ namespace ComicSans.UIandHUD
 		
 		}
 
-		public void UpdateBossHealthBar (int life) 
+		public void UpdateBossHealthBar (int life)
 		{
 
 			if(bossHealthBar != null)	
-				bossHealthBar.fillAmount = (float)life / (float)initialBossLife;
+				bossHealthBar.fillAmount = (float)life / (float)initialBossLife; // Calculates and assigns how much of the life
+																				 // bar should be filled.
 
 		}
 
@@ -97,17 +107,10 @@ namespace ComicSans.UIandHUD
 
 		}
 
-		public void EnableHUD() {
-			
-			HUDContainer.SetActive(true);
-		
-		}
+		public void EnableHUD() { HUDContainer.SetActive(true); }
 
-		public void DisableHUD() {
-			
-			HUDContainer.SetActive(false);
+		public void DisableHUD() { HUDContainer.SetActive(false); }
 		
-		}
 	}
 
 }

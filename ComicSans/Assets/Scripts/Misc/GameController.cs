@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
+using ComicSans.Boss;
 using ComicSans.Player;
 using ComicSans.UIandHUD;
 
@@ -174,7 +175,7 @@ namespace ComicSans
 				Cursor.lockState = CursorLockMode.None;
 				AudioController.instance.PauseSounds();
 				eventSystem.SetSelectedGameObject(pauseMenuInitialSelection);
-				if(InputController.instance.isTouchDevice)
+				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(false);
 				pauseMenu.SetActive(true);
 			} 
@@ -184,32 +185,50 @@ namespace ComicSans
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				AudioController.instance.UnPauseSounds();
-				if(InputController.instance.isTouchDevice)
+				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(true);
 				pauseMenu.SetActive(false);
 			}
 
 		}
 
-		public IEnumerator EndScene (float animDelay, bool playerWin) {
-			
-			float time = 0;
+		// Starts the EndScene Coroutine.
+		public void StartEndScene(bool playerWin) 
+		{ 
 
-			while(time < animDelay)
+			StartCoroutine(EndScene (playerWin, BossScript.instance.endAnimationDelay)); 
+
+		}
+
+		// Ends the scene when either the Player or the Boss is defeated.
+		private IEnumerator EndScene (bool playerWin, float endAnimationDelay) {
+
+			// Destroys the boss.
+			GameObject boss = BossScript.instance.gameObject;
+
+			BossScript.instance = null;
+			Destroy(boss);
+
+			// Wait for the delay after the end animation.
+			float time = 0;
+			while(time < endAnimationDelay)
 			{
 				time += Time.fixedDeltaTime;
 				yield return new WaitForFixedUpdate();
-
 			}
 
+			// If the player wins, waits for the win screen and the displays the win menu.
 			if(playerWin)
 			{
 
+				// Displays the win screen.
 				if(SceneSettings.instance.winScreenObject != null)
 					SceneSettings.instance.winScreenObject.SetActive(true);
 
+				// Disables the Player.
 				PlayerScript.instance.gameObject.SetActive(false);
 
+				// Waits for the win screen time.
 				time = 0;
 				while(time < SceneSettings.instance.winScreenTime)
 				{
@@ -217,13 +236,15 @@ namespace ComicSans
 					yield return new WaitForFixedUpdate();
 				}
 
+				// Hides the win screen.
 				if(SceneSettings.instance.winScreenObject != null)
 					SceneSettings.instance.winScreenObject.SetActive(false);
 
+				// Displays the win menu.
 				currentGameState = GameState.WinScreen;
 				SetVictoryMenu(true);
 			}
-			else
+			else // If the player loses, displays the death menu.
 			{
 				currentGameState = GameState.LoseScreen;
 				SetDeathMenu(true);
@@ -243,7 +264,7 @@ namespace ComicSans
 				allowPlayerControl = false;
 				PlayerScript.instance.StopMovimentation();
 				eventSystem.SetSelectedGameObject(deathMenuInitialSelection);
-				if(InputController.instance.isTouchDevice)
+				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(false);
 				deathMenu.SetActive(true);				
 			} 
@@ -252,7 +273,7 @@ namespace ComicSans
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				allowPlayerControl = true;
-				if(InputController.instance.isTouchDevice)
+				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(true);
 				deathMenu.SetActive(false);
 			}
@@ -271,7 +292,7 @@ namespace ComicSans
 				allowPlayerControl = false;
 				PlayerScript.instance.StopMovimentation();
 				eventSystem.SetSelectedGameObject(victoryMenuInitialSelection);
-				if(InputController.instance.isTouchDevice)
+				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(false);
 				victoryMenu.SetActive(true);
 			} 
@@ -280,7 +301,7 @@ namespace ComicSans
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
 				allowPlayerControl = true;
-				if(InputController.instance.isTouchDevice)
+				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(true);
 				victoryMenu.SetActive(false);
 			}
@@ -364,10 +385,6 @@ namespace ComicSans
 			// Displays the loading screen.
 			loadingScreen.SetActive(true);
 			yield return new WaitForEndOfFrame();
-
-			// Stops all sounds if exiting a Boss scene.
-			if(SceneSettings.instance.bossSettings.bossScene)
-				AudioController.instance.StopAllSounds();
 
 			// Start loading the scene.
 			SceneManager.LoadSceneAsync(sceneName);

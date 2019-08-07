@@ -57,7 +57,7 @@ namespace ComicSans.PoolingSystem
 		{
 
 			if(PoolDictionary == null)
-				Debug.Log("PoolDictionary.Remove: Dictinary is empty!");
+				Debug.LogWarning("PoolDictionary.Remove: Dictinary is empty!");
 
 			if(PoolDictionary.ContainsKey(id))
 			{
@@ -67,7 +67,7 @@ namespace ComicSans.PoolingSystem
 			} 
 			else 
 			{
-				Debug.Log("PoolingController.Remove: ObjectPool with id \"" + id + "\" isn't on the dictionary!");
+				Debug.LogWarning("PoolingController.Remove: ObjectPool with id \"" + id + "\" isn't on the dictionary!");
 			}
 		}
 
@@ -100,7 +100,7 @@ namespace ComicSans.PoolingSystem
 		{
 
 			if(PoolDictionary == null || PoolDictionary.Count == 0) {
-				Debug.Log("PoolDictionary.Spawn: Dictinary is empty!");
+				Debug.LogWarning("PoolDictionary.Spawn: Dictinary is empty!");
 				return;
 			}
 
@@ -110,7 +110,7 @@ namespace ComicSans.PoolingSystem
 				PoolDictionary[id].Spawn(spawnPosition, spawnRotation);
 					
 			} else
-				Debug.Log("PoolDictionary.Spawn: Dictinary doesn't contain the key: " + id + "!");
+				Debug.LogWarning("PoolDictionary.Spawn: Dictinary doesn't contain the key: " + id + "!");
 
 		}
 
@@ -141,7 +141,7 @@ namespace ComicSans.PoolingSystem
 		{
 
 			if(PoolDictionary == null || PoolDictionary.Count == 0) {
-				Debug.Log("PoolController.DespawnBossObjects: Dictinary is empty!");
+				Debug.LogWarning("PoolController.DespawnBossObjects: Dictinary is empty!");
 				return;
 			} 
 			else
@@ -159,7 +159,7 @@ namespace ComicSans.PoolingSystem
 		{
 
 			if(PoolDictionary == null || PoolDictionary.Count == 0) {
-				Debug.Log("PoolController.DestroyBossObjects: Dictinary is empty!");
+				Debug.LogWarning("PoolController.DestroyBossObjects: Dictinary is empty!");
 				return;
 			} 
 			else

@@ -15,7 +15,12 @@ namespace ComicSans
         public static InputController instance;
 
         // Stores if the game is being played on Android or iOS.
-        public bool isTouchDevice = false;
+        private bool isMobileDevice;
+        public bool IsMobileDevice {
+
+            get { return isMobileDevice; }
+
+        }
 
         // Stores the values the movement axis.
         public float xAxis, yAxis;
@@ -49,15 +54,15 @@ namespace ComicSans
 
             // Detects if the game is being played on a touch device.
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-                isTouchDevice = true;
+                isMobileDevice = true;
             else
-                isTouchDevice = false;
+                isMobileDevice = false;
 
             touchJoystick = GameObject.Find("TOUCH_JOYSTICK");
             touchFire = GameObject.Find("TOUCH_FIRE");
             touchPause = GameObject.Find("TOUCH_PAUSE");
             
-            if(!isTouchDevice)
+            if(!isMobileDevice)
             {
                 touchJoystick.SetActive(false);
                 touchFire.gameObject.SetActive(false);
@@ -70,7 +75,7 @@ namespace ComicSans
         {
 
             // Controls the input for mouse/keyboard and controller.
-            if(!isTouchDevice) {
+            if(!isMobileDevice) {
 
                 xAxis = Input.GetAxis("Horizontal");
                 yAxis = Input.GetAxis("Vertical");
@@ -96,7 +101,7 @@ namespace ComicSans
         public void InputTouch(string touchControl)
         {
 
-            if(isTouchDevice) {
+            if(isMobileDevice) {
 
                 Debug.LogWarning("InputController.TouchShot: Touch button activated on non-touch device!");  
 

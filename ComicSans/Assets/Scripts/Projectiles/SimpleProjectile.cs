@@ -9,9 +9,9 @@ namespace ComicSans.Projectiles
 	[AddComponentMenu("Scripts/Projectiles/Simple")]
 	public class SimpleProjectile : ProjectileBase {
 
-		// Base velocity of the projectile.
+		[Tooltip("Base velocity of the projectile.")]
 		[SerializeField] protected float velocity = 5f;
-		// Delay before the projectile starts moving.
+		[Tooltip("Delay before the projectile starts moving.")]
 		[SerializeField] protected float delayToAppear = 0f;
 
 		protected Rigidbody2D _rigidbody;
@@ -51,8 +51,6 @@ namespace ComicSans.Projectiles
 			}
 
 			_renderer.enabled = false;
-			if(origin != null)
-				transform.SetParent(origin.transform);
 
 			StartCoroutine(Shot());
 

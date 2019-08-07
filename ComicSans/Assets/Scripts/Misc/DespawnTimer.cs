@@ -12,6 +12,7 @@ namespace ComicSans
     public class DespawnTimer : PooledObject
     {
 
+        [Tooltip("Time before despawning.")]
         [SerializeField] float despawnTime = 2f;
 
         void OnEnable()
@@ -24,8 +25,8 @@ namespace ComicSans
         IEnumerator DespawnTime() 
         {
 
+            // Waits for the delay.
             float time = 0;
-
             while (time < despawnTime)
             {
                 

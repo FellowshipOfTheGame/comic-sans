@@ -6,11 +6,16 @@ using UnityEngine.SceneManagement;
 namespace ComicSans
 {
 
+	// Used to hold entries on the sound dictionary. 
 	public class AudioDictEntry {
 
+		// Info about the base audio.
 		public AudioInfo audio;
 
+		// Source to use when playing the audio next.
 		public int currentSource = 0;
+
+		// List of sources instantiated for this audio.
 		public AudioSource[] sources;
 
 	}
@@ -23,7 +28,6 @@ namespace ComicSans
 
 		private Dictionary<string, AudioDictEntry> AudioDictionary = null;
 
-		// Use this for initialization
 		void Awake () 
 		{
 			
@@ -38,6 +42,7 @@ namespace ComicSans
 			AudioController.instance = this;
 			DontDestroyOnLoad(gameObject);
 
+			// Sets a function to be called on scene loading.
 			SceneManager.sceneLoaded += OnSceneLoaded;
 			
 		}
@@ -45,6 +50,7 @@ namespace ComicSans
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 
+			// Stops sounds if necessary.
 			if(SceneSettings.instance.stopSounds)
 				StopAllSounds();
 
@@ -54,12 +60,14 @@ namespace ComicSans
 		public void Add(AudioInfo sound) 
 		{
 
+			// If the AudioDictionary is empty creates it.
 			if(AudioDictionary == null)
 				AudioDictionary = new Dictionary<string, AudioDictEntry>();
 
 			if(!AudioDictionary.ContainsKey(sound.id))
 			{
 
+				// Adds the audio entry to the dictionary.
 				AudioDictEntry entry = new AudioDictEntry();
 
 				entry.audio = sound;
@@ -82,21 +90,24 @@ namespace ComicSans
 			
 			AudioSource[] sources;
 			if(sound.type == AudioInfo.Type.Music)
-				sources = new AudioSource[1];
+				sources = new AudioSource[1]; // Musics only need one AudioSource.
 			else
 				sources = new AudioSource[sound.maxSimultaneousSources];
 
-			for(int i = 0; i < sound.maxSimultaneousSources; i++)
+			// Creates the AudioSources.
+			for(int i = 0; i < sources.Length; i++)
 			{
 
+				// Creates and configures the AudioSource GameObject.
 				GameObject newAudioSourceGameObject = new GameObject();
 
 				newAudioSourceGameObject.name = sound.clips[0].name + "_AudioSource_" + i;
 				newAudioSourceGameObject.transform.SetParent(AudioController.instance.transform);
 
+				// Adds the AudioSource component.
 				AudioSource newAudioSource = newAudioSourceGameObject.AddComponent(typeof(AudioSource)) as AudioSource;
 
-				// Configure the audio source.
+				// Configure the AudioSource.
 				if(sound.type == AudioInfo.Type.FX)
 				{
 					newAudioSource.volume = sound.volume;
@@ -107,16 +118,16 @@ namespace ComicSans
 				else
 				{
 
-					float volMultiplier = 1;
+					float volMultiplier = 1; // Modifies the volume modifier by the music volume setting.
 					if(PlayerPrefs.HasKey("music_volume"))
 						volMultiplier = PlayerPrefs.GetFloat("music_volume");
-
 					newAudioSource.volume = sound.volume * volMultiplier;
+
 					newAudioSource.pitch = sound.pitch;
 					
-					newAudioSource.loop = true;
+					newAudioSource.loop = true; // Sets musics to loop.
 
-					newAudioSource.clip = sound.clips[0];
+					newAudioSource.clip = sound.clips[0]; // Musics only have one clip.
 					sources[i] = newAudioSource;
 					break; // Music will always use only one source.
 				}
@@ -134,24 +145,37 @@ namespace ComicSans
 		{
 
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
-				Debug.Log("AudioController.Play: Dictinary is empty!");
+				Debug.LogWarning("AudioController.Play: Dictinary is empty!");
 				return;
 			}
 
 			if(AudioDictionary.ContainsKey(id)) 
 			{
 
-				AudioDictEntry entry = AudioDictionary[id];
+				AudioDictEntry entry = AudioDictionary[id]; // Gets the audio entry on the dictionary.
 
-				if(entry.audio.type == AudioInfo.Type.Music && entry.sources[entry.currentSource].isPlaying) return;
+				 
+				if(entry.audio.type == AudioInfo.Type.Music)
+				{
+
+					// If the audio is a music that's already playing, returns.
+					if(entry.sources[entry.currentSource].isPlaying) return;
+					StopAllMusic(); // Else, stops other music.
+
+				} 
 				
-				entry.sources[entry.currentSource].clip = entry.audio.clips[Random.Range(0, entry.audio.clips.Length)];
+				// Assign a random clip from the sound FX entry.
+				if(entry.audio.type == AudioInfo.Type.FX)
+					entry.sources[entry.currentSource].clip = entry.audio.clips[Random.Range(0, entry.audio.clips.Length)];
+
 				entry.sources[entry.currentSource].Play();
-				entry.currentSource = (entry.currentSource) % entry.audio.maxSimultaneousSources;
+
+				// Gets the source to use for the next time.
+				entry.currentSource = (entry.currentSource + 1) % entry.audio.maxSimultaneousSources;
 				
 					
 			} else
-				Debug.Log("AudioController.Play: Dictinary doesn't contain the key: " + id + "!");
+				Debug.LogWarning("AudioController.Play: Dictinary doesn't contain the key: " + id + "!");
 
 		}
 
@@ -186,8 +210,8 @@ namespace ComicSans
 		IEnumerator PlayAudioDelayed(AudioInfo audio, float delay)
 		{
 
+			// Waits for the delay.
 			float time = 0;
-
 			while(time < delay)
 			{
 
@@ -206,20 +230,20 @@ namespace ComicSans
 		{
 
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
-				Debug.Log("AudioController.Stop: Dictinary is empty!");
+				Debug.LogWarning("AudioController.Stop: Dictinary is empty!");
 				return;
 			}
 
 			if(AudioDictionary.ContainsKey(id)) 
 			{
 
-				AudioDictEntry entry = AudioDictionary[id];
+				AudioDictEntry entry = AudioDictionary[id]; // Gets the audio entry on the dictionary.
 
-				foreach(AudioSource source in AudioDictionary[id].sources)
+				foreach(AudioSource source in AudioDictionary[id].sources) // Stops sounds with matching ids.
 					source.Stop();
 					
 			} else
-				Debug.Log("AudioController.Play: Dictinary doesn't contain the key: " + id + "!");
+				Debug.LogWarning("AudioController.Play: Dictinary doesn't contain the key: " + id + "!");
 
 		}
 
@@ -227,13 +251,13 @@ namespace ComicSans
 		public void StopWithTag(string tag)
 		{
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
-				Debug.Log("AudioController.StopWithTag: Dictinary is empty!");
+				Debug.LogWarning("AudioController.StopWithTag: Dictinary is empty!");
 				return;
 			}
 
-			foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary)
+			foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary) // Looks through the sound tags.
 			{
-				if(entry.Value.audio.tag == tag)
+				if(entry.Value.audio.tag == tag) // Stop sounds with matching tags.
 					foreach(AudioSource source in entry.Value.sources)
 						if(source != null)
 							source.Stop();
@@ -255,11 +279,27 @@ namespace ComicSans
 
 		}
 
+		// Stops all sounds of the music type.
+		public void StopAllMusic()
+		{
+
+			if(AudioDictionary == null || AudioDictionary.Count == 0) {
+				Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
+				return;
+			}
+
+			foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary)
+				if(entry.Value.audio.type == AudioInfo.Type.Music)
+					foreach(AudioSource source in entry.Value.sources)
+						source.Stop();
+
+		}
+
 		// Pauses all sounds.
 		public void PauseSounds()
 		{
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
-				Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
+				Debug.Log("AudioController.PauseSounds: Dictinary is empty!");
 				return;
 			}
 
@@ -274,7 +314,7 @@ namespace ComicSans
 		public void UnPauseSounds()
 		{
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
-				Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
+				Debug.Log("AudioController.UnPauseSounds: Dictinary is empty!");
 				return;
 			}
 
@@ -291,12 +331,12 @@ namespace ComicSans
 
 			if(AudioDictionary == null) return;
 
-			float volMultiplier = 1;
-			if(PlayerPrefs.HasKey("music_volume"))
-				volMultiplier = PlayerPrefs.GetFloat("music_volume");
+			float volMultiplier = 1; // Assigns a value in case the PlayerPrefs key doesn't exist.
+			if(PlayerPrefs.HasKey("music_volume")) // Gets the saved value on PlayerPrefs.
+				volMultiplier = PlayerPrefs.GetFloat("music_volume"); 
 
 			foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary)
-				if(entry.Value.audio.type == AudioInfo.Type.Music)
+				if(entry.Value.audio.type == AudioInfo.Type.Music) // Detects if the audio is a music.
 				{
 
 					foreach(AudioSource source in entry.Value.sources)
