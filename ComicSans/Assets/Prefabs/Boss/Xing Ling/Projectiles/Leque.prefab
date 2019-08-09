@@ -147,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4627188710931458
 Transform:
   m_ObjectHideFlags: 0
@@ -176,13 +176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
-  positionConstraints: {x: 8, y: 8}
+  destroyOnContact: 0
   projectileAudio: {fileID: 11400000, guid: 7381c444aca6267438add265ff804a03, type: 2}
   speed: 3.5
   width: 4.3
   height: 4
-  center_x: -0.5
-  center_y: 0.5
+  center: {x: 0, y: 0}
 --- !u!58 &58965236669392384
 CircleCollider2D:
   m_ObjectHideFlags: 0

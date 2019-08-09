@@ -31,11 +31,11 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 # TEST:
 
 - [ ] Fixed Oswaldo sometimes getting it's animations fliped on the x-axis.
+- [ ] Punk scream not stoping on death.
+- [ ] Punk wall attack on the 1st phase.
 
 # BUG:
 
-- [ ] Punk scream not stoping on death.
-- [ ] Punk wall attack on the 1st phase.
 - [ ] Punk weird animations.
 
 # DONE:

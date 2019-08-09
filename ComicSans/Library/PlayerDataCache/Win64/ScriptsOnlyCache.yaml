@@ -22,10 +22,11 @@ ScriptsOnlyBuild:
     - ComicSans.PoolingSystem.PoolingController
     - ComicSans.Projectiles.Boss.BossAppearAttack
     - ComicSans.Projectiles.Boss.BossBounceProjectile
+    - ComicSans.Projectiles.Boss.BossCircularProjectile
     - ComicSans.Projectiles.Boss.BossFollowProjectile
     - ComicSans.Projectiles.Boss.BossProjectileSpawner
     - ComicSans.Projectiles.Boss.BossRepulsorAttack
-    - ComicSans.Projectiles.Boss.BossSpinProjectile
+    - ComicSans.Projectiles.Boss.BossRotateProjectile
     - ComicSans.Projectiles.Boss.BossStayProjectile
     - ComicSans.Projectiles.ProjectileBase
     - ComicSans.Projectiles.SimpleProjectile
@@ -37,8 +38,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -327,9 +330,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9618}
     - Class: 114
-      Script: {instanceID: 9622}
-    - Class: 114
       Script: {instanceID: 9624}
+    - Class: 114
+      Script: {instanceID: 9626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -530,6 +533,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9622}
     - Class: 114
       Script: {instanceID: 9624}
+    - Class: 114
+      Script: {instanceID: 9626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -786,11 +791,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9618}
     - Class: 114
-      Script: {instanceID: 9622}
-    - Class: 114
       Script: {instanceID: 9624}
     - Class: 114
       Script: {instanceID: 9626}
+    - Class: 114
+      Script: {instanceID: 9628}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1039,6 +1044,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9346}
     - Class: 114
+      Script: {instanceID: 9442}
+    - Class: 114
       Script: {instanceID: 9444}
     - Class: 114
       Script: {instanceID: 9448}
@@ -1073,9 +1080,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9618}
     - Class: 114
-      Script: {instanceID: 9622}
-    - Class: 114
       Script: {instanceID: 9624}
+    - Class: 114
+      Script: {instanceID: 9626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1299,7 +1306,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: eea6cb4aabfdb7a04168ad275f394972
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.Boss
     className: BossStateMachineHandler
@@ -1569,7 +1576,7 @@ ScriptsOnlyBuild:
     className: UITouchHandler
   - hash:
       serializedVersion: 2
-      Hash: a5547538d3180ff346ef426ba694cfce
+      Hash: 87291e893aceac8ded7c64da04967c41
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.Projectiles.Boss
     className: BossStayProjectile
@@ -1629,7 +1636,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 09da2b06c201f8f48833a319d24aa7ec
+      Hash: ef9367153476cc6228e5feaef1bedf5d
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans
     className: InputController
@@ -1647,7 +1654,7 @@ ScriptsOnlyBuild:
     className: BossTeleport
   - hash:
       serializedVersion: 2
-      Hash: 643e6a0c4c22588b78b2d00c7342aeb0
+      Hash: 70c44b0508fcdbab1e8bd2626385fe5e
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.Boss
     className: BossScript
@@ -1668,7 +1675,7 @@ ScriptsOnlyBuild:
       Hash: d7dbec670b099c727f5c1e17c563b103
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.Projectiles.Boss
-    className: BossSpinProjectile
+    className: BossCircularProjectile
   - hash:
       serializedVersion: 2
       Hash: 5fa4a5e03e40a5679e5dd97f7f669004
@@ -1693,6 +1700,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.PoolingSystem
     className: PoolInfo
+  - hash:
+      serializedVersion: 2
+      Hash: 68eae8c962fe0a3b903b1f359abe489f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: ComicSans.Projectiles.Boss
+    className: BossRotateProjectile
   - hash:
       serializedVersion: 2
       Hash: 7e43891a2026d93ac0c4a09ca58eca59
@@ -1730,4 +1743,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Hero.unity
   - Assets/Scenes/EndGame.unity
   - Assets/Scenes/Congrats.unity
-  playerPath: C:/Users/luise/Desktop/ComicSans-2_0_0B-3/ComicSans.exe
+  playerPath: C:/Users/luise/Desktop/ComicSans-2_0_0B-4/ComicSans.exe

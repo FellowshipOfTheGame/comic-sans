@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using ComicSans.Boss; // Used by the WORKAROUND, see below.
 
 namespace ComicSans
 {
 
-	// Used to hold entries on the sound dictionary. 
+	// Used to hold entries on the sound dictionary.
+	// IMPORTANT: A workaround was used in StopWithTag to stop Boss sounds that use PlaySoundDelayed. Currently only
+	// the Boss sounds use this feature. If this is no longer the case this code will need to be re-written. 
 	public class AudioDictEntry {
 
 		// Info about the base audio.
@@ -166,12 +171,16 @@ namespace ComicSans
 				
 				// Assign a random clip from the sound FX entry.
 				if(entry.audio.type == AudioInfo.Type.FX)
+				{
+					entry.sources[entry.currentSource].Stop();
 					entry.sources[entry.currentSource].clip = entry.audio.clips[Random.Range(0, entry.audio.clips.Length)];
+				}
 
 				entry.sources[entry.currentSource].Play();
 
 				// Gets the source to use for the next time.
-				entry.currentSource = (entry.currentSource + 1) % entry.audio.maxSimultaneousSources;
+				if(entry.audio.type == AudioInfo.Type.FX)
+					entry.currentSource = (entry.currentSource + 1) % entry.audio.maxSimultaneousSources;
 				
 					
 			} else
@@ -250,6 +259,15 @@ namespace ComicSans
 		// Stops all sounds with an specific tag.
 		public void StopWithTag(string tag)
 		{
+
+			// WORKAROUND ===================================================================================
+			// Work around to stop delayed sounds played by Bosses.
+			// There is no problem with this method as long as the only delayed audios are played by Bosses.
+			// Otherwhise a better solution is needed.
+			if(BossScript.instance != null && tag == BossScript.instance.id)
+				StopAllCoroutines(); // Used to stop possible PlayAudioDelayed Coroutines.
+			// WORKAROUND ===================================================================================
+
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
 				Debug.LogWarning("AudioController.StopWithTag: Dictinary is empty!");
 				return;
@@ -268,6 +286,10 @@ namespace ComicSans
 		// Stops all sounds.
 		public void StopAllSounds()
 		{
+
+			// Used to stop possible PlayAudioDelayed Coroutines.
+			StopAllCoroutines();
+
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
 				Debug.Log("AudioController.StopAllSounds: Dictinary is empty!");
 				return;
