@@ -86,9 +86,9 @@ MonoBehaviour:
   origin: {fileID: 0}
   destroyOnContact: 1
   projectileAudio: {fileID: 11400000, guid: 54f7e7e7ebddeed44bce17687f14392a, type: 2}
-  velocity: -14
+  velocity: -11
   delayToAppear: 0
-  bounceAmount: 1
+  bounceAmount: 2
 --- !u!1 &1777551008738242
 GameObject:
   m_ObjectHideFlags: 0

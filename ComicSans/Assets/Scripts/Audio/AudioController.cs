@@ -125,7 +125,7 @@ namespace ComicSans
 
 					float volMultiplier = 1; // Modifies the volume modifier by the music volume setting.
 					if(PlayerPrefs.HasKey("music_volume"))
-						volMultiplier = PlayerPrefs.GetFloat("music_volume");
+						volMultiplier = PlayerPrefs.GetInt("music_volume") / 10;
 					newAudioSource.volume = sound.volume * volMultiplier;
 
 					newAudioSource.pitch = sound.pitch;
@@ -261,11 +261,13 @@ namespace ComicSans
 		{
 
 			// WORKAROUND ===================================================================================
-			// Work around to stop delayed sounds played by Bosses.
+			// Workaround to stop delayed sounds played by Bosses.
 			// There is no problem with this method as long as the only delayed audios are played by Bosses.
 			// Otherwhise a better solution is needed.
 			if(BossScript.instance != null && tag == BossScript.instance.id)
+			{
 				StopAllCoroutines(); // Used to stop possible PlayAudioDelayed Coroutines.
+			}
 			// WORKAROUND ===================================================================================
 
 			if(AudioDictionary == null || AudioDictionary.Count == 0) {
@@ -348,25 +350,22 @@ namespace ComicSans
 		}
 
 		// Updates the music volume with the modifier set in options.
-		public void UpdateMusicVolume()
+		public void UpdateMusicVolume(float musicVolumeMultiplier)
 		{
 
 			if(AudioDictionary == null) return;
-
-			float volMultiplier = 1; // Assigns a value in case the PlayerPrefs key doesn't exist.
-			if(PlayerPrefs.HasKey("music_volume")) // Gets the saved value on PlayerPrefs.
-				volMultiplier = PlayerPrefs.GetFloat("music_volume"); 
 
 			foreach (KeyValuePair<string, AudioDictEntry> entry in AudioDictionary)
 				if(entry.Value.audio.type == AudioInfo.Type.Music) // Detects if the audio is a music.
 				{
 
 					foreach(AudioSource source in entry.Value.sources)
-						source.volume = entry.Value.audio.volume * volMultiplier;
+						source.volume = entry.Value.audio.volume * musicVolumeMultiplier;
 
 				}
 
 		}
+
 	}
 
 }

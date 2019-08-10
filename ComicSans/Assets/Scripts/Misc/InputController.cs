@@ -58,10 +58,12 @@ namespace ComicSans
             else
                 isMobileDevice = false;
 
+            // Finds the touch controlls.
             touchJoystick = GameObject.Find("TOUCH_JOYSTICK");
             touchFire = GameObject.Find("TOUCH_FIRE");
             touchPause = GameObject.Find("TOUCH_PAUSE");
             
+            // Disables the touch controls if not on a mobile platform.
             if(!isMobileDevice)
             {
                 touchJoystick.SetActive(false);
@@ -77,18 +79,20 @@ namespace ComicSans
             // Controls the input for mouse/keyboard and controller.
             if(!isMobileDevice) {
 
+                // Takes input from regular sources.
                 xAxis = Input.GetAxis("Horizontal");
                 yAxis = Input.GetAxis("Vertical");
 
                 if(Input.GetButtonDown("Fire1"))
                     if(OnShotDown != null) OnShotDown();
 
-                if(Input.GetButtonDown("Cancel"))
+                if(Input.GetButtonDown("Pause"))
                     if(OnShotDown != null) OnPauseDown();
 
             }
         }
 
+        // Enables or disables the UI touch controls.
         public void SetTouchUI(bool state)
         {
 
@@ -98,6 +102,7 @@ namespace ComicSans
 
         }
 
+        // Receives input for touch controls.
         public void InputTouch(string touchControl)
         {
 

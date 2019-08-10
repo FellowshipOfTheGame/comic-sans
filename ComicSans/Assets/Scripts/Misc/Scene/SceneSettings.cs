@@ -3,7 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using ComicSans.UIandHUD;
+using ComicSans.UI;
 
 namespace ComicSans
 {
@@ -73,12 +73,12 @@ namespace ComicSans
 		{
 
 			// Shows or hides the HUD.
-			if(HUDController.instance != null)
+			if(GameController.instance != null)
 			{
 				if(!showHUD)
-					HUDController.instance.DisableHUD();
+					GameController.instance.uiController.DisableHUD();
 				else
-					HUDController.instance.EnableHUD();
+					GameController.instance.uiController.EnableHUD();
 			}
 
 			// Plays the backgrund music if necessary.

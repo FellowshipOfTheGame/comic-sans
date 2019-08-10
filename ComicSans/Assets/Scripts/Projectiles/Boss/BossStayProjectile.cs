@@ -139,12 +139,8 @@ namespace ComicSans.Projectiles.Boss
 
 		}
 
-		protected override void OnCollisionEnter2D(Collision2D collision)
-		{
-
-			reachedTarget = true;
-
-		}
+		protected override void OnCollisionEnter2D(Collision2D collision) { reachedTarget = true; }
+		
 	}
 
 }

@@ -9,6 +9,7 @@ namespace ComicSans
 {
 
     // Despawns a pooled object after a time.
+    [AddComponentMenu("Scripts/Misc/Despawn Timer")]
     public class DespawnTimer : PooledObject
     {
 

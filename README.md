@@ -24,19 +24,21 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 # TO DO:
 
-- [ ] Add new ending.
 - [ ] Make the game possible to be played with touch.
 - [ ] Clean up code for possible final commit.
 
 # TEST:
 
 - [ ] Fixed Oswaldo sometimes getting it's animations fliped on the x-axis.
-- [ ] Punk scream not stoping on death.
-- [ ] Punk wall attack on the 1st phase.
-
-# BUG:
-
-- [ ] Punk weird animations.
+- [x] Fixed Punk scream not stoping on death.
+- [x] Fixed Punk wall attack on the 1st phase.
+- [x] Fixed Punk weird animations.
+- [ ] Added new ending.
+- [ ] Fixed Player sometimes remaining invincible.
+- [ ] Options menu in pause screen.
+- [x] Fixed first menu item not appearing selected after opening the menu.
+- [x] Centered menu and HUD into an UIController.
+- [ ] Music reseting to max on Menu.
 
 # DONE:
 

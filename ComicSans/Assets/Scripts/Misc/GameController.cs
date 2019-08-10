@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using System.Collections;
 using System.Collections.Generic;
 
+using ComicSans.UI;
 using ComicSans.Boss;
 using ComicSans.Player;
-using ComicSans.UIandHUD;
 
 namespace ComicSans
 {
@@ -20,8 +20,10 @@ namespace ComicSans
 		public static GameController instance;
 
 		[Space(10)]
+		[Tooltip("Prefab fot he Player.")]
 		public GameObject playerPrefab;
 
+		// If the user is able to control the Player.
 		private bool allowPlayerControl = true;
 		public bool AllowPlayerControl {
 			get
@@ -31,33 +33,32 @@ namespace ComicSans
 		}
 
 		public enum GameState { Play, Paused, Win, Lose, WinScreen, LoseScreen, LoadingScreen }
+		[Tooltip("Current state of the game.")]
 		public GameState currentGameState = GameState.Play;
 
-		[Space(10)]
-		[SerializeField] private GameObject pauseMenu = null;
-		[SerializeField] private GameObject pauseMenuInitialSelection = null;
-
-		[Space(10)]
-		[SerializeField] private GameObject deathMenu = null;
-		[SerializeField] private GameObject deathMenuInitialSelection = null;
-
-		[Space(10)]
-		[SerializeField] private GameObject victoryMenu = null;
-		[SerializeField] private GameObject victoryMenuInitialSelection = null;
-
-		[Space(10)]
-		[SerializeField] private GameObject loadingScreen = null;
-		[SerializeField] private GameObject loadingFadeEffect = null;
-
-		[Space(10)]
-		[SerializeField] private EventSystem eventSystem = null;
-
+		// Spawn position to be used when the Player returns from a scene.
 		[HideInInspector] public Vector2 returnSpawnPos = Vector2.positiveInfinity;
 
+		// List of unique defeated Bosses.
 		public HashSet<string> defeatedBosses = new HashSet<string>();
+
+		[Space(10)]
+		[Tooltip("Number of unique Bosses to be defeated before the game ends.")]
 		[SerializeField] private int bossesToEndGame = 4;
+		[Tooltip("Scene used to transition to the end game.")]
+		[SerializeField] private string endGameTransition = "EndGameTransition";
+		[Tooltip("End game scene.")]
 		[SerializeField] private string endGameScene = "EndGame";
+		// If the Player has won the game on this run before.
 		private bool gameEnded = false;
+
+		[Space(10)]
+		[Tooltip("Name of the main menu scene.")]
+		[SerializeField] private string menuScene = "Menu";
+
+		[Space(10)]
+		[Tooltip("UIController to be used.")]
+		public UIController uiController;
 
 		void Awake()
 		{
@@ -69,20 +70,21 @@ namespace ComicSans
 				return;
 			}
 
+			// Resets the time.
 			Time.timeScale = 1;
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Locked;
 
 			// Creates a singleton of this script.
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 
+			// Adds a function to be called when a new scene loads.
 			SceneManager.sceneLoaded += OnSceneLoaded;
 
+			// Sets the returnPosition to an invalid value to indicate it has never been set.
 			returnSpawnPos = Vector2.positiveInfinity;
 
+			// Resets the end game conditions.
 			defeatedBosses = new HashSet<string>();
-
 			gameEnded = false;
 
 		}
@@ -92,16 +94,15 @@ namespace ComicSans
 
 			StopAllCoroutines();
 
-			if(scene.name == "Menu")
+			// Removes the GameController if exiting gameplay portions.
+			if(scene.name == menuScene || scene.name == endGameScene)
 			{
 
 				// Removes the OnSceneLoaded event.
 				SceneManager.sceneLoaded -= OnSceneLoaded;
 
-				// Guarantees that time and cursor settings are reset.
+				// Guarantees that time is reset.
 				Time.timeScale = 1;
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.None;
 
 				// Destroys the Player and GameController.
 				Destroy(PlayerScript.instance.gameObject);
@@ -111,22 +112,27 @@ namespace ComicSans
 
 			}
 
+			// Otherwise, spawns the Player and starts a new gameplay scene.
 			SpawnPlayer();
 			currentGameState = GameState.Play;
 			allowPlayerControl = true;
 
-			StartCoroutine(FadeIn());
+			// Fades in a scene.
+			uiController.FadeInScene();
 
+			// Initializes necessary scene settings.
 			SceneSettings.instance.OnReady();
 
 		}
 
+		// Spawn the Player and initializes it.
 		private void SpawnPlayer()
 		{
 
-			if(PlayerScript.instance == null)
+			if(PlayerScript.instance == null) // If no Player exists instantiates one.
 			{
 				
+				// Spawns the Player on the correct position.
 				GameObject _player;
 				if(SceneSettings.instance.useReturnPos && returnSpawnPos != Vector2.positiveInfinity)
 					_player = Instantiate(playerPrefab, returnSpawnPos, new Quaternion());
@@ -135,13 +141,16 @@ namespace ComicSans
 
 				DontDestroyOnLoad(_player);
 
-			} else {
+			} else { // If a Player already exists, uses it instead.
 
+
+				// Spawns the Player on the correct position.
 				if(SceneSettings.instance.useReturnPos && returnSpawnPos != Vector2.positiveInfinity)
 					PlayerScript.instance.transform.position = returnSpawnPos;
 				else
 					PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 
+				// Initializes the Player().
 				if(PlayerScript.instance.gameObject.activeSelf)
 					PlayerScript.instance.Initialize();
 				else
@@ -150,6 +159,7 @@ namespace ComicSans
 			}
 		}
 
+		// Pauses or unpauses the game.
 		public void SetPause(bool state) {
 
 			if(currentGameState == GameState.Play)
@@ -170,42 +180,133 @@ namespace ComicSans
 
 			if(currentGameState == GameState.Paused)
 			{
+
+				// Pauses the time and sounds.
 				Time.timeScale = 0;
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.None;
 				AudioController.instance.PauseSounds();
-				eventSystem.SetSelectedGameObject(pauseMenuInitialSelection);
+
+				// Sets the proper UI.
+				uiController.ResetPauseMenu();
+				uiController.SetPauseMenu(true);
+				uiController.UpdateInGameMenuSelection();
+
+				// Hides touch controls.
 				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(false);
-				pauseMenu.SetActive(true);
+
 			} 
 			else if(currentGameState == GameState.Play)
 			{
+
+				// Inpauses the time and sounds.
 				Time.timeScale = 1;
-				Cursor.visible = false;
-				Cursor.lockState = CursorLockMode.Locked;
 				AudioController.instance.UnPauseSounds();
+
+				// Hides the UI.
+				uiController.SetPauseMenu(false);
+
+				// Shows touch controls.
 				if(InputController.instance.IsMobileDevice)
 					InputController.instance.SetTouchUI(true);
-				pauseMenu.SetActive(false);
+
+			}
+
+		}
+
+		// Sets the win menu.
+		public void SetWinMenu(bool state)
+		{
+
+			// Re-sets the time.
+			Time.timeScale = 1;
+
+			if(state == true)
+			{
+
+				// Disables Player.
+				allowPlayerControl = false;
+				PlayerScript.instance.StopMovimentation();
+
+				// Sets the proper UI.
+				uiController.UpdateInGameMenuSelection();
+				uiController.SetWinMenu(true);
+
+				// Hides touch controls.
+				if(InputController.instance.IsMobileDevice)
+					InputController.instance.SetTouchUI(false);
+
+			} 
+			else
+			{
+
+				// Re-enables player control.
+				allowPlayerControl = true;
+
+				// Hides the UI.
+				uiController.SetWinMenu(false);
+
+				// Shows touch controls.
+				if(InputController.instance.IsMobileDevice)
+					InputController.instance.SetTouchUI(true);
+				
+			}
+
+		}
+
+		// Sets the lose menu.
+		public void SetLoseMenu(bool state)
+		{
+
+			// Re-sets the time.
+			Time.timeScale = 1;
+
+			if(state == true)
+			{	
+
+				// Disables Player.
+				allowPlayerControl = false;
+				PlayerScript.instance.StopMovimentation();
+
+				// Sets the proper UI.
+				uiController.UpdateInGameMenuSelection();
+				uiController.SetLoseMenu(true);
+
+				// Hides touch controls.
+				if(InputController.instance.IsMobileDevice)
+					InputController.instance.SetTouchUI(false);	
+
+			} 
+			else
+			{
+
+				// Re-enables player control.
+				allowPlayerControl = true;
+
+				// Hides the UI.
+				uiController.SetLoseMenu(false);
+
+				// Shows touch controls.
+				if(InputController.instance.IsMobileDevice)
+					InputController.instance.SetTouchUI(true);
+
 			}
 
 		}
 
 		// Starts the EndScene Coroutine.
-		public void StartEndScene(bool playerWin) 
-		{ 
-
-			StartCoroutine(EndScene (playerWin, BossScript.instance.endAnimationDelay)); 
-
-		}
+		public void StartEndScene(bool playerWin) { StartCoroutine(EndScene (playerWin, BossScript.instance.endAnimationDelay)); }
 
 		// Ends the scene when either the Player or the Boss is defeated.
 		private IEnumerator EndScene (bool playerWin, float endAnimationDelay) {
 
+			// WORKAROUND ===================================================================================
+			// Workaround used to stop Boss sounds played using PlayAudioDelayed, may not be necessary if a better fix is implemented.
+			// Stops all Boss sounds.
+			AudioController.instance.StopWithTag(BossScript.instance.id);
+			// WORKAROUND ===================================================================================
+			
 			// Destroys the boss.
 			GameObject boss = BossScript.instance.gameObject;
-
 			BossScript.instance = null;
 			Destroy(boss);
 
@@ -242,90 +343,13 @@ namespace ComicSans
 
 				// Displays the win menu.
 				currentGameState = GameState.WinScreen;
-				SetVictoryMenu(true);
+				SetWinMenu(true);
 			}
 			else // If the player loses, displays the death menu.
 			{
 				currentGameState = GameState.LoseScreen;
-				SetDeathMenu(true);
+				SetLoseMenu(true);
 			}
-
-		}
-
-		public void SetDeathMenu(bool state)
-		{
-
-			Time.timeScale = 1;
-
-			if(state == true)
-			{
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.None;			
-				allowPlayerControl = false;
-				PlayerScript.instance.StopMovimentation();
-				eventSystem.SetSelectedGameObject(deathMenuInitialSelection);
-				if(InputController.instance.IsMobileDevice)
-					InputController.instance.SetTouchUI(false);
-				deathMenu.SetActive(true);				
-			} 
-			else
-			{
-				Cursor.visible = false;
-				Cursor.lockState = CursorLockMode.Locked;
-				allowPlayerControl = true;
-				if(InputController.instance.IsMobileDevice)
-					InputController.instance.SetTouchUI(true);
-				deathMenu.SetActive(false);
-			}
-
-		}
-
-		public void SetVictoryMenu(bool state)
-		{
-
-			Time.timeScale = 1;
-
-			if(state == true)
-			{
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.None;
-				allowPlayerControl = false;
-				PlayerScript.instance.StopMovimentation();
-				eventSystem.SetSelectedGameObject(victoryMenuInitialSelection);
-				if(InputController.instance.IsMobileDevice)
-					InputController.instance.SetTouchUI(false);
-				victoryMenu.SetActive(true);
-			} 
-			else
-			{
-				Cursor.visible = false;
-				Cursor.lockState = CursorLockMode.Locked;
-				allowPlayerControl = true;
-				if(InputController.instance.IsMobileDevice)
-					InputController.instance.SetTouchUI(true);
-				victoryMenu.SetActive(false);
-			}
-
-		}
-
-		public void QuitToLobby()
-		{
-
-			if(defeatedBosses.Count < bossesToEndGame || gameEnded)
-				LoadScene(SceneSettings.instance.returnSceneName);
-			else
-			{
-				gameEnded = true;
-				LoadScene(endGameScene);
-			}
-
-		}
-
-		public void QuitToMainMenu()
-		{
-
-			PlayerScript.instance.StopMovimentation();
-			LoadScene("Menu");
 
 		}
 
@@ -334,16 +358,38 @@ namespace ComicSans
 
 			Debug.Log("GameController.RestartScene: Restarting...");
 
+			// Resets the player.
 			PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;
 			PlayerScript.instance.gameObject.SetActive(true);
-
 			allowPlayerControl = true;
 
-			HUDController.instance.EnableHUD();
+			uiController.EnableHUD();
 
 			SceneSettings.instance.SpawnBoss();
 
 			currentGameState = GameState.Play;
+
+		}
+
+		public void QuitToReturnScene()
+		{
+
+			// Verifies if the Player hasn't won the game.
+			if(defeatedBosses.Count < bossesToEndGame || gameEnded)
+				LoadScene(SceneSettings.instance.returnSceneName); // Loads the regular scene.
+			else
+			{
+				gameEnded = true; // Loads the end game scene.
+				LoadScene(endGameTransition);
+			}
+
+		}
+
+		public void QuitToMainMenu()
+		{
+
+			PlayerScript.instance.StopMovimentation();
+			LoadScene(menuScene);
 
 		}
 
@@ -353,72 +399,20 @@ namespace ComicSans
 			Debug.Log("GameController.LoadScene: Loading " + sceneName + "...");
 			currentGameState = GameState.LoadingScreen;
 
-			pauseMenu.SetActive(false);
-			deathMenu.SetActive(false);
-			victoryMenu.SetActive(false);
+			// Disables the in-game menus.
+			uiController.SetPauseMenu(false);
+			uiController.SetWinMenu(false);
+			uiController.SetLoseMenu(false);
 
+			// Sets time and disables the Player.
 			Time.timeScale = 1;
 			allowPlayerControl = false;
-			StartCoroutine(SceneLoading(sceneName));
+
+			// Calls the scene loading with the loading effect.
+			uiController.LoadScene(sceneName);
 
 		}
 
-		private IEnumerator SceneLoading(string sceneName)
-		{
-
-			// Fades out the scene.
-			RectTransform rect = loadingFadeEffect.GetComponent<RectTransform>();
-			while(rect.localScale.x > 0.02f)
-			{
-				
-				Vector3 newScale = rect.localScale - Vector3.one * 4.0f * Time.deltaTime;
-				newScale.x = Mathf.Clamp(newScale.x, 0.019f, 2.5f);
-				newScale.y = Mathf.Clamp(newScale.y, 0.019f, 2.5f);
-				newScale.z = Mathf.Clamp(newScale.z, 0.019f, 2.5f);
-
-				rect.localScale = newScale;
-
-				yield return new WaitForEndOfFrame();
-
-			}
-
-			// Displays the loading screen.
-			loadingScreen.SetActive(true);
-			yield return new WaitForEndOfFrame();
-
-			// Start loading the scene.
-			SceneManager.LoadSceneAsync(sceneName);
-
-		}
-
-		private IEnumerator FadeIn()
-		{
-
-			// Hides the loading screen.
-			loadingScreen.SetActive(false);
-
-			// Fades out the scene.
-			RectTransform rect = loadingFadeEffect.GetComponent<RectTransform>();
-			while(rect.localScale.x < 2.5f)
-			{
-
-				if(currentGameState == GameState.LoadingScreen) break;
-
-				Vector3 newScale = rect.localScale + Vector3.one * 4.0f * Time.deltaTime;
-				newScale.x = Mathf.Clamp(newScale.x, 0.019f, 2.5f);
-				newScale.y = Mathf.Clamp(newScale.y, 0.019f, 2.5f);
-				newScale.z = Mathf.Clamp(newScale.z, 0.019f, 2.5f);
-
-				rect.localScale = newScale;
-
-				yield return new WaitForEndOfFrame();
-
-			}
-
-			if(currentGameState != GameState.LoadingScreen) rect.localScale = 2.5f * Vector3.one;
-
-		}
-		
 	}
 
 }

@@ -33,9 +33,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Hero.unity
     guid: 0d00fd1d7682f0443b420fb2684f7279
   - enabled: 1
-    path: Assets/Scenes/EndGame.unity
+    path: Assets/Scenes/EndGameTransition.unity
     guid: 47ff59ef8196e094886ba18bd0c8a8a0
   - enabled: 1
-    path: Assets/Scenes/Congrats.unity
+    path: Assets/Scenes/EndGame.unity
     guid: 377788e0f85d93c498e6aaf652b71dc2
   m_configObjects: {}

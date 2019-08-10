@@ -3,9 +3,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using ComicSans.UI;
 using ComicSans.Boss;
 using ComicSans.Boss.ActionSystem;
-using ComicSans.UIandHUD;
 using ComicSans.PoolingSystem;
 using ComicSans.DataContainers;
 
@@ -100,6 +100,7 @@ namespace ComicSans.Player
 
             _collider.enabled = true; // Guarantees the player collider is enabled.
             health.Hp = 3; // Reset the player health.
+            invincible = false; // Guaratees the Player isn't invincible at level start.
 
             // Guarantees the player is not shooting.
             shooting.isShooting = false;
@@ -243,17 +244,14 @@ namespace ComicSans.Player
             if(invincible || GameController.instance.currentGameState != GameController.GameState.Play)
                 return;
 
-            // Makes the player unable to take damage after defeating a Boss.
-            if(BossScript.instance == null)
-                return;
-
+            // Reduces Player health and starts the invincibility time.
             health.Hp--;
             if (health.Hp > 0)
             {
                 invincible = true;
                 StartCoroutine(Reset(health.invincibilityTime));
             }
-            else
+            else // Kills the Player if it runs out of lifes.
             {
                 Die();
             }
@@ -262,10 +260,13 @@ namespace ComicSans.Player
 
         protected override void Die()
         {
+
+            // Start the Boss animation when the Player is defeated.
             BossScript.instance.PlayerDefeated();
-                
-            if(HUDController.instance != null)
-                HUDController.instance.DisableHUD();
+
+            // Disables the HUD and the Player. 
+            if(GameController.instance.uiController != null)
+                GameController.instance.uiController.DisableHUD();
 
             gameObject.SetActive(false);
 
@@ -325,10 +326,10 @@ namespace ComicSans.Player
         protected override void UpdateLifeHUD()
         {
 
-            if(HUDController.instance != null)
-                HUDController.instance.UpdatePlayerLifeIcons(health.Hp);
+            if(GameController.instance.uiController != null)
+                GameController.instance.uiController.UpdatePlayerLifeIcons(health.Hp);
             else
-                Debug.LogWarning("PlayerScript.UpdateLifeHUD: No HUDController found!");
+                Debug.LogWarning("PlayerScript.UpdateLifeHUD: No UIController found!");
 
         }
     }

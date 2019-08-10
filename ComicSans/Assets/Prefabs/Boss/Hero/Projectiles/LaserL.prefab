@@ -204,7 +204,7 @@ MonoBehaviour:
   destroyOnContact: 1
   projectileAudio: {fileID: 11400000, guid: 9d1786d20c37b2b479755c111c188ead, type: 2}
   angularSpeed: 90
-  rotateAmount: 90
+  rotateAmount: 110
 --- !u!1 &5269957815615248257
 GameObject:
   m_ObjectHideFlags: 0

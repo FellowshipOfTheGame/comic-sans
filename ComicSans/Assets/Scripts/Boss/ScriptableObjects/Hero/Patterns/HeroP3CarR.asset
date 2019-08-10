@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4286c00b92ee93a4fb910f0bc078b27d, type: 2}
   - {fileID: 11400000, guid: 92d53352a3528dd40a48817d7ba682fb, type: 2}
   - {fileID: 11400000, guid: 5f634c0e9bd46b54db697acfbbf33900, type: 2}
-  chance: 175
+  chance: 125
   choiceType: 0
   trigger: 0
   nextPattern:

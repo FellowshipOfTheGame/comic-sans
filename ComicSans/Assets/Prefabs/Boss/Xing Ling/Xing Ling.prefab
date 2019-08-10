@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 50495388990375424}
   m_Layer: 10
   m_Name: Xing Ling
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 445b0723cc7bfd442836d1e7856dc6be, type: 2}
   - {fileID: 11400000, guid: 352692a28f85d92498443ce023de8b73, type: 2}
   - {fileID: 11400000, guid: ba233832df977b34295580476644ea93, type: 2}
-  deathAnimationTime: 3.5
+  endAnimationDelay: 1.25
 --- !u!50 &50495388990375424
 Rigidbody2D:
   serializedVersion: 4

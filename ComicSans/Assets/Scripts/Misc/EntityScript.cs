@@ -30,6 +30,7 @@ namespace ComicSans
                 set
                 {
 
+                    // Guaratees the life is not higher than max.
                     if (value >= maxHp)
                         hp = maxHp;
                     if (value < 0)
@@ -83,6 +84,7 @@ namespace ComicSans
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
 
+            // Takes damage.
             if (collision.collider.tag == "Damage")
                 Damage();    
 

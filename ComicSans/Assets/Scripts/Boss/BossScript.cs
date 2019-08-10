@@ -3,8 +3,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using ComicSans.UI;
 using ComicSans.Player;
-using ComicSans.UIandHUD;
 using ComicSans.PoolingSystem;
 using ComicSans.DataContainers;
 using ComicSans.Boss.ActionSystem;
@@ -84,10 +84,10 @@ namespace ComicSans.Boss
 			}
 
 			// Initializes the Boss health bar.
-			if(HUDController.instance != null)
-				HUDController.instance.InitializeBossHUD(phases[currentPhase].bossPhaseName, health.Hp);
+			if(GameController.instance.uiController != null)
+				GameController.instance.uiController.InitializeBossHUD(phases[currentPhase].bossPhaseName, health.Hp);
 			else
-				Debug.LogWarning("BossScript.Initialize: No HUDController found!");
+				Debug.LogWarning("BossScript.Initialize: No UIController found!");
 
 			// Start the Boss invincibility.
 			StartCoroutine(Reset(phases[currentPhase].invincibilityMultiplier));
@@ -328,10 +328,10 @@ namespace ComicSans.Boss
 			Debug.Log("BossScript.NextPhase: " + transform.name + " has gone to phase " + (currentPhase + 1) + ".");
 
 			// Sets the Boss phase name.
-			if(HUDController.instance != null)
-				HUDController.instance.UpdateBossName(phases[currentPhase].bossPhaseName);
+			if(GameController.instance.uiController != null)
+				GameController.instance.uiController.UpdateBossName(phases[currentPhase].bossPhaseName);
 			else
-				Debug.LogWarning("BossScript.NextPhase: No HUDController found!");
+				Debug.LogWarning("BossScript.NextPhase: No UIController found!");
 
 			// Sets the boss to the initial conditions.
 			StopAllCoroutines();
@@ -407,10 +407,10 @@ namespace ComicSans.Boss
 		protected override void UpdateLifeHUD()
 		{
 			
-			if(HUDController.instance != null)
-				HUDController.instance.UpdateBossHealthBar(health.Hp);
+			if(GameController.instance.uiController != null)
+				GameController.instance.uiController.UpdateBossHealthBar(health.Hp);
 			else
-				Debug.LogWarning("PlayerScript.UpdateLifeHUD: No HUDController found!");
+				Debug.LogWarning("PlayerScript.UpdateLifeHUD: No UIController found!");
 
 		}
 
@@ -432,10 +432,10 @@ namespace ComicSans.Boss
 				_animator.Play("Die", 0);
 
 			// Disables the HUD.
-			if(HUDController.instance != null)
-				HUDController.instance.DisableHUD();
+			if(GameController.instance.uiController != null)
+				GameController.instance.uiController.DisableHUD();
 			else
-				Debug.LogWarning("BossScript.Die: No HUDController found!");
+				Debug.LogWarning("BossScript.Die: No UIController found!");
 
 		}
 
@@ -455,10 +455,10 @@ namespace ComicSans.Boss
 				_animator.Play("Win", 0);
 
 			// Disables the HUD.
-			if(HUDController.instance != null)
-				HUDController.instance.DisableHUD();
+			if(GameController.instance.uiController != null)
+				GameController.instance.uiController.DisableHUD();
 			else
-				Debug.LogWarning("BossScript.Die: No HUDController found!");
+				Debug.LogWarning("BossScript.Die: No UIController found!");
 
 		}
 

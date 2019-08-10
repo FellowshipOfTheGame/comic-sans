@@ -722,7 +722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 0}
+  destroyOnContact: 1
   projectileAudio: {fileID: 11400000, guid: e437ec7efb759ff4f993f3a4917c5487, type: 2}
   appearDelay: 0
-  disappearDelay: 11
+  disappearDelay: 12
   _collider: {fileID: 0}

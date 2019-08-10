@@ -186,6 +186,9 @@ namespace ComicSans.PoolingSystem
 						Destroy(entry.Value.gameObject);
 			}	
 
+			if(instance = this)
+				instance = null;
+
 		}
 	}
 

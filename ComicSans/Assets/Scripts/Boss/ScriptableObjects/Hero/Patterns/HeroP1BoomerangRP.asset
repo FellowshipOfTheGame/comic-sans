@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - {fileID: 11400000, guid: a55626d3c1cf63b4cacf03ee76f51908, type: 2}
-  - {fileID: 11400000, guid: ad0ca1ccab9e3bd4b838bc9c053b8ac6, type: 2}
+  - {fileID: 11400000, guid: ec8cb45cb4d3ad14d88f90cdb48acf58, type: 2}
   - {fileID: 11400000, guid: 5b978c493dcb7d3479ee2db6e1bc427e, type: 2}
   - {fileID: 11400000, guid: 5f634c0e9bd46b54db697acfbbf33900, type: 2}
   chance: 100

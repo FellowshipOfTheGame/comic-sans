@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Misc\DespawnTimer.cs" />
      <Compile Include="Assets\Scripts\Misc\EntityScript.cs" />
      <Compile Include="Assets\Scripts\Misc\GameController.cs" />
+     <Compile Include="Assets\Scripts\Misc\InitialSetup.cs" />
      <Compile Include="Assets\Scripts\Misc\InputController.cs" />
      <Compile Include="Assets\Scripts\Misc\ProjectileSpawn.cs" />
      <Compile Include="Assets\Scripts\Misc\Scene\ScenePortal.cs" />
@@ -92,10 +93,10 @@
      <Compile Include="Assets\Scripts\Projectiles\Boss\BossStayProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectiles\ProjectileBase.cs" />
      <Compile Include="Assets\Scripts\Projectiles\SimpleProjectile.cs" />
-     <Compile Include="Assets\Scripts\UI &amp; HUD\HUDController.cs" />
-     <Compile Include="Assets\Scripts\UI &amp; HUD\Menu.cs" />
+     <Compile Include="Assets\Scripts\UI\EndScreen.cs" />
+     <Compile Include="Assets\Scripts\UI\UIController.cs" />
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/luise/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/Du/Documents/FoG/comic-sans/ComicSans/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.ARModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
