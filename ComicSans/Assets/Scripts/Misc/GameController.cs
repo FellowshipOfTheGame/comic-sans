@@ -298,12 +298,6 @@ namespace ComicSans
 
 		// Ends the scene when either the Player or the Boss is defeated.
 		private IEnumerator EndScene (bool playerWin, float endAnimationDelay) {
-
-			// WORKAROUND ===================================================================================
-			// Workaround used to stop Boss sounds played using PlayAudioDelayed, may not be necessary if a better fix is implemented.
-			// Stops all Boss sounds.
-			AudioController.instance.StopWithTag(BossScript.instance.id);
-			// WORKAROUND ===================================================================================
 			
 			// Destroys the boss.
 			GameObject boss = BossScript.instance.gameObject;
@@ -357,6 +351,34 @@ namespace ComicSans
 		{
 
 			Debug.Log("GameController.RestartScene: Restarting...");
+
+			if(currentGameState == GameState.Paused)
+			{
+
+				// Destroys the boss.
+				GameObject boss = BossScript.instance.gameObject;
+				BossScript.instance = null;
+				Destroy(boss);
+
+				// Disables the HUD and the Player. 
+				if(GameController.instance.uiController != null)
+					GameController.instance.uiController.DisableHUD();
+
+				// Disables the Player.
+				PlayerScript.instance.gameObject.SetActive(false);
+
+				SetPause(false);
+
+			}
+
+			StartCoroutine(Restarting());
+
+		}
+
+		private IEnumerator Restarting()
+		{
+
+			yield return new WaitForEndOfFrame();
 
 			// Resets the player.
 			PlayerScript.instance.transform.position = SceneSettings.instance.playerSpawnPoint;

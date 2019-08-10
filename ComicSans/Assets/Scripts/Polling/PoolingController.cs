@@ -136,6 +136,24 @@ namespace ComicSans.PoolingSystem
 		// Version 2: Used as a wraper. Calls Version 1 with the right parameters.
 		public void Spawn (PoolInfo pool, Transform spawnPosition) { Spawn(pool, spawnPosition.position, spawnPosition.rotation); }
 
+		// Destroy all pools of the Player type.
+		public void DespawnPlayerObjects()
+		{
+
+			if(PoolDictionary == null || PoolDictionary.Count == 0) {
+				Debug.LogWarning("PoolController.DespawnBossObjects: Dictinary is empty!");
+				return;
+			} 
+			else
+			{
+				foreach (KeyValuePair<string, ObjectPool> entry in PoolDictionary)
+					if(entry.Value.poolInfo.type == PoolInfo.Type.Player)
+						if(entry.Value.DespawnPoolObjects != null)
+							entry.Value.DespawnPoolObjects();
+			}	
+
+		}
+
 		// Destroy all pools of the Boss type.
 		public void DespawnBossObjects()
 		{

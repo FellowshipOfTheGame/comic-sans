@@ -16,9 +16,9 @@ MonoBehaviour:
   projectilePool: {fileID: 11400000, guid: ca35705dfea123b48bbb6ac923f3cfdd, type: 2}
   projectileSpawns:
   - position: {x: -0.15, y: -0.5}
-    rotation: -42
+    rotation: -30
   - position: {x: 0, y: -0.5}
     rotation: 0
   - position: {x: 0.15, y: -0.5}
-    rotation: 42
+    rotation: 30
   animations: []

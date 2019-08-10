@@ -1505,7 +1505,7 @@ ScriptsOnlyBuild:
     className: BossDash
   - hash:
       serializedVersion: 2
-      Hash: 01c99b0e088ef0663786648c0ad3c5c7
+      Hash: ace41b36af2b55a1970146b857d3de81
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.UI
     className: UIController
@@ -1738,4 +1738,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Hero.unity
   - Assets/Scenes/EndGameTransition.unity
   - Assets/Scenes/EndGame.unity
-  playerPath: D:/Users/Du/Desktop/ComicSans.exe
+  playerPath: D:/Users/Du/Desktop/ComicSans-2_0_0-B5/ComicSans.exe

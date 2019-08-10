@@ -125,7 +125,7 @@ namespace ComicSans
 
 					float volMultiplier = 1; // Modifies the volume modifier by the music volume setting.
 					if(PlayerPrefs.HasKey("music_volume"))
-						volMultiplier = PlayerPrefs.GetInt("music_volume") / 10;
+						volMultiplier = PlayerPrefs.GetInt("music_volume") / 10.0f;
 					newAudioSource.volume = sound.volume * volMultiplier;
 
 					newAudioSource.pitch = sound.pitch;

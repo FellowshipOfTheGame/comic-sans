@@ -24,8 +24,10 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 # TO DO:
 
+- [ ] Add UI instructios to main menu.
+- [ ] Update instructions screen.
 - [ ] Make the game possible to be played with touch.
-- [ ] Clean up code for possible final commit.
+- [ ] Clean up code and Unity project for possible final commit.
 
 # TEST:
 
@@ -35,10 +37,22 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Fixed Punk weird animations.
 - [ ] Added new ending.
 - [ ] Fixed Player sometimes remaining invincible.
-- [ ] Options menu in pause screen.
+- [x] Options menu in pause screen.
 - [x] Fixed first menu item not appearing selected after opening the menu.
 - [x] Centered menu and HUD into an UIController.
-- [ ] Music reseting to max on Menu.
+- [x] Music reseting to max on Menu.
+- [x] Fixed music not playing at start if the music volume is not at maximum.
+- [x] Fixed reset options button not working on Pause menu.
+- [x] Fixed Lose Menu not disappearing when restarting.
+- [x] Fixed some Boss sounds not stopping immediatly when winning or losing.
+- [ ] Restart button.
+- [x] Fixed game freezing if pressing Play on main menu before FadeIn effect was finished.
+
+# BUGS:
+
+# DETAILS:
+
+- [ ] Player not going to the ScenePortal depending on direction when entering it.
 
 # DONE:
 

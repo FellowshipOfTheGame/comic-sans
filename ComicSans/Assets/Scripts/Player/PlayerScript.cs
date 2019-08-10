@@ -130,6 +130,9 @@ namespace ComicSans.Player
             InputController.instance.OnPauseDown -= TogglePause;
 
             inputEventsOk = false;
+
+            if(PoolingController.instance != null)
+                PoolingController.instance.DespawnPlayerObjects();
             
         }
 

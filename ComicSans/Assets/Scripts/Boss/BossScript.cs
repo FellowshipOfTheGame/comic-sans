@@ -417,6 +417,12 @@ namespace ComicSans.Boss
 		protected override void Die() 
 		{
 
+			// WORKAROUND ===================================================================================
+			// Workaround used to stop Boss sounds played using PlayAudioDelayed, may not be necessary if a better fix is implemented.
+			// Stops all Boss sounds.
+			AudioController.instance.StopWithTag(BossScript.instance.id);
+			// WORKAROUND ===================================================================================
+
 			// Adds the Boss to the lsit of defeated Bosses and sets the game state.
 			GameController.instance.defeatedBosses.Add(id);
 			GameController.instance.currentGameState = GameController.GameState.Win;
@@ -442,6 +448,12 @@ namespace ComicSans.Boss
 		// Called by the player when it's defeated by the Boss.
 		public void PlayerDefeated()
 		{
+
+			// WORKAROUND ===================================================================================
+			// Workaround used to stop Boss sounds played using PlayAudioDelayed, may not be necessary if a better fix is implemented.
+			// Stops all Boss sounds.
+			AudioController.instance.StopWithTag(BossScript.instance.id);
+			// WORKAROUND ===================================================================================
 
 			// Sets the game state.
 			GameController.instance.currentGameState = GameController.GameState.Lose;

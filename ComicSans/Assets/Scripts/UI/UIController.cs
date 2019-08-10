@@ -39,6 +39,10 @@ namespace ComicSans.UI
             public GameObject pauseMenuOptions = null;
             [Tooltip("UI object to be initially selected on the Pause screen.")]
             public Button initialSelectionPauseMenu = null;
+            [Tooltip("Button used to restart the game in a BossScene.")]
+            public Button pauseRestartButton = null;
+            [Tooltip("Image of the button used to restart the game in a BossScene.")]
+            public Text pauseRestartButtonText = null;
 
             [Space(10)]
             public GameObject winMenu = null;
@@ -196,6 +200,21 @@ namespace ComicSans.UI
             inGame.pauseMenuOptions.SetActive(false);
             inGame.pauseMenuMain.SetActive(true);            
 
+            if(SceneSettings.instance.bossSettings.bossScene)
+            {
+                inGame.pauseRestartButton.interactable = true;
+                Color restartButtonColor = inGame.pauseRestartButtonText.color;
+                restartButtonColor.a = 1.0f;
+                inGame.pauseRestartButtonText.color = restartButtonColor;
+            }
+            else
+            {
+                inGame.pauseRestartButton.interactable = false;
+                Color restartButtonColor = inGame.pauseRestartButtonText.color;
+                restartButtonColor.a = 0.25f;
+                inGame.pauseRestartButtonText.color = restartButtonColor;
+            }
+
         }
 
         // Update the seleted UI object on the in-game menus.
@@ -294,7 +313,12 @@ namespace ComicSans.UI
 		public void DisableHUD() { if(hud.container != null) hud.container.SetActive(false); }
 
         // Loads a scene by name.
-        public void LoadScene(string sceneName) { StartCoroutine(SceneLoading(sceneName)); } // Starts the Coroutine to load the Scene.
+        public void LoadScene(string sceneName) { 
+
+            StopAllCoroutines(); // Stops the FadeIn effect if it's still happening.
+            StartCoroutine(SceneLoading(sceneName));  // Loads the scene.
+
+        } // Starts the Coroutine to load the Scene.
 
         // Performs the fade effect and loads the Scene.
         public IEnumerator SceneLoading(string sceneName)
