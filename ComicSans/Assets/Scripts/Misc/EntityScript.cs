@@ -16,6 +16,7 @@ namespace ComicSans
         public class Health
         {
 
+            // Reference to the Entity script using this Health class, used to call the UpdateLifeHUD function.
             [HideInInspector] public EntityScript parent;
 
             public int maxHp;
@@ -38,6 +39,7 @@ namespace ComicSans
                     else
                         hp = value;
 
+                    // Calls the function to update the life UI.
                     parent.UpdateLifeHUD();
 
                 }

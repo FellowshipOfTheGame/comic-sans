@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace ComicSans.UI
@@ -11,9 +12,14 @@ namespace ComicSans.UI
     [AddComponentMenu("Scripts/Misc/EndScreen")]
     public class EndScreen : MonoBehaviour {
 
+        [Tooltip("Name of the menu scene to be loaded after exiting.")]
         [SerializeField] private string menuScene = "Menu";
 
-        [SerializeField] private GameObject quitButton = null;
+        [Tooltip("Button used to quit to the menu.")]
+        [SerializeField] private Button quitButton = null;
+
+        [Tooltip("Scene EventSystem.")]
+        [SerializeField] private EventSystem eventSystem = null;
 
         [System.Serializable]
         private class Loading
@@ -46,8 +52,9 @@ namespace ComicSans.UI
         private void Awake()
         {
 
+            // Initializes the scene.
             Time.timeScale = 1;
-            quitButton.SetActive(false);
+            quitButton.gameObject.SetActive(false);
             SceneSettings.instance.OnReady();
             StartCoroutine(FadeIn());
 
@@ -57,7 +64,7 @@ namespace ComicSans.UI
 		{
 
             // Disables the exit button.
-            quitButton.SetActive(false);
+            quitButton.gameObject.SetActive(false);
 
             // Gets the main menu scene.
 			Debug.Log("GameController.LoadScene: Loading " + menuScene + "...");
@@ -146,7 +153,10 @@ namespace ComicSans.UI
 
 			rect.localScale = 2.5f * Vector3.one;
 
-            quitButton.SetActive(true);
+            // Enables and selectes the button.
+            quitButton.gameObject.SetActive(true);
+            eventSystem.SetSelectedGameObject(quitButton.gameObject);
+			quitButton.OnSelect(null);
 
 		}
     }

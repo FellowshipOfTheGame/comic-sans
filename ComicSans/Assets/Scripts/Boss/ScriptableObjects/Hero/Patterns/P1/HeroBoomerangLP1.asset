@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fda7f69535c845a35fce1d6406593, type: 3}
+  m_Name: HeroBoomerangLP1
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: c155c43896573c84ba4c2825e92a91c8, type: 2}
+  - {fileID: 11400000, guid: ec8cb45cb4d3ad14d88f90cdb48acf58, type: 2}
+  - {fileID: 11400000, guid: 5b978c493dcb7d3479ee2db6e1bc427e, type: 2}
+  - {fileID: 11400000, guid: a767df8a57ab6db4093245d960f06dcc, type: 2}
+  chance: 100
+  choiceType: 0
+  trigger: 0
+  nextPattern:
+  - {fileID: 11400000, guid: 20f3ff06e46ff2b42aed68b174a13945, type: 2}

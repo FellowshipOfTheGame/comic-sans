@@ -244,6 +244,7 @@ namespace ComicSans.Player
         protected override void Damage()
         {
 
+            // Guaratees the Player can't take damage when he shouldn't.
             if(invincible || GameController.instance.currentGameState != GameController.GameState.Play)
                 return;
 

@@ -365,24 +365,45 @@ namespace ComicSans.Boss
 		protected override void Damage() 
 		{
 
+			// Guaratees the Boss can't take damage when he shouldn't.
 			if(GameController.instance.currentGameState != GameController.GameState.Play)
 				return;
 
+			// Damages the Boss.
 			health.Hp-=10;
 
+			// Verifies if the Boss should pass to the next phase.
+			if(health.Hp < phases[currentPhase].healthToNextPhase)
+			{
+				
+				if(phases.Count > currentPhase + 1)
+					NextPhase();
+				else
+					Debug.LogWarning("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
+			
+				return;
+				
+			}
+
+			// Verifies if the boss has died.
 			if(health.Hp <= 0)
 			{
 				Die();
 				return;
 			}
 
-			if(health.Hp < phases[currentPhase].healthToNextPhase)
-			{
-				if(phases.Count > currentPhase + 1)
-					NextPhase();
-				else
-					Debug.LogWarning("BossScript.Damage: " + transform.name + " is trying to go to the next phase but it doesn't exist! If the current phase is the final remember to set lifeToNextPhase to a negative number on it's file.");
-			}
+			
+
+		}
+
+		// Updates the Boss health bar.
+		protected override void UpdateLifeHUD()
+		{
+			
+			if(GameController.instance.uiController != null)
+				GameController.instance.uiController.UpdateBossHealthBar(health.Hp);
+			else
+				Debug.LogWarning("PlayerScript.UpdateLifeHUD: No UIController found!");
 
 		}
 
@@ -401,16 +422,6 @@ namespace ComicSans.Boss
 			}
 
 			_colliders.SetActive(true); // Re-enables Boss colliders.
-
-		}
-
-		protected override void UpdateLifeHUD()
-		{
-			
-			if(GameController.instance.uiController != null)
-				GameController.instance.uiController.UpdateBossHealthBar(health.Hp);
-			else
-				Debug.LogWarning("PlayerScript.UpdateLifeHUD: No UIController found!");
 
 		}
 

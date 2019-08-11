@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 using System.Collections;
-using System.Collections.Generic;
 
 namespace ComicSans.UI
 {

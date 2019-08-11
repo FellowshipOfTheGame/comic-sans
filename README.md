@@ -24,19 +24,17 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 # TO DO:
 
-- [ ] Add UI instructios to main menu.
-- [ ] Update instructions screen.
 - [ ] Make the game possible to be played with touch.
 - [ ] Clean up code and Unity project for possible final commit.
 
 # TEST:
 
 - [ ] Fixed Oswaldo sometimes getting it's animations fliped on the x-axis.
+- [ ] Fixed Player sometimes remaining invincible.
 - [x] Fixed Punk scream not stoping on death.
 - [x] Fixed Punk wall attack on the 1st phase.
 - [x] Fixed Punk weird animations.
-- [ ] Added new ending.
-- [ ] Fixed Player sometimes remaining invincible.
+- [x] Added new ending.
 - [x] Options menu in pause screen.
 - [x] Fixed first menu item not appearing selected after opening the menu.
 - [x] Centered menu and HUD into an UIController.
@@ -45,14 +43,13 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Fixed reset options button not working on Pause menu.
 - [x] Fixed Lose Menu not disappearing when restarting.
 - [x] Fixed some Boss sounds not stopping immediatly when winning or losing.
-- [ ] Restart button.
+- [x] Restart button.
 - [x] Fixed game freezing if pressing Play on main menu before FadeIn effect was finished.
+- [x] Add UI instructios to main menu.
+- [x] Update instructions screen.
+- [x] Made the Player go on the direction of the scene portal when entering it.
 
 # BUGS:
-
-# DETAILS:
-
-- [ ] Player not going to the ScenePortal depending on direction when entering it.
 
 # DONE:
 

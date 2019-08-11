@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Hero
   returnSpawnPosition: {x: -3.85, y: -0.15}
+  destinationPosition: {x: -8, y: 0}
 --- !u!61 &216957587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -924,6 +925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Xing
   returnSpawnPosition: {x: 0, y: 3}
+  destinationPosition: {x: 0, y: 8}
 --- !u!1 &1657668002
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,6 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Punk
   returnSpawnPosition: {x: 3.85, y: 0.2}
+  destinationPosition: {x: 8, y: 0}
 --- !u!1001 &1694149098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1208,6 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Cueio
   returnSpawnPosition: {x: 0, y: -2.2}
+  destinationPosition: {x: 0, y: -8}
 --- !u!1 &2145225793
 GameObject:
   m_ObjectHideFlags: 0

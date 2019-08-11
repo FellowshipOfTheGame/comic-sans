@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 using System.Collections;
-using System.Collections.Generic;
 
 namespace ComicSans.Projectiles
 {
@@ -27,12 +26,7 @@ namespace ComicSans.Projectiles
 			if(_rigidbody == null)
 			{
 				Debug.Log("SimpleProjectile: " + gameObject.name + " needs to have a Ridibody2D!");
-
-				if(origin != null)
-						Despawn();
-					else
-						Destroy(this.gameObject);
-
+				Despawn();
 				return;
 			}
 
@@ -41,15 +35,11 @@ namespace ComicSans.Projectiles
 			if(_renderer == null)
 			{
 				Debug.Log("SimpleProjectile: " + gameObject.name + " needs to have a SpriteRenderer!");
-
-				if(origin != null)
-						Despawn();
-					else
-						Destroy(this.gameObject);
-
+				Despawn();
 				return;
 			}
 
+			// Disables the projectile renderer at start.
 			_renderer.enabled = false;
 
 			StartCoroutine(Shot());
@@ -58,24 +48,21 @@ namespace ComicSans.Projectiles
 
 		// Moves the projectile.
 		IEnumerator Shot()
-		{
-
-			float time = 0;
+		{	
 
 			// Waits for the delay.
+			float time = 0;
 			while(time < delayToAppear)
 			{
 				yield return new WaitForFixedUpdate();
 				time += Time.fixedDeltaTime;
 			}
 
+			// Enables the projectile renderer.
 			_renderer.enabled = true;
 
 			// Moves the projectile.
 			_rigidbody.velocity = transform.up * velocity;
-
-			if(origin != null)
-				transform.SetParent(null);
 
 		}
 	}

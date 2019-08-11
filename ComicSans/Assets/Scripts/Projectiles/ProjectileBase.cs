@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-
 using ComicSans.PoolingSystem;
 
 namespace ComicSans.Projectiles

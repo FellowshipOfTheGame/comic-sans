@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-
 namespace ComicSans.Boss
 {
 
@@ -22,7 +19,9 @@ namespace ComicSans.Boss
 		// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 		override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-			if(stateInfo.IsName("Win") )
+			// Starts the proper ending to the scene when the Boss/Player dies.
+			// Should be setup to be called by the Boss animator after the Win and Die animation states.
+			if(stateInfo.IsName("Win") ) 
 				GameController.instance.StartEndScene(false);
 			else if(stateInfo.IsName("Die"))
 				GameController.instance.StartEndScene(true);
