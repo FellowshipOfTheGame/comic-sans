@@ -28,7 +28,7 @@ namespace ComicSans.Projectiles.Boss
         {
 
             // Despawns the projectile if the bounce amount has been reached.
-            if(bounces == bounceAmount)
+            if(bounces >= bounceAmount)
             {
                 Despawn();
                 return;

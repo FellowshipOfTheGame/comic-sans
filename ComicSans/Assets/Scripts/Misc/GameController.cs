@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using ComicSans.UI;
 using ComicSans.Boss;
 using ComicSans.Player;
+using ComicSans.Input;
 
 namespace ComicSans
 {

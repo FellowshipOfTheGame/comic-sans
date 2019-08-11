@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ComicSans
+namespace ComicSans.Input
 {
 
     // Intermediates communication between UI controls and the InputController.

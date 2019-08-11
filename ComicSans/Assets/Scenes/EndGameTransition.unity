@@ -366,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: EndGame
   returnSpawnPosition: {x: 0, y: 0}
+  destinationPosition: {x: -0.15, y: 8}
 --- !u!61 &887331074
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -22,34 +22,14 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 
 ---
 
-# TO DO:
-
-- [ ] Make the game possible to be played with touch.
-- [ ] Clean up code and Unity project for possible final commit.
-
 # TEST:
 
-- [ ] Fixed Oswaldo sometimes getting it's animations fliped on the x-axis.
-- [ ] Fixed Player sometimes remaining invincible.
-- [x] Fixed Punk scream not stoping on death.
-- [x] Fixed Punk wall attack on the 1st phase.
-- [x] Fixed Punk weird animations.
-- [x] Added new ending.
-- [x] Options menu in pause screen.
-- [x] Fixed first menu item not appearing selected after opening the menu.
-- [x] Centered menu and HUD into an UIController.
-- [x] Music reseting to max on Menu.
-- [x] Fixed music not playing at start if the music volume is not at maximum.
-- [x] Fixed reset options button not working on Pause menu.
-- [x] Fixed Lose Menu not disappearing when restarting.
-- [x] Fixed some Boss sounds not stopping immediatly when winning or losing.
-- [x] Restart button.
-- [x] Fixed game freezing if pressing Play on main menu before FadeIn effect was finished.
-- [x] Add UI instructios to main menu.
-- [x] Update instructions screen.
-- [x] Made the Player go on the direction of the scene portal when entering it.
+- [ ] Make the game possible to be played with touch.
+- [ ] Make the game possible to be played with controller.
 
 # BUGS:
+
+    None, for now...
 
 # DONE:
 
@@ -68,12 +48,33 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Add instructions screen.
 - [x] Add a new Boss.
 - [x] Make the game possible to be played only with keyboard.
-- [x] Make the game possible to be played with controller (not tested).
 - [x] End screens for each Boss when the player wins.
 - [x] Improved start of the game.
 - [x] Make the player appear back on the Lobby next to the last entered room.
 - [x] Add end game screen when the Player defeats all Bosses.
 - [X] Make Xing Ling's Triple Kunais target player position.
+- [X] Fixed Punk sometimes going to wrong position on Wall attack.
+- [x] Fixed Punk scream not stoping on death.
+- [x] Fixed Punk wall attack on the 1st phase.
+- [x] Fixed Punk weird animations.
+- [x] Added new ending.
+- [x] Options menu in pause screen.
+- [x] Fixed first menu item not appearing selected after opening the menu.
+- [x] Centered menu and HUD into an UIController.
+- [x] Music reseting to max on Menu.
+- [x] Fixed music not playing at start if the music volume is not at maximum.
+- [x] Fixed reset options button not working on Pause menu.
+- [x] Fixed Lose Menu not disappearing when restarting.
+- [x] Fixed some Boss sounds not stopping immediatly when winning or losing.
+- [x] Restart button.
+- [x] Fixed game freezing if pressing Play on main menu before FadeIn effect was finished.
+- [x] Add UI instructios to main menu.
+- [x] Update instructions screen.
+- [x] Made the Player go on the direction of the scene portal when entering it.
+- [x] Fixed Oswaldo sometimes getting it's animations fliped on the x-axis.
+- [x] Clean up code and Unity project for possible final commit.
+- [x] Bounce projectiles never disappearing (very rare).
+- [x] Fixed Player sometimes remaining invincible.
   
 ---
 

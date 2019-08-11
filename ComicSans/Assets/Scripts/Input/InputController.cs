@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ComicSans
+namespace ComicSans.Input
 {
 
     // Controls the user input.
@@ -77,13 +77,13 @@ namespace ComicSans
             if(!isMobileDevice) {
 
                 // Takes input from regular sources.
-                xAxis = Input.GetAxis("Horizontal");
-                yAxis = Input.GetAxis("Vertical");
+                xAxis = UnityEngine.Input.GetAxis("Horizontal");
+                yAxis = UnityEngine.Input.GetAxis("Vertical");
 
-                if(Input.GetButtonDown("Fire1"))
+                if(UnityEngine.Input.GetButtonDown("Fire1"))
                     if(OnShotDown != null) OnShotDown();
 
-                if(Input.GetButtonDown("Pause"))
+                if(UnityEngine.Input.GetButtonDown("Pause"))
                     if(OnShotDown != null) OnPauseDown();
 
             }

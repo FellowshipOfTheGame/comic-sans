@@ -71,8 +71,11 @@
      <Compile Include="Assets\Scripts\DataContainers\AnimationSet.cs" />
      <Compile Include="Assets\Scripts\DataContainers\ProjectileSpawn.cs" />
      <Compile Include="Assets\Scripts\Input\InputController.cs" />
+     <Compile Include="Assets\Scripts\Input\TouchJoystick.cs" />
      <Compile Include="Assets\Scripts\Input\UITouchHandler.cs" />
+     <Compile Include="Assets\Scripts\Misc\ChangeSpriteOnMobile.cs" />
      <Compile Include="Assets\Scripts\Misc\DespawnTimer.cs" />
+     <Compile Include="Assets\Scripts\Misc\DisableGameObjectOnMobile.cs" />
      <Compile Include="Assets\Scripts\Misc\EntityScript.cs" />
      <Compile Include="Assets\Scripts\Misc\GameController.cs" />
      <Compile Include="Assets\Scripts\Misc\InitialSetup.cs" />

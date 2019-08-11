@@ -30,6 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dbcb1e08e5b4284a9664d04f131b345, type: 2}
   chance: 150
   choiceType: 1
-  trigger: 5
+  trigger: 7
   nextPattern:
   - {fileID: 11400000, guid: f38a6a8d989d391408762ae25f85126f, type: 2}
