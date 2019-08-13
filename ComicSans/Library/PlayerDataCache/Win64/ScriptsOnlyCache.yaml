@@ -45,6 +45,8 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     - UnityEditor.Graphs.AnimatorControllerTool
+    UnityEditor.TestRunner.dll:
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -1540,7 +1542,7 @@ ScriptsOnlyBuild:
     className: UIController
   - hash:
       serializedVersion: 2
-      Hash: bf4698a3b70ae92d7166ab31c3de7991
+      Hash: d04913be191ddac594f28022a6412f97
     assemblyName: Assembly-CSharp.dll
     namespaceName: ComicSans.Input
     className: TouchJoystick
@@ -1779,4 +1781,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Hero.unity
   - Assets/Scenes/EndGameTransition.unity
   - Assets/Scenes/EndGame.unity
-  playerPath: D:/Users/Du/Desktop/ComicSans-2_0_0-B5/ComicSans.exe
+  playerPath: C:/Users/luise/Desktop/ComicSans/ComicSans.exe

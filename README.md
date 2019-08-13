@@ -18,14 +18,9 @@ ComicSans is a game made by the group Fellowship of the Game from the University
     - Leonardo Pizani
 - Programming:
     - Luis Eduardo Rozante 
-    - Ricardo Luiz
+    - Ricardo Luiz Cardoso
 
 ---
-
-# TEST:
-
-- [ ] Make the game possible to be played with touch.
-- [ ] Make the game possible to be played with controller.
 
 # BUGS:
 
@@ -75,6 +70,8 @@ ComicSans is a game made by the group Fellowship of the Game from the University
 - [x] Clean up code and Unity project for possible final commit.
 - [x] Bounce projectiles never disappearing (very rare).
 - [x] Fixed Player sometimes remaining invincible.
+- [x] Make the game possible to be played with touch.
+- [x] Make the game possible to be played with controller.
   
 ---
 

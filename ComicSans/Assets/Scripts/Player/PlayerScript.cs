@@ -76,13 +76,9 @@ namespace ComicSans.Player
 
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() { Initialize(); }
 
-            Initialize();
-            
-        }
-
+        // Initializes the Player.
         public void Initialize()
         {
 
@@ -111,7 +107,7 @@ namespace ComicSans.Player
                 shooting.ShootingCoroutine = null; 
             }
 
-            // Adds the input events to the input manager.
+            // Adds the input events to the InputController.
             if(!inputEventsOk)
             {
                 InputController.instance.OnShotDown += ToggleShooting;
@@ -121,12 +117,11 @@ namespace ComicSans.Player
             }
 
         }
-        
 
         private void OnDisable()
         {
 
-            // Removes the input events to the input manager.
+            // Removes the input events from the InputController.
             InputController.instance.OnShotDown -= ToggleShooting;
             InputController.instance.OnPauseDown -= TogglePause;
 
@@ -137,8 +132,6 @@ namespace ComicSans.Player
             
         }
 
-
-        // Update is called once per frame
         private void Update () {
 
             if(GameController.instance.AllowPlayerControl)

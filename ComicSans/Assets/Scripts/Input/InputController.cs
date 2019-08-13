@@ -34,9 +34,19 @@ namespace ComicSans.Input
         public GameObject touchFire = null;
         public GameObject touchPause = null;
 
+        // If is using Unity Remote on the Editor.
+        private bool usingRemote = false;
+
         
         private void Awake() 
         {
+
+            // Verifies if is on Editor with Unity Remote Connected
+            usingRemote = false;
+            #if UNITY_EDITOR
+                if (UnityEditor.EditorApplication.isRemoteConnected)
+                    usingRemote = true;
+            #endif
 
             // Destroy this object if a previous instance already exists.
 			if(instance != null)
@@ -62,11 +72,9 @@ namespace ComicSans.Input
             
             // Disables the touch controls if not on a mobile platform.
             if(!isMobileDevice)
-            {
-                touchJoystick.SetActive(false);
-                touchFire.gameObject.SetActive(false);
-                touchPause.gameObject.SetActive(false);
-            }
+                SetTouchUI(false);
+            else // Unlocks the mouse for dragging on a touch screen to work.
+                Cursor.lockState = CursorLockMode.None;
 
         }
 
@@ -74,7 +82,7 @@ namespace ComicSans.Input
         {
 
             // Controls the input for mouse/keyboard and controller.
-            if(!isMobileDevice) {
+            if(!isMobileDevice && !usingRemote) {
 
                 // Takes input from regular sources.
                 xAxis = UnityEngine.Input.GetAxis("Horizontal");
@@ -84,7 +92,7 @@ namespace ComicSans.Input
                     if(OnShotDown != null) OnShotDown();
 
                 if(UnityEngine.Input.GetButtonDown("Pause"))
-                    if(OnShotDown != null) OnPauseDown();
+                    if(OnPauseDown != null) OnPauseDown();
 
             }
         }
@@ -94,8 +102,8 @@ namespace ComicSans.Input
         {
 
             touchJoystick.SetActive(state);
-            touchFire.gameObject.SetActive(state);
-            touchPause.gameObject.SetActive(state);
+            touchFire.SetActive(state);
+            touchPause.SetActive(state);
 
         }
 
@@ -103,16 +111,19 @@ namespace ComicSans.Input
         public void InputTouch(string touchControl)
         {
 
-            if(isMobileDevice) {
+            if(!isMobileDevice)
+                Debug.LogWarning("InputController.InputTouch: Touch button activated on non-touch device!");  
 
-                Debug.LogWarning("InputController.TouchShot: Touch button activated on non-touch device!");  
-
+            if(touchControl == "shot") 
+            {
+                if(OnShotDown != null) OnShotDown();
             }
-
-            if(touchControl == "shot")
-                OnShotDown();
             else if(touchControl == "pause")
-                OnPauseDown();
+            {
+                if(OnPauseDown != null) OnPauseDown();
+            }
+            else
+                Debug.LogWarning("InputController.InputTouch: Invalid touch control!");  
 
         }
 
